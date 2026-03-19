@@ -610,6 +610,31 @@ services:
     networks:
       - aegisx-network
 
+  db-backup:
+    image: prodrigestivill/postgres-backup-local:15-alpine
+    container_name: aegisx_db_backup
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-aegisx_db}
+      POSTGRES_EXTRA_OPTS: '--schema=public --schema=inventory --no-owner --no-privileges'
+      SCHEDULE: ${BACKUP_SCHEDULE:-@daily}
+      BACKUP_KEEP_DAYS: ${BACKUP_KEEP_DAYS:-7}
+      BACKUP_KEEP_WEEKS: ${BACKUP_KEEP_WEEKS:-4}
+      BACKUP_KEEP_MONTHS: ${BACKUP_KEEP_MONTHS:-6}
+      HEALTHCHECK_PORT: 8080
+      TZ: ${TZ:-Asia/Bangkok}
+    volumes:
+      - ./backups:/backups
+    networks:
+      - aegisx-network
+
   npm:
     image: jc21/nginx-proxy-manager:latest
     container_name: aegisx_npm
@@ -828,6 +853,15 @@ APP_VERSION="$IMAGE_TAG"
 # =============================================================================
 API_PORT=$API_PORT
 WEB_PORT=$WEB_PORT
+
+# =============================================================================
+# Automated Database Backup
+# =============================================================================
+BACKUP_SCHEDULE=@daily
+BACKUP_KEEP_DAYS=7
+BACKUP_KEEP_WEEKS=4
+BACKUP_KEEP_MONTHS=6
+TZ=Asia/Bangkok
 
 # =============================================================================
 # Nginx Proxy Manager
