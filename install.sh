@@ -354,6 +354,7 @@ prompt_config() {
         REDIS_PASSWORD=$(generate_password)
         JWT_SECRET=$(generate_jwt_secret)
         SESSION_SECRET=$(generate_jwt_secret)
+        HIS_ENCRYPTION_SECRET=$(generate_jwt_secret)
         API_PORT=3000
         WEB_PORT=8080
         APP_NAME="AegisX Platform"
@@ -413,6 +414,8 @@ prompt_config() {
     fi
     SESSION_SECRET=$(generate_jwt_secret)
     echo -e "  ${GREEN}Session Secret Generated:${NC} ${SESSION_SECRET:0:8}****"
+    HIS_ENCRYPTION_SECRET=$(generate_jwt_secret)
+    echo -e "  ${GREEN}HIS Encryption Secret Generated:${NC} ${HIS_ENCRYPTION_SECRET:0:8}****"
     echo ""
 
     # Ports
@@ -843,6 +846,11 @@ JWT_REFRESH_EXPIRES_IN=7d
 SESSION_SECRET="$SESSION_SECRET"
 
 # =============================================================================
+# HIS Integration (Encryption for HIS credentials)
+# =============================================================================
+HIS_ENCRYPTION_SECRET="$HIS_ENCRYPTION_SECRET"
+
+# =============================================================================
 # Application
 # =============================================================================
 APP_NAME="$APP_NAME"
@@ -928,6 +936,11 @@ JWT_SECRET="$JWT_SECRET"
 JWT_EXPIRES_IN=1d
 JWT_REFRESH_EXPIRES_IN=7d
 SESSION_SECRET="$SESSION_SECRET"
+
+# =============================================================================
+# HIS Integration (Encryption for HIS credentials)
+# =============================================================================
+HIS_ENCRYPTION_SECRET="$HIS_ENCRYPTION_SECRET"
 
 # =============================================================================
 # Application
