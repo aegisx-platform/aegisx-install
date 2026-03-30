@@ -1177,7 +1177,7 @@ case "${1:-help}" in
         echo -e "${CYAN}[4/4]${NC} Running migrations..."
         echo "  Waiting for API to be ready..."
         for i in $(seq 1 60); do
-            if curl -s "http://localhost:${API_PORT:-3000}/api/health/live" &> /dev/null; then break; fi
+            if curl -s "http://localhost:${API_PORT:-3333}/api/health/live" &> /dev/null; then break; fi
             echo -n "."
             sleep 2
         done
@@ -1246,7 +1246,7 @@ case "${1:-help}" in
         echo ""
         # Check API readiness
         echo -e "${BOLD}API Readiness:${NC}"
-        curl -s "http://localhost:${API_PORT:-3333}/health/ready" 2>/dev/null | python3 -m json.tool 2>/dev/null || \
+        curl -s "http://localhost:${API_PORT:-3333}/api/health/ready" 2>/dev/null | python3 -m json.tool 2>/dev/null || \
             echo -e "  ${YELLOW}API not reachable${NC}"
         ;;
     verify)
