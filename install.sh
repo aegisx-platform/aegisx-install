@@ -355,6 +355,7 @@ prompt_config() {
         JWT_SECRET=$(generate_jwt_secret)
         SESSION_SECRET=$(generate_jwt_secret)
         HIS_ENCRYPTION_SECRET=$(generate_jwt_secret)
+        MIGRATION_ENCRYPTION_KEY=$(generate_jwt_secret)
         API_PORT=3000
         WEB_PORT=8080
         APP_NAME="AegisX Platform"
@@ -416,6 +417,8 @@ prompt_config() {
     echo -e "  ${GREEN}Session Secret Generated:${NC} ${SESSION_SECRET:0:8}****"
     HIS_ENCRYPTION_SECRET=$(generate_jwt_secret)
     echo -e "  ${GREEN}HIS Encryption Secret Generated:${NC} ${HIS_ENCRYPTION_SECRET:0:8}****"
+    MIGRATION_ENCRYPTION_KEY=$(generate_jwt_secret)
+    echo -e "  ${GREEN}Migration Encryption Key Generated:${NC} ${MIGRATION_ENCRYPTION_KEY:0:8}****"
     echo ""
 
     # Ports
@@ -851,6 +854,12 @@ SESSION_SECRET="$SESSION_SECRET"
 HIS_ENCRYPTION_SECRET="$HIS_ENCRYPTION_SECRET"
 
 # =============================================================================
+# Migration Wizard (Encryption for DB connection credentials)
+# WARNING: If production data exists, keep existing key — do NOT regenerate
+# =============================================================================
+MIGRATION_ENCRYPTION_KEY="$MIGRATION_ENCRYPTION_KEY"
+
+# =============================================================================
 # Application
 # =============================================================================
 APP_NAME="$APP_NAME"
@@ -941,6 +950,12 @@ SESSION_SECRET="$SESSION_SECRET"
 # HIS Integration (Encryption for HIS credentials)
 # =============================================================================
 HIS_ENCRYPTION_SECRET="$HIS_ENCRYPTION_SECRET"
+
+# =============================================================================
+# Migration Wizard (Encryption for DB connection credentials)
+# WARNING: If production data exists, keep existing key — do NOT regenerate
+# =============================================================================
+MIGRATION_ENCRYPTION_KEY="$MIGRATION_ENCRYPTION_KEY"
 
 # =============================================================================
 # Application
