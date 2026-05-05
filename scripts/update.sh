@@ -28,6 +28,73 @@ log_success() { echo -e "${GREEN}[SUCCESS]${NC} $1"; }
 log_warning() { echo -e "${YELLOW}[WARNING]${NC} $1"; }
 log_error()   { echo -e "${RED}[ERROR]${NC} $1" >&2; }
 
+INSTALLER_BASE_URL="https://raw.githubusercontent.com/aegisx-platform/aegisx-install/main"
+
+# ==============================================================================
+# sync_compose_template — Re-download docker-compose.yml from public installer
+#
+# Pulls the full upstream template so non-env compose changes (healthcheck path,
+# image name, volumes, etc.) also propagate on `./aegisx update`. ensure_env_mappings
+# alone only covers env mappings.
+#
+# Reads COMPOSE_VARIANT from .env (full | inventory | external-db). Installs
+# predating this marker (before v1.46.x) are skipped silently — they still
+# benefit from ensure_env_mappings.
+#
+# Idempotent: no-op if downloaded content equals existing. Backs up before swap,
+# validates YAML, restores on failure.
+# ==============================================================================
+sync_compose_template() {
+    local compose_file="docker-compose.yml"
+    [ ! -f "$compose_file" ] && return 0
+
+    local variant="${COMPOSE_VARIANT:-}"
+    if [ -z "$variant" ]; then
+        log_info "COMPOSE_VARIANT not set in .env — skipping template sync"
+        log_info "(install scripts from v1.46.x+ write this marker; older installs rely on ensure_env_mappings)"
+        return 0
+    fi
+
+    case "$variant" in
+        full|inventory|external-db) ;;
+        *)
+            log_warning "Unknown COMPOSE_VARIANT='$variant' — skipping template sync"
+            return 0
+            ;;
+    esac
+
+    local template_url="${INSTALLER_BASE_URL}/docker-compose.${variant}.yml"
+    local tmp_file
+    tmp_file=$(mktemp)
+
+    log_info "Checking upstream compose template (${variant})..."
+    if ! curl -fsSL "$template_url" -o "$tmp_file" 2>/dev/null; then
+        log_warning "Could not download ${template_url} — keeping current compose"
+        rm -f "$tmp_file"
+        return 0
+    fi
+
+    if cmp -s "$tmp_file" "$compose_file"; then
+        log_info "Compose template already up to date"
+        rm -f "$tmp_file"
+        return 0
+    fi
+
+    local backup_path="${compose_file}.pre-sync.$(date +%Y%m%d-%H%M%S)"
+    cp "$compose_file" "$backup_path"
+    log_info "Compose template differs — backed up to $backup_path"
+
+    mv "$tmp_file" "$compose_file"
+
+    if ! docker compose config > /dev/null 2>&1; then
+        log_error "Synced compose is invalid YAML — restoring from backup"
+        cp "$backup_path" "$compose_file"
+        return 1
+    fi
+
+    log_success "Compose template synced from upstream (${variant})"
+}
+
 # ==============================================================================
 # ensure_env_mappings — Patch missing required env mappings into docker-compose.yml
 #
@@ -35,6 +102,9 @@ log_error()   { echo -e "${RED}[ERROR]${NC} $1" >&2; }
 # in v1.45.x), production installs that ran an older install.sh have a stale
 # docker-compose.yml without the new mapping. The api container then crashes on
 # bootstrap. This function detects missing mappings and patches them in-place.
+#
+# Acts as a safety net for installs predating sync_compose_template (no
+# COMPOSE_VARIANT) and for any drift sync_compose_template can't fix.
 #
 # Idempotent: running twice is a no-op. Adds entries to env_vars/env_anchors/
 # env_mappings arrays when new required env vars are introduced.
@@ -223,8 +293,10 @@ fi
 log_info "Creating backup before update..."
 ./scripts/backup.sh
 
-# Patch docker-compose.yml if older install left required env mappings missing
-log_info "Verifying docker-compose.yml env mappings..."
+# Re-sync compose template from upstream first (covers non-env changes), then
+# patch missing env mappings as a safety net for installs predating sync_compose_template
+log_info "Verifying docker-compose.yml..."
+sync_compose_template
 ensure_env_mappings
 
 # Pull new images

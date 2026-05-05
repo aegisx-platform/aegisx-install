@@ -317,6 +317,12 @@ APP_VERSION=1.0.0
 IMAGE_TAG=$IMAGE_TAG
 
 # =============================================================================
+# Compose variant (read by update.sh to re-download the matching template)
+# Values: full | inventory | external-db
+# =============================================================================
+COMPOSE_VARIANT=inventory
+
+# =============================================================================
 # Network Configuration
 # =============================================================================
 API_PORT=$API_PORT

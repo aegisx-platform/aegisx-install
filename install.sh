@@ -818,6 +818,9 @@ create_env_file() {
 # Generated: $(date -Iseconds)
 # ==============================================================================
 
+# Compose variant (read by update.sh to re-download the matching template)
+COMPOSE_VARIANT=full
+
 # =============================================================================
 # Docker Image
 # =============================================================================
@@ -918,6 +921,9 @@ ENVFILE
 # Mode: External Database (connecting to existing PostgreSQL)
 # Generated: $(date -Iseconds)
 # ==============================================================================
+
+# Compose variant (read by update.sh to re-download the matching template)
+COMPOSE_VARIANT=external-db
 
 # =============================================================================
 # Docker Image
