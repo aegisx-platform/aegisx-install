@@ -80,6 +80,14 @@ sync_compose_template() {
         return 0
     fi
 
+    if [ "${DRY_RUN:-false}" = "true" ]; then
+        log_info "[DRY-RUN] Would replace docker-compose.yml with upstream ${variant} template"
+        log_info "[DRY-RUN] Diff preview (first 20 lines):"
+        diff "$compose_file" "$tmp_file" 2>/dev/null | head -20 | sed 's/^/    /'
+        rm -f "$tmp_file"
+        return 0
+    fi
+
     local backup_path="${compose_file}.pre-sync.$(date +%Y%m%d-%H%M%S)"
     cp "$compose_file" "$backup_path"
     log_info "Compose template differs — backed up to $backup_path"
@@ -139,6 +147,12 @@ ensure_env_mappings() {
             continue
         fi
 
+        if [ "${DRY_RUN:-false}" = "true" ]; then
+            log_info "[DRY-RUN] Would patch missing env mapping: ${env_var}"
+            patched_count=$((patched_count + 1))
+            continue
+        fi
+
         if [ -z "$backup_path" ]; then
             backup_path="${compose_file}.pre-patch.$(date +%Y%m%d-%H%M%S)"
             cp "$compose_file" "$backup_path"
@@ -169,6 +183,11 @@ ensure_env_mappings() {
         return 0
     fi
 
+    if [ "${DRY_RUN:-false}" = "true" ]; then
+        log_info "[DRY-RUN] ${patched_count} mapping(s) would be patched"
+        return 0
+    fi
+
     # Validate YAML — restore on failure
     if ! docker compose config > /dev/null 2>&1; then
         log_error "Patched compose is invalid — restoring from ${backup_path}"
@@ -193,6 +212,12 @@ run_migrations() {
     if [ "$skip_migrate" = "true" ]; then
         log_info "Skipping migrations (--skip-migrate set)"
         log_info "Run manually later: ./aegisx migrate"
+        return 0
+    fi
+
+    if [ "${DRY_RUN:-false}" = "true" ]; then
+        log_info "[DRY-RUN] Would run main migrations:    knex migrate:latest --knexfile knexfile.ts"
+        log_info "[DRY-RUN] Would run inventory migrations: knex migrate:latest --knexfile knexfile-inventory.ts (if applicable)"
         return 0
     fi
 
@@ -222,6 +247,177 @@ run_migrations() {
 }
 
 # ==============================================================================
+# rollback_state — Restore compose + .env from pre-update snapshots and
+# recreate containers, used when an update step fails after we started mutating.
+#
+# Limitations: migrations that already ran do NOT auto-rollback. If a migrate
+# step fails partway, the DB schema may be in a partial state — the image
+# rollback gives the prior image a chance to tolerate it, but operator
+# intervention may still be needed (knex migrate:rollback).
+# ==============================================================================
+SNAPSHOT_TS=""
+SNAPSHOT_COMPOSE=""
+SNAPSHOT_ENV=""
+ROLLBACK_ENABLED=true
+
+take_pre_update_snapshot() {
+    [ "$DRY_RUN" = "true" ] && return 0
+    [ "$ROLLBACK_ENABLED" = "false" ] && return 0
+
+    SNAPSHOT_TS="$(date +%Y%m%d-%H%M%S)"
+    SNAPSHOT_COMPOSE="docker-compose.yml.pre-update.${SNAPSHOT_TS}"
+    SNAPSHOT_ENV=".env.pre-update.${SNAPSHOT_TS}"
+
+    cp docker-compose.yml "$SNAPSHOT_COMPOSE"
+    cp .env "$SNAPSHOT_ENV"
+    log_info "Pre-update snapshots saved:"
+    log_info "  $SNAPSHOT_COMPOSE"
+    log_info "  $SNAPSHOT_ENV"
+}
+
+rollback_state() {
+    [ "$DRY_RUN" = "true" ] && return 0
+    [ "$ROLLBACK_ENABLED" = "false" ] && return 0
+    [ -z "$SNAPSHOT_COMPOSE" ] && return 0  # snapshot never taken (early failure)
+
+    echo ""
+    log_warning "Update failed — rolling back to pre-update state..."
+
+    if [ -f "$SNAPSHOT_COMPOSE" ]; then
+        cp "$SNAPSHOT_COMPOSE" docker-compose.yml
+        log_info "Restored docker-compose.yml from $SNAPSHOT_COMPOSE"
+    fi
+
+    if [ -f "$SNAPSHOT_ENV" ]; then
+        cp "$SNAPSHOT_ENV" .env
+        log_info "Restored .env from $SNAPSHOT_ENV"
+    fi
+
+    log_info "Recreating containers with restored state..."
+    if docker compose up -d --force-recreate 2>&1 | tail -5; then
+        log_success "Rollback complete — containers restored to prior version"
+        log_warning "If migrations had partially applied, you may need to run:"
+        log_warning "  ./aegisx migrate           # to retry, or"
+        log_warning "  knex migrate:rollback ...  # to revert (advanced)"
+    else
+        log_error "Rollback recreate failed — manual intervention required"
+        log_error "Snapshots available at:"
+        log_error "  $SNAPSHOT_COMPOSE"
+        log_error "  $SNAPSHOT_ENV"
+    fi
+}
+
+# Wrap a mutation step. Calls rollback_state + exits on failure.
+attempt() {
+    local description="$1"; shift
+    if ! "$@"; then
+        log_error "Step failed: $description"
+        rollback_state
+        exit 1
+    fi
+}
+
+# ==============================================================================
+# show_release_notes — Print the latest release block from upstream CHANGELOG
+#
+# Best-effort: silently skips if CHANGELOG.md isn't reachable (older installer
+# repos predating CHANGELOG sync, or transient network issue).
+# ==============================================================================
+show_release_notes() {
+    local notes_url="${INSTALLER_BASE_URL}/CHANGELOG.md"
+    local tmp
+    tmp=$(mktemp)
+
+    if ! curl -fsSL "$notes_url" -o "$tmp" 2>/dev/null; then
+        rm -f "$tmp"
+        return 0
+    fi
+
+    if [ ! -s "$tmp" ]; then
+        rm -f "$tmp"
+        return 0
+    fi
+
+    echo ""
+    echo -e "${CYAN}Latest release notes:${NC}"
+    # Print everything from the first `## [` heading up to (but not including)
+    # the second one — semantic-release uses this format consistently.
+    awk '
+        /^## \[/ { count++ }
+        count == 1 { print }
+        count == 2 { exit }
+    ' "$tmp" | head -40 | sed 's/^/    /'
+    echo ""
+
+    rm -f "$tmp"
+}
+
+# ==============================================================================
+# preflight_checks — Verify host is ready for update before mutating state
+#
+# Hard checks (abort): docker daemon, disk space critical (<2GB)
+# Soft checks (warn):  disk low (<5GB), memory low (<500MB), postgres not running
+# ==============================================================================
+preflight_checks() {
+    log_info "Running pre-flight checks..."
+    local errors=0
+    local warnings=0
+
+    # Docker daemon
+    if ! docker info >/dev/null 2>&1; then
+        log_error "  Docker daemon is not running"
+        errors=$((errors + 1))
+    else
+        log_success "  Docker daemon: OK"
+    fi
+
+    # Disk space (need >=5GB for image pull + backup)
+    local disk_avail_mb
+    disk_avail_mb=$(df -m . 2>/dev/null | awk 'NR==2{print $4}' || echo 0)
+    if [ "${disk_avail_mb:-0}" -lt 2000 ] 2>/dev/null; then
+        log_error "  Disk space critical: ${disk_avail_mb}MB free (need at least 2GB)"
+        errors=$((errors + 1))
+    elif [ "${disk_avail_mb:-0}" -lt 5000 ] 2>/dev/null; then
+        log_warning "  Disk space low: ${disk_avail_mb}MB free (recommend 5GB+)"
+        warnings=$((warnings + 1))
+    else
+        log_success "  Disk space: ${disk_avail_mb}MB free"
+    fi
+
+    # Memory (best-effort — `free` only on Linux)
+    if command -v free >/dev/null 2>&1; then
+        local mem_avail_mb
+        mem_avail_mb=$(free -m | awk '/^Mem:/{print $7}')
+        [ -z "$mem_avail_mb" ] && mem_avail_mb=$(free -m | awk '/^Mem:/{print $4}')
+        if [ "${mem_avail_mb:-0}" -lt 500 ] 2>/dev/null; then
+            log_warning "  Memory available: ${mem_avail_mb}MB — containers may OOM during recreate"
+            warnings=$((warnings + 1))
+        else
+            log_success "  Memory available: ${mem_avail_mb}MB"
+        fi
+    fi
+
+    # Postgres health (only if compose declares postgres service)
+    if [ -f docker-compose.yml ] && grep -qE "^[[:space:]]+postgres:" docker-compose.yml; then
+        if docker compose ps postgres --format json 2>/dev/null | grep -q '"State":"running"'; then
+            log_success "  Postgres container: running"
+        else
+            log_warning "  Postgres container is not running — migrations will fail"
+            warnings=$((warnings + 1))
+        fi
+    fi
+
+    if [ $errors -gt 0 ]; then
+        log_error "Pre-flight failed: $errors error(s). Fix the issues above and retry."
+        exit 1
+    fi
+
+    if [ $warnings -gt 0 ]; then
+        log_warning "Pre-flight finished with $warnings warning(s) — review before continuing"
+    fi
+}
+
+# ==============================================================================
 # Main update flow
 # ==============================================================================
 
@@ -235,6 +431,7 @@ echo ""
 FORCE=false
 TAG_OVERRIDE=""
 SKIP_MIGRATE=false
+DRY_RUN=false
 
 while [[ $# -gt 0 ]]; do
     case $1 in
@@ -250,6 +447,14 @@ while [[ $# -gt 0 ]]; do
             SKIP_MIGRATE=true
             shift
             ;;
+        --dry-run)
+            DRY_RUN=true
+            shift
+            ;;
+        --no-rollback)
+            ROLLBACK_ENABLED=false
+            shift
+            ;;
         -h|--help)
             echo "Usage: $0 [options]"
             echo ""
@@ -257,6 +462,8 @@ while [[ $# -gt 0 ]]; do
             echo "  -f, --force         Skip confirmation prompt"
             echo "  --tag TAG           Update to specific tag (default: latest)"
             echo "  --skip-migrate      Skip running migrations after update"
+            echo "  --dry-run           Show planned actions without executing them"
+            echo "  --no-rollback       Disable auto-rollback on failure"
             echo "  -h, --help          Show this help"
             exit 0
             ;;
@@ -272,6 +479,7 @@ if [ -n "$TAG_OVERRIDE" ]; then
 fi
 
 log_info "Update target: $IMAGE_TAG"
+[ "$DRY_RUN" = true ] && log_warning "Running in DRY-RUN mode — no changes will be made"
 
 # Check current versions
 echo ""
@@ -279,8 +487,10 @@ echo -e "${CYAN}Current Images:${NC}"
 docker compose images 2>/dev/null || true
 
 echo ""
+preflight_checks
+show_release_notes
 
-if [ "$FORCE" = false ]; then
+if [ "$FORCE" = false ] && [ "$DRY_RUN" = false ]; then
     read -p "Proceed with update? [y/N] " -n 1 -r
     echo ""
     if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -290,8 +500,15 @@ if [ "$FORCE" = false ]; then
 fi
 
 # Create backup before update
-log_info "Creating backup before update..."
-./scripts/backup.sh
+if [ "$DRY_RUN" = true ]; then
+    log_info "[DRY-RUN] Would create backup via ./scripts/backup.sh"
+else
+    log_info "Creating backup before update..."
+    ./scripts/backup.sh
+fi
+
+# Snapshot compose + .env so we can roll back if the update fails partway
+take_pre_update_snapshot
 
 # Re-sync compose template from upstream first (covers non-env changes), then
 # patch missing env mappings as a safety net for installs predating sync_compose_template
@@ -300,26 +517,51 @@ sync_compose_template
 ensure_env_mappings
 
 # Pull new images
-log_info "Pulling new images..."
-docker compose pull
+if [ "$DRY_RUN" = true ]; then
+    log_info "[DRY-RUN] Would pull new images: docker compose pull"
+else
+    log_info "Pulling new images..."
+    attempt "image pull" docker compose pull
+fi
 
 # Recreate containers with new images
-log_info "Updating containers..."
-docker compose up -d --force-recreate
+if [ "$DRY_RUN" = true ]; then
+    log_info "[DRY-RUN] Would recreate containers: docker compose up -d --force-recreate"
+else
+    log_info "Updating containers..."
+    attempt "container recreate" docker compose up -d --force-recreate
+fi
 
 # Run migrations (unless --skip-migrate)
 echo ""
-run_migrations "$SKIP_MIGRATE" || log_warning "Migrations did not complete cleanly — review logs above"
+if ! run_migrations "$SKIP_MIGRATE"; then
+    log_error "Migrations failed — rolling back image (DB schema may need manual review)"
+    rollback_state
+    exit 1
+fi
 
 # Wait for services to be healthy
-log_info "Waiting for services to be healthy..."
-sleep 10
+if [ "$DRY_RUN" = true ]; then
+    log_info "[DRY-RUN] Would wait for services + run ./scripts/health-check.sh"
+else
+    log_info "Waiting for services to be healthy..."
+    sleep 10
+    if ! ./scripts/health-check.sh; then
+        log_error "Health check failed after update"
+        rollback_state
+        exit 1
+    fi
+fi
 
-# Health check
-./scripts/health-check.sh
+# Mark successful — rollback no longer applies; leave snapshots in place for manual review
+ROLLBACK_ENABLED=false
 
 echo ""
-log_success "Update complete!"
-echo ""
-echo -e "${CYAN}New Images:${NC}"
-docker compose images 2>/dev/null || true
+if [ "$DRY_RUN" = true ]; then
+    log_success "Dry run complete — re-run without --dry-run to apply changes"
+else
+    log_success "Update complete!"
+    echo ""
+    echo -e "${CYAN}New Images:${NC}"
+    docker compose images 2>/dev/null || true
+fi
