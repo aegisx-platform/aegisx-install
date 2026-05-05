@@ -45,6 +45,8 @@ GITHUB_REPO="aegisx-platform/aegisx-starter"
 IMAGE_REGISTRY="ghcr.io/aegisx-platform"
 DOCKERHUB_REGISTRY="dixonsatit"
 DEFAULT_INSTALL_DIR="$HOME/aegisx"
+# Public installer repo — synced on every release by .github/workflows/release.yml
+INSTALLER_BASE_URL="https://raw.githubusercontent.com/aegisx-platform/aegisx-install/main"
 
 # Colors
 RED='\033[0;31m'
@@ -480,7 +482,7 @@ INITSQL
 # Generate Docker Compose File (embedded - works for private repos)
 # =============================================================================
 generate_compose_file() {
-    log_step "Generating Docker Compose configuration"
+    log_step "Fetching Docker Compose template"
 
     # Set image names based on registry source (resolve tag immediately)
     local tag="${IMAGE_TAG:-latest}"
@@ -496,310 +498,31 @@ generate_compose_file() {
 
     cd "$INSTALL_DIR"
 
-    if [ "$INSTALL_MODE" = "full" ]; then
-        cat > docker-compose.yml << 'COMPOSEFILE'
-# AegisX Platform - Full Stack Docker Compose (with PostgreSQL & Redis)
-name: aegisx
+    # Map INSTALL_MODE -> compose template variant
+    local variant
+    case "$INSTALL_MODE" in
+        full)        variant="full" ;;
+        external-db) variant="external-db" ;;
+        *) log_error "Unknown INSTALL_MODE: $INSTALL_MODE"; exit 1 ;;
+    esac
 
-services:
-  postgres:
-    image: postgres:15-alpine
-    container_name: aegisx_postgres
-    restart: unless-stopped
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Database password is required}
-      POSTGRES_DB: ${POSTGRES_DB:-aegisx_db}
-      PGDATA: /var/lib/postgresql/data/pgdata
-    ports:
-      - '${POSTGRES_PORT:-5432}:5432'
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./backups:/backups
-      - ./config/postgres/init:/docker-entrypoint-initdb.d:ro
-    healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-aegisx_db}']
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 30s
-    networks:
-      - aegisx-network
+    local template_url="${INSTALLER_BASE_URL}/docker-compose.${variant}.yml"
+    log_info "Downloading ${template_url}"
 
-  redis:
-    image: redis:7-alpine
-    container_name: aegisx_redis
-    restart: unless-stopped
-    command: >
-      redis-server
-      --appendonly yes
-      --requirepass ${REDIS_PASSWORD:-redis_secret}
-      --maxmemory ${REDIS_MAXMEMORY:-256mb}
-      --maxmemory-policy allkeys-lru
-    ports:
-      - '${REDIS_PORT:-6379}:6379'
-    volumes:
-      - redis_data:/data
-    healthcheck:
-      test: ['CMD', 'redis-cli', '-a', '${REDIS_PASSWORD:-redis_secret}', 'ping']
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    networks:
-      - aegisx-network
-
-  api:
-    image: $API_IMAGE
-    container_name: aegisx_api
-    restart: unless-stopped
-    depends_on:
-      postgres:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-    environment:
-      NODE_ENV: production
-      HOST: 0.0.0.0
-      PORT: 3000
-      API_PREFIX: /api
-      DATABASE_URL: postgres://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-aegisx_db}
-      DATABASE_HOST: postgres
-      DATABASE_PORT: 5432
-      DATABASE_USER: ${POSTGRES_USER:-postgres}
-      DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
-      DATABASE_NAME: ${POSTGRES_DB:-aegisx_db}
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
-      REDIS_PASSWORD: ${REDIS_PASSWORD:-redis_secret}
-      JWT_SECRET: ${JWT_SECRET:?JWT secret is required}
-      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-1d}
-      JWT_REFRESH_EXPIRES_IN: ${JWT_REFRESH_EXPIRES_IN:-7d}
-      SESSION_SECRET: ${SESSION_SECRET:?Session secret is required}
-      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:8080}
-      RATE_LIMIT_MAX: ${RATE_LIMIT_MAX:-100}
-      LOG_LEVEL: ${LOG_LEVEL:-info}
-      UPLOAD_DIR: /app/uploads
-    ports:
-      - '${API_PORT:-3333}:3000'
-    volumes:
-      - uploads_data:/app/uploads
-      - ./config/api:/app/config:ro
-      - ./logs/api:/app/logs
-    healthcheck:
-      test: ['CMD', 'wget', '-qO-', 'http://localhost:3000/api/health/live']
-      interval: 15s
-      timeout: 10s
-      retries: 10
-      start_period: 30s
-    networks:
-      - aegisx-network
-
-  web:
-    image: $WEB_IMAGE
-    container_name: aegisx_web
-    restart: unless-stopped
-    environment:
-      API_URL: ${API_URL:-http://localhost:3333/api}
-      APP_NAME: ${APP_NAME:-AegisX Platform}
-      APP_VERSION: ${APP_VERSION:-latest}
-      ENABLE_ANALYTICS: ${ENABLE_ANALYTICS:-false}
-      ENABLE_DEBUG: ${ENABLE_DEBUG:-false}
-    ports:
-      - '${WEB_PORT:-8080}:8080'
-    volumes:
-      - ./config/web:/etc/nginx/conf.d:ro
-    healthcheck:
-      test: ['CMD', 'wget', '-qO-', 'http://localhost:8080/health']
-      interval: 30s
-      timeout: 10s
-      retries: 3
-    networks:
-      - aegisx-network
-
-  db-backup:
-    image: prodrigestivill/postgres-backup-local:15-alpine
-    container_name: aegisx_db_backup
-    restart: unless-stopped
-    depends_on:
-      postgres:
-        condition: service_healthy
-    environment:
-      POSTGRES_HOST: postgres
-      POSTGRES_PORT: 5432
-      POSTGRES_USER: ${POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB:-aegisx_db}
-      POSTGRES_EXTRA_OPTS: '--schema=public --schema=inventory --no-owner --no-privileges'
-      SCHEDULE: ${BACKUP_SCHEDULE:-@daily}
-      BACKUP_KEEP_DAYS: ${BACKUP_KEEP_DAYS:-7}
-      BACKUP_KEEP_WEEKS: ${BACKUP_KEEP_WEEKS:-4}
-      BACKUP_KEEP_MONTHS: ${BACKUP_KEEP_MONTHS:-6}
-      HEALTHCHECK_PORT: 8080
-      TZ: ${TZ:-Asia/Bangkok}
-    volumes:
-      - ./backups:/backups
-    networks:
-      - aegisx-network
-
-  npm:
-    image: jc21/nginx-proxy-manager:latest
-    container_name: aegisx_npm
-    restart: unless-stopped
-    ports:
-      - '${NPM_HTTP_PORT:-80}:80'
-      - '${NPM_HTTPS_PORT:-443}:443'
-      - '${NPM_ADMIN_PORT:-81}:81'
-    volumes:
-      - npm_data:/data
-      - npm_letsencrypt:/etc/letsencrypt
-    healthcheck:
-      test: ['CMD', 'wget', '-qO-', 'http://localhost:81/api/']
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 30s
-    networks:
-      - aegisx-network
-
-networks:
-  aegisx-network:
-    driver: bridge
-
-volumes:
-  postgres_data:
-  redis_data:
-  uploads_data:
-  npm_data:
-  npm_letsencrypt:
-COMPOSEFILE
-        log_success "Generated docker-compose.yml (full mode)"
-
-    else
-        cat > docker-compose.yml << 'COMPOSEFILE'
-# AegisX Platform - External Database Docker Compose (no PostgreSQL)
-name: aegisx
-
-services:
-  redis:
-    image: redis:7-alpine
-    container_name: aegisx_redis
-    restart: unless-stopped
-    command: >
-      redis-server
-      --appendonly yes
-      --requirepass ${REDIS_PASSWORD:-redis_secret}
-      --maxmemory ${REDIS_MAXMEMORY:-256mb}
-      --maxmemory-policy allkeys-lru
-    ports:
-      - '${REDIS_PORT:-6379}:6379'
-    volumes:
-      - redis_data:/data
-    healthcheck:
-      test: ['CMD', 'redis-cli', '-a', '${REDIS_PASSWORD:-redis_secret}', 'ping']
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    networks:
-      - aegisx-network
-
-  api:
-    image: $API_IMAGE
-    container_name: aegisx_api
-    restart: unless-stopped
-    depends_on:
-      redis:
-        condition: service_healthy
-    environment:
-      NODE_ENV: production
-      HOST: 0.0.0.0
-      PORT: 3000
-      API_PREFIX: /api
-      DATABASE_URL: ${DATABASE_URL:?External DATABASE_URL is required}
-      DATABASE_HOST: ${DATABASE_HOST:-}
-      DATABASE_PORT: ${DATABASE_PORT:-5432}
-      DATABASE_USER: ${DATABASE_USER:-}
-      DATABASE_PASSWORD: ${DATABASE_PASSWORD:-}
-      DATABASE_NAME: ${DATABASE_NAME:-}
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
-      REDIS_PASSWORD: ${REDIS_PASSWORD:-redis_secret}
-      JWT_SECRET: ${JWT_SECRET:?JWT secret is required}
-      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-1d}
-      JWT_REFRESH_EXPIRES_IN: ${JWT_REFRESH_EXPIRES_IN:-7d}
-      SESSION_SECRET: ${SESSION_SECRET:?Session secret is required}
-      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:8080}
-      RATE_LIMIT_MAX: ${RATE_LIMIT_MAX:-100}
-      LOG_LEVEL: ${LOG_LEVEL:-info}
-      UPLOAD_DIR: /app/uploads
-    ports:
-      - '${API_PORT:-3333}:3000'
-    volumes:
-      - uploads_data:/app/uploads
-      - ./config/api:/app/config:ro
-      - ./logs/api:/app/logs
-    healthcheck:
-      test: ['CMD', 'wget', '-qO-', 'http://localhost:3000/api/health/live']
-      interval: 15s
-      timeout: 10s
-      retries: 10
-      start_period: 30s
-    networks:
-      - aegisx-network
-
-  web:
-    image: $WEB_IMAGE
-    container_name: aegisx_web
-    restart: unless-stopped
-    environment:
-      API_URL: ${API_URL:-http://localhost:3333/api}
-      APP_NAME: ${APP_NAME:-AegisX Platform}
-      APP_VERSION: ${APP_VERSION:-latest}
-      ENABLE_ANALYTICS: ${ENABLE_ANALYTICS:-false}
-      ENABLE_DEBUG: ${ENABLE_DEBUG:-false}
-    ports:
-      - '${WEB_PORT:-8080}:8080'
-    volumes:
-      - ./config/web:/etc/nginx/conf.d:ro
-    healthcheck:
-      test: ['CMD', 'wget', '-qO-', 'http://localhost:8080/health']
-      interval: 30s
-      timeout: 10s
-      retries: 3
-    networks:
-      - aegisx-network
-
-  npm:
-    image: jc21/nginx-proxy-manager:latest
-    container_name: aegisx_npm
-    restart: unless-stopped
-    ports:
-      - '${NPM_HTTP_PORT:-80}:80'
-      - '${NPM_HTTPS_PORT:-443}:443'
-      - '${NPM_ADMIN_PORT:-81}:81'
-    volumes:
-      - npm_data:/data
-      - npm_letsencrypt:/etc/letsencrypt
-    healthcheck:
-      test: ['CMD', 'wget', '-qO-', 'http://localhost:81/api/']
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 30s
-    networks:
-      - aegisx-network
-
-networks:
-  aegisx-network:
-    driver: bridge
-
-volumes:
-  redis_data:
-  uploads_data:
-  npm_data:
-  npm_letsencrypt:
-COMPOSEFILE
-        log_success "Generated docker-compose.yml (external-db mode)"
+    if ! curl -fsSL "$template_url" -o docker-compose.yml; then
+        log_error "Failed to download compose template from $template_url"
+        log_error "Check internet access and that the installer repo is reachable."
+        log_error "If the issue persists, re-download install.sh and retry."
+        exit 1
     fi
+
+    # Sanity check — file exists, non-empty, has the expected service block
+    if [ ! -s docker-compose.yml ] || ! grep -q "^  api:" docker-compose.yml; then
+        log_error "Downloaded compose template is empty or malformed"
+        exit 1
+    fi
+
+    log_success "Compose template downloaded (${variant} mode)"
 }
 
 # =============================================================================
