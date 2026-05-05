@@ -22,7 +22,9 @@ set -euo pipefail
 # Configuration
 # =============================================================================
 SCRIPT_VERSION="1.0.0"
-GITHUB_RAW_URL="https://raw.githubusercontent.com/aegisx-platform/aegisx-starter-1/main/deploy"
+# Public installer repo — synced on every release by .github/workflows/release.yml
+# Source files live under deploy/ in aegisx-starter; flattened to repo root in installer.
+GITHUB_RAW_URL="https://raw.githubusercontent.com/aegisx-platform/aegisx-install/main"
 IMAGE_REGISTRY="ghcr.io/aegisx-platform"
 DEFAULT_INSTALL_DIR="$HOME/aegisx-inventory"
 
