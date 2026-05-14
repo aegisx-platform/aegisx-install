@@ -1,3 +1,49 @@
+# [1.51.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.50.0...v1.51.0) (2026-05-14)
+
+
+### Bug Fixes
+
+* **dispensing:** retro-review fixes for Slice 3.1 + 3.5 ([3277055](https://github.com/aegisx-platform/aegisx-starter/commit/3277055f7df761437e78491172bd2a8c2d9ec769))
+* **dispensing:** wrong webhook URL prefix + token cache-control ([e0e58d3](https://github.com/aegisx-platform/aegisx-starter/commit/e0e58d3b6ea6ce09894a6bd56ccf636023b300c4))
+* **inventory:** budget-adjustments view dialog + stats shape ([cf96d97](https://github.com/aegisx-platform/aegisx-starter/commit/cf96d97eb044ecfb523e690b3948e273511fb2a6))
+* **inventory:** canSubmit signal staleness in fulfill-backorder dialog ([4dbc450](https://github.com/aegisx-platform/aegisx-starter/commit/4dbc45087d418c86bfcf0cc26b3988e45f481c65))
+* **inventory:** cast prId string to number in createFromPR ([ad183b1](https://github.com/aegisx-platform/aegisx-starter/commit/ad183b1fac4d18adaeafdd8ee77e576266023122))
+* **inventory:** drop non-existent updated_at column in backorder promote ([23ee8a6](https://github.com/aegisx-platform/aegisx-starter/commit/23ee8a66ad685b7da0b23264cee7df9c0256e53d))
+* **inventory:** fulfill-backorder multi-lot — 5 review findings ([82f184a](https://github.com/aegisx-platform/aegisx-starter/commit/82f184ad0187dbc24409a2f7e67446288809c80f))
+* **inventory:** fulfill-backorder transaction — column names + missing inventory_id ([7191f55](https://github.com/aegisx-platform/aegisx-starter/commit/7191f5596c499fc7d8cbb50aa04b583480cf1408))
+* **inventory:** his sync — mark patient_dispensings DRAFT until stock actually moves ([35908cd](https://github.com/aegisx-platform/aegisx-starter/commit/35908cd1b3f1308a4165ee4b318333d034049cbd))
+* **inventory:** his sync — normalize dates + always resolve location via locationMatchField ([3fa4151](https://github.com/aegisx-platform/aegisx-starter/commit/3fa4151b2fbe749fb6d37d57741e2408c6c17adc))
+* **inventory:** make stock column context-aware per row status ([fdb6816](https://github.com/aegisx-platform/aegisx-starter/commit/fdb6816e2b38c9d582e4f831b52081ee622ce438))
+* **inventory:** pass shortfall_count through transformToEntity ([bb52706](https://github.com/aegisx-platform/aegisx-starter/commit/bb52706e5fd53a7202f48429c47d07b1f89e152c))
+* **inventory:** receipts savepoint + plan-revision FK pickers ([a75744c](https://github.com/aegisx-platform/aegisx-starter/commit/a75744ce74920bb5e9f4854e82f5a276349eee3e))
+* **inventory:** smart approve — use null for approved_qty when fully out of stock ([0ac3325](https://github.com/aegisx-platform/aegisx-starter/commit/0ac3325f427954adab7f6a0fcbe6f6532ef49cae))
+* **inventory:** switch po/pr vat math to extract mode (thai e-gp standard) ([4e3beb6](https://github.com/aegisx-platform/aegisx-starter/commit/4e3beb6d4270499e172e1cea07564727cd9c7568))
+* **rbac:** bind compact as property on ax-empty-state ([d8e786c](https://github.com/aegisx-platform/aegisx-starter/commit/d8e786cb94c3059c5892f04e1df2aac7a8965d25))
+
+
+### Features
+
+* **dispensing:** bulk retry + error_code breakdown for failed records ([0e861c9](https://github.com/aegisx-platform/aegisx-starter/commit/0e861c93241fe0da635e1afb21ed50dd2fa304d4))
+* **dispensing:** custom view-mapping-profile path with manual SQL ([fb2b977](https://github.com/aegisx-platform/aegisx-starter/commit/fb2b97751c462c77e1c5b038cd15865b043c050a))
+* **dispensing:** drug-mapping-stats api + wizard counter wiring ([4a7b878](https://github.com/aegisx-platform/aegisx-starter/commit/4a7b8783893a8f65942afcad863ef70a3861ee49))
+* **dispensing:** dry-run preview before first sync ([e4009f4](https://github.com/aegisx-platform/aegisx-starter/commit/e4009f4578a58575905d694dd1a840ca4e600680))
+* **dispensing:** sync history aggregate stats + CSV export ([cb413b4](https://github.com/aegisx-platform/aegisx-starter/commit/cb413b40671f1dc6032224df7279a665e9a8f41c))
+* **dispensing:** webhook bearer-token auth + config UI ([5d542f1](https://github.com/aegisx-platform/aegisx-starter/commit/5d542f1504ce6988d3f4ab99f0ea1cb6c8e53898))
+* **drugs:** show + filter his_drug_code in master-data list ([2d6bd74](https://github.com/aegisx-platform/aegisx-starter/commit/2d6bd74185f5b551ff37a6ad96428a254b237a8c))
+* **inventory-role-mgmt:** full user lifecycle + dark mode tokens ([ce0c8fb](https://github.com/aegisx-platform/aegisx-starter/commit/ce0c8fbca4aeaf3e1ee676bfe52d23cb56f6d54e))
+* **inventory:** add ppk preset to view-mapping templates ([c0342ba](https://github.com/aegisx-platform/aegisx-starter/commit/c0342bae2b7f800c6bfa6879c0804bf3ff510fd1))
+* **inventory:** add ค้างจ่าย menu item to main + sub warehouse nav ([7ab9ca2](https://github.com/aegisx-platform/aegisx-starter/commit/7ab9ca2c5c0a240893db489a4532c96636773cb0))
+* **inventory:** budget override policies + VAT-aware allocation + import fixes ([64f1891](https://github.com/aegisx-platform/aegisx-starter/commit/64f1891cde477cb2ca978a16246a16a0b1a13852))
+* **inventory:** enable budget-adjustments + budget-plan-revisions launcher cards ([0ce909a](https://github.com/aegisx-platform/aegisx-starter/commit/0ce909a0a260fc44a7fa370c5058cf162d01b9e0))
+* **inventory:** locations import — upsert + his_room_code + parent_id coercion ([198e541](https://github.com/aegisx-platform/aegisx-starter/commit/198e541eeb3dbe05dd6099fbd433183751571e73))
+* **inventory:** multi-lot FEFO fulfill-backorder dialog ([ccf5010](https://github.com/aegisx-platform/aegisx-starter/commit/ccf5010e0503be3a4e54d9db93fdc9f759fc01f6))
+* **inventory:** quick requisition stock UX — drug list chip, preview card, confirm ([1af3891](https://github.com/aegisx-platform/aegisx-starter/commit/1af3891d854762a5c43be94ae3d71a18663b36ef))
+* **inventory:** retry-draft endpoint for stuck DRAFT patient_dispensings ([b14d1ba](https://github.com/aegisx-platform/aegisx-starter/commit/b14d1ba3cd8d342d67565bc7d95482967ddaf4f8))
+* **inventory:** smart approve — cap approved_qty at on-hand, skip pick when fully out of stock ([e1424f1](https://github.com/aegisx-platform/aegisx-starter/commit/e1424f15dae37779c6cef622b0a71dec59cfdce4))
+* **inventory:** surface shortfall on requisition list + detail + approve confirm ([756894d](https://github.com/aegisx-platform/aegisx-starter/commit/756894d842cf3c933fd388d69904478ded4db9a9))
+* **inventory:** wire budget-plan-revisions route ([55362a4](https://github.com/aegisx-platform/aegisx-starter/commit/55362a45ab48ff99d3e52646e0d25d6c131d0018))
+* **inventory:** wire requisition backorders end-to-end ([81b1f03](https://github.com/aegisx-platform/aegisx-starter/commit/81b1f03d1830d70bf11912ae7d6f26c0c6dc5fe2))
+
 # [1.50.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.49.0...v1.50.0) (2026-05-05)
 
 
