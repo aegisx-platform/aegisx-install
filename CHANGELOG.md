@@ -1,3 +1,62 @@
+# [1.52.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.51.0...v1.52.0) (2026-05-17)
+
+
+### Bug Fixes
+
+* **api:** budget-request pdf service — snapshot only, no settings fallback ([7cbbddc](https://github.com/aegisx-platform/aegisx-starter/commit/7cbbddcb213e7415e3e31809a54605a22b792e84))
+* **api:** controller pass-through 3 jsonb signer fields (lac fix) ([66f87d8](https://github.com/aegisx-platform/aegisx-starter/commit/66f87d8ea23741c70979b25108d5e36d6d85c3c9))
+* **api:** po pdf service — snapshot only, no settings fallback ([21db92b](https://github.com/aegisx-platform/aegisx-starter/commit/21db92bf4a039bc7649499d7d50d1cc22ac17887))
+* **api:** pr pdf service — rename + snapshot only, no settings fallback ([98e785b](https://github.com/aegisx-platform/aegisx-starter/commit/98e785b4cd6620beabc62599ce52a242345c105b))
+* **db:** correct deputy-only rollback in signer lists migration ([612d692](https://github.com/aegisx-platform/aegisx-starter/commit/612d6929eed0d3558a6c339253bcca6c9f0f026c))
+* **distributions:** accept snake_case sort keys in drug-distributions repo ([f57bdd7](https://github.com/aegisx-platform/aegisx-starter/commit/f57bdd7ac748bee6fa52ceb11f65a0de38f4859c))
+* **distributions:** align requisition-slip PDF layout with IMG_3398 sample ([177b6bc](https://github.com/aegisx-platform/aegisx-starter/commit/177b6bc27abd04a596bfbfdb0bfaa61477a926c9))
+* **distributions:** align requisition-slip-pdf service with actual DB schema ([eba6535](https://github.com/aegisx-platform/aegisx-starter/commit/eba65359bd0e0eb0ec47d6cd63e469a8434459bf)), closes [#81](https://github.com/aegisx-platform/aegisx-starter/issues/81)
+* **distributions:** auto-generate baht text + drop ราคารวมเพิ่มเติม row ([ad6fa65](https://github.com/aegisx-platform/aegisx-starter/commit/ad6fa65c3fb24d4efef65d3724a21ccb3202ff0d))
+* **distributions:** drop อ้างอิงใบเบิก + แฟ้มเอกสาร from page header ([027274b](https://github.com/aegisx-platform/aegisx-starter/commit/027274bc4c614500bebbf77c0825d3a14816bdfb))
+* **distributions:** group ใบเบิก by real drug-group (not mis-named pharma field) ([53788cb](https://github.com/aegisx-platform/aegisx-starter/commit/53788cb8bec46c15d83cd11d4558f9e997b241e3))
+* **distributions:** restore proper ใบเบิก title (not ใบจัด) ([0ba3af6](https://github.com/aegisx-platform/aegisx-starter/commit/0ba3af612c641a112204d1ad620267b5fe132bcf))
+* **distributions:** show printer's full name in ใบเบิก footer ([bdf8374](https://github.com/aegisx-platform/aegisx-starter/commit/bdf83748bd159140f4fa0585f42750674cb5a934))
+* **distributions:** simplify ใบเบิก to 7 columns (purpose-driven) ([3c90ad9](https://github.com/aegisx-platform/aegisx-starter/commit/3c90ad90a32fb43f5e6b96e9b9dc7661f2888b15))
+* **distributions:** switch requisition-slip PDF to portrait orientation ([82f5ea3](https://github.com/aegisx-platform/aegisx-starter/commit/82f5ea3d7e5977264b56839e67b86844390994c0))
+* **hooks:** make pre-push index.lock cleanup worktree-safe ([ab3e3a4](https://github.com/aegisx-platform/aegisx-starter/commit/ab3e3a4818739ec88977e787cb1bec2e868ebdc5))
+* **main-warehouse:** sort requisitions by created_at within priority tier ([8c21f74](https://github.com/aegisx-platform/aegisx-starter/commit/8c21f744f48068a89d630c8aef9c80d9fb5d68c1))
+
+
+### Features
+
+* **api:** add jsonb signer list transforms to hospital-settings repository ([62b3f63](https://github.com/aegisx-platform/aegisx-starter/commit/62b3f637099c4c5b42987dd2127de5e2a5f4131b))
+* **api:** add signer list validation rules to hospital-settings service ([c0d73d6](https://github.com/aegisx-platform/aegisx-starter/commit/c0d73d68b756a35284450dc371a0c6b6b9971842))
+* **api:** add SignerEntry/SignerList schemas + 3 jsonb fields to hospital-settings ([706d6aa](https://github.com/aegisx-platform/aegisx-starter/commit/706d6aa73e7b2283749e27fb203991ea120818e9))
+* **api:** budget_requests — add 6 signer snapshot schemas + types ([e0d19c6](https://github.com/aegisx-platform/aegisx-starter/commit/e0d19c69f9c5a03d5891c5f3d7d9cb75533b4295))
+* **api:** budget_requests — repository transforms for 6 signer fields ([e35215f](https://github.com/aegisx-platform/aegisx-starter/commit/e35215f7a80da75c6ecb6f0eedcfb31addfd0e6a))
+* **api:** budget_requests controller — 6 signer pass-through (lac fix) ([622c326](https://github.com/aegisx-platform/aegisx-starter/commit/622c3268b977658c72e3efc236896b2d3b5eeade))
+* **api:** po — 6 signer pass-through in controller + copy from pr in service ([1695266](https://github.com/aegisx-platform/aegisx-starter/commit/1695266d693bee6ec435d6fbd5460d0535b45d8f))
+* **api:** po — add 6 signer snapshot fields (schemas+types+repo) ([4c57fea](https://github.com/aegisx-platform/aegisx-starter/commit/4c57fea976e629fca496b05d666719d8b5fac6c3))
+* **api:** pr repository — rename dept_head→chief_officer + 3 new signer fields ([c0206dd](https://github.com/aegisx-platform/aegisx-starter/commit/c0206dd6c2d4019e94fb003d204818b74ee1ef4d))
+* **api:** pr schemas — rename dept_head→chief_officer + add 3 signer snapshots ([aa76489](https://github.com/aegisx-platform/aegisx-starter/commit/aa764891f399acbdf7fb5d6865fe0b66f271ca3c))
+* **api:** pr service+controller — rename + 3 signer pass-through (lac fix) ([9d62e9e](https://github.com/aegisx-platform/aegisx-starter/commit/9d62e9ef45bcfadb528db6faf8810fa0075ddb49))
+* **contracts:** add contract_sign_date and hospital_contract_number columns ([a1c7a1b](https://github.com/aegisx-platform/aegisx-starter/commit/a1c7a1be82b32e0de0538bc715f45f861e5c80ee))
+* **contracts:** hydrate created_by/updated_by to display name ([94c21b3](https://github.com/aegisx-platform/aegisx-starter/commit/94c21b30d59ce7a4164c04c8de6d15b32e2d76e1))
+* **contracts:** in-app PDF preview dialog + drop internal IDs from view ([ae1d254](https://github.com/aegisx-platform/aegisx-starter/commit/ae1d2542bee4ce9e46c3fa6ef738ba396838a963))
+* **contracts:** per-drug PO drill-down from contract items table ([d32553d](https://github.com/aegisx-platform/aegisx-starter/commit/d32553dd9631e1797fa61cb3ca36458525a2583c))
+* **contracts:** print contract as Thai gov A4 PDF (2 entry points) ([08c4871](https://github.com/aegisx-platform/aegisx-starter/commit/08c48710defe70bd60ba08bab48cf91331747515))
+* **contracts:** wire hospital_contract_number + contract_sign_date end-to-end ([ffeb333](https://github.com/aegisx-platform/aegisx-starter/commit/ffeb333cecc37932e39b239c2db18f2065344ce9))
+* **db:** add 6 signer snapshots to budget_requests + backfill ([9ad8013](https://github.com/aegisx-platform/aegisx-starter/commit/9ad801335b0b438c9d88dda11238c45d8e8e1621))
+* **db:** add 6 signer snapshots to po + backfill ([3121489](https://github.com/aegisx-platform/aegisx-starter/commit/31214894b7eb16ce464d88d12f6e2a0f9d3008ba))
+* **db:** add signer lists to hospital_settings (3 jsonb) ([e021b22](https://github.com/aegisx-platform/aegisx-starter/commit/e021b227aead56d69fff45e8c2da87258a52077b))
+* **db:** final drop old signer columns from hospital_settings ([293725f](https://github.com/aegisx-platform/aegisx-starter/commit/293725f7f8a2f6d2a6fd2684f7564f04f7091aed))
+* **db:** rename dept_head→chief_officer + add signer snapshots to pr ([3509cc2](https://github.com/aegisx-platform/aegisx-starter/commit/3509cc2b3c96e9f84c9eb839cd9bc898d0ca925f))
+* **distributions:** add requisition-slip PDF endpoint ([6456985](https://github.com/aegisx-platform/aegisx-starter/commit/645698594402706012d7786461295165e6dce094))
+* **distributions:** add Tier-1 ใบเบิก enhancements (dept, signer names, print footer) ([a337879](https://github.com/aegisx-platform/aegisx-starter/commit/a337879d9a0a5c1a519c6862a67c935ba9936f02))
+* **distributions:** add คงเหลือ column to ใบเบิก (8 cols total) ([e72092d](https://github.com/aegisx-platform/aegisx-starter/commit/e72092d4126ec9bddebcd831926aff658d20fba5))
+* **main-warehouse:** print ใบเบิก action in requisition-management ([4b24e9e](https://github.com/aegisx-platform/aegisx-starter/commit/4b24e9e4df02c9fb5f316495cc2306dd74fec40a))
+* **sub-warehouse:** print ใบเบิก preview dialog ([6caaf09](https://github.com/aegisx-platform/aegisx-starter/commit/6caaf09ba4fd23d891a68a04e39cfa4d2239b2d6))
+* **web:** budget-request form — 3 signer-select + 6 snapshot fields ([c9ba84c](https://github.com/aegisx-platform/aegisx-starter/commit/c9ba84c5da3ed75cc61943bc3ff28f0140e5d4af))
+* **web:** po dialog — 3 signer-select + 6 snapshot fields ([8149fdd](https://github.com/aegisx-platform/aegisx-starter/commit/8149fdd3fe5f7c6d70144c4a9615cac212d64c71))
+* **web:** pr dialog — rename dept_head→chief_officer + 3 signer-select ([e8f7cf6](https://github.com/aegisx-platform/aegisx-starter/commit/e8f7cf6bcc90f75bd9196e2e9a7471e6511c4f86))
+* **web:** settings page — 3 signer-list sections (heads/chiefs/officers) ([d897e6f](https://github.com/aegisx-platform/aegisx-starter/commit/d897e6fefeabffa1ab9801d3f6d841f250d9b34e))
+* **web:** shared signer-select component (dropdown + free-text override) ([c918065](https://github.com/aegisx-platform/aegisx-starter/commit/c9180658c21272676624cad2cdb13eeaeeacb81d))
+
 # [1.51.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.50.0...v1.51.0) (2026-05-14)
 
 
