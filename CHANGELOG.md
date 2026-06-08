@@ -1,3 +1,12 @@
+## [1.53.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.53.0...v1.53.1) (2026-06-08)
+
+
+### Bug Fixes
+
+* **deploy:** ./aegisx update runs seeds after migrations — self-sufficient update ([f4b2a77](https://github.com/aegisx-platform/aegisx-starter/commit/f4b2a77056fa0781eb321e5e540c9b9e412ea4e6)), closes [#139](https://github.com/aegisx-platform/aegisx-starter/issues/139)
+* **quality-gate:** pipe-imports check skips JSDoc/comment lines ([@example](https://github.com/example) false positive) ([dd7ad41](https://github.com/aegisx-platform/aegisx-starter/commit/dd7ad41a9729189bcc0f20dbcf1b74b4377f7f76))
+* **seeds:** drug_groups seed ON CONFLICT DO NOTHING — survive name collision, unblock later inventory seeds ([d8e23b6](https://github.com/aegisx-platform/aegisx-starter/commit/d8e23b66f5c07c80820e2321449b270e72f11c08))
+
 # [1.53.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.52.0...v1.53.0) (2026-06-08)
 
 

@@ -901,7 +901,7 @@ case "${1:-help}" in
         echo -e "${BOLD}=== Update AegisX Platform ===${NC}"
         echo ""
 
-        echo -e "${CYAN}[1/4]${NC} Creating database backup..."
+        echo -e "${CYAN}[1/5]${NC} Creating database backup..."
         mkdir -p backups
         BACKUP_FILE="backups/aegisx_pre-update_$(date +%Y%m%d_%H%M%S).sql.gz"
         if has_local_postgres; then
@@ -912,13 +912,13 @@ case "${1:-help}" in
             echo -e "  ${YELLOW}⚠️  External DB - backup with your provider's tools${NC}"
         fi
 
-        echo -e "${CYAN}[2/4]${NC} Pulling latest images..."
+        echo -e "${CYAN}[2/5]${NC} Pulling latest images..."
         docker compose pull
 
-        echo -e "${CYAN}[3/4]${NC} Restarting services..."
+        echo -e "${CYAN}[3/5]${NC} Restarting services..."
         docker compose up -d
 
-        echo -e "${CYAN}[4/4]${NC} Running migrations..."
+        echo -e "${CYAN}[4/5]${NC} Running migrations..."
         echo "  Waiting for API to be ready..."
         for i in $(seq 1 60); do
             if curl -s "http://localhost:${API_PORT:-3333}/api/health/live" &> /dev/null; then break; fi
@@ -932,7 +932,33 @@ case "${1:-help}" in
         docker compose exec -T api sh -c "cd /app && NODE_ENV=production npx knex migrate:latest --knexfile knexfile.ts" 2>&1 | tail -3
         docker compose exec -T api sh -c "cd /app && NODE_ENV=production npx knex migrate:latest --knexfile knexfile-inventory.ts" 2>&1 | tail -3
 
-        echo -e "${GREEN}Update complete! Run './aegisx seed' if new seed data is needed.${NC}"
+        echo -e "${CYAN}[5/5]${NC} Seeding reference data (idempotent)..."
+        # New releases often ship new master-data / RBAC-permission seeds. Run
+        # them automatically so an update is self-sufficient (no manual
+        # './aegisx seed'). NODE_ENV=production skips dev-only seeds (011/012);
+        # all prod seeds are ON CONFLICT-idempotent, so re-running is safe.
+        # Full output is captured to a log (NOT truncated) so a real seed error
+        # is never masked as "already exists".
+        UPDATE_SEED_LOG="backups/seed_update_$(date +%Y%m%d_%H%M%S).log"
+        update_seed_failed=false
+        if docker compose exec -T api sh -c "cd /app && NODE_ENV=production npx knex seed:run --knexfile knexfile.ts" > "$UPDATE_SEED_LOG" 2>&1; then
+            echo -e "  ${GREEN}✅ Main seeds applied${NC}"
+        else
+            update_seed_failed=true
+            echo -e "  ${RED}❌ Main seeds reported an error${NC}"
+        fi
+        if docker compose exec -T api sh -c "cd /app && NODE_ENV=production npx knex seed:run --knexfile knexfile-inventory.ts" >> "$UPDATE_SEED_LOG" 2>&1; then
+            echo -e "  ${GREEN}✅ Inventory seeds applied${NC}"
+        else
+            update_seed_failed=true
+            echo -e "  ${RED}❌ Inventory seeds reported an error${NC}"
+        fi
+        if [ "$update_seed_failed" = true ]; then
+            echo -e "  ${YELLOW}⚠️  A seed failed — full output: ${UPDATE_SEED_LOG}${NC}"
+            echo -e "  ${YELLOW}   New reference data / permissions may be missing. Fix the error in the log, then re-run './aegisx seed'.${NC}"
+        fi
+
+        echo -e "${GREEN}Update complete!${NC}"
         docker compose ps
         ;;
     backup)
