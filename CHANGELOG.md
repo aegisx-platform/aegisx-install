@@ -1,3 +1,15 @@
+# [1.54.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.53.1...v1.54.0) (2026-06-08)
+
+
+### Bug Fixes
+
+* **deploy:** ./aegisx update self-updates the management CLI from the mirror ([04f5b86](https://github.com/aegisx-platform/aegisx-starter/commit/04f5b86765f1f1021939fcebe370f957bf747b35))
+
+
+### Features
+
+* **trade-creditor:** print PDF button on register list — no need to open detail ([a288c31](https://github.com/aegisx-platform/aegisx-starter/commit/a288c31962a61a1796906dc9749f690900bc692c))
+
 ## [1.53.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.53.0...v1.53.1) (2026-06-08)
 
 

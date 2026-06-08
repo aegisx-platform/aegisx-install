@@ -901,6 +901,26 @@ case "${1:-help}" in
         echo -e "${BOLD}=== Update AegisX Platform ===${NC}"
         echo ""
 
+        # ── Self-update this management CLI from the latest published wrapper ──
+        # Keeps a deployed box on the newest update logic (e.g. the auto-seed
+        # step) without a manual re-install. Best-effort: any network/validation
+        # failure falls through to the current CLI. Guarded against re-exec loops
+        # with AEGISX_SELF_UPDATED.
+        if [ -z "${AEGISX_SELF_UPDATED:-}" ]; then
+            _new_cli=$(mktemp 2>/dev/null || echo "/tmp/aegisx-cli.$$")
+            if curl -fsSL "https://raw.githubusercontent.com/aegisx-platform/aegisx-install/main/aegisx" -o "$_new_cli" 2>/dev/null \
+               && [ -s "$_new_cli" ] && head -1 "$_new_cli" | grep -q '^#!/bin/bash'; then
+                if ! cmp -s "$_new_cli" "$0"; then
+                    if cp "$_new_cli" "$0" 2>/dev/null && chmod +x "$0" 2>/dev/null; then
+                        echo -e "${CYAN}↻ Management CLI updated to latest — re-running update...${NC}"
+                        rm -f "$_new_cli" 2>/dev/null || true
+                        AEGISX_SELF_UPDATED=1 exec "$0" update
+                    fi
+                fi
+            fi
+            rm -f "$_new_cli" 2>/dev/null || true
+        fi
+
         echo -e "${CYAN}[1/5]${NC} Creating database backup..."
         mkdir -p backups
         BACKUP_FILE="backups/aegisx_pre-update_$(date +%Y%m%d_%H%M%S).sql.gz"
