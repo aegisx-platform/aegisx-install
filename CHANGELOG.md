@@ -1,3 +1,10 @@
+# [1.55.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.54.0...v1.55.0) (2026-06-08)
+
+
+### Features
+
+* **workflow:** tick PO "ตั้งเบิก" (PO_DISBURSEMENT) when PO is in a finalized creditor register ([27404e5](https://github.com/aegisx-platform/aegisx-starter/commit/27404e5fc309d23f1c32737500c3ba7417b32814))
+
 # [1.54.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.53.1...v1.54.0) (2026-06-08)
 
 
