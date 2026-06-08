@@ -52,6 +52,11 @@ services:
       PORT: 3000
       API_PREFIX: /api
 
+      # Timezone — REQUIRED. node:alpine defaults to UTC; without this,
+      # formatPgDate()/todayLocal() read UTC wall-clock and all
+      # date-only columns shift one day during 00:00–07:00 local.
+      TZ: ${TZ:-Asia/Bangkok}
+
       # Database (external)
       DATABASE_URL: ${DATABASE_URL:?External DATABASE_URL is required}
       DATABASE_HOST: ${DATABASE_HOST:-}
