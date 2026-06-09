@@ -1,3 +1,12 @@
+## [1.55.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.55.0...v1.55.1) (2026-06-09)
+
+
+### Bug Fixes
+
+* **receipts:** rewrite post/validation error messages to clear Thai (PR/PO standard) ([236b809](https://github.com/aegisx-platform/aegisx-starter/commit/236b809ff040e770bb07c7d237c87d4c870fb07f))
+* **receipts:** surface real backend error on ลงรับเข้าคลัง (and across the receipts flow) ([a1b8179](https://github.com/aegisx-platform/aegisx-starter/commit/a1b8179487d4a6f3d590905a62ec934a0f3830fb))
+* **receipts:** Thai fallback messages in receipts.service (Claude review LOW) ([ba986c0](https://github.com/aegisx-platform/aegisx-starter/commit/ba986c05eced086c055872aa1924de808a8e6057))
+
 # [1.55.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.54.0...v1.55.0) (2026-06-08)
 
 
