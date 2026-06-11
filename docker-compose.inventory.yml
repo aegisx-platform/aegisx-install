@@ -4,6 +4,16 @@
 
 name: aegisx-inventory
 
+# Shared log rotation — caps each container's json-file log at 10MB × 3 files.
+# Without this a crash loop fills the disk: API + Postgres looping ~2×/sec wrote
+# ~60GB of logs and filled the host (incident 2026-06-11), which then put
+# Postgres into an unrecoverable "No space left on device" PANIC loop.
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: '10m'
+    max-file: '3'
+
 services:
   # =============================================================================
   # Database Services
@@ -12,6 +22,7 @@ services:
     image: postgres:15-alpine
     container_name: aegisx_postgres
     restart: unless-stopped
+    logging: *default-logging
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Database password is required}
@@ -39,6 +50,7 @@ services:
     image: redis:7-alpine
     container_name: aegisx_redis
     restart: unless-stopped
+    logging: *default-logging
     command: >
       redis-server
       --appendonly yes
@@ -63,6 +75,7 @@ services:
     image: ${API_IMAGE:-ghcr.io/aegisx-platform/aegisx-starter-api:${IMAGE_TAG:-latest}}
     container_name: aegisx_api
     restart: unless-stopped
+    logging: *default-logging
     depends_on:
       postgres:
         condition: service_healthy
@@ -130,6 +143,7 @@ services:
     image: ${WEB_IMAGE:-ghcr.io/aegisx-platform/aegisx-starter-web:${IMAGE_TAG:-latest}}
     container_name: aegisx_web
     restart: unless-stopped
+    logging: *default-logging
     depends_on:
       api:
         condition: service_healthy
@@ -157,6 +171,7 @@ services:
     image: prodrigestivill/postgres-backup-local:15-alpine
     container_name: aegisx_db_backup
     restart: unless-stopped
+    logging: *default-logging
     depends_on:
       postgres:
         condition: service_healthy
@@ -185,6 +200,7 @@ services:
     image: jc21/nginx-proxy-manager:latest
     container_name: aegisx_npm
     restart: unless-stopped
+    logging: *default-logging
     ports:
       - '${NPM_HTTP_PORT:-80}:80'
       - '${NPM_HTTPS_PORT:-443}:443'

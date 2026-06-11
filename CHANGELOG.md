@@ -1,3 +1,10 @@
+## [1.56.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.56.0...v1.56.1) (2026-06-11)
+
+
+### Bug Fixes
+
+* **web:** card คำของบ ใช้ inventoryViewPermissions ให้ role งานจัดซื้อเห็น ([9271ee6](https://github.com/aegisx-platform/aegisx-starter/commit/9271ee6873b2de113521e57adf41e4a505a6383e))
+
 # [1.56.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.55.1...v1.56.0) (2026-06-11)
 
 
