@@ -1,3 +1,22 @@
+# [1.56.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.55.1...v1.56.0) (2026-06-11)
+
+
+### Bug Fixes
+
+* **aegisx-ui:** launcher permission match normalizes kebab→camel + drop dead .dark block ([6c67382](https://github.com/aegisx-platform/aegisx-starter/commit/6c67382fa3a8de84cdd0748bee94926f854bc2f5))
+* **po:** กัน "( ) ทราบ" หลุดหน้าใหม่ในรายงานตรวจรับฯ ([988fd4a](https://github.com/aegisx-platform/aegisx-starter/commit/988fd4ac4c8c40f792f13bff4533c4f8729fc9fb))
+* **po:** ปรับฟอร์มรายงานผลตรวจรับฯ ให้ตรงแบบบันทึกข้อความราชการ ([0f71e1b](https://github.com/aegisx-platform/aegisx-starter/commit/0f71e1bdf6454e4df0f30472ac7ac8d207a4b3bc))
+* **po:** สัญญาในใบสั่งซื้อเลือกไม่ได้ — เช็คผิด field + ไม่กรองตาม vendor ([07deb4d](https://github.com/aegisx-platform/aegisx-starter/commit/07deb4dd01ee751811a4cba72ed63c48c09458a2))
+
+
+### Features
+
+* **contracts:** auto-fill บริษัทคู่สัญญาจากผู้ขายหลักของยา + เตือนยาไม่มีผู้ขาย ([9a34431](https://github.com/aegisx-platform/aegisx-starter/commit/9a34431f84a1e3fa0ac177cfe774ddf6db6968e2)), closes [#152](https://github.com/aegisx-platform/aegisx-starter/issues/152)
+* **contracts:** validate ยาในสัญญาต้องตรงกับบริษัทคู่สัญญา (กฎ 6) ([3cfdffc](https://github.com/aegisx-platform/aegisx-starter/commit/3cfdffcb762e63735bfd06bcd1ebcff35ce82fa0))
+* **contracts:** validate สัญญาตั้งแต่สร้าง/แก้ไข — กันยาซ้ำสัญญา active ([041a0b5](https://github.com/aegisx-platform/aegisx-starter/commit/041a0b58308cc59764d632aa9efedb4979de1977))
+* **contracts:** คำนวณจำนวนเงินรวมจากรายการยา + ห้ามต่ำกว่าผลรวม (กฎ 7) ([67c4765](https://github.com/aegisx-platform/aegisx-starter/commit/67c47653a7eb61c6dcb23f2118ddafc4b03ab8f7))
+* **rbac:** งานจัดซื้อครอบงานแผน — mirror inventory-budget perms to inventory-procurement ([b16c0a5](https://github.com/aegisx-platform/aegisx-starter/commit/b16c0a52bca1e369273e6d8235e681cdf9e79cd2))
+
 ## [1.55.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.55.0...v1.55.1) (2026-06-09)
 
 
