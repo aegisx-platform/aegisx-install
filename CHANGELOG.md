@@ -1,3 +1,12 @@
+## [1.56.2](https://github.com/aegisx-platform/aegisx-starter/compare/v1.56.1...v1.56.2) (2026-06-12)
+
+
+### Bug Fixes
+
+* **deps:** resolve critical audit failures blocking Security Check CI ([ac59daa](https://github.com/aegisx-platform/aegisx-starter/commit/ac59daaee7961379e86cb3c57dc04df0b66638eb))
+* **web:** portal admin/tools cards + launcher tabs visible to admin only ([7c8ecdb](https://github.com/aegisx-platform/aegisx-starter/commit/7c8ecdb018b5a7c39dd747aca109befe9b0c78f8))
+* **web:** procurement committee member must be picked from list before save ([8948980](https://github.com/aegisx-platform/aegisx-starter/commit/8948980745ce7aa2ebff115970f6b343edd11c36))
+
 ## [1.56.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.56.0...v1.56.1) (2026-06-11)
 
 
