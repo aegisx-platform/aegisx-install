@@ -1,3 +1,30 @@
+# [1.57.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.56.2...v1.57.0) (2026-06-14)
+
+
+### Bug Fixes
+
+* **web:** payment import dialogs — alias on [@else](https://github.com/else) if breaks AOT, nest [@if](https://github.com/if) instead ([ad6f93e](https://github.com/aegisx-platform/aegisx-starter/commit/ad6f93e44b2da7d81a8e8eded064075f11bd4169))
+* **web:** use ax-badge for paid status + show payment in PO view dialog (review) ([dc80eb2](https://github.com/aegisx-platform/aegisx-starter/commit/dc80eb28c5074126b494778d80e44d199f59f900))
+
+
+### Features
+
+* **inventory:** payment import API (preview/confirm) + PO_FINANCE auto-tick + PAID void guard ([17d5c2f](https://github.com/aegisx-platform/aegisx-starter/commit/17d5c2febd1d13adcb788ca2fef3bf77c893bedc))
+* **inventory:** payment import batches/rows tables + paid fields on creditor registers ([6ffb845](https://github.com/aegisx-platform/aegisx-starter/commit/6ffb84532c262d646223dff8e20f40e5e34affc9))
+* **inventory:** payment import register-number normalizer + excel date util ([42cd589](https://github.com/aegisx-platform/aegisx-starter/commit/42cd5895a43fc595fba60fdfc7ef06e742bfe9bd))
+* **inventory:** payment import schemas + PAID status + paid fields on register schemas ([32c9529](https://github.com/aegisx-platform/aegisx-starter/commit/32c9529e718b5544e415066710c2e21b0215128b))
+* **inventory:** payment import template download endpoint (GET /template) ([9327c7d](https://github.com/aegisx-platform/aegisx-starter/commit/9327c7de3e667754ee02af5f7fea0de6c319948b))
+* **inventory:** payment imports repository (prefetch match data, tx confirm) ([78a0e9e](https://github.com/aegisx-platform/aegisx-starter/commit/78a0e9e2d0661c46973d45889682e3eda046075b))
+* **inventory:** payment report sheet parser (header-by-name, BIFF .XLS) ([f137917](https://github.com/aegisx-platform/aegisx-starter/commit/f137917344f22362c1e5bd7c86ee5efbd8d058e3))
+* **inventory:** payment row classifier (dedupe, amount check, Thai messages) ([864b3ac](https://github.com/aegisx-platform/aegisx-starter/commit/864b3acb3e9dee337cdcf04fcc5a5de85b2573f6))
+* **inventory:** surface PO payment status (paid_date + creditor register) via join ([88a72e3](https://github.com/aegisx-platform/aegisx-starter/commit/88a72e3dc76e1aa280ea53d1b1691d7f875d824f))
+* **web:** download template button in payment import dialog ([5f8b6cc](https://github.com/aegisx-platform/aegisx-starter/commit/5f8b6cc07d0ce40e0329c7800c848b420de89e86))
+* **web:** payment import dialog (upload → preview → confirm) ([eb88e3b](https://github.com/aegisx-platform/aegisx-starter/commit/eb88e3b6f00cad6b8e8f42b794549faa8c4d8f89))
+* **web:** payment import history dialog ([3d170fc](https://github.com/aegisx-platform/aegisx-starter/commit/3d170fc91e5ec56349c0043b6ff714808c438afe))
+* **web:** payment import types + service ([a1532bc](https://github.com/aegisx-platform/aegisx-starter/commit/a1532bcaceed45fd0aa6699b0467bf3b049bcfb8))
+* **web:** wire payment import into creditor registers list + detail (PAID badge, paid date) ([4391fdc](https://github.com/aegisx-platform/aegisx-starter/commit/4391fdc07def1374a72c390f7e5a863ba7333f47))
+* **web:** จ่ายเงินแล้ว badge + paid date/จน on PO list + detail ([989bdfb](https://github.com/aegisx-platform/aegisx-starter/commit/989bdfbed0ebb6cdc803b69e14335f6ca48c9073))
+
 ## [1.56.2](https://github.com/aegisx-platform/aegisx-starter/compare/v1.56.1...v1.56.2) (2026-06-12)
 
 
