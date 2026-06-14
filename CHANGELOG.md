@@ -1,3 +1,17 @@
+# [1.58.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.57.0...v1.58.0) (2026-06-14)
+
+
+### Bug Fixes
+
+* **pdf:** all PR/PO numbers as Thai numerals (เลขไทย) via deep docDefinition converter ([ee4ac2a](https://github.com/aegisx-platform/aegisx-starter/commit/ee4ac2aa89f8e8e3b783fd077e20c0eaa6b6c15a))
+
+
+### Features
+
+* **procurement:** clickable workflow status steps link to related pages ([e05575a](https://github.com/aegisx-platform/aegisx-starter/commit/e05575ab8c35be817254d3124a2c6bc7627bffcb))
+* **web:** self-host IBM Plex Sans (Thai+Latin) for offline use (no Google CDN) ([b0ca12a](https://github.com/aegisx-platform/aegisx-starter/commit/b0ca12ab55ffb8c953565b7ceb407c30c8dc7d86))
+* **web:** self-host Material Icons fonts for offline use (no Google CDN) ([920fa76](https://github.com/aegisx-platform/aegisx-starter/commit/920fa760ccce204a0e1d79187286f2e7439b662e))
+
 # [1.57.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.56.2...v1.57.0) (2026-06-14)
 
 
