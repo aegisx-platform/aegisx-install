@@ -1,3 +1,15 @@
+# [1.59.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.58.0...v1.59.0) (2026-06-15)
+
+
+### Bug Fixes
+
+* **budget-requests:** match drugs by his_drug_code on import ([0390b70](https://github.com/aegisx-platform/aegisx-starter/commit/0390b70e3233a14d7a0b323b87acbe44065e9481))
+
+
+### Features
+
+* **budget-requests:** add ED/Non-ED/chemical filter tabs on items page ([9663882](https://github.com/aegisx-platform/aegisx-starter/commit/96638824f68f15f30006a1516065c8edcee815ba))
+
 # [1.58.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.57.0...v1.58.0) (2026-06-14)
 
 
