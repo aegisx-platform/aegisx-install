@@ -1,3 +1,30 @@
+# [1.60.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.59.0...v1.60.0) (2026-06-15)
+
+
+### Bug Fixes
+
+* **companies:** address code review on PR [#175](https://github.com/aegisx-platform/aegisx-starter/issues/175) ([c748ac9](https://github.com/aegisx-platform/aegisx-starter/commit/c748ac980f6c7f98ee4cfb058994f1780fd45f5c))
+* **companies:** stop form silently coercing null vendor_region to in_province ([481ab0c](https://github.com/aegisx-platform/aegisx-starter/commit/481ab0c3c24ad99e286b3ee36b650bd629713b26))
+* **numbering:** create form fills content width (drop 860px cap) ([25f1ec4](https://github.com/aegisx-platform/aegisx-starter/commit/25f1ec4184006a976c4c7fe64e50842d326781f7))
+* **numbering:** live client-side preview reflects unsaved edits ([4bf7259](https://github.com/aegisx-platform/aegisx-starter/commit/4bf7259361b9c8e01b3780750ec8a07279569dc0))
+* **numbering:** map pg 23505 to Thai 409 on duplicate docType race ([0159baa](https://github.com/aegisx-platform/aegisx-starter/commit/0159baa78871e5e80e83ebfb231df2e49b886ed0))
+* **numbering:** persist tokens JSONB via JSON.stringify in insert/update ([2c23db7](https://github.com/aegisx-platform/aegisx-starter/commit/2c23db75ddfdd22c4997d8adf423f277fe654d7b))
+* **numbering:** set hasLocalBreadcrumb so SystemShell breadcrumb doesn't stack ([26084dc](https://github.com/aegisx-platform/aegisx-starter/commit/26084dca35ba1eb6f131ff8bf17cf7059225913a))
+* **numbering:** surface server Thai error via extractErrorMessage everywhere ([cb54644](https://github.com/aegisx-platform/aegisx-starter/commit/cb546443955e20b029efbc356f9e578397cae5a4))
+
+
+### Features
+
+* **companies:** add company_name_en/is_gpo/vendor_region + import upsert ([5cc109b](https://github.com/aegisx-platform/aegisx-starter/commit/5cc109b3101f3b5fe418d9b1d5d80d05bffc3756))
+* **numbering:** add custom doc-type create page + restore add button ([574c278](https://github.com/aegisx-platform/aegisx-starter/commit/574c278b1dc587b3add31024c135e3e90216ae79))
+* **numbering:** card-based create form layout + natural token order ([3beaa92](https://github.com/aegisx-platform/aegisx-starter/commit/3beaa92e6d7d438477eb7d260c22260a7ae46d78))
+* **numbering:** return 409 Thai message on duplicate docType ([c1fff5d](https://github.com/aegisx-platform/aegisx-starter/commit/c1fff5dbd14a92ad8752d013717f8bada7907f86))
+
+
+### Performance Improvements
+
+* **companies:** bulk-load existing rows per import batch (kill N+1) ([9e6d693](https://github.com/aegisx-platform/aegisx-starter/commit/9e6d693ab3540ac0cb64a2fda8eb57f1ea39da9c))
+
 # [1.59.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.58.0...v1.59.0) (2026-06-15)
 
 
