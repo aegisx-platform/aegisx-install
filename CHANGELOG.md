@@ -1,3 +1,20 @@
+# [1.61.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.60.0...v1.61.0) (2026-06-16)
+
+
+### Bug Fixes
+
+* **budget-import:** densify sparse xlsx rows in plan parser (crash on real file) ([7391f0f](https://github.com/aegisx-platform/aegisx-starter/commit/7391f0fa0867dd7b3d494a1d5223ce20c564a6ae))
+
+
+### Features
+
+* **budget-import:** auto-detect dual-format budget request import ([3c230a6](https://github.com/aegisx-platform/aegisx-starter/commit/3c230a644ef484e210406a4384c59344e9364080))
+
+
+### Performance Improvements
+
+* **budget-import:** bulk-load lookups + wrap import in a transaction ([f69521e](https://github.com/aegisx-platform/aegisx-starter/commit/f69521e5c13eb5763bd3217221f87fa038c054ad)), closes [#178](https://github.com/aegisx-platform/aegisx-starter/issues/178) [#1](https://github.com/aegisx-platform/aegisx-starter/issues/1) [#3](https://github.com/aegisx-platform/aegisx-starter/issues/3)
+
 # [1.60.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.59.0...v1.60.0) (2026-06-15)
 
 
