@@ -1,3 +1,16 @@
+## [1.61.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.61.0...v1.61.1) (2026-06-16)
+
+
+### Bug Fixes
+
+* **budget-import:** align FE import-preview price gate with backend ([3562bf7](https://github.com/aegisx-platform/aegisx-starter/commit/3562bf7b55006f4f904449f4ca0fd51157c9b905))
+* **budget-import:** generic Thai message on unexpected import error + document dedup (L2, L3) ([9f80f9d](https://github.com/aegisx-platform/aegisx-starter/commit/9f80f9d378bc81aa0f1acc074884120fce0b03ff))
+* **budget-import:** harden plan parser — comma numbers + real ยอดรวม check ([162e830](https://github.com/aegisx-platform/aegisx-starter/commit/162e83066dbb1b3a7a5d4092eb68b6c3d826af8f))
+* **budget-import:** tolerate header variants in plan parser (L1) ([82328bd](https://github.com/aegisx-platform/aegisx-starter/commit/82328bdbe82af9132e2ee6909b486c9841db7622))
+* **budget-request:** derive allocation total from sum of quarters ([ef36f55](https://github.com/aegisx-platform/aegisx-starter/commit/ef36f550e9da746765179b6820cdea042f6a0953))
+* **rbac:** grant budget-request workflow to งานแผน + งานจัดซื้อ ([f3e7f29](https://github.com/aegisx-platform/aegisx-starter/commit/f3e7f299aea317224eee4c5d4b6a05c5f2ef8fc6))
+* **rbac:** grant inventory:* to งานแผน + งานจัดซื้อ ([bbfd38f](https://github.com/aegisx-platform/aegisx-starter/commit/bbfd38f835b90dcdaccb228b476bb1a95f640ee0))
+
 # [1.61.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.60.0...v1.61.0) (2026-06-16)
 
 
