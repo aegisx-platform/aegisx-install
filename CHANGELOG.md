@@ -1,3 +1,45 @@
+# [1.62.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.61.1...v1.62.0) (2026-06-17)
+
+
+### Bug Fixes
+
+* **contracts:** repair filter-bar 500 and 3 dormant analytics endpoints ([5109742](https://github.com/aegisx-platform/aegisx-starter/commit/5109742cd76c0099ba2b3acc64b73868f5aa4255))
+* **departments:** coerce parent_id 0 to null so root departments save ([e820934](https://github.com/aegisx-platform/aegisx-starter/commit/e8209348c6de79d009de621ce53742d2774022d4))
+* **pr-report:** align รายงานขอซื้อขอจ้าง PDF with real document ([d06242a](https://github.com/aegisx-platform/aegisx-starter/commit/d06242ac0f31f6f909f461b4bcb721e830e0a59d))
+* **pr-subtype:** address PR [#189](https://github.com/aegisx-platform/aegisx-starter/issues/189) review bugs (uniqueness + field filtering) ([1cad1e6](https://github.com/aegisx-platform/aegisx-starter/commit/1cad1e6d2194298c70a7df873fcc1c7ebe9a4970))
+* **pr:** address review — drop double-optional subtype field + correct Swagger tag ([edf51b7](https://github.com/aegisx-platform/aegisx-starter/commit/edf51b7117965853d1102e30308c675ba7f51111))
+* **pr:** grant purchaseMethodSubtypes perms to inventory roles ([7b56a0e](https://github.com/aegisx-platform/aegisx-starter/commit/7b56a0e24cce9a81d2f695b9a5cf424544894d95))
+* **procurement:** repair dashboard recent-activity 500 and contract-items stats 400 ([5fcfb54](https://github.com/aegisx-platform/aegisx-starter/commit/5fcfb546df7d319f9328ca3a2564111553643cab))
+* **procurement:** show user/dept/budget names on PR detail + unify PR/PO detail width ([0e17d4e](https://github.com/aegisx-platform/aegisx-starter/commit/0e17d4e17e2246261231cf0b1c4b502f6cc19075))
+* **pr:** use local wall-clock date in subtype export filename ([efeb84d](https://github.com/aegisx-platform/aegisx-starter/commit/efeb84d34e114d5053f9bbf946ac283024e108f6))
+* **purchase-requests:** add budget-adjustment shortcut to list error dialog too ([6fbe264](https://github.com/aegisx-platform/aegisx-starter/commit/6fbe264434d572fb7ea509368195115d92b34bf1))
+* **purchase-requests:** budget check card full-width like other cards ([7fd6eb6](https://github.com/aegisx-platform/aegisx-starter/commit/7fd6eb66561241b05f24a75d0ea30a5d3199e4ee))
+* **purchase-requests:** detail print uses government template ([3e2896b](https://github.com/aegisx-platform/aegisx-starter/commit/3e2896b42dc9e4f8979f8bdda7d43b5bc9707479))
+* **purchase-requests:** show action errors in a dialog + budget shortcut ([35cc138](https://github.com/aegisx-platform/aegisx-starter/commit/35cc138aa67b477547fb62f7f4ce1d909f406c0a))
+* **purchase-requests:** show real API error on PR detail submit/approve/reject/cancel ([8dbbbc5](https://github.com/aegisx-platform/aegisx-starter/commit/8dbbbc5430c73858ce7eb6860a674fa764620edb))
+* **rbac:** grant platform master-data read to inventory roles ([2ee7df9](https://github.com/aegisx-platform/aegisx-starter/commit/2ee7df9fb5cfe8ec9150235b889e19a745b25589))
+* **types:** resolve DropdownQueryType import + Object.hasOwn in subtype service ([8f201db](https://github.com/aegisx-platform/aegisx-starter/commit/8f201db5d92ea3cd3a6551b3baa1174e196c1373))
+* **workflow:** show recorder name on completed steps ([81299e3](https://github.com/aegisx-platform/aegisx-starter/commit/81299e353066c8c3e4b407d8e897454b689e73cc))
+
+
+### Features
+
+* **po-list:** add combined PR+PO print (merged PDF) ([40b70bd](https://github.com/aegisx-platform/aegisx-starter/commit/40b70bd0aeb41c6d0a98dedc50f30cec2b0d245b))
+* **po-list:** add PR report (รายงานขอซื้อขอจ้าง) to print menu ([fb764f8](https://github.com/aegisx-platform/aegisx-starter/commit/fb764f86023bf922220afe3943632dd174d35572))
+* **po:** add all print forms to PO detail page ([c5f67ff](https://github.com/aegisx-platform/aegisx-starter/commit/c5f67ff4e6e94ab075242c993aa65c785ce94615))
+* **pr-po:** show first item drug name in PR/PO list ([f98b298](https://github.com/aegisx-platform/aegisx-starter/commit/f98b29848b64a93f3eb4ff136e6e915deb8c99be))
+* **pr:** add purchase_method_subtypes table + FK on PR + seed ก-ฮ ([d510dc0](https://github.com/aegisx-platform/aegisx-starter/commit/d510dc0bd84cbf7d33ba3c7f1a7e5c92a2981b4d))
+* **pr:** add purchase-method-subtypes master-data module ([d839f25](https://github.com/aegisx-platform/aegisx-starter/commit/d839f25278eee7bc18d47130fee86f02f5a56c07))
+* **pr:** conditional special-method subtype dropdown in PR form + detail ([d5dc543](https://github.com/aegisx-platform/aegisx-starter/commit/d5dc54333db64697ab60c5830c6b46650cd420c5))
+* **procurement:** theme budget-check-panel and items-table ([4efd283](https://github.com/aegisx-platform/aegisx-starter/commit/4efd2839a3c8cbbcfe1a773f2d9c629ea3dc8890))
+* **procurement:** wire PR detail edit + PO detail record-receipt buttons ([be40ec5](https://github.com/aegisx-platform/aegisx-starter/commit/be40ec5c839f4d1f2549c67636650d6c3d30fac0))
+* **pr:** show special-method legal ref (ม.56(2)) in PR report PDF ([c369fbe](https://github.com/aegisx-platform/aegisx-starter/commit/c369fbebb91c376cbed179f26fd8ec1ad9717521))
+* **pr:** wire purchase_method_subtype_id through PR schema/repo/controller ([e8d1203](https://github.com/aegisx-platform/aegisx-starter/commit/e8d12033d714e01a87d3820a7f77746ee9a28970))
+* **purchase-requests:** add ขั้นตอนจัดซื้อ workflow section to PR detail page ([9bffcb6](https://github.com/aegisx-platform/aegisx-starter/commit/9bffcb6ebc486d3bd1912c76dc0a6aaa40b6fbee))
+* **purchase-requests:** theme detail page + consolidate print buttons ([0f46f03](https://github.com/aegisx-platform/aegisx-starter/commit/0f46f035914c6d55e7e07b45038c9924673ec26c))
+* **ui:** step-progress fullWidth option + use it on PO detail timeline ([354702a](https://github.com/aegisx-platform/aegisx-starter/commit/354702acfb5411447ab411a4fd951fc85480b545))
+* **workflow-ref:** calendar date picker for วันที่อ้างอิง ([d6ca6a3](https://github.com/aegisx-platform/aegisx-starter/commit/d6ca6a3ba8f62c1be437046f8d616692a1a23736))
+
 ## [1.61.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.61.0...v1.61.1) (2026-06-16)
 
 
