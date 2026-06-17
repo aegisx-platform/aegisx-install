@@ -1,3 +1,17 @@
+# [1.63.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.62.0...v1.63.0) (2026-06-17)
+
+
+### Bug Fixes
+
+* **auth:** retry profile load on cold bootstrap so permissions (and menus) survive refresh ([940a9a2](https://github.com/aegisx-platform/aegisx-starter/commit/940a9a2ee67c57e495bb7cac6cb3a96d6fbe0833))
+* **procurement:** remove 'บันทึกรับ' button from PO detail (warehouse-only action) ([a6901bb](https://github.com/aegisx-platform/aegisx-starter/commit/a6901bb2fb5df54b9c64e8ff5357c1988f71f9a2))
+* **procurement:** rename PR-detail print-PO button 'พิมพ์ PO' → 'พิมพ์ใบสั่งซื้อ' ([d39674a](https://github.com/aegisx-platform/aegisx-starter/commit/d39674a2537178f4cbc97f0bedbc6b1f19624dec))
+
+
+### Features
+
+* **procurement:** open PR print preview full-screen always ([0a29acd](https://github.com/aegisx-platform/aegisx-starter/commit/0a29acd8e111f8c6cb5042d2d5e78d9445bedf4e))
+
 # [1.62.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.61.1...v1.62.0) (2026-06-17)
 
 
