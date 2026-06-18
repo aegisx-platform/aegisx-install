@@ -1,3 +1,18 @@
+# [1.64.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.63.0...v1.64.0) (2026-06-18)
+
+
+### Bug Fixes
+
+* **procurement-committees:** load full committee before edit (prevent member wipe) ([d05205a](https://github.com/aegisx-platform/aegisx-starter/commit/d05205a88ff4cdc5b10b9a0f8bb0aa2aad44097a))
+* **procurement:** address PR [#215](https://github.com/aegisx-platform/aegisx-starter/issues/215) review — QR TODO, PO assumption, typo ([9184b7d](https://github.com/aegisx-platform/aegisx-starter/commit/9184b7d680372d477ed737deaa215d365189de48))
+* **procurement:** ปรับ layout ใบรายงานขอซื้อขอจ้าง (government report PDF) ([40a8458](https://github.com/aegisx-platform/aegisx-starter/commit/40a845833ef55926fd4233f14e6e1e3af8570538))
+* **procurement:** ย้าย หมวดเงินเจ้าหนี้ + ตั้งค่าโรงพยาบาล ไป launcher ([dccd286](https://github.com/aegisx-platform/aegisx-starter/commit/dccd286b8515ccdea8f86d6885d9bfc3052dee1f)), closes [#214](https://github.com/aegisx-platform/aegisx-starter/issues/214)
+
+
+### Features
+
+* **procurement:** add hospital-settings + creditor-fund-categories to procurement ([4d8ccb8](https://github.com/aegisx-platform/aegisx-starter/commit/4d8ccb8178d3ca535867701c9fa9d3fa48ce2004))
+
 # [1.63.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.62.0...v1.63.0) (2026-06-17)
 
 
