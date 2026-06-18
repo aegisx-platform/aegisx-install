@@ -1,3 +1,17 @@
+# [1.65.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.64.0...v1.65.0) (2026-06-18)
+
+
+### Bug Fixes
+
+* **procurement:** add Garuda emblem atop purchase order PDF ([549345e](https://github.com/aegisx-platform/aegisx-starter/commit/549345e011b806c572f63f32f3f76a3096fd8985)), closes [#2](https://github.com/aegisx-platform/aegisx-starter/issues/2) [#3](https://github.com/aegisx-platform/aegisx-starter/issues/3)
+* **procurement:** show bank branch (สาขา) on purchase order PDF ([790077b](https://github.com/aegisx-platform/aegisx-starter/commit/790077bf05322cf548cd5bb2f3843826832669a2))
+* **procurement:** ปรับ รายงานผลการพิจารณา (PO) ให้ตรงต้นแบบราชการ ([4b6d484](https://github.com/aegisx-platform/aegisx-starter/commit/4b6d4846de9f4f396551225bf5965553b8a9c86c))
+
+
+### Features
+
+* **procurement:** free-text business type on companies for winner announcement ([4b6a142](https://github.com/aegisx-platform/aegisx-starter/commit/4b6a142a0ed2d931bfde3db0368a2769c3d1696e)), closes [3/#4](https://github.com/aegisx-platform/aegisx-starter/issues/4)
+
 # [1.64.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.63.0...v1.64.0) (2026-06-18)
 
 
