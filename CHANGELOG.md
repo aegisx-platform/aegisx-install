@@ -1,3 +1,22 @@
+# [1.66.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.65.0...v1.66.0) (2026-06-19)
+
+
+### Bug Fixes
+
+* **procurement:** address PR [#225](https://github.com/aegisx-platform/aegisx-starter/issues/225) review — prefix slash, as-any, '' to null ([65b36f0](https://github.com/aegisx-platform/aegisx-starter/commit/65b36f08155cd60030a963cc302e98534417d1ac))
+* **procurement:** PO PDF fidelity round 2 — unit/box, province prefix, integer qty ([1537f8e](https://github.com/aegisx-platform/aegisx-starter/commit/1537f8e302926e1556b591086549380c8878a648))
+* **procurement:** re-apply 3 fix รายงานผลการพิจารณา (PO) ที่หายจาก merge [#226](https://github.com/aegisx-platform/aegisx-starter/issues/226) ([e8148bf](https://github.com/aegisx-platform/aegisx-starter/commit/e8148bf6628043f2a1934e36d0c4b7f301842a2a)), closes [#223](https://github.com/aegisx-platform/aegisx-starter/issues/223)
+* **procurement:** show hospital name on PO delivery location (F5) ([13ede79](https://github.com/aegisx-platform/aegisx-starter/commit/13ede798fa81491265d32db14e04bf2e216f8303))
+* **procurement:** winner announcement unit follows product, drop hardcoded /box ([ddffced](https://github.com/aegisx-platform/aegisx-starter/commit/ddffced4c00f0e5d98f029f7f2f27d61126da0c7)), closes [#230](https://github.com/aegisx-platform/aegisx-starter/issues/230)
+* **procurement:** จัดบรรทัดท้าย รายงานผลการพิจารณา (PO) เยื้องขวา+ติดกัน ([5b0f559](https://github.com/aegisx-platform/aegisx-starter/commit/5b0f5599b5f901d9d6678087a91999f78ec1e1bf))
+* **procurement:** ย่อหน้า ประกาศผู้ชนะ (PO) เยื้องขวา ตามต้นแบบ ([74da484](https://github.com/aegisx-platform/aegisx-starter/commit/74da484147a0b57ec9a5f038924b3ea93f5ac3bc))
+
+
+### Features
+
+* **procurement:** separate winner-announcement date on PO (F4) ([f47d62b](https://github.com/aegisx-platform/aegisx-starter/commit/f47d62b892293af1f178fbec65c08845d828b5c6)), closes [3/#4](https://github.com/aegisx-platform/aegisx-starter/issues/4)
+* **procurement:** เพิ่ม document_number (เลขที่หนังสือ) ให้ PO ([469f206](https://github.com/aegisx-platform/aegisx-starter/commit/469f206020c21ee6e0231a6fc6c721bf7b1fbd12))
+
 # [1.65.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.64.0...v1.65.0) (2026-06-18)
 
 
