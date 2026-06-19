@@ -1,3 +1,20 @@
+# [1.67.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.66.0...v1.67.0) (2026-06-19)
+
+
+### Bug Fixes
+
+* **procurement:** correct คู่ฉบับ winner routing signatures ([2703a2d](https://github.com/aegisx-platform/aegisx-starter/commit/2703a2da7f9201c3df2f6742134ac4083aad094b))
+* **procurement:** match คู่ฉบับ routing block to template ([c8a06cd](https://github.com/aegisx-platform/aegisx-starter/commit/c8a06cd6ec4dd78ea79eaf86fc9aa95ace5218e2))
+* **procurement:** pin คู่ฉบับ routing block to page bottom, smaller font ([b95590b](https://github.com/aegisx-platform/aegisx-starter/commit/b95590bd73869815b5fc76c9475e3d1674cc7ca3))
+* **procurement:** right-align คู่ฉบับ routing block, align วันที่ ([4e21e94](https://github.com/aegisx-platform/aegisx-starter/commit/4e21e943b210c58abc685e0295dd2642c58e9f0e))
+* **procurement:** trade-creditor PDF — หมวดเงิน on one line, center วันที่ ([34e151a](https://github.com/aegisx-platform/aegisx-starter/commit/34e151a4cb56471d692508e0f82678f4170afeb0))
+* **procurement:** trade-creditor PDF footer uses หัวหน้าเจ้าหน้าที่, drops signature ([a34a3a7](https://github.com/aegisx-platform/aegisx-starter/commit/a34a3a783f83ad8e7ad24f735ec52ca83f6de936))
+
+
+### Features
+
+* **procurement:** trade-creditor PDF lists all fund categories + maker name ([1560826](https://github.com/aegisx-platform/aegisx-starter/commit/15608261f4feb4fc22c94044297e57921249ea4a))
+
 # [1.66.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.65.0...v1.66.0) (2026-06-19)
 
 
