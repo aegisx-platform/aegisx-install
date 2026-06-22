@@ -1,3 +1,16 @@
+## [1.70.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.70.0...v1.70.1) (2026-06-22)
+
+
+### Bug Fixes
+
+* **purchase-orders:** default ที่อยู่จัดส่ง/เรียกเก็บจาก hospital_settings ([fb8e4d9](https://github.com/aegisx-platform/aegisx-starter/commit/fb8e4d9e036fe928c5a43d2be6e32138a5fc34ea))
+* **purchase-orders:** default ประเภท/วิธีจัดซื้อจาก setting ([034f262](https://github.com/aegisx-platform/aegisx-starter/commit/034f262caaa340141dda422e187f5f9f9c2f3fc2))
+
+
+### Performance Improvements
+
+* **ci:** speed up arm release build — cache install layer + keep-state ([6c44160](https://github.com/aegisx-platform/aegisx-starter/commit/6c4416077a9a4cdea817c4284b6cdf6e295af0f4))
+
 # [1.70.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.69.0...v1.70.0) (2026-06-22)
 
 
