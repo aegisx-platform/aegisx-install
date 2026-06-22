@@ -1,3 +1,15 @@
+# [1.70.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.69.0...v1.70.0) (2026-06-22)
+
+
+### Bug Fixes
+
+* **purchase-orders:** แก้ edit PO ที่สร้างจาก quick-build บันทึกไม่ได้ ([e784a62](https://github.com/aegisx-platform/aegisx-starter/commit/e784a62051d7f99c8580c7cb75d660c0849fccde))
+
+
+### Features
+
+* **quick-build:** รับ drug_code, full-screen, แสดงรหัส+ชื่อยา, fix fiscal year ([cb02835](https://github.com/aegisx-platform/aegisx-starter/commit/cb028356d7a0ef62faf7d1b03d1fb90569746301))
+
 # [1.69.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.68.0...v1.69.0) (2026-06-22)
 
 
