@@ -1,3 +1,20 @@
+# [1.69.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.68.0...v1.69.0) (2026-06-22)
+
+
+### Bug Fixes
+
+* **budget-requests:** reopen แผนที่ถูกปฏิเสธไม่ได้ (reason บังคับ minLength) ([a0a218f](https://github.com/aegisx-platform/aegisx-starter/commit/a0a218f6d8071e94abccaf7dda4b5c3e151e2e49))
+
+
+### Features
+
+* **budget:** add estimate_base_year column to budget_requests ([c68d5d8](https://github.com/aegisx-platform/aegisx-starter/commit/c68d5d87027553a062f5609a28ce0ecb4f5eb762))
+* **budget:** add estimate_base_year to frontend types ([f3bb267](https://github.com/aegisx-platform/aegisx-starter/commit/f3bb2672b021e4f40f9497e0b90e4a58c8db3ccb))
+* **budget:** add global estimate-base selector with recompute + persist ([4bd4fb0](https://github.com/aegisx-platform/aegisx-starter/commit/4bd4fb025265be50bdef75514b6f6f8164bf6cd6))
+* **budget:** make ประมาณการ column editable + base-aware tooltip ([cccbdea](https://github.com/aegisx-platform/aegisx-starter/commit/cccbdeaeaeaf6716e8cadbcabb1fd4d0f4915bb8))
+* **budget:** wire estimate_base_year through API ([b7a827a](https://github.com/aegisx-platform/aegisx-starter/commit/b7a827a66fe5c3e52d4ff365bc6a3247f853838c))
+* **contracts:** ราคาต่อหน่วยตาม package ที่เลือกใหม่ทันที ([8d3c331](https://github.com/aegisx-platform/aegisx-starter/commit/8d3c331460034e222eea3a41cd2593ac6a80b285))
+
 # [1.68.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.67.0...v1.68.0) (2026-06-22)
 
 
