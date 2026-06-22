@@ -1,3 +1,16 @@
+# [1.71.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.70.1...v1.71.0) (2026-06-22)
+
+
+### Bug Fixes
+
+* **purchase-requests:** expand แสดงชื่อยาทางการค้าจากตัวยาที่อ้างอิง ([7d308cf](https://github.com/aegisx-platform/aegisx-starter/commit/7d308cf3bb1dec294ffabcba0f2583c9751129e6))
+* **quick-build:** ช่องจำนวนใน wizard แก้ไขได้ + กัน qty <= 0 ([a654083](https://github.com/aegisx-platform/aegisx-starter/commit/a6540831ad3a545a0d46294b72416614f5d82036))
+
+
+### Features
+
+* **procurement:** add PR+PO creation wizard — fullscreen 5-step dialog ([12bfc94](https://github.com/aegisx-platform/aegisx-starter/commit/12bfc9453e9ceca20b8d23ed4829724fe7398b99))
+
 ## [1.70.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.70.0...v1.70.1) (2026-06-22)
 
 
