@@ -1,3 +1,27 @@
+# [1.73.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.72.0...v1.73.0) (2026-06-24)
+
+
+### Bug Fixes
+
+* **pdf:** ปรับ typography + แปลชื่อหน่วยภาษาอังกฤษเป็นไทยทุกแบบฟอร์มปริ้น ([14ae851](https://github.com/aegisx-platform/aegisx-starter/commit/14ae851430305740ed5dff458886c5f3a556d285))
+* **po-pdf:** แปลชื่อหน่วย package/unit ภาษาอังกฤษเป็นไทยในทุกแบบฟอร์ม PO ([6073927](https://github.com/aegisx-platform/aegisx-starter/commit/607392732803b5c48a4efa40dc331c68ec070ea9))
+* **pr-import:** แก้ race condition ใน generatePrNumber ([88ba677](https://github.com/aegisx-platform/aegisx-starter/commit/88ba677590b3402075645c6872084dca792b1a09))
+* **pr-import:** แก้ schema mismatch working_code และลบ duplicate snackbar ([2adf4c0](https://github.com/aegisx-platform/aegisx-starter/commit/2adf4c004d009f0116b01cc2a4e5dcc4d7900e34))
+* **pr-import:** แทนที่ hardcoded hex ด้วย --ax-* tokens ใน upload-area ([c14272c](https://github.com/aegisx-platform/aegisx-starter/commit/c14272caddb4ed4ce6fe53ba86104ac753d4d7b7))
+* **pr-pdf:** แปลชื่อหน่วย package เป็นภาษาไทยในข้อ 2 รายละเอียดของพัสดุ ([f968f4f](https://github.com/aegisx-platform/aegisx-starter/commit/f968f4f710afa01dc150e24dbfa24226660e72d4))
+* **pr-po-wizard:** แก้ canProceedStep4 check drug_id แทน generic_id + RGBA tokens ([a3981d6](https://github.com/aegisx-platform/aegisx-starter/commit/a3981d64a1df688465c52f1af570831e6ccbc62c))
+* **purchase-requests:** address code review findings on contract viewer ([bea3abf](https://github.com/aegisx-platform/aegisx-starter/commit/bea3abf05dfbe276245111f7bae14e456fa9be68))
+* **purchase-requests:** address second code review round on PR [#280](https://github.com/aegisx-platform/aegisx-starter/issues/280) ([1452e3d](https://github.com/aegisx-platform/aegisx-starter/commit/1452e3d24d42700d8b1d0f78c9c16146264fb292))
+* **purchase-requests:** replace Tailwind color utilities and type any[] in wizard ([19fccbd](https://github.com/aegisx-platform/aegisx-starter/commit/19fccbdac400c67a606ee0808d15980ac1ef29b9))
+
+
+### Features
+
+* **drug-registry:** เพิ่ม debounce auto-search 400ms ในหน้าทะเบียนยา ([478acb5](https://github.com/aegisx-platform/aegisx-starter/commit/478acb5063f2fb4917ecbc7a442e32a128a1da18))
+* **pr-po-wizard:** default ประเภทย่อย/ที่อยู่จัดส่ง + ปรับ layout รายการยา ([cf7491c](https://github.com/aegisx-platform/aegisx-starter/commit/cf7491cf751effdf32ef0217211d5f5c6094e9c9))
+* **pr-po-wizard:** full-width content + pre-fill defaults + auto-select ผู้ขายจากผู้ผลิตยา ([b56f32d](https://github.com/aegisx-platform/aegisx-starter/commit/b56f32deffd9943ca4275561ceb5976d4d05f5a8))
+* **pr-po-wizard:** แยก PO ตามบริษัท (1 PR → N PO) + default ประเภทจัดซื้อ ([d35461c](https://github.com/aegisx-platform/aegisx-starter/commit/d35461cde25cf98443619e09338c9e35e7f953fb))
+
 # [1.72.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.71.0...v1.72.0) (2026-06-24)
 
 
