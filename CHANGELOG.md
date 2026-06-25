@@ -1,3 +1,16 @@
+# [1.75.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.74.1...v1.75.0) (2026-06-25)
+
+
+### Bug Fixes
+
+* **pr-api:** snapshot detail แสดงราคา/qty/level จริงจาก contract_items (เดิม ฿0 + tpu เสมอ) ([6a525ed](https://github.com/aegisx-platform/aegisx-starter/commit/6a525ed6a496291be6b0b1f7d4688e979a9a2fed))
+* **pr-web:** detail แสดงหน่วยที่สั่งซื้อ (pack_unit/กล่อง) แทน base unit (AMP) ให้ตรง list ([2bdd792](https://github.com/aegisx-platform/aegisx-starter/commit/2bdd792ff1b5c599f8a04f6ee614f83014bdad1b))
+
+
+### Features
+
+* **po-web:** แสดงวิธีจัดซื้อ (short label) ใน list + ตัดคอลัมน์ pr_number/payment ให้กระชับ ([e8e9394](https://github.com/aegisx-platform/aegisx-starter/commit/e8e9394d7406e11ac82025146669764394d9ff68))
+
 ## [1.74.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.74.0...v1.74.1) (2026-06-25)
 
 
