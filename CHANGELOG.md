@@ -1,3 +1,40 @@
+# [1.74.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.73.0...v1.74.0) (2026-06-25)
+
+
+### Bug Fixes
+
+* **po-api:** pass method_code/method_name through transformToEntity ([0b04661](https://github.com/aegisx-platform/aegisx-starter/commit/0b0466141de177841aff90991fa04cb106773fcd))
+* **po-pdf:** contract_id takes priority over method_code in auto-detect ([f28e563](https://github.com/aegisx-platform/aegisx-starter/commit/f28e5636b3fb886ef29deba6f8a1f5f3f6936410))
+* **po-pdf:** ประกาศ ณ วันที่ inline leadingIndent:71 ทั้ง winner+duplicate forms ([fcd694b](https://github.com/aegisx-platform/aegisx-starter/commit/fcd694b9fed3d8a291372905daf17ade69cbe5fc))
+* **pr-api:** แปลง created_at/updated_at เป็น ISO string ใน getContractsForPR กัน serialize 500 ([131d73e](https://github.com/aegisx-platform/aegisx-starter/commit/131d73e0d2a589c155db213516e34748f5166298))
+* **pr-generic:** แก้ตาม code review — generic info แสดงครบทุก view ([ff60bf3](https://github.com/aegisx-platform/aegisx-starter/commit/ff60bf371e15849bdb513f57b9310749f7db980a))
+* **pr-generic:** แก้ตาม code review รอบ 2 ([dddfe51](https://github.com/aegisx-platform/aegisx-starter/commit/dddfe519ed4a264a4d1f85dfee0b77f37d92e087))
+* **pr-pdf:** ลำดับชื่อยาใน PDF เป็น generic_name composition dosage_form ([c33a62c](https://github.com/aegisx-platform/aegisx-starter/commit/c33a62c4439a9a04e2e122419ad1a761abc122e3))
+* **pr-po:** reason ใช้ตารางตาม FK + align label/default + เพิ่ม method-reason ([0fe30c9](https://github.com/aegisx-platform/aegisx-starter/commit/0fe30c9c62e3cce75738a4fd82130b04ceaf5a7a))
+* **pr-web:** ย้าย .filter(Boolean) จาก template เป็น method กัน AOT build พัง (PR[#231](https://github.com/aegisx-platform/aegisx-starter/issues/231) regression) ([46de0aa](https://github.com/aegisx-platform/aegisx-starter/commit/46de0aa8845446a89d4e035a84ffd16de1f59d97))
+* **quick-build:** drug_code เป็น primary identifier + vendor auto-resolve จาก lastPurchase ([6b61e88](https://github.com/aegisx-platform/aegisx-starter/commit/6b61e886ec7866b6f6cd58025706adbba2bca740))
+
+
+### Features
+
+* **contracts-import:** ดึงข้อมูลจริงจาก DB มาใส่ใน Excel template ([c6c78d6](https://github.com/aegisx-platform/aegisx-starter/commit/c6c78d66c516d27bf6fd67623980e1c41e437ae7))
+* **import-template:** ดึงข้อมูลยาจริงจาก DB มาใส่ใน Excel template ([97ffaea](https://github.com/aegisx-platform/aegisx-starter/commit/97ffaea01b551e9a4af14acbb0d33837bc65a7b2))
+* **inventory:** เพิ่มธนาคารดอยซ์แบงก์ (Deutsche Bank) ใน master bank ([b393cb6](https://github.com/aegisx-platform/aegisx-starter/commit/b393cb65297662b4564bd4d3f634ced192feabca))
+* **po-api:** method_code ใน PO response + from-pr รับ announcement_date (Slice 2) ([9a893b0](https://github.com/aegisx-platform/aegisx-starter/commit/9a893b0bbf7b8133a294b4badb76cacb5773c08e))
+* **po-print:** รวมทุกฟอร์มใน combined print (PR+evaluation+winner+สั่งซื้อ+สัญญา) ([e435a74](https://github.com/aegisx-platform/aegisx-starter/commit/e435a74a797710872830d5477ea3d295b176885d))
+* **po-web:** gate ปุ่มประกาศผู้ชนะ + wizard announcement field ตามวิธี (Slice 3-4) ([12fcbea](https://github.com/aegisx-platform/aegisx-starter/commit/12fcbea4442eb901d1f498e9257b85086157ea6b))
+* **po:** gate วันที่ประกาศผู้ชนะ ตามวิธีจัดซื้อ (Slice 1) ([480fe2d](https://github.com/aegisx-platform/aegisx-starter/commit/480fe2d013a1bcac61db5f1efaa7663da9c48444))
+* **pr-api:** badge/filter has_contract แบบ hybrid (snapshot หลังอนุมัติ ไม่หายตามวันหมดอายุ) ([d5f7911](https://github.com/aegisx-platform/aegisx-starter/commit/d5f7911920248c178324ba3e4b25e69eb2a6f794))
+* **pr-api:** contract_match ใน detail แบบ hybrid + is_expired (อ่าน snapshot เมื่ออนุมัติ) ([f9ba593](https://github.com/aegisx-platform/aegisx-starter/commit/f9ba5938cddeed3ce387ab1395f03d88a81330ac))
+* **pr-api:** freeze contract_id ตอนอนุมัติ PR + clear ตอน revert (try/catch กันอนุมัติ rollback) ([dfa3759](https://github.com/aegisx-platform/aegisx-starter/commit/dfa375904002ca0df512869cb9d10bb3ed7f9fc2))
+* **pr-api:** getContractsForPR แบบ hybrid + is_expired (อ่าน snapshot เมื่ออนุมัติแล้ว) ([c743467](https://github.com/aegisx-platform/aegisx-starter/commit/c7434674a24debe8dec4725180fe2adea5bfcca6))
+* **pr-api:** schema เพิ่ม contract_id (PR item) + is_expired (contract) ([fef1c16](https://github.com/aegisx-platform/aegisx-starter/commit/fef1c168f56b10f72b667b7999e19de8a9433f07))
+* **pr-db:** backfill contract_id ของ PR ที่อนุมัติแล้ว (PO แล้ว match ปัจจุบัน, best-effort) ([f47dcba](https://github.com/aegisx-platform/aegisx-starter/commit/f47dcba4ad74bf734b547bf2cb39442ac545bc22))
+* **pr-db:** เพิ่ม contract_id (FK→contracts, SET NULL) ลง purchase_request_items ([7c3edad](https://github.com/aegisx-platform/aegisx-starter/commit/7c3edad29205b30c41ad7978a5a63e70e56a40fe))
+* **pr-list:** แสดงข้อมูล generic ครบตามมาตรฐาน TMT + หน่วยแบบ ไทย (EN) ([3f165ab](https://github.com/aegisx-platform/aegisx-starter/commit/3f165ab750007226823b5db09412e9f18250af6d))
+* **pr-web:** ป้าย 'สัญญาหมดอายุ' ใน dialog/detail + types contract_id/is_expired ([ef7374e](https://github.com/aegisx-platform/aegisx-starter/commit/ef7374e68e74285c3b6bed0d3feec245915b127f))
+* **quick-build:** ใช้ drug_code เป็นหลัก + auto-fill vendor/price จาก drug_suppliers ([993c99e](https://github.com/aegisx-platform/aegisx-starter/commit/993c99e8bd884c9e28dbe644e4e7ff56e9c81f62))
+
 # [1.73.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.72.0...v1.73.0) (2026-06-24)
 
 
