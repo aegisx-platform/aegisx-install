@@ -1,3 +1,12 @@
+## [1.74.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.74.0...v1.74.1) (2026-06-25)
+
+
+### Bug Fixes
+
+* **pr-api:** code review fixes — spec types, BUDGET_CHECK, agreed_unit_price from DB ([a9c2c9f](https://github.com/aegisx-platform/aegisx-starter/commit/a9c2c9ffbd936e6a947b1ed93f2273286c56af24))
+* **quick-build:** manual rows load full TPU list + auto-load on preview render ([e2aa3a7](https://github.com/aegisx-platform/aegisx-starter/commit/e2aa3a7fa82895ba5ba47e3b13898c4974e1554e))
+* **quick-build:** รวม col รหัสยา/ชื่อยา/แหล่งที่มา เป็น col เดียว ประหยัดพื้นที่ ([48602cd](https://github.com/aegisx-platform/aegisx-starter/commit/48602cdf591674e21a27c6b8b6ed3fe7db25ef8c))
+
 # [1.74.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.73.0...v1.74.0) (2026-06-25)
 
 
