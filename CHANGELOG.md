@@ -1,3 +1,46 @@
+# [1.76.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.75.0...v1.76.0) (2026-06-27)
+
+
+### Bug Fixes
+
+* **advance-dispatches:** แก้ permission string + settle bug ([9eed218](https://github.com/aegisx-platform/aegisx-starter/commit/9eed218a509eb78611a3164db74bfc49a35a21db))
+* **advance-dispatches:** ใช้ ax-page-header + แก้ quick-search compile errors ([0a10752](https://github.com/aegisx-platform/aegisx-starter/commit/0a10752d280648f7f77abd5ac5f7013b7472401b))
+* **advance-dispatch:** เปลี่ยน layout เป็น ax-page-shell มาตรฐาน + mat-card ([7a128de](https://github.com/aegisx-platform/aegisx-starter/commit/7a128de5b5ffa983da430d08ba4c0173652154d5))
+* **drug-generics:** paginator ไม่ตอบสนองเมื่อกดเปลี่ยนหน้า ([f8ab856](https://github.com/aegisx-platform/aegisx-starter/commit/f8ab856a93b8f1c6526e4ebf0fc036d9ca182347))
+* **drug-pack-ratios:** บันทึก role (บทบาท) หน่วยบรรจุได้จริง ([5761a32](https://github.com/aegisx-platform/aegisx-starter/commit/5761a32a4032facaa30c083cc1d9a3e680deccdc))
+* **drug-package-editor:** หน่วยบรรจุครอบทุกยา + เลิกพอกแถวตอนเปลี่ยน base ([b82c1e5](https://github.com/aegisx-platform/aegisx-starter/commit/b82c1e5ca63db5c88f145e37b6fba636899fa999))
+* **drug-reference-prices:** parseFloat NUMERIC in review match/unmatch + permissions seed ([6dea7df](https://github.com/aegisx-platform/aegisx-starter/commit/6dea7dfa913ec4cece4e3965bfe01f50f2165fe9))
+* **drug-reference-prices:** replace hardcoded hex in quick-search with --ax-* tokens ([834887a](https://github.com/aegisx-platform/aegisx-starter/commit/834887ab0718c275b883063a22e7da345e485aeb))
+* **drugs-web:** ส่ง unit_issue ไป API ให้ filter ยาพังใช้ได้จริง ([9bc4414](https://github.com/aegisx-platform/aegisx-starter/commit/9bc4414e8dd373420c1c00639d536ba91a683be5))
+* **error-handler:** map procurement ValidationError/ForbiddenError → 422/403 ([6bc4192](https://github.com/aegisx-platform/aegisx-starter/commit/6bc4192623078216df3c872cddb9ca3da600b07b))
+* **po-search:** เปลี่ยน status badge เป็น ax-badge (info/warning) ([e365db7](https://github.com/aegisx-platform/aegisx-starter/commit/e365db7f97227b38d843902643aa53425f9f0eef))
+* **pr-po:** refactor formatItemName + เปลี่ยน label เรียน (ผู้รับหนังสือ) ([e0d461d](https://github.com/aegisx-platform/aegisx-starter/commit/e0d461d4f05e20be4eb332d6565b797bd49a05fd))
+* **pr-web:** wizard ส่ง drug_id + pack fields ตอนสร้าง PR (ขนาดบรรจุไม่หาย) ([a86e613](https://github.com/aegisx-platform/aegisx-starter/commit/a86e613b247e41917a780fafd2919cb5577d8254))
+* **purchase-orders:** แสดงยอดที่รับไปแล้วจริงใน PO items ([ab29b20](https://github.com/aegisx-platform/aegisx-starter/commit/ab29b206145d9f2a4ab49db4eb553c38b472d075))
+* **review-291:** address HIGH/MEDIUM issues from code review ([10365eb](https://github.com/aegisx-platform/aegisx-starter/commit/10365ebdbe173551665cb880f3fb59f517055494))
+* **review-291:** address round-2 review issues ([1406285](https://github.com/aegisx-platform/aegisx-starter/commit/1406285fd32d8be5f4e1277732494e6362db4e76))
+* **unit-conversion:** กัน ratio ÷0 + เลิก swallow conversion error ใน PVS ([c99b2f0](https://github.com/aegisx-platform/aegisx-starter/commit/c99b2f0eac56b62ce3ada1614cac5caeb631a0f2))
+
+
+### Features
+
+* **advance-dispatch:** phase 2 — UI section + create dialog บน receipt detail ([54f4a83](https://github.com/aegisx-platform/aegisx-starter/commit/54f4a83bc893bcd8d1177ebafc87ee79563927c6))
+* **advance-dispatch:** phase 3 — settle dialog เมื่อ POST receipt มี PENDING dispatches ([2ff0089](https://github.com/aegisx-platform/aegisx-starter/commit/2ff0089c54ea14edda99717e6bedd561e0bf2bba))
+* **advance-dispatch:** phase 4 — management page จ่ายล่วงหน้าทั้งหมด + batch settle ([9e63eb3](https://github.com/aegisx-platform/aegisx-starter/commit/9e63eb3e47e09d139f20b200b5905d37a6aa7f58))
+* **advance-dispatch:** เพิ่ม RBAC permission advance-dispatches ([8453b4e](https://github.com/aegisx-platform/aegisx-starter/commit/8453b4eacf0099f37929d051468da9e99605d2df))
+* **advance-dispatch:** เพิ่มปุ่มบันทึกจ่ายล่วงหน้าจาก management page ([d4e1807](https://github.com/aegisx-platform/aegisx-starter/commit/d4e1807891d5d303a882bee48f9f48aa829f4c2b))
+* **advance-dispatch:** แสดงสถานะ stock จากใบรับ + ล็อค settle เมื่อยังไม่ POSTED ([4c2cec0](https://github.com/aegisx-platform/aegisx-starter/commit/4c2cec09b831282d441a70dd08b834c442f25c7a))
+* **drug-generics:** ปรับ UI ตาม drug formulary มาตรฐาน ([db9cc5e](https://github.com/aegisx-platform/aegisx-starter/commit/db9cc5ea0ec928eed78cf4961ce3d983022d297d))
+* **drug-reference-prices:** quick search page — client-side instant search ([5d53122](https://github.com/aegisx-platform/aegisx-starter/commit/5d53122c701bc30e5a3c152161ca4ef03b2f8e95))
+* **drugs-web:** filter + badge ยาที่ข้อมูลหน่วยพังในหน้าทะเบียนยา ([e775684](https://github.com/aegisx-platform/aegisx-starter/commit/e775684a037f40f610dbeb7d80f14e74415e7665))
+* **drugs-web:** หน่วยพื้นฐานพิมพ์ค้นหาได้ (autocomplete แทน mat-select) ([11550a9](https://github.com/aegisx-platform/aegisx-starter/commit/11550a9197fa1a482a6e0356af8e1cd471329748))
+* **drugs:** flag/filter ยาที่ข้อมูลหน่วยพัง (has_unit_issue) ([facba0e](https://github.com/aegisx-platform/aegisx-starter/commit/facba0ef4f7d8b61e09a165a372082685669e741))
+* **drugs:** subtitle แสดง dosage_form · strength · base_unit ใต้ชื่อการค้า ([6c51f6a](https://github.com/aegisx-platform/aegisx-starter/commit/6c51f6a5349df3c0b42e472c836a57c53f183bd3))
+* **drugs:** แสดงชื่อ generic ใต้ชื่อการค้า + multi-token search + fix paginator ([d5578be](https://github.com/aegisx-platform/aegisx-starter/commit/d5578be14d7b64009bca32eb0a8ed4f3f97cb996))
+* **receipt-advance-dispatches:** phase 1 — migration + backend API ([537297f](https://github.com/aegisx-platform/aegisx-starter/commit/537297f2bc4affca4f684232c000dac881535639))
+* **receipts:** เพิ่ม tab ค้นหา PO + ลงรับด่วนจาก PO list ([ec957ad](https://github.com/aegisx-platform/aegisx-starter/commit/ec957ad7a13de75e19d2b5890adba3608f079630))
+* **requisition-management:** เพิ่ม search bar + priority filter ([bbe2975](https://github.com/aegisx-platform/aegisx-starter/commit/bbe29759c4a1b831f2baee95f71f87733e439c43))
+
 # [1.75.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.74.1...v1.75.0) (2026-06-25)
 
 
