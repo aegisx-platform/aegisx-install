@@ -1,3 +1,11 @@
+## [1.77.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.77.0...v1.77.1) (2026-06-29)
+
+
+### Bug Fixes
+
+* **po-pdf:** คู่ฉบับประกาศผู้ชนะพอดี 1 หน้า + ตัด "โดยวิธีวิธี" ซ้ำ ([4b2b350](https://github.com/aegisx-platform/aegisx-starter/commit/4b2b350707688293450fcbaf6e28f9fb8b371014)), closes [#29](https://github.com/aegisx-platform/aegisx-starter/issues/29)
+* **purchase-orders:** honor garuda=false toggle on winner PDFs ([97b7bb3](https://github.com/aegisx-platform/aegisx-starter/commit/97b7bb3b00055201045c5ba12cf6f5c412002be2))
+
 # [1.77.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.76.0...v1.77.0) (2026-06-29)
 
 
