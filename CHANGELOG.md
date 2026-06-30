@@ -1,3 +1,15 @@
+# [1.80.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.79.0...v1.80.0) (2026-06-30)
+
+
+### Bug Fixes
+
+* **po-pdf:** ประกาศผู้ชนะ+คู่ฉบับ ให้ตรง Word ต้นฉบับ + คู่ฉบับ default ไม่มีครุฑ ([172b739](https://github.com/aegisx-platform/aegisx-starter/commit/172b7395f7bed407c608a135df25b4a39364916c))
+
+
+### Features
+
+* **po-pdf:** ปริ้นรวมประกาศ+คู่ฉบับ ตัด dialog ครุฑ — ประกาศมี/คู่ฉบับไม่มีอัตโนมัติ ([fd7ea37](https://github.com/aegisx-platform/aegisx-starter/commit/fd7ea37aab1bcb00c90e31b2eec43fd9b9610402))
+
 # [1.79.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.78.0...v1.79.0) (2026-06-30)
 
 
