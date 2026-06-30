@@ -1,3 +1,30 @@
+# [1.78.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.77.1...v1.78.0) (2026-06-30)
+
+
+### Bug Fixes
+
+* **his-sync:** support INTERNAL connection_type for same-db HIS sync ([75ff5da](https://github.com/aegisx-platform/aegisx-starter/commit/75ff5dab6746bbbc09cd6f0dae709f6dfa03a590))
+* **inventory:** replace hardcoded hex with --ax-* tokens in tmt-concepts + workflow-steps ([0716c66](https://github.com/aegisx-platform/aegisx-starter/commit/0716c6674bc586c6c78e6a160ce00b556c2938e2))
+* **po-pdf:** คู่ฉบับประกาศผู้ชนะ ชื่อบริษัทไม่ต้องตัวหนา ([33b0b7a](https://github.com/aegisx-platform/aegisx-starter/commit/33b0b7ac7122f6b5c1bb0b148c5ff78fc407993d)), closes [#4](https://github.com/aegisx-platform/aegisx-starter/issues/4) [#3](https://github.com/aegisx-platform/aegisx-starter/issues/3)
+* **po-pdf:** ตัด "โดยวิธี" ขึ้นบรรทัดใหม่กึ่งกลาง + ขยายเส้นประลายเซ็นคู่ฉบับ ([430d731](https://github.com/aegisx-platform/aegisx-starter/commit/430d73159dfed98cf21e94d793c5b5e7a6e7e3d4)), closes [#3](https://github.com/aegisx-platform/aegisx-starter/issues/3) [#4](https://github.com/aegisx-platform/aegisx-starter/issues/4)
+* **po-pdf:** เนื้อหาประกาศผู้ชนะไม่ต้องตัวหนา ตามต้นฉบับ ([e7d4ecf](https://github.com/aegisx-platform/aegisx-starter/commit/e7d4ecf25f3de564a39cc23e6c079720cee9bdd3)), closes [#3](https://github.com/aegisx-platform/aegisx-starter/issues/3) [#4](https://github.com/aegisx-platform/aegisx-starter/issues/4)
+* **po-pdf:** ปรับถ้อยคำประกาศผู้ชนะให้ตรงไฟล์ต้นฉบับ ([0621391](https://github.com/aegisx-platform/aegisx-starter/commit/06213916f7d84c91b531254645569c0b48e7bb95)), closes [#3](https://github.com/aegisx-platform/aegisx-starter/issues/3) [#2](https://github.com/aegisx-platform/aegisx-starter/issues/2)
+* **po-pdf:** ลดระยะห่างบรรทัด header ใบสั่งซื้อ (lineHeight 1.15 → 1.0) ([60594e6](https://github.com/aegisx-platform/aegisx-starter/commit/60594e66a5b44d3bbbcd747ded1908933bb9412c))
+* **po-pdf:** เอาบรรทัด "หัวหน้าเจ้าหน้าที่" ออกจากลายเซ็นประกาศผู้ชนะ ([0713772](https://github.com/aegisx-platform/aegisx-starter/commit/0713772a67e8c4b5ae3bcce1f341b8b68380760e)), closes [#3](https://github.com/aegisx-platform/aegisx-starter/issues/3) [#4](https://github.com/aegisx-platform/aegisx-starter/issues/4)
+
+
+### Features
+
+* **contracts:** add e-GP project_number and control_number fields ([2aeffb0](https://github.com/aegisx-platform/aegisx-starter/commit/2aeffb04cf425940ecce73c4af0bf65f390a7e70))
+* **dispensing:** add per-run lookback_hours override to sync ([6580d8f](https://github.com/aegisx-platform/aegisx-starter/commit/6580d8f1800b2ec23ad0637c547418f64d2eb035))
+* **his-sync:** add migration to fix PPK view mapping profile ([958aa8d](https://github.com/aegisx-platform/aegisx-starter/commit/958aa8d721f7269d6fc6067a3f7d4f7931722828))
+* **po:** เพิ่ม delivery_days บน PO + คำนวณวันครบกำหนดส่งมอบใน PDF ([0b5e14d](https://github.com/aegisx-platform/aegisx-starter/commit/0b5e14d416ab03d2e491af401da233ac87904bbc))
+* **pr-po-wizard:** เพิ่มของแถม (bonus) ในฟอร์มสร้าง PR+PO → /from-pr ([a6b40f7](https://github.com/aegisx-platform/aegisx-starter/commit/a6b40f7817420210409266d2b972c31ffb792073))
+* **pr-po-wizard:** เพิ่มตัวเลือกอนุมัติทันที (PR + PO) เมื่อส่งขออนุมัติ ([bcfdf24](https://github.com/aegisx-platform/aegisx-starter/commit/bcfdf2414c2066bf323ed9fef187727bfeb2a131))
+* **quick-build:** snapshot ราคากลาง + ชื่อการค้า + ขนาดบรรจุ ลง PR item ตอน commit ([f8783c7](https://github.com/aegisx-platform/aegisx-starter/commit/f8783c7208fd6de1d17601e79cc4f5d1585d71a0))
+* **quick-build:** เพิ่มตัวเลือกอนุมัติใบสั่งซื้อทันทีเมื่อบันทึก ([2418735](https://github.com/aegisx-platform/aegisx-starter/commit/241873545c1a1cf733f9300d1282f1e2783ff96e))
+* **receipts:** add start inspection dialog component ([c4de852](https://github.com/aegisx-platform/aegisx-starter/commit/c4de852a9f4328ab564c0402ad4ae934377bebd5))
+
 ## [1.77.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.77.0...v1.77.1) (2026-06-29)
 
 
