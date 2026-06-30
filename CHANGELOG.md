@@ -1,3 +1,15 @@
+# [1.81.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.80.0...v1.81.0) (2026-06-30)
+
+
+### Bug Fixes
+
+* **auth:** session revoked → เด้ง login + แจ้งเหตุผล (เดิมค้างหน้าขาว) ([eb59b00](https://github.com/aegisx-platform/aegisx-starter/commit/eb59b00cc3f77a2e98e147e49f0c121d6bbe06b5))
+
+
+### Features
+
+* **dispensing:** แสดง lookback override เป็นวัน/ชม. ใต้ช่องดึงย้อนหลัง + realtime ([6c4674d](https://github.com/aegisx-platform/aegisx-starter/commit/6c4674d5065a21368e95572eb2e201cd9d1b29dd))
+
 # [1.80.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.79.0...v1.80.0) (2026-06-30)
 
 
