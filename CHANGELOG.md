@@ -1,3 +1,22 @@
+# [1.79.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.78.0...v1.79.0) (2026-06-30)
+
+
+### Bug Fixes
+
+* **po-pdf:** routing label คู่ฉบับให้ตรง Word เป๊ะ ([aa8d85f](https://github.com/aegisx-platform/aegisx-starter/commit/aa8d85f2736f7ed79f713609ba836ee82ad58edc))
+* **po-pdf:** winner detail ให้ตรงไฟล์ Word — numbered list + ขึ้นบรรทัดใหม่ ([b808d60](https://github.com/aegisx-platform/aegisx-starter/commit/b808d60bc51c9a6ad1b9e853772a8eeaf6e1ffe6)), closes [#3](https://github.com/aegisx-platform/aegisx-starter/issues/3) [#4](https://github.com/aegisx-platform/aegisx-starter/issues/4)
+* **po-pdf:** ลดจุดไข่ปลาวรรคแรกลายเซ็นคู่ฉบับ ~1cm ทุกแถว ([f103958](https://github.com/aegisx-platform/aegisx-starter/commit/f1039582d37ffd3b464de28fdbd4b38cea2d7940))
+* **po-pdf:** เส้นประลายเซ็นคู่ฉบับต่อถึง "วันที่" ไม่เว้นวรรค ([0aa8aa7](https://github.com/aegisx-platform/aegisx-starter/commit/0aa8aa7f25d029b187957acd499b042e44d2d3f4))
+* **po-pdf:** เอาบรรทัดว่างระหว่าง "ดังนี้" กับรายการยาออก ([5055dd0](https://github.com/aegisx-platform/aegisx-starter/commit/5055dd0cb23e2afbe43f372ab58f3e9a81e82362)), closes [#3](https://github.com/aegisx-platform/aegisx-starter/issues/3) [#4](https://github.com/aegisx-platform/aegisx-starter/issues/4)
+* **po:** address PR [#315](https://github.com/aegisx-platform/aegisx-starter/issues/315) review — egp migration two-column guard + winner PDF ต้องครบ 2 แผ่น ([3194d50](https://github.com/aegisx-platform/aegisx-starter/commit/3194d506231e89c849cfde39ddc3da1db1b96291))
+* **procurement:** address PR [#314](https://github.com/aegisx-platform/aegisx-starter/issues/314) review (contracts e-GP + his-sync) ([d471387](https://github.com/aegisx-platform/aegisx-starter/commit/d471387edb5c021d06f80f2e6256c31954131421))
+
+
+### Features
+
+* **po:** เพิ่มปุ่มปริ้นประกาศผู้ชนะ + คู่ฉบับ รวม 2 แผ่น ([d939b2c](https://github.com/aegisx-platform/aegisx-starter/commit/d939b2cb2df9c11a03583868792ee8287fccc2fa)), closes [#3](https://github.com/aegisx-platform/aegisx-starter/issues/3) [#4](https://github.com/aegisx-platform/aegisx-starter/issues/4)
+* **po:** เพิ่มปุ่มปริ้นรวม 2 แผ่นในเมนู PO list + PR list + PR detail ([578e859](https://github.com/aegisx-platform/aegisx-starter/commit/578e85964f8ce1dd8861548aeabe837bfd3e64f3))
+
 # [1.78.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.77.1...v1.78.0) (2026-06-30)
 
 
