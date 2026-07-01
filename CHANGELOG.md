@@ -1,3 +1,18 @@
+# [1.83.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.82.0...v1.83.0) (2026-07-01)
+
+
+### Bug Fixes
+
+* **dispensing:** แก้หน้าภาพรวมโชว์ wizard แทน dashboard ทั้งที่ตั้งค่าแล้ว ([0b9586f](https://github.com/aegisx-platform/aegisx-starter/commit/0b9586f81306eff8ed79a64d326b41ff9aa33e3c))
+* **inventory:** แก้ระยะขอบใบประกาศผู้ชนะให้ตรงมาตรฐานงานสารบรรณ ([d815d52](https://github.com/aegisx-platform/aegisx-starter/commit/d815d52caea93de94a616ed07b45139420ecc686)), closes [#3](https://github.com/aegisx-platform/aegisx-starter/issues/3) [#4](https://github.com/aegisx-platform/aegisx-starter/issues/4) [#3](https://github.com/aegisx-platform/aegisx-starter/issues/3)
+* **inventory:** แก้ระยะขอบเอกสาร PR/PO ที่เหลือให้ตรงมาตรฐานงานสารบรรณ ([4f2cfdc](https://github.com/aegisx-platform/aegisx-starter/commit/4f2cfdc9cecdbec676104f6dda4cf039821595ba)), closes [3/#4](https://github.com/aegisx-platform/aegisx-starter/issues/4) [#2](https://github.com/aegisx-platform/aegisx-starter/issues/2)
+
+
+### Features
+
+* **dispensing:** ปรับปรุง UX รายการตัดจ่าย + Sync Dashboard ([97581eb](https://github.com/aegisx-platform/aegisx-starter/commit/97581eb849e5291188dd1a703ed12d3e43c4de5f))
+* **dispensing:** เพิ่ม stat cards ตามสถานะ + filter dropdown บนหน้ารายการตัดจ่าย ([dcefb14](https://github.com/aegisx-platform/aegisx-starter/commit/dcefb14d5d74f37c478c422164f3a8b9a158289c))
+
 # [1.82.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.81.1...v1.82.0) (2026-07-01)
 
 
