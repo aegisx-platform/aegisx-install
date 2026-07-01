@@ -1,3 +1,11 @@
+## [1.81.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.81.0...v1.81.1) (2026-07-01)
+
+
+### Bug Fixes
+
+* **aegisx-ui:** แก้ ax-bar-chart-area พังทั้ง Chart.js register และพื้นหลัง ([584aaa6](https://github.com/aegisx-platform/aegisx-starter/commit/584aaa668d2cd913ad8f7ffc23d23fec7c264536)), closes [#fff](https://github.com/aegisx-platform/aegisx-starter/issues/fff)
+* **dispensing-sync:** เอา page-shell ซ้ำออกจาก Live/History/Failed tabs + แก้ chart ไม่ขึ้น ([91a7c39](https://github.com/aegisx-platform/aegisx-starter/commit/91a7c39de6a1fa1d62dd5cd04fb4d04e8f4e90a9))
+
 # [1.81.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.80.0...v1.81.0) (2026-06-30)
 
 
