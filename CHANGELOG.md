@@ -1,3 +1,11 @@
+## [1.84.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.84.0...v1.84.1) (2026-07-01)
+
+
+### Bug Fixes
+
+* **inventory:** query drug-lots ด้วย receipt_item_id ตอนแก้ lot/expiry บนใบรับ POSTED + กัน chunk reload loop ([ac4827c](https://github.com/aegisx-platform/aegisx-starter/commit/ac4827c3eca863670df30b6dc8c504355ac3414d))
+* **procurement:** ขยาย font ลายเซ็น routing ในคู่ฉบับประกาศผู้ชนะเป็น 12pt ([0f1a557](https://github.com/aegisx-platform/aegisx-starter/commit/0f1a557e1d1de875729159707b551174ff82f18d))
+
 # [1.84.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.83.0...v1.84.0) (2026-07-01)
 
 
