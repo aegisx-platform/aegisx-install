@@ -1,3 +1,18 @@
+# [1.84.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.83.0...v1.84.0) (2026-07-01)
+
+
+### Bug Fixes
+
+* **inventory:** ปรับครุฑในเอกสาร PR/PO ให้สเกลพอดี 3x3cm ([4c6cff7](https://github.com/aegisx-platform/aegisx-starter/commit/4c6cff7173bb0289069fad772eb638dcac4634c7)), closes [#2](https://github.com/aegisx-platform/aegisx-starter/issues/2) [#3](https://github.com/aegisx-platform/aegisx-starter/issues/3) [#4](https://github.com/aegisx-platform/aegisx-starter/issues/4)
+* **patient-dispensings:** จัด filter layout ให้กระชับ 2 rows (search+filters, date range) ([dcc2073](https://github.com/aegisx-platform/aegisx-starter/commit/dcc20733d35fc2d626d2624708453ed3f5615392))
+* **receipts:** เพิ่มช่องกรอก Lot/วันหมดอายุในหน้ายืนยันลงรับ ([b632b27](https://github.com/aegisx-platform/aegisx-starter/commit/b632b2770de429817ff13f0defa4d00793bafc9e))
+* **web:** กู้หน้าอัตโนมัติเมื่อเจอ ChunkLoadError หลัง deploy ใหม่ ([86a54c7](https://github.com/aegisx-platform/aegisx-starter/commit/86a54c7c30a41e47be30335659aea063699852ea))
+
+
+### Features
+
+* **receipts:** แก้ไข lot_number/expiry_date บนใบรับที่ POSTED แล้วได้ ([be7b2a1](https://github.com/aegisx-platform/aegisx-starter/commit/be7b2a1455a2c8702108f54528f7dc823fc76356))
+
 # [1.83.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.82.0...v1.83.0) (2026-07-01)
 
 
