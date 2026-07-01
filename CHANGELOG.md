@@ -1,3 +1,21 @@
+# [1.82.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.81.1...v1.82.0) (2026-07-01)
+
+
+### Bug Fixes
+
+* **deploy:** address PR [#317](https://github.com/aegisx-platform/aegisx-starter/issues/317) review — remove --rollback-db + harden image-only path ([236e2cb](https://github.com/aegisx-platform/aegisx-starter/commit/236e2cb1f8e15e7e5d06925153c386575ae70ed1))
+* **deploy:** address PR [#317](https://github.com/aegisx-platform/aegisx-starter/issues/317) review — rollback correctness fixes ([0a1c5d9](https://github.com/aegisx-platform/aegisx-starter/commit/0a1c5d952e7f48de88ddb77721d5f6311c97ed8b))
+* **deploy:** health-check fail ใน aegisx update = warning ไม่ rollback ([a8abb6c](https://github.com/aegisx-platform/aegisx-starter/commit/a8abb6c799db77237b786a7615f4cb4f2d9449b6))
+* **deploy:** healthcheck ใช้ /api/health/live + 127.0.0.1 ([9e12c7f](https://github.com/aegisx-platform/aegisx-starter/commit/9e12c7f26b84b646c0d5d7651f914c9a2bb18a06))
+* **inventory:** sync pr_committees สำหรับรายงานราชการ (เดิมเป็น dead code) ([6c75053](https://github.com/aegisx-platform/aegisx-starter/commit/6c750530b0e75df82438383756e7f0ff64439fdd))
+* **inventory:** แก้ dropdown ชุดคณะกรรมการใน PR/PO/ตรวจรับพัสดุ ไม่ขึ้น ([7463a58](https://github.com/aegisx-platform/aegisx-starter/commit/7463a58ba1ad821ce32b56080c8308d760490a76))
+
+
+### Features
+
+* **deploy:** aegisx update แสดง app version ก่อน → หลัง ([9270763](https://github.com/aegisx-platform/aegisx-starter/commit/927076307c02879a4f0034da2ae6fa0ac0bcbf63))
+* **deploy:** เพิ่ม auto-rollback ใน `aegisx update` ([e5fbedb](https://github.com/aegisx-platform/aegisx-starter/commit/e5fbedb8a30454d513190ad31a55c5e8b06eaf53))
+
 ## [1.81.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.81.0...v1.81.1) (2026-07-01)
 
 

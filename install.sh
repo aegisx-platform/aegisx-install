@@ -776,6 +776,81 @@ run_sql() {
     fi
 }
 
+# ── Auto-rollback support for `update` ────────────────────────────────────────
+# Capture the api/web image IDs BEFORE pulling. With tag `latest`, pulling
+# repoints the tag at the NEW image — without the saved IDs the previous
+# version becomes unreachable and rollback is impossible.
+ROLLBACK_ENABLED=true
+ROLLBACK_API_IMG=""
+ROLLBACK_WEB_IMG=""
+
+capture_rollback_images() {
+    ROLLBACK_API_IMG=$(docker compose images -q api 2>/dev/null | head -1 || true)
+    ROLLBACK_WEB_IMG=$(docker compose images -q web 2>/dev/null | head -1 || true)
+}
+
+# get_app_version — read the app version baked into the api image. Best-effort:
+# CMD runs `node` directly so npm_package_version is empty at runtime, but the
+# build copies package.json to /app, so that file is the source of truth.
+# Prints empty string if the container isn't reachable.
+get_app_version() {
+    docker compose exec -T api node -p "require('/app/package.json').version" 2>/dev/null | tr -d '\r\n' || true
+}
+
+# rollback_update [db_backup_file] [stage]
+#   stage = "recreate" (DB untouched, before migrations) | "migrate" (DB may be
+#           partially mutated — knex commits each migration as it runs)
+# IMAGE-ONLY rollback: re-tag the captured pre-update api/web images and recreate
+# ONLY those two services. The DB is NEVER auto-restored — a pre-update pg_dumpall
+# can't be safely re-applied to a live cluster (its CREATE ROLE/DATABASE collide),
+# so DB recovery is left to the operator via `./aegisx restore`.
+rollback_update() {
+    [ "$ROLLBACK_ENABLED" = "false" ] && return 0
+    local db_backup="${1:-}"
+    local stage="${2:-}"
+    echo ""
+    echo -e "${YELLOW}↩  Rolling back to previous images...${NC}"
+
+    local api_ref web_ref rolled=false
+    api_ref="${API_IMAGE:-ghcr.io/aegisx-platform/aegisx-starter-api:${IMAGE_TAG:-latest}}"
+    web_ref="${WEB_IMAGE:-ghcr.io/aegisx-platform/aegisx-starter-web:${IMAGE_TAG:-latest}}"
+    [ -n "$ROLLBACK_API_IMG" ] && docker tag "$ROLLBACK_API_IMG" "$api_ref" 2>/dev/null && rolled=true
+    [ -n "$ROLLBACK_WEB_IMG" ] && docker tag "$ROLLBACK_WEB_IMG" "$web_ref" 2>/dev/null && rolled=true
+
+    if [ "$rolled" != true ]; then
+        echo -e "  ${RED}⚠️  Previous image IDs were not captured — cannot re-tag; recreating with current compose (may stay on the new image).${NC}"
+    fi
+
+    # Track the recreate's real exit code — `| tail` + pipefail surfaces the
+    # compose status; do NOT swallow it with `|| true` or a failed recreate
+    # would still print "rolled back".
+    echo -e "  ${CYAN}Recreating api + web with previous images...${NC}"
+    local recreate_ok=true
+    if docker compose up -d --force-recreate api web 2>&1 | tail -5; then :; else recreate_ok=false; fi
+
+    if [ "$recreate_ok" != true ]; then
+        echo -e "${RED}❌ Rollback recreate failed — api/web may be down. Inspect: docker compose ps / logs${NC}"
+    elif [ "$rolled" = true ]; then
+        echo -e "${GREEN}✅ Rolled back to previous images${NC}"
+    else
+        echo -e "${YELLOW}⚠️  Recreated api + web, but previous images were unavailable — may still be on the new build${NC}"
+    fi
+
+    # Schema-state guidance. After a MIGRATE-stage failure some migrations may
+    # have committed, so the rolled-back (old) image can run against a newer
+    # schema — the operator must reconcile (mirrors scripts/update.sh).
+    if [ "$stage" = "migrate" ]; then
+        echo -e "${YELLOW}   ⚠️  Migrations may have partially applied — the old image may run against a newer schema.${NC}"
+        echo -e "${YELLOW}      Reconcile with ONE of:${NC}"
+        echo -e "${YELLOW}        ./aegisx migrate                      # retry forward to the new schema${NC}"
+        if [ -n "$db_backup" ] && [ -f "$db_backup" ]; then
+            echo -e "${YELLOW}        ./aegisx restore $db_backup  # revert DB to pre-update state${NC}"
+        fi
+    elif [ -n "$db_backup" ] && [ -f "$db_backup" ]; then
+        echo -e "${YELLOW}   DB was not modified by this rollback. Pre-update backup: $db_backup${NC}"
+    fi
+}
+
 case "${1:-help}" in
     start)
         echo -e "${GREEN}Starting AegisX Platform...${NC}"
@@ -901,11 +976,19 @@ case "${1:-help}" in
         echo -e "${BOLD}=== Update AegisX Platform ===${NC}"
         echo ""
 
+        # Parse rollback flags (default: auto-rollback ON, image-only)
+        for _arg in "$@"; do
+            case "$_arg" in
+                --no-rollback) ROLLBACK_ENABLED=false ;;
+            esac
+        done
+
         # ── Self-update this management CLI from the latest published wrapper ──
         # Keeps a deployed box on the newest update logic (e.g. the auto-seed
         # step) without a manual re-install. Best-effort: any network/validation
         # failure falls through to the current CLI. Guarded against re-exec loops
-        # with AEGISX_SELF_UPDATED.
+        # with AEGISX_SELF_UPDATED. Forwards the original flags so --no-rollback
+        # survives the re-exec.
         if [ -z "${AEGISX_SELF_UPDATED:-}" ]; then
             _new_cli=$(mktemp 2>/dev/null || echo "/tmp/aegisx-cli.$$")
             if curl -fsSL "https://raw.githubusercontent.com/aegisx-platform/aegisx-install/main/aegisx" -o "$_new_cli" 2>/dev/null \
@@ -914,14 +997,21 @@ case "${1:-help}" in
                     if cp "$_new_cli" "$0" 2>/dev/null && chmod +x "$0" 2>/dev/null; then
                         echo -e "${CYAN}↻ Management CLI updated to latest — re-running update...${NC}"
                         rm -f "$_new_cli" 2>/dev/null || true
-                        AEGISX_SELF_UPDATED=1 exec "$0" update
+                        AEGISX_SELF_UPDATED=1 exec "$0" update "${@:2}"
                     fi
                 fi
             fi
             rm -f "$_new_cli" 2>/dev/null || true
         fi
 
-        echo -e "${CYAN}[1/5]${NC} Creating database backup..."
+        if [ "$ROLLBACK_ENABLED" = false ]; then
+            echo -e "${YELLOW}⚠️  Auto-rollback disabled (--no-rollback)${NC}"
+        else
+            echo -e "${CYAN}Auto-rollback: ON (image-only; DB is not auto-restored — use ./aegisx restore if needed)${NC}"
+        fi
+        echo ""
+
+        echo -e "${CYAN}[1/6]${NC} Creating database backup..."
         mkdir -p backups
         BACKUP_FILE="backups/aegisx_pre-update_$(date +%Y%m%d_%H%M%S).sql.gz"
         if has_local_postgres; then
@@ -932,13 +1022,25 @@ case "${1:-help}" in
             echo -e "  ${YELLOW}⚠️  External DB - backup with your provider's tools${NC}"
         fi
 
-        echo -e "${CYAN}[2/5]${NC} Pulling latest images..."
-        docker compose pull
+        # Capture current images + app version BEFORE pull (containers still on
+        # the old build) so we can roll back AND report the version delta.
+        capture_rollback_images
+        PREV_VERSION=$(get_app_version)
 
-        echo -e "${CYAN}[3/5]${NC} Restarting services..."
-        docker compose up -d
+        echo -e "${CYAN}[2/6]${NC} Pulling latest images..."
+        if ! docker compose pull; then
+            echo -e "${RED}❌ Image pull failed — nothing changed${NC}"
+            exit 1
+        fi
 
-        echo -e "${CYAN}[4/5]${NC} Running migrations..."
+        echo -e "${CYAN}[3/6]${NC} Restarting services..."
+        if ! docker compose up -d; then
+            echo -e "${RED}❌ Container recreate failed${NC}"
+            rollback_update "$BACKUP_FILE" recreate
+            exit 1
+        fi
+
+        echo -e "${CYAN}[4/6]${NC} Running migrations..."
         echo "  Waiting for API to be ready..."
         for i in $(seq 1 60); do
             if curl -s "http://localhost:${API_PORT:-3333}/api/health/live" &> /dev/null; then break; fi
@@ -947,18 +1049,38 @@ case "${1:-help}" in
         done
         echo ""
 
-        # Run migrations in correct order
-        run_sql -c "CREATE SCHEMA IF NOT EXISTS inventory;" 2>/dev/null
-        docker compose exec -T api sh -c "cd /app && NODE_ENV=production npx knex migrate:latest --knexfile knexfile.ts" 2>&1 | tail -3
-        docker compose exec -T api sh -c "cd /app && NODE_ENV=production npx knex migrate:latest --knexfile knexfile-inventory.ts" 2>&1 | tail -3
+        # Run migrations in correct order. `if cmd; then :; else ...; fi` keeps
+        # `set -e` from aborting before we can roll back. Full output goes to a
+        # log (not just tail) so a failed migration can be diagnosed AFTER the
+        # rollback erases the live container state.
+        #
+        # `|| true` on the CREATE SCHEMA: it is idempotent, and a transient blip
+        # here must not abort the script under set -e before the migrate-stage
+        # rollback can run (a genuine DB outage will resurface at migrate).
+        run_sql -c "CREATE SCHEMA IF NOT EXISTS inventory;" 2>/dev/null || true
+        MIGRATE_LOG="backups/migrate_update_$(date +%Y%m%d_%H%M%S).log"
+        migrate_failed=false
+        # Use `run --rm` (throwaway container), NOT `exec`: a freshly pulled api
+        # image can crash-loop when its code expects a column the not-yet-applied
+        # migration adds, and `exec` would then fail with "container not running"
+        # and mislabel it a migration failure (mirrors scripts/update.sh).
+        if docker compose run --rm api sh -c "cd /app && NODE_ENV=production npx knex migrate:latest --knexfile knexfile.ts" > "$MIGRATE_LOG" 2>&1; then :; else migrate_failed=true; fi
+        if docker compose run --rm api sh -c "cd /app && NODE_ENV=production npx knex migrate:latest --knexfile knexfile-inventory.ts" >> "$MIGRATE_LOG" 2>&1; then :; else migrate_failed=true; fi
+        tail -3 "$MIGRATE_LOG" 2>/dev/null | sed 's/^/  /' || true
+        if [ "$migrate_failed" = true ]; then
+            echo -e "  ${RED}❌ Migrations failed — full log: $MIGRATE_LOG${NC}"
+            rollback_update "$BACKUP_FILE" migrate
+            exit 1
+        fi
 
-        echo -e "${CYAN}[5/5]${NC} Seeding reference data (idempotent)..."
+        echo -e "${CYAN}[5/6]${NC} Seeding reference data (idempotent)..."
         # New releases often ship new master-data / RBAC-permission seeds. Run
         # them automatically so an update is self-sufficient (no manual
         # './aegisx seed'). NODE_ENV=production skips dev-only seeds (011/012);
         # all prod seeds are ON CONFLICT-idempotent, so re-running is safe.
         # Full output is captured to a log (NOT truncated) so a real seed error
-        # is never masked as "already exists".
+        # is never masked as "already exists". A seed error is a WARNING, not a
+        # rollback trigger — seeds are additive and re-runnable via './aegisx seed'.
         UPDATE_SEED_LOG="backups/seed_update_$(date +%Y%m%d_%H%M%S).log"
         update_seed_failed=false
         if docker compose exec -T api sh -c "cd /app && NODE_ENV=production npx knex seed:run --knexfile knexfile.ts" > "$UPDATE_SEED_LOG" 2>&1; then
@@ -978,8 +1100,57 @@ case "${1:-help}" in
             echo -e "  ${YELLOW}   New reference data / permissions may be missing. Fix the error in the log, then re-run './aegisx seed'.${NC}"
         fi
 
-        echo -e "${GREEN}Update complete!${NC}"
+        echo -e "${CYAN}[6/6]${NC} Verifying service health..."
+        health_ok=false
+        for i in $(seq 1 30); do
+            if curl -s "http://localhost:${API_PORT:-3333}/api/health/live" &> /dev/null; then health_ok=true; break; fi
+            echo -n "."
+            sleep 2
+        done
+        echo ""
+        update_unhealthy=false
+        if [ "$health_ok" = true ]; then
+            echo -e "  ${GREEN}✅ Services healthy${NC}"
+        else
+            # migrate + seed already succeeded, so the DB side of the update is
+            # DONE — a slow HTTP warm-up is NOT a rollback trigger (image-only
+            # rollback here would pair the OLD image with the NEW schema). But the
+            # API is NOT answering, so we must NOT exit 0: a daily/automated
+            # updater has to be able to detect this as a non-success.
+            update_unhealthy=true
+            echo -e "  ${YELLOW}⚠️  API did not respond on /api/health/live within 60s${NC}"
+            echo -e "  ${YELLOW}   Update applied (migrations + seeds OK) — the API may still be warming up.${NC}"
+            echo -e "  ${YELLOW}   Check logs:  docker compose logs -f api${NC}"
+            if [ -f "$BACKUP_FILE" ]; then
+                echo -e "  ${YELLOW}   If it never comes up: ./aegisx restore $BACKUP_FILE${NC}"
+            fi
+        fi
+
+        # Report the version delta (best-effort). If the version number is the
+        # same but the image digest changed, the build was refreshed under the
+        # same tag — surface that as "rebuilt" so a daily updater still sees it.
+        NEW_VERSION=$(get_app_version)
+        echo ""
+        if [ -n "${PREV_VERSION:-}" ] || [ -n "${NEW_VERSION:-}" ]; then
+            if [ -n "${NEW_VERSION:-}" ] && [ "${PREV_VERSION:-}" = "${NEW_VERSION:-}" ]; then
+                _now_api=$(docker compose images -q api 2>/dev/null | head -1 || true)
+                if [ -n "$ROLLBACK_API_IMG" ] && [ "$ROLLBACK_API_IMG" != "$_now_api" ]; then
+                    echo -e "${CYAN}App version:${NC} ${NEW_VERSION} ${YELLOW}(rebuilt — image changed, version number unchanged)${NC}"
+                else
+                    echo -e "${CYAN}App version:${NC} ${NEW_VERSION} (unchanged)"
+                fi
+            else
+                echo -e "${CYAN}App version:${NC} ${PREV_VERSION:-unknown} ${GREEN}→${NC} ${NEW_VERSION:-unknown}"
+            fi
+        fi
+
         docker compose ps
+        if [ "$update_unhealthy" = true ]; then
+            echo ""
+            echo -e "${YELLOW}⚠️  Update applied but the API is NOT healthy — investigate before relying on it.${NC}"
+            exit 2
+        fi
+        echo -e "${GREEN}Update complete!${NC}"
         ;;
     backup)
         mkdir -p backups
@@ -1107,7 +1278,8 @@ ORDER BY table_name;
         echo ""
         echo "Maintenance Commands:"
         echo "  pull               Pull latest images"
-        echo "  update             Backup + pull + restart + migrate"
+        echo "  update             Backup + pull + restart + migrate + auto-rollback"
+        echo "                       --no-rollback   disable auto-rollback (image-only by default)"
         echo "  backup             Create database backup"
         echo "  restore <file>     Restore from backup"
         echo "  health             Check system health"
