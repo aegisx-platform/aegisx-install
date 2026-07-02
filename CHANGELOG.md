@@ -1,3 +1,18 @@
+# [1.86.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.85.0...v1.86.0) (2026-07-02)
+
+
+### Bug Fixes
+
+* **inventory:** advance-dispatch unit fallback อ่าน generic base แทน package_unit ([a63d708](https://github.com/aegisx-platform/aegisx-starter/commit/a63d7084ee6c392fafe76074c16a097b2c5bf2af))
+* **inventory:** drug_pack_ratios มี is_default ซ้ำ ทำ default unit ของ quick-requisition ไม่แน่นอน ([20de559](https://github.com/aegisx-platform/aegisx-starter/commit/20de55958cdf0ce66977e0f4d934ebc40b025c20))
+* **inventory:** migration report residual แทน throw + note ข้อจำกัด guard ([83e6c69](https://github.com/aegisx-platform/aegisx-starter/commit/83e6c69fd7faa88251a5046b69a792211e36ef4e))
+* **inventory:** ใบรับอ่าน base_unit จาก generic แทน package_unit (canonical) ([6a0cf78](https://github.com/aegisx-platform/aegisx-starter/commit/6a0cf7885517dc5a7e345b652b0968451b9794c0))
+
+
+### Features
+
+* **dispensing:** เพิ่มปุ่ม Retry DRAFT ในหน้า patient-dispensings ([bc96f66](https://github.com/aegisx-platform/aegisx-starter/commit/bc96f66247c8fcaaee96173d5e19807e8a081c3c))
+
 # [1.85.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.84.1...v1.85.0) (2026-07-02)
 
 
