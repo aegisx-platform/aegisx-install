@@ -1,3 +1,31 @@
+# [1.85.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.84.1...v1.85.0) (2026-07-02)
+
+
+### Bug Fixes
+
+* **inventory:** advance-dispatch settle() ตัด stock ผิดหน่วยหลังแก้ posting bug ([085227e](https://github.com/aegisx-platform/aegisx-starter/commit/085227e7ee010d55f0786bd2aeacf6ce50d9faa9))
+* **inventory:** default คลังใหญ่ในตัวกรองทะเบียนยาคงคลัง ([df680de](https://github.com/aegisx-platform/aegisx-starter/commit/df680ded61ee3083eb6ef1e5295b8ce9270e77c6))
+* **inventory:** unit label ของ inventory-levels/stockcard อิงหน่วยผิด COALESCE ([d04af89](https://github.com/aegisx-platform/aegisx-starter/commit/d04af8906e2a6a3535fd84589884137a9f0c450b))
+* **inventory:** แก้ dialog เต็มจอไม่กลางจอตอนย่อกลับ + HIS settings ([16308b9](https://github.com/aegisx-platform/aegisx-starter/commit/16308b9dd59e9b6a387b65f02b7ff36ec59b4446))
+* **inventory:** แก้ข้อความ badge match-field ในฟอร์ม HIS ที่ระบุพฤติกรรมผิด ([e3a9a98](https://github.com/aegisx-platform/aegisx-starter/commit/e3a9a98fe0b556e782241df9dd08e9fd9f8696ed))
+* **inventory:** ค้นหาการจ่ายล่วงหน้าด้วยรหัสยาได้ ([4a58374](https://github.com/aegisx-platform/aegisx-starter/commit/4a5837411b9247dd220f40bf4d8f7edacf2f0e32))
+* **inventory:** ลงรับใบรับไม่คูณ unit_per_pack ทำให้สต็อกขาดหายสูงสุด 1000x ([3f7a870](https://github.com/aegisx-platform/aegisx-starter/commit/3f7a87044487a441467acd31f06e698c6d06d699))
+* **inventory:** เลือกหน่วยบรรจุ default ไม่ได้ในหน้าแก้ไขใบรับ ([5a20202](https://github.com/aegisx-platform/aegisx-starter/commit/5a202023cef8b6ecb19f3dcde72860710f0a4421))
+* **inventory:** แสดงหน่วยบรรจุ (package unit) ในทะเบียนยาคงคลัง + stockcard และแก้ stat filter พัง ([a80fb2b](https://github.com/aegisx-platform/aegisx-starter/commit/a80fb2b3ea2db89e4db265e8864ee1ae0c2ba838))
+* **inventory:** แสดงหน่วยบรรจุ (package) ในไดอะล็อกลงรับด่วน ([fcda458](https://github.com/aegisx-platform/aegisx-starter/commit/fcda458ae988237c05995805279a9144146412b1))
+* **inventory:** หน่วยไทย(EN) ในหน้าลงรับเวชภัณฑ์ + modal เต็มจอ ([285c8ce](https://github.com/aegisx-platform/aegisx-starter/commit/285c8cea9e3addba225d4e452d2546a8c2a12685))
+* **procurement:** เงื่อนไขการชำระเงินใน PR+PO wizard ให้เป็น dropdown + เพิ่ม NET90 ([a80e181](https://github.com/aegisx-platform/aegisx-starter/commit/a80e181ca44bf3fb20ab08c0d3dd7912adb021f2))
+* **procurement:** ทำให้สถานะ PO "SENT" ชัดเจนว่าส่งให้ผู้ขาย ไม่ใช่ส่งของ ([e8d873e](https://github.com/aegisx-platform/aegisx-starter/commit/e8d873ec451d3cd32f4692b5f1857d015cef0696))
+* **receipts:** ค้นหา PO รอลงรับแล้วล้างไม่รีโหลดผลลัพธ์ ([2d8d470](https://github.com/aegisx-platform/aegisx-starter/commit/2d8d470f3e6d60571ff25f335732be5dbc6f77c0))
+* **receipts:** แสดงหน่วยบรรจุที่คอลัมน์จำนวนรับ/ผ่าน/ปฏิเสธในหน้ารายละเอียดใบรับ ([96262cd](https://github.com/aegisx-platform/aegisx-starter/commit/96262cd0a00653cdab2cf56905a08d85d5806705))
+
+
+### Features
+
+* **inventory:** เพิ่ม InventoryRoleGuard บน sub-app routes + ขยายสิทธิ์ inventory-main-warehouse ([89baca7](https://github.com/aegisx-platform/aegisx-starter/commit/89baca7d975884d70d50e4841f67343f9ef2cdc8))
+* **inventory:** รวม header หน้าดูใบรับ+แก้ไข และลบ tab แยกออก ([8dfea73](https://github.com/aegisx-platform/aegisx-starter/commit/8dfea73acbf136f378b38a60b758a69670cd3326))
+* **receipts:** แสดง shelf life + วันคงเหลือหมดอายุ ตอนกรอก Lot ในใบรับ ([c5377a2](https://github.com/aegisx-platform/aegisx-starter/commit/c5377a2477e32028e16135c9564b2dead64198ca))
+
 ## [1.84.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.84.0...v1.84.1) (2026-07-01)
 
 
