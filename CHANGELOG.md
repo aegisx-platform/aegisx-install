@@ -1,3 +1,11 @@
+## [1.87.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.87.0...v1.87.1) (2026-07-03)
+
+
+### Bug Fixes
+
+* **backup:** replace custom divs with ax-card per UI component standard ([f165763](https://github.com/aegisx-platform/aegisx-starter/commit/f1657631ce4db04a1542a30709bcbcab2377afc1))
+* **backup:** use variant= not appearance= on ax-card (correct @Input name) ([cb34d79](https://github.com/aegisx-platform/aegisx-starter/commit/cb34d7965694e69c621d113c97899423db26cc98))
+
 # [1.87.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.86.0...v1.87.0) (2026-07-03)
 
 
