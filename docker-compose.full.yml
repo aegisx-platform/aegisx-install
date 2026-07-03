@@ -133,12 +133,16 @@ services:
 
       # File uploads
       UPLOAD_DIR: /app/uploads
+      # Backup integration
+      BACKUP_DIR: /backups
+      BACKUP_SERVICE_URL: http://backup:8099
     ports:
       - '${API_PORT:-3333}:3000'
     volumes:
       - uploads_data:/app/uploads
       - ./config/api:/app/config:ro
       - ./logs/api:/app/logs
+      - ./backups:/backups
     healthcheck:
       test: ['CMD', 'wget', '-qO-', 'http://127.0.0.1:3000/api/health/live']
       interval: 30s
@@ -175,11 +179,14 @@ services:
       - aegisx-network
 
   # =============================================================================
-  # Automated Database Backup
+  # Automated Database Backup (custom container)
+  # Provides: crond daily backup + pg_restore integrity check + HTTP trigger :8099
   # =============================================================================
-  db-backup:
-    image: prodrigestivill/postgres-backup-local:15-alpine
-    container_name: aegisx_db_backup
+  backup:
+    build:
+      context: ./backup
+      dockerfile: Dockerfile
+    container_name: aegisx_backup
     restart: unless-stopped
     logging: *default-logging
     depends_on:
@@ -191,12 +198,9 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB:-aegisx_db}
-      POSTGRES_EXTRA_OPTS: '--schema=public --schema=inventory --no-owner --no-privileges'
-      SCHEDULE: ${BACKUP_SCHEDULE:-@daily}
-      BACKUP_KEEP_DAYS: ${BACKUP_KEEP_DAYS:-7}
-      BACKUP_KEEP_WEEKS: ${BACKUP_KEEP_WEEKS:-4}
-      BACKUP_KEEP_MONTHS: ${BACKUP_KEEP_MONTHS:-6}
-      HEALTHCHECK_PORT: 8080
+      PGPASSWORD: ${POSTGRES_PASSWORD}
+      BACKUP_CRON_SCHEDULE: ${BACKUP_CRON_SCHEDULE:-0 2 * * *}
+      BACKUP_RETENTION_DAYS: ${BACKUP_RETENTION_DAYS:-30}
       TZ: ${TZ:-Asia/Bangkok}
     volumes:
       - ./backups:/backups

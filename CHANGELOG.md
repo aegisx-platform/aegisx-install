@@ -1,3 +1,37 @@
+# [1.87.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.86.0...v1.87.0) (2026-07-03)
+
+
+### Bug Fixes
+
+* **backup:** address code review findings ([c99afb5](https://github.com/aegisx-platform/aegisx-starter/commit/c99afb506d49e9ad511939a9aed89e62bb270bb9))
+* **inventory:** repoint PR Excel-import lookupGenerics off dropped base_unit + extract shared helper ([332d8a7](https://github.com/aegisx-platform/aegisx-starter/commit/332d8a74e2e8021aefc2ea2c2cdd555501ac460a)), closes [#331](https://github.com/aegisx-platform/aegisx-starter/issues/331)
+* **procurement:** สั่งตรง PO เก็บ unit_per_pack + fix receipt enrichment bigint key ([e52c463](https://github.com/aegisx-platform/aegisx-starter/commit/e52c4634a7b19661c94305bb2c3427e5eea0ea63))
+* **quick-build:** ชื่อยาคอลัมน์แรกไม่ซ้ำ TPU + ใช้เลข PO จากไฟล์ ([c396f3a](https://github.com/aegisx-platform/aegisx-starter/commit/c396f3a5fcf2c04d369a3fed235141a3449012e8))
+
+
+### Features
+
+* **backup:** add backup API routes + plugin + registration in plugin loader ([b43f4e7](https://github.com/aegisx-platform/aegisx-starter/commit/b43f4e7c29b8947527322cb324901fe4ae67cbcc))
+* **backup:** add Backup Management UI page with list/trigger/delete/download ([b2c8649](https://github.com/aegisx-platform/aegisx-starter/commit/b2c86491b163360006d46b64ce02d2547bea486d))
+* **backup:** add backup schemas (TypeBox) + BackupService ([de08327](https://github.com/aegisx-platform/aegisx-starter/commit/de0832775706b26d9bc0fb31d4766911f4350cdc))
+* **backup:** add dedicated backup container with crond + HTTP trigger server ([3309bc3](https://github.com/aegisx-platform/aegisx-starter/commit/3309bc3fdf622d8dbc288749551d40f3dad281c5))
+* **backup:** replace db-backup service with custom backup container + add api env/volume ([f612290](https://github.com/aegisx-platform/aegisx-starter/commit/f6122908c233ff44614ab4f55865d4bbd6ff88f5))
+* **backup:** seed RBAC permissions for system:backup:read + system:backup:manage ([743e290](https://github.com/aegisx-platform/aegisx-starter/commit/743e2904bef7915edf36022f444a652ab66c832a))
+* **dispensing:** map HIS units column → patient_dispensing_items.unit_id on sync ([c7a83f9](https://github.com/aegisx-platform/aegisx-starter/commit/c7a83f905db614aa7bb199cc1b4d1f92b2bd0240))
+* **dispensing:** เพิ่ม HIS Unit Mappings — UI-configurable หน่วยยา HIS → AegisX ([4b96dee](https://github.com/aegisx-platform/aegisx-starter/commit/4b96deebd489e5f0118f94d49913d60748a30559))
+* **procurement:** manual/direct PO เก็บ po_item.package_id ของ pack ที่เลือก ([20298d3](https://github.com/aegisx-platform/aegisx-starter/commit/20298d35967082bce9bc8d48f87b38549048657a))
+* **procurement:** vendor-selection/from-pr PO derive po_item.package_id ([6d542da](https://github.com/aegisx-platform/aegisx-starter/commit/6d542da2fcf63541412ea6ca5465871fbf8fa433))
+* **quick-build:** commit บันทึก po_item.package_id ของ pack ที่เลือก (traceability) ([352469a](https://github.com/aegisx-platform/aegisx-starter/commit/352469aa7ee05203689989c1e38dce2a316e1a43))
+* **quick-build:** commit ส่งหน่วยสั่งซื้อที่เลือก → pr/po item (stock conversion) ([30e77a5](https://github.com/aegisx-platform/aegisx-starter/commit/30e77a58df9e8f278c905587aff42b6bafb6bd17))
+* **quick-build:** mat-option หน่วยสั่งซื้อโชว์ชื่อหน่วยฐาน "BOX ×5 TAB" ([5c97b1c](https://github.com/aegisx-platform/aegisx-starter/commit/5c97b1c7491b47d021a29ef9c5e3685a5e7ed3fd))
+* **quick-build:** คอลัมน์ "หน่วยสั่งซื้อ" เลือก pack จาก drug_pack_ratios ([79de14c](https://github.com/aegisx-platform/aegisx-starter/commit/79de14cc830d86aa2e31951a3a30e9e6f27ad8da))
+* **quick-build:** ยุบคอลัมน์ยา+ยี่ห้อ, ขยายผู้ขาย, auto-save ราคากลางตอนสร้าง ([046f0e9](https://github.com/aegisx-platform/aegisx-starter/commit/046f0e9050006b7e4bf25ee2e7ba31faf1fdc5e1))
+
+
+### Reverts
+
+* Revert "feat(dispensing): map HIS units column → patient_dispensing_items.unit_id on sync" ([c9ac581](https://github.com/aegisx-platform/aegisx-starter/commit/c9ac581b0f92dcb189f2aadd5c42fbb37c79b654))
+
 # [1.86.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.85.0...v1.86.0) (2026-07-02)
 
 
