@@ -1,3 +1,13 @@
+## [1.87.2](https://github.com/aegisx-platform/aegisx-starter/compare/v1.87.1...v1.87.2) (2026-07-03)
+
+
+### Bug Fixes
+
+* **backup:** ax-badge ใช้ color แทน variant สำหรับสี semantic ([3339776](https://github.com/aegisx-platform/aegisx-starter/commit/3339776e8d9dac0352bd275f865d3b78f5d84529))
+* **backup:** use type= not variant= on ax-badge (BadgeVariant ≠ BadgeType) ([7f2099b](https://github.com/aegisx-platform/aegisx-starter/commit/7f2099b17f4b80566c8307272b32b8b6e06f9ba2))
+* **backup:** แก้ 5 ปัญหาจาก code review รอบที่ 2 ([428b04a](https://github.com/aegisx-platform/aegisx-starter/commit/428b04af626327cbe055f2a65e50b1706261fe4f))
+* **backup:** แก้ URL double-prefix + ใช้ ax-page-header ใน header slot ([168cf15](https://github.com/aegisx-platform/aegisx-starter/commit/168cf15516f9c463364b421844ca189fc1b5eed8))
+
 ## [1.87.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.87.0...v1.87.1) (2026-07-03)
 
 
