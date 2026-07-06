@@ -1,3 +1,10 @@
+## [1.88.2](https://github.com/aegisx-platform/aegisx-starter/compare/v1.88.1...v1.88.2) (2026-07-06)
+
+
+### Bug Fixes
+
+* **po:** add migration for PO reason "เพื่อใช้ในการรักษาพยาบาล" (code 11) ([603ce6a](https://github.com/aegisx-platform/aegisx-starter/commit/603ce6a7e2c8846f46602315d97222cf8085fdaf))
+
 ## [1.88.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.88.0...v1.88.1) (2026-07-06)
 
 
