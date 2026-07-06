@@ -1,3 +1,11 @@
+## [1.88.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.88.0...v1.88.1) (2026-07-06)
+
+
+### Bug Fixes
+
+* **po:** จัด layout ฟอร์ม PO ใหม่ — ฟิลด์เรียงคอลัมน์ตรงกัน ไม่กระจายเต็มจอ ([5088885](https://github.com/aegisx-platform/aegisx-starter/commit/50888852791a30f099b688c6d5efbd2fb569a594))
+* **procurement:** auto-fill PO vendor from PR contract or drug maker ([1ae9f99](https://github.com/aegisx-platform/aegisx-starter/commit/1ae9f99a3bd7f95a8daee206a526640c9d16b4ca))
+
 # [1.88.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.87.2...v1.88.0) (2026-07-06)
 
 
