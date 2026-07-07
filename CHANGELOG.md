@@ -1,3 +1,26 @@
+# [1.89.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.88.2...v1.89.0) (2026-07-07)
+
+
+### Bug Fixes
+
+* **his-settings:** แปลหน้าตั้งค่า HIS เป็นไทย + เวลา 24 ชม. + แปลงนาที/ชม.ให้อ่านง่าย ([ca28bdc](https://github.com/aegisx-platform/aegisx-starter/commit/ca28bdc6fbda51e76e96b070f60c5cd0838d7aa6))
+* **po:** baht text รองรับหลักล้าน — เลข ≥ 8 หลักไม่โผล่ undefined ([398c4b2](https://github.com/aegisx-platform/aegisx-starter/commit/398c4b24219e1d532a1063054a65f8405e99eac2))
+* **po:** dialog สร้าง PO — แสดง VAT แบบถอด (ไม่บวกทับ) + จัด section + ขยาย dialog ([0149597](https://github.com/aegisx-platform/aegisx-starter/commit/01495975b4463232033a7ce555f58f5f3a01d51a))
+* **po:** footer ใบสั่งซื้อธรรมดา — merge จำนวนเงินตัวอักษรกิน 3 แถวเหมือนแบบไม่จำกัดปริมาณ ([b9c801b](https://github.com/aegisx-platform/aegisx-starter/commit/b9c801b09335d3d48d17e6961bb08367585032e6))
+* **po:** จัดคอลัมน์ PO — label เงิน merge 2 คอล + auto width ให้รายการกว้างสุด ([4ba4b48](https://github.com/aegisx-platform/aegisx-starter/commit/4ba4b48311098f558e4bddaaa9f18b9b03c40b22))
+* **po:** เพิ่ม NET90 เข้า payment_terms enum ([36defe6](https://github.com/aegisx-platform/aegisx-starter/commit/36defe6d275dcfd63b4267114e99ca09634b6881))
+* **pr,egp:** baht text รองรับหลักล้าน — เลข ≥ 8 หลักไม่โผล่ undefined ([efc6713](https://github.com/aegisx-platform/aegisx-starter/commit/efc6713ad9709aa58e1415d22fabe8e7223982b2))
+* **pr:** จัดฟอร์ม e-GP เป็น 3 คอลัมน์แถวเดียว (เลขหนังสือ/โครงการ/คุมสัญญา) ([e7600ae](https://github.com/aegisx-platform/aegisx-starter/commit/e7600ae70f59bf50a1d01d0943e0cdb097929455))
+* **receipts:** populate KPI stat-card signal from getStats() ([a234aa0](https://github.com/aegisx-platform/aegisx-starter/commit/a234aa077c377046a297b4cb3d9aa67b59043082))
+
+
+### Features
+
+* **his-settings:** webhook แสดงตัวอย่าง Body (JSON) เต็ม ๆ + ปุ่มคัดลอก ([9e154d1](https://github.com/aegisx-platform/aegisx-starter/commit/9e154d19f1615445f61ad88d8e278968e8089fc4))
+* **pr:** freeze รายชื่อคณะกรรมการเป็น snapshot ตอน submit + re-freeze เมื่อแก้ ([9404d71](https://github.com/aegisx-platform/aegisx-starter/commit/9404d71a18e578bd5498a2f6cbebd19c67f587b9))
+* **pr:** จัด layout คณะกรรมการ ๘.๑/๘.๒ เป็น 2 บรรทัด (ชื่อ+บทบาท / ตำแหน่งงาน) ([94965ed](https://github.com/aegisx-platform/aegisx-starter/commit/94965edcfc380551de3a8671ed3c2b965f09edac))
+* **pr:** ปุ่ม "บันทึกและอนุมัติ" คลิกเดียว + ลบ divider/hint จัดฟอร์ม ([752f484](https://github.com/aegisx-platform/aegisx-starter/commit/752f4842fbd371a94c3709511a80bdd72a891ddc))
+
 ## [1.88.2](https://github.com/aegisx-platform/aegisx-starter/compare/v1.88.1...v1.88.2) (2026-07-06)
 
 
