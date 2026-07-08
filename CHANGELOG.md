@@ -1,3 +1,11 @@
+## [1.91.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.91.0...v1.91.1) (2026-07-08)
+
+
+### Bug Fixes
+
+* **purchase-requests:** เตือนเมื่อรหัสยายังไม่ได้ผูก generic แทนบันทึกเงียบ ([3950b94](https://github.com/aegisx-platform/aegisx-starter/commit/3950b94f9c5378ee4d9faa754b8e76024d07c871))
+* **reference-price:** dialog ค้นราคากลางค้นเว้นวรรค/หลายคำได้ ([1c9d5ce](https://github.com/aegisx-platform/aegisx-starter/commit/1c9d5cea7fd395e420ba52786be191a43eaf167e))
+
 # [1.91.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.90.0...v1.91.0) (2026-07-08)
 
 
