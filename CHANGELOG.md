@@ -1,3 +1,18 @@
+# [1.91.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.90.0...v1.91.0) (2026-07-08)
+
+
+### Bug Fixes
+
+* **deploy:** install migrate ค้าง + seed geography เลิกพึ่ง GitHub ([48b9d10](https://github.com/aegisx-platform/aegisx-starter/commit/48b9d10dc17c17652f86c8b0b0171c0125278be5))
+* **receipts:** แก้ 2 HIGH + 1 MEDIUM จาก review PR [#390](https://github.com/aegisx-platform/aegisx-starter/issues/390) ([5462879](https://github.com/aegisx-platform/aegisx-starter/commit/5462879948e0155fa81fd76aba6b3879c9febeb3))
+* **receipts:** ซ่อนปุ่มลบใน lotEditOnly mode (Medium จาก review PR [#390](https://github.com/aegisx-platform/aegisx-starter/issues/390)) ([cf01896](https://github.com/aegisx-platform/aegisx-starter/commit/cf0189600c1584d283543e440c62f5f69c38c408))
+* **settings:** เพิ่มผู้ลงนามบน HTTP ได้ — crypto.randomUUID fallback ([c57e27d](https://github.com/aegisx-platform/aegisx-starter/commit/c57e27d839d830d4af6f558521adf146cf6999e1))
+
+
+### Features
+
+* **receipts:** ดึงคณะกรรมการตรวจรับจาก PR + แก้ lot ใบ POSTED ([7bbbc28](https://github.com/aegisx-platform/aegisx-starter/commit/7bbbc283d0e61065bd725e57a5a41286a4fa63a1))
+
 # [1.90.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.89.0...v1.90.0) (2026-07-08)
 
 

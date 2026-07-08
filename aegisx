@@ -154,7 +154,10 @@ case "${1:-help}" in
         fi
 
         echo -e "${CYAN}[2/3]${NC} Running main system migrations..."
-        if docker compose exec -T api sh -c "cd /app && NODE_ENV=production npx knex migrate:latest --knexfile knexfile.ts" 2>&1 | tail -5; then
+        # Use `run --rm` (throwaway container), NOT `exec`: on a fresh DB the api
+        # service crash-loops (missing tables) and would kill an `exec`-based
+        # migration mid-run. A throwaway container is immune to the api restart cycle.
+        if docker compose run --rm api sh -c "cd /app && NODE_ENV=production npx knex migrate:latest --knexfile knexfile.ts" 2>&1 | tail -5; then
             echo -e "  ${GREEN}✅ Main schema done${NC}"
         else
             echo -e "  ${RED}❌ Main migrations failed${NC}"
@@ -162,7 +165,7 @@ case "${1:-help}" in
         fi
 
         echo -e "${CYAN}[3/3]${NC} Running inventory domain migrations..."
-        if docker compose exec -T api sh -c "cd /app && NODE_ENV=production npx knex migrate:latest --knexfile knexfile-inventory.ts" 2>&1 | tail -5; then
+        if docker compose run --rm api sh -c "cd /app && NODE_ENV=production npx knex migrate:latest --knexfile knexfile-inventory.ts" 2>&1 | tail -5; then
             echo -e "  ${GREEN}✅ Inventory migrations done${NC}"
         else
             echo -e "  ${RED}❌ Inventory migrations failed${NC}"
@@ -181,14 +184,14 @@ case "${1:-help}" in
         echo ""
 
         echo -e "${CYAN}[1/2]${NC} Seeding main system data..."
-        if docker compose exec -T api sh -c "cd /app && NODE_ENV=production npx knex seed:run --knexfile knexfile.ts" 2>&1 | tail -5; then
+        if docker compose run --rm api sh -c "cd /app && NODE_ENV=production npx knex seed:run --knexfile knexfile.ts" 2>&1 | tail -5; then
             echo -e "  ${GREEN}✅ Main seeds done${NC}"
         else
             echo -e "  ${YELLOW}⚠️  Seeds may already exist${NC}"
         fi
 
         echo -e "${CYAN}[2/2]${NC} Seeding inventory reference data..."
-        if docker compose exec -T api sh -c "cd /app && NODE_ENV=production npx knex seed:run --knexfile knexfile-inventory.ts" 2>&1 | tail -5; then
+        if docker compose run --rm api sh -c "cd /app && NODE_ENV=production npx knex seed:run --knexfile knexfile-inventory.ts" 2>&1 | tail -5; then
             echo -e "  ${GREEN}✅ Inventory seeds done${NC}"
         else
             echo -e "  ${YELLOW}⚠️  Seeds may already exist${NC}"

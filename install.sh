@@ -899,7 +899,10 @@ case "${1:-help}" in
         fi
 
         echo -e "${CYAN}[2/3]${NC} Running main system migrations..."
-        if docker compose exec -T api sh -c "cd /app && NODE_ENV=production npx knex migrate:latest --knexfile knexfile.ts" 2>&1 | tail -5; then
+        # Use `run --rm` (throwaway container), NOT `exec`: on a fresh DB the api
+        # service crash-loops (missing tables) and would kill an `exec`-based
+        # migration mid-run. A throwaway container is immune to the api restart cycle.
+        if docker compose run --rm api sh -c "cd /app && NODE_ENV=production npx knex migrate:latest --knexfile knexfile.ts" 2>&1 | tail -5; then
             echo -e "  ${GREEN}✅ Main schema done${NC}"
         else
             echo -e "  ${RED}❌ Main migrations failed${NC}"
@@ -907,7 +910,7 @@ case "${1:-help}" in
         fi
 
         echo -e "${CYAN}[3/3]${NC} Running inventory domain migrations..."
-        if docker compose exec -T api sh -c "cd /app && NODE_ENV=production npx knex migrate:latest --knexfile knexfile-inventory.ts" 2>&1 | tail -5; then
+        if docker compose run --rm api sh -c "cd /app && NODE_ENV=production npx knex migrate:latest --knexfile knexfile-inventory.ts" 2>&1 | tail -5; then
             echo -e "  ${GREEN}✅ Inventory migrations done${NC}"
         else
             echo -e "  ${RED}❌ Inventory migrations failed${NC}"
@@ -926,14 +929,14 @@ case "${1:-help}" in
         echo ""
 
         echo -e "${CYAN}[1/2]${NC} Seeding main system data..."
-        if docker compose exec -T api sh -c "cd /app && NODE_ENV=production npx knex seed:run --knexfile knexfile.ts" 2>&1 | tail -5; then
+        if docker compose run --rm api sh -c "cd /app && NODE_ENV=production npx knex seed:run --knexfile knexfile.ts" 2>&1 | tail -5; then
             echo -e "  ${GREEN}✅ Main seeds done${NC}"
         else
             echo -e "  ${YELLOW}⚠️  Seeds may already exist${NC}"
         fi
 
         echo -e "${CYAN}[2/2]${NC} Seeding inventory reference data..."
-        if docker compose exec -T api sh -c "cd /app && NODE_ENV=production npx knex seed:run --knexfile knexfile-inventory.ts" 2>&1 | tail -5; then
+        if docker compose run --rm api sh -c "cd /app && NODE_ENV=production npx knex seed:run --knexfile knexfile-inventory.ts" 2>&1 | tail -5; then
             echo -e "  ${GREEN}✅ Inventory seeds done${NC}"
         else
             echo -e "  ${YELLOW}⚠️  Seeds may already exist${NC}"
@@ -1517,7 +1520,7 @@ run_migrations() {
         fi
     else
         # external-db mode: run SQL through the API container
-        if docker compose exec -T api sh -c "psql \"\$DATABASE_URL\" -c 'CREATE SCHEMA IF NOT EXISTS inventory;'" >> "$migration_log" 2>&1; then
+        if docker compose run --rm api sh -c "psql \"\$DATABASE_URL\" -c 'CREATE SCHEMA IF NOT EXISTS inventory;'" >> "$migration_log" 2>&1; then
             echo -e "${GREEN}Done${NC}"
         else
             echo -e "${YELLOW}Warning - ensure inventory schema exists on your external database${NC}"
@@ -1526,8 +1529,13 @@ run_migrations() {
 
     # Step 2: Main system migrations (public schema - 77 migrations)
     # Creates: users, roles, permissions, sessions, settings, navigation, files, etc.
+    # Use `run --rm` (throwaway container) for migrations/seeds, NOT `exec`:
+    # start_services() brings up the api service, but on a fresh DB it crash-loops
+    # (missing tables) and restarts every ~13s. An `exec`-based migration would be
+    # killed mid-run when the api container restarts — fatal for the large inventory
+    # migration set (400+). A throwaway container is unaffected by that restart cycle.
     echo -n "  [2/5] Main migrations (public): "
-    if docker compose exec -T api sh -c "cd /app && NODE_ENV=production npx knex migrate:latest --knexfile knexfile.ts" >> "$migration_log" 2>&1; then
+    if docker compose run --rm api sh -c "cd /app && NODE_ENV=production npx knex migrate:latest --knexfile knexfile.ts" >> "$migration_log" 2>&1; then
         echo -e "${GREEN}Done${NC}"
     else
         echo -e "${RED}FAILED (see: $migration_log)${NC}"
@@ -1540,7 +1548,7 @@ run_migrations() {
     # Creates: drugs, budgets, purchase_orders, locations, companies, etc.
     # Depends on: inventory schema (step 1) and some public schema tables (step 2)
     echo -n "  [3/5] Inventory migrations: "
-    if docker compose exec -T api sh -c "cd /app && NODE_ENV=production npx knex migrate:latest --knexfile knexfile-inventory.ts" >> "$migration_log" 2>&1; then
+    if docker compose run --rm api sh -c "cd /app && NODE_ENV=production npx knex migrate:latest --knexfile knexfile-inventory.ts" >> "$migration_log" 2>&1; then
         echo -e "${GREEN}Done${NC}"
     else
         echo -e "${RED}FAILED (see: $migration_log)${NC}"
@@ -1553,7 +1561,7 @@ run_migrations() {
     # Seeds: admin user, roles, permissions, navigation menus, geography data, RBAC
     # NODE_ENV=production skips dev-only seeds (011_test_categories, 012_test_products)
     echo -n "  [4/5] Main seed data: "
-    if docker compose exec -T api sh -c "cd /app && NODE_ENV=production npx knex seed:run --knexfile knexfile.ts" >> "$migration_log" 2>&1; then
+    if docker compose run --rm api sh -c "cd /app && NODE_ENV=production npx knex seed:run --knexfile knexfile.ts" >> "$migration_log" 2>&1; then
         echo -e "${GREEN}Done${NC}"
     else
         echo -e "${YELLOW}Warning - seeds may already exist (see: $migration_log)${NC}"
@@ -1564,7 +1572,7 @@ run_migrations() {
     # NOTE: drugs, drug_generics, companies are seeded EMPTY in production
     #       Hospitals import their own data via the Import feature
     echo -n "  [5/5] Inventory seed data: "
-    if docker compose exec -T api sh -c "cd /app && NODE_ENV=production npx knex seed:run --knexfile knexfile-inventory.ts" >> "$migration_log" 2>&1; then
+    if docker compose run --rm api sh -c "cd /app && NODE_ENV=production npx knex seed:run --knexfile knexfile-inventory.ts" >> "$migration_log" 2>&1; then
         echo -e "${GREEN}Done${NC}"
     else
         echo -e "${YELLOW}Warning - seeds may already exist (see: $migration_log)${NC}"
