@@ -1,3 +1,17 @@
+# [1.90.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.89.0...v1.90.0) (2026-07-08)
+
+
+### Bug Fixes
+
+* **pdf:** จัด header/margin เอกสารจัดซื้อ (PR/รายงานผลพิจารณา/ประกาศผู้ชนะ) ([b186281](https://github.com/aegisx-platform/aegisx-starter/commit/b186281a4b6cb851eee824b4d9afde7bfb3bfb13))
+* **po:** ใบสั่งซื้อไม่จำกัดปริมาณ ใช้ font 16 ทั้งใบ + ตัดจุดบรรทัดลงชื่อกันตกบรรทัด ([d5a32e5](https://github.com/aegisx-platform/aegisx-starter/commit/d5a32e55327a1cfc740703eb9417984cfcfcb790))
+* **pr:** จัดลายเซ็น/ระยะ/เยื้อง รายงานขอซื้อขอจ้าง ([155311c](https://github.com/aegisx-platform/aegisx-starter/commit/155311c17a26b42091275476b4de00a0edbda644))
+
+
+### Features
+
+* **settings:** วันที่ประกาศราคากลาง ตั้งค่าได้ในหน้า Settings ([f8ccacd](https://github.com/aegisx-platform/aegisx-starter/commit/f8ccacd62d00b64b25197ca67cd3e2c38cbecef0))
+
 # [1.89.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.88.2...v1.89.0) (2026-07-07)
 
 
