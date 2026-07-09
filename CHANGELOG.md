@@ -1,3 +1,14 @@
+## [1.91.2](https://github.com/aegisx-platform/aegisx-starter/compare/v1.91.1...v1.91.2) (2026-07-09)
+
+
+### Bug Fixes
+
+* **pdf-forms:** แก้จุดเล็ก ๆ ในใบสั่งซื้อ/ใบขอซื้อ (bg เทา, font, ตัดคำ, ระยะห่าง) ([7ae1b28](https://github.com/aegisx-platform/aegisx-starter/commit/7ae1b28c0e4011bba36deea4bbcc92625a5c4281))
+* **pdf-forms:** จัด layout รายชื่อกรรมการ + ปรับข้อความ/ระยะห่างเอกสาร ([c1fdc2d](https://github.com/aegisx-platform/aegisx-starter/commit/c1fdc2dc235b916297de3e55c1bb2804205bc88b))
+* **pdf-forms:** เว้นบรรทัดเหนือบล็อกลงชื่อใน PR เพิ่มอีก 1 บรรทัด ([2b49e88](https://github.com/aegisx-platform/aegisx-starter/commit/2b49e889bdc2012bd402888d08e2bf337ed4be3a))
+* **pdf-forms:** หัวเอกสารราชการ PR/PO ให้เหมือนกันทุกฟอร์ม ([259dedb](https://github.com/aegisx-platform/aegisx-starter/commit/259dedb62460a2ddebf638566ac480032730081e))
+* **purchase-requests:** กัน orphan PR + drugs API คืน generic_id null แทน 0 ([e4194ce](https://github.com/aegisx-platform/aegisx-starter/commit/e4194ce23af5ee925e794bdaba2260a97d366d9a)), closes [#392](https://github.com/aegisx-platform/aegisx-starter/issues/392)
+
 ## [1.91.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.91.0...v1.91.1) (2026-07-08)
 
 
