@@ -1,3 +1,10 @@
+# [1.92.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.91.4...v1.92.0) (2026-07-09)
+
+
+### Features
+
+* **deploy:** auto-heal missing HIS_ENCRYPTION_SECRET and MIGRATION_ENCRYPTION_KEY in aegisx CLI ([8a4702a](https://github.com/aegisx-platform/aegisx-starter/commit/8a4702a5afa3aa49b84793f72c4c12d10f521011))
+
 ## [1.91.2](https://github.com/aegisx-platform/aegisx-starter/compare/v1.91.1...v1.91.2) (2026-07-09)
 
 

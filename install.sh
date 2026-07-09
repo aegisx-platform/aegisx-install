@@ -776,6 +776,77 @@ run_sql() {
     fi
 }
 
+# ── Auto-heal: Validate and fix missing environment variables ─────────────────
+# Checks for required encryption keys and auto-generates them if missing.
+# This prevents bootstrap failures due to missing HIS_ENCRYPTION_SECRET or
+# MIGRATION_ENCRYPTION_KEY (issue: GitLab/GitHub cache may serve old install.sh)
+validate_and_fix_env_vars() {
+    local missing=0
+    local fixed=0
+    
+    # Check JWT_SECRET (required for auth)
+    if [ -z "${JWT_SECRET:-}" ]; then
+        echo -e "${RED}❌ Error: JWT_SECRET is missing or empty in .env${NC}"
+        missing=1
+    fi
+    
+    # Check SESSION_SECRET (required for sessions)
+    if [ -z "${SESSION_SECRET:-}" ]; then
+        echo -e "${RED}❌ Error: SESSION_SECRET is missing or empty in .env${NC}"
+        missing=1
+    fi
+    
+    # Check HIS_ENCRYPTION_SECRET (required for HIS integration)
+    if [ -z "${HIS_ENCRYPTION_SECRET:-}" ]; then
+        echo -e "${YELLOW}⚠️  HIS_ENCRYPTION_SECRET is missing or empty${NC}"
+        missing=1
+    fi
+    
+    # Check MIGRATION_ENCRYPTION_KEY (required for migration wizard)
+    if [ -z "${MIGRATION_ENCRYPTION_KEY:-}" ]; then
+        echo -e "${YELLOW}⚠️  MIGRATION_ENCRYPTION_KEY is missing or empty${NC}"
+        missing=1
+    fi
+    
+    # If anything is missing, try to auto-fix
+    if [ $missing -eq 1 ]; then
+        echo ""
+        echo -e "${CYAN}🔧 Attempting to fix missing environment variables...${NC}"
+        
+        # Backup .env first
+        cp .env ".env.backup.$(date +%Y%m%d_%H%M%S)"
+        echo -e "  ${GREEN}✅ Backup created: .env.backup.*${NC}"
+        
+        # Generate and add missing keys (only if not present)
+        if ! grep -q "^HIS_ENCRYPTION_SECRET=" .env 2>/dev/null || [ -z "$(grep '^HIS_ENCRYPTION_SECRET=' .env | cut -d'=' -f2)" ]; then
+            echo "HIS_ENCRYPTION_SECRET=$(openssl rand -hex 32)" >> .env
+            echo -e "  ${GREEN}✅ Added HIS_ENCRYPTION_SECRET${NC}"
+            fixed=1
+        fi
+        
+        if ! grep -q "^MIGRATION_ENCRYPTION_KEY=" .env 2>/dev/null || [ -z "$(grep '^MIGRATION_ENCRYPTION_KEY=' .env | cut -d'=' -f2)" ]; then
+            echo "MIGRATION_ENCRYPTION_KEY=$(openssl rand -hex 32)" >> .env
+            echo -e "  ${GREEN}✅ Added MIGRATION_ENCRYPTION_KEY${NC}"
+            fixed=1
+        fi
+        
+        if [ $fixed -eq 1 ]; then
+            echo ""
+            echo -e "${GREEN}✅ Environment variables fixed!${NC}"
+            echo -e "${YELLOW}⚠️  Restarting API service to apply changes...${NC}"
+            docker compose down api 2>/dev/null || true
+            docker compose up -d api
+            echo ""
+            echo -e "${YELLOW}📝 Note: If you have existing production data, verify that:${NC}"
+            echo -e "   - HIS credentials can still be decrypted"
+            echo -e "   - Migration wizard can access encrypted DB connections"
+            echo -e "   If issues occur, restore from .env.backup.* and reconfigure manually${NC}"
+        fi
+    fi
+    
+    return 0
+}
+
 # ── Auto-rollback support for `update` ────────────────────────────────────────
 # Capture the api/web image IDs BEFORE pulling. With tag `latest`, pulling
 # repoints the tag at the NEW image — without the saved IDs the previous
@@ -853,6 +924,9 @@ rollback_update() {
 
 case "${1:-help}" in
     start)
+        # Auto-heal: check and fix missing env vars before starting
+        validate_and_fix_env_vars
+        
         echo -e "${GREEN}Starting AegisX Platform...${NC}"
         docker compose up -d
         echo -e "${GREEN}All services started!${NC}"
@@ -864,6 +938,9 @@ case "${1:-help}" in
         echo "All services stopped."
         ;;
     restart)
+        # Auto-heal: check and fix missing env vars before restarting
+        validate_and_fix_env_vars
+        
         echo -e "${YELLOW}Restarting AegisX Platform...${NC}"
         docker compose restart
         docker compose ps
@@ -1006,6 +1083,9 @@ case "${1:-help}" in
             fi
             rm -f "$_new_cli" 2>/dev/null || true
         fi
+        
+        # Auto-heal: check and fix missing env vars before update
+        validate_and_fix_env_vars
 
         if [ "$ROLLBACK_ENABLED" = false ]; then
             echo -e "${YELLOW}⚠️  Auto-rollback disabled (--no-rollback)${NC}"
