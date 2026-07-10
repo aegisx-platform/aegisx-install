@@ -1,3 +1,14 @@
+## [1.92.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.92.0...v1.92.1) (2026-07-10)
+
+
+### Bug Fixes
+
+* **contracts:** align status vocabulary to matchable 'active' ([fa0be6b](https://github.com/aegisx-platform/aegisx-starter/commit/fa0be6b24f1db466dcba66fbcd6a31b7e2f67f24))
+* **migration:** guard contract propagation to single-contract PRs only ([85c2de4](https://github.com/aegisx-platform/aegisx-starter/commit/85c2de4ee0bb6301411e89a15a06f9bc5c10422c))
+* **po-pdf:** ตัดระยะก่อนลงชื่อ 1 บรรทัด กันเอกสารตกบรรทัด ([1799924](https://github.com/aegisx-platform/aegisx-starter/commit/17999243fc23eb1b7faf6821457ced9ab08329f2))
+* **po-pdf:** เพิ่มระยะเว้น 1 บรรทัดในรายงานผลพิจารณา ([219b9fa](https://github.com/aegisx-platform/aegisx-starter/commit/219b9fa1d4de2b9afc9a9eff0517d677ef9f1941)), closes [#2](https://github.com/aegisx-platform/aegisx-starter/issues/2)
+* **pr-pdf:** center-align ราคาซื้อหลังสุด column in government report ([d12d60c](https://github.com/aegisx-platform/aegisx-starter/commit/d12d60cfa134af96ac8ce67575111a919c40b971))
+
 # [1.92.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.91.4...v1.92.0) (2026-07-09)
 
 
