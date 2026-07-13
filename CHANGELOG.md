@@ -1,3 +1,15 @@
+# [1.94.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.93.1...v1.94.0) (2026-07-13)
+
+
+### Bug Fixes
+
+* **procurement:** ผูก PO contract_id ด้วย drug match ตอนสร้าง + backfill PO ที่ค้าง ([281741f](https://github.com/aegisx-platform/aegisx-starter/commit/281741fb304176e6f8ed3c0268bf511046774416))
+
+
+### Features
+
+* **tracker:** เลือกสัญญาเองบน PO zone (manual fallback ผูกสัญญา) ([dc502ca](https://github.com/aegisx-platform/aegisx-starter/commit/dc502ca10e120fecfe9d67a550b253111283db1d))
+
 ## [1.93.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.93.0...v1.93.1) (2026-07-13)
 
 
