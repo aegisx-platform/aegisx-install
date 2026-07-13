@@ -1,3 +1,15 @@
+# [1.95.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.94.0...v1.95.0) (2026-07-13)
+
+
+### Bug Fixes
+
+* **tracker:** หยุด effect ยิง GET /contracts วนไม่หยุดบน PO zone (ห่อ untracked) ([77703b4](https://github.com/aegisx-platform/aegisx-starter/commit/77703b48772ea672dd05d77c63e3ef854e01a64f))
+
+
+### Features
+
+* **reference-price:** highlight ตัวอักษรที่ match ในผลค้นหาราคากลาง ([e7ff0ef](https://github.com/aegisx-platform/aegisx-starter/commit/e7ff0efdfac6cb2487f82608ee0aed3798f02627))
+
 # [1.94.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.93.1...v1.94.0) (2026-07-13)
 
 
