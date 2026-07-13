@@ -1,3 +1,11 @@
+## [1.93.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.93.0...v1.93.1) (2026-07-13)
+
+
+### Bug Fixes
+
+* **procurement:** backfill PO contract_id สำหรับ match ระดับยาชื่อสามัญ (ปริ้นใบสั่งซื้อสัญญา) ([920d6b9](https://github.com/aegisx-platform/aegisx-starter/commit/920d6b98a75c1b2be63bfbfcd8e48f98e377a9f7))
+* **settings:** เหตุผลจัดซื้อเริ่มต้น ดึงจาก purchase-order-reasons ให้ตรงกับฟอร์ม PR ([3202409](https://github.com/aegisx-platform/aegisx-starter/commit/3202409bd5cd7bde1b0db0b95ed749f1fdf1aa2a))
+
 # [1.93.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.92.1...v1.93.0) (2026-07-13)
 
 
