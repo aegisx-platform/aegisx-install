@@ -1,3 +1,11 @@
+# [1.97.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.96.0...v1.97.0) (2026-07-14)
+
+
+### Features
+
+* **procurement:** เพิ่ม step เลือกคณะกรรมการใน wizard สร้าง PR+PO ด่วนจาก Excel ([ec9eade](https://github.com/aegisx-platform/aegisx-starter/commit/ec9eadec26f5eeec50d6207674787cb7d04bc0f9))
+* **procurement:** เพิ่มวิธีการจัดซื้อ + เฉพาะเจาะจง(ก-ฮ) + กำหนดส่งมอบ ในสร้าง PR+PO ด่วนจาก Excel ([985c04b](https://github.com/aegisx-platform/aegisx-starter/commit/985c04becc34c6440a0316107ab39c301c52db02))
+
 # [1.96.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.95.0...v1.96.0) (2026-07-14)
 
 
