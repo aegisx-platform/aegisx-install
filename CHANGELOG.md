@@ -1,3 +1,24 @@
+# [1.96.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.95.0...v1.96.0) (2026-07-14)
+
+
+### Bug Fixes
+
+* **procurement:** จัดช่องเซ็นใบรายงานผลการพิจารณา ([57e2f5a](https://github.com/aegisx-platform/aegisx-starter/commit/57e2f5a3e2c51f159a85dd26fcbf7d4b98e50843))
+* **procurement:** เพิ่มช่องเซ็นเหนือชื่อ ผอ. ในรายงานขอซื้อขอจ้าง ([0a36f0b](https://github.com/aegisx-platform/aegisx-starter/commit/0a36f0b9caef80eb765953e8b584881fc23b2f24))
+* **procurement:** ยกเลิก PR/PO ใช้ dialog เรา + แก้ body field ให้ตรง backend ([b3304c0](https://github.com/aegisx-platform/aegisx-starter/commit/b3304c06c49426f3840926b4387a4c65f8edbac0))
+
+
+### Features
+
+* **procurement:** reset หน่วยราคากลาง/ราคาซื้อกลับหน่วยปกติ + ปุ่มแก้ไขเป็น Material ([bbd77fc](https://github.com/aegisx-platform/aegisx-starter/commit/bbd77fcb93607791d5f426d750f2a6dd951a1e39))
+* **procurement:** กรอก/แก้เลข PO เอง (manual_po_ref) ได้ใน 3 form ([8c1ef77](https://github.com/aegisx-platform/aegisx-starter/commit/8c1ef77bdcd80e4996b753698b9764638b3a4464))
+* **procurement:** แก้เลข PO เอง (manual_po_ref) ได้จากในหน้า tracker workspace ([afadfc3](https://github.com/aegisx-platform/aegisx-starter/commit/afadfc38e1278a6de16cb96db39e391e91838aa9))
+* **procurement:** แก้วิธีการจัดซื้อ + ประเภทเฉพาะเจาะจง (ก-ช) ได้ในหน้า tracker + แสดงในลิสต์ ([2f75e1f](https://github.com/aegisx-platform/aegisx-starter/commit/2f75e1f25aa0e3a7b8711d32c5cddfb8ec782af9))
+* **procurement:** แก้หน่วยราคากลาง/ราคาซื้อหลังสุดเองได้ + แสดงในโหมดอ่านและ PDF ([f2e6ffa](https://github.com/aegisx-platform/aegisx-starter/commit/f2e6ffa28e45a216f268c7beafeea322f8e59894))
+* **procurement:** ปุ่มลบทั้ง row (PR+PO) สำหรับรายการยกเลิก/ตีกลับ ([34741fc](https://github.com/aegisx-platform/aegisx-starter/commit/34741fcb93c6dbcadaaad73f38df5ffa54dae53b))
+* **procurement:** แสดง + ค้นหาเลข PO เอง (manual_po_ref) ในหน้าติดตามจัดซื้อ ([f81f37b](https://github.com/aegisx-platform/aegisx-starter/commit/f81f37b1d8c1df5e506692d945dc07fc472b44cd))
+* **procurement:** แสดงเลข PO ของ รพ. (manual_po_ref) แทนเลขระบบในฟอร์มปริ้น ([8af253d](https://github.com/aegisx-platform/aegisx-starter/commit/8af253d3613d8ebe439b3b1ee6f459dc68e9644a))
+
 # [1.95.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.94.0...v1.95.0) (2026-07-13)
 
 
