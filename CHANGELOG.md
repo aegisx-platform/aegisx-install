@@ -1,3 +1,17 @@
+# [1.99.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.98.0...v1.99.0) (2026-07-15)
+
+
+### Bug Fixes
+
+* **procurement:** หน่วยสั่งซื้อใน quick-build ไม่ fix width ไม่ตัดข้อความ ([1546b16](https://github.com/aegisx-platform/aegisx-starter/commit/1546b16bae890ddf608fe7b56f5442e7482cdc2b))
+* **quick-build:** เติมผู้ลงนาม default จาก hospital_settings ตอนสร้าง PR/PO จาก Excel ([caf132f](https://github.com/aegisx-platform/aegisx-starter/commit/caf132f7acf1150ed282152579bcb2e97233ea85))
+
+
+### Features
+
+* **quick-build:** เติมค่า default วิธีการจัดซื้อ + ส่งมอบภายใน จาก hospital_settings ([142b8d0](https://github.com/aegisx-platform/aegisx-starter/commit/142b8d0d9751133bb6f503917cb897f5d47b4739))
+* **quick-build:** ย้ายราคารวมกลุ่มไปขวาสุด + เพิ่มราคารวมต่อรายการยา ([2e51303](https://github.com/aegisx-platform/aegisx-starter/commit/2e51303ed45afd656971d2cdd0ce1e7111b11653))
+
 # [1.98.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.97.0...v1.98.0) (2026-07-15)
 
 
