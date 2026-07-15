@@ -1,3 +1,25 @@
+# [1.98.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.97.0...v1.98.0) (2026-07-15)
+
+
+### Bug Fixes
+
+* **procurement:** จัด PO รพ. กับ badge วิธีจัดซื้อ ให้อยู่บรรทัดเดียวกันในหน้า tracker ([c9c07d9](https://github.com/aegisx-platform/aegisx-starter/commit/c9c07d98726ee3e24465cd5ed297d6bf684757f4))
+* **procurement:** ราคา band เป็นแถวนอน native input กระชับแบบหน้า PR+PO ([5d6b92e](https://github.com/aegisx-platform/aegisx-starter/commit/5d6b92e031b4ba8bb51918f9fe69d97496b406e3))
+
+
+### Features
+
+* **budget:** ซ่อนคอลัมน์การควบคุมในหน้ารายการคำของบ (ปิดไว้ก่อน) ([b32d7d3](https://github.com/aegisx-platform/aegisx-starter/commit/b32d7d3c623fa7003fd6a4e5f06a94b34a16c8af))
+* **procurement:** quick-build เทมเพลต 17 คอลัมน์ + อัปโหลดไฟล์อ่าน rich format ([410e513](https://github.com/aegisx-platform/aegisx-starter/commit/410e513e0400045456ec68aac390976a1ae49b0c))
+* **procurement:** quick-build ราคากลาง ค้น/เปลี่ยนจากประกาศ สธ. + ราคาตามแผน ([fffd8eb](https://github.com/aegisx-platform/aegisx-starter/commit/fffd8ebc3a2f3afa80ac928c8ff196d9fe2f7ea2))
+* **procurement:** คำนวณกำหนดส่งมอบจากจำนวนวันในฟอร์ม PO tracker + สลับตำแหน่งช่อง ([02d42fa](https://github.com/aegisx-platform/aegisx-starter/commit/02d42fa1a704d463ace840227f317550e8b406d1))
+* **procurement:** ปรับเมนู/launcher จัดซื้อ + เอา row ระดับอนุมัติ ออกจาก wizard PR+PO ([dbe1745](https://github.com/aegisx-platform/aegisx-starter/commit/dbe1745ce5d7aeadf4637a2ddc524f0b5233975d))
+* **procurement:** เปลี่ยนเมนู จับคู่ Vendor เป็น สัญญาจัดซื้อ ลิงก์ไปหน้า contracts ([d704fba](https://github.com/aegisx-platform/aegisx-starter/commit/d704fba48253e14595ebdba7f6245fece98a6fe0))
+* **procurement:** เพิ่มปุ่ม reset หน่วยกลับเป็นหน่วยปกติในราคา band ([93049a3](https://github.com/aegisx-platform/aegisx-starter/commit/93049a3cad99ce93311d6e55833a280f43b964b5))
+* **procurement:** รวมราคาซื้อหลังสุด+หน่วยเข้า band ราคากลางในหน้าสร้างด่วน ([84b0f63](https://github.com/aegisx-platform/aegisx-starter/commit/84b0f6349bca32ac54b791610f570591a0e9179b))
+* **procurement:** ราคา band แก้ราคา+หน่วยได้ทั้งราคากลางและราคาซื้อหลังสุด ([4ce88eb](https://github.com/aegisx-platform/aegisx-starter/commit/4ce88ebdd864a71c45bbc11a07371f8c09617f52))
+* **procurement:** ราคากลางในหน้าสร้างด่วนเป็น band ใต้รายการแบบ PR/PO ([d8a6387](https://github.com/aegisx-platform/aegisx-starter/commit/d8a63875df37c6c8ff242fb76234e786e81feed0))
+
 # [1.97.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.96.0...v1.97.0) (2026-07-14)
 
 
