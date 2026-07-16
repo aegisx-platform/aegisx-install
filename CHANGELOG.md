@@ -1,3 +1,26 @@
+# [1.100.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.99.0...v1.100.0) (2026-07-16)
+
+
+### Bug Fixes
+
+* **procurement:** bind formatUnit ใน DrugItemSelector — template AOT พังบน develop ([3d8fc4a](https://github.com/aegisx-platform/aegisx-starter/commit/3d8fc4a6e2d6244b256f99a5f8d1606c691f5017))
+* **procurement:** per-base ราคากลางโผล่ตอน add ยาสด (ใช้หน่วยที่ prefill มา) ([2a12e4b](https://github.com/aegisx-platform/aegisx-starter/commit/2a12e4b4c434aebe98471380e0fa4487b0ba0196))
+* **procurement:** quick-build ราคากลางแสดงแค่หน่วย + ส่งหน่วยไปพิมพ์ในฟอร์ม PR ([8de2b55](https://github.com/aegisx-platform/aegisx-starter/commit/8de2b5574806f4317cbe8c10344d8cfc7dea5ab1))
+* **procurement:** quick-build อ่านหน่วยราคากลาง (col12) จากชีต → คิดราคากลางรวมถูก ([d344d28](https://github.com/aegisx-platform/aegisx-starter/commit/d344d281e01670f6763b9354afed158fc78705a9))
+* **procurement:** คิดราคากลางรวมถูกเมื่อหน่วยราคากลางเป็นต่อแพ็ค ([de6e16b](https://github.com/aegisx-platform/aegisx-starter/commit/de6e16bbfe98d40b91f725b4b381b9624222b878))
+
+
+### Features
+
+* **procurement:** quick-build โชว์ราคาซื้อหลังสุดต่อหน่วยฐานเทียบราคากลาง ([3ccce3e](https://github.com/aegisx-platform/aegisx-starter/commit/3ccce3e43906e84126cd986964a6a7c9ad645cce))
+* **procurement:** quick-build บรรทัด generic แสดงชื่อคลินิกเต็ม + รหัสยาหน้าชื่อยาทุกแถว ([6ec8f64](https://github.com/aegisx-platform/aegisx-starter/commit/6ec8f649fd54667c0b9c446ecb03ee0fb67f4736))
+* **procurement:** quick-build หน่วยสั่งซื้อ default ตามชีต + recalc คงยอดรวม + หน่วยไทย ([723c944](https://github.com/aegisx-platform/aegisx-starter/commit/723c944e61dbe09be01ff50ceda626026081f17a))
+* **procurement:** เก็บหน่วยราคากลางระดับ master (drug_generics.reference_price_unit) ([830d969](https://github.com/aegisx-platform/aegisx-starter/commit/830d969e15aa2400b81573ac26601827e59cd77e))
+* **procurement:** ราคากลางรวม+%ประหยัดในหน้าติดตาม (compute-on-read) ([48ca18d](https://github.com/aegisx-platform/aegisx-starter/commit/48ca18d887876d9bcc65aea9d3db85d2ad2cb8d9))
+* **procurement:** ราคาซื้อล่าสุดคิดต่อรหัสยา (TPU) เป๊ะ ตอนสร้าง PR/PR+PO ([9292d7c](https://github.com/aegisx-platform/aegisx-starter/commit/9292d7cde2c6a057c31b37330236d9de9968f22f))
+* **procurement:** แสดงชื่อผู้ออก PR/PO ในหน้าติดตาม ([8cbadd1](https://github.com/aegisx-platform/aegisx-starter/commit/8cbadd1f39916cd3e1d22e70d71412b2e44337f6))
+* **procurement:** หน้า PR/PR+PO โชว์ราคาซื้อหลังสุดต่อหน่วยฐาน consistent quick-build ([b405878](https://github.com/aegisx-platform/aegisx-starter/commit/b40587846d1d407adaf65c58dcb11d9579a25c1a))
+
 # [1.99.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.98.0...v1.99.0) (2026-07-15)
 
 
