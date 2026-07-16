@@ -1,3 +1,19 @@
+# [1.101.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.100.0...v1.101.0) (2026-07-16)
+
+
+### Bug Fixes
+
+* **procurement:** ใบสั่งซื้อ PDF แสดงหน่วยสั่งซื้อ (กล่อง) แทนหน่วยฐาน (เม็ด) ([e2f1940](https://github.com/aegisx-platform/aegisx-starter/commit/e2f194076cb0dbfc3f21432b1f7bc1a70ba80b05))
+
+
+### Features
+
+* **procurement:** sort คอลัมน์มูลค่าในหน้าติดตามจัดซื้อ (server-side) ([bed154a](https://github.com/aegisx-platform/aegisx-starter/commit/bed154ad06a681493b6deac390468d0d1aa9a54d))
+* **procurement:** แบ่งหน้ารายการติดตามจัดซื้อ กัน cap 50 เงียบ ([5f75f3e](https://github.com/aegisx-platform/aegisx-starter/commit/5f75f3e97dc2d86bb7e3e5d52a9cee60fc9aba08))
+* **procurement:** เลือกหลายใบ อนุมัติ/ส่งผู้ค้าทีเดียวในหน้าติดตาม ([585b8e0](https://github.com/aegisx-platform/aegisx-starter/commit/585b8e077dfa237074038c8a471163a2e1f59872))
+* **procurement:** ส่งออก Excel หน้าติดตามจัดซื้อ (ทั้งชุดตาม filter) ([6f84b4d](https://github.com/aegisx-platform/aegisx-starter/commit/6f84b4d9a688242b30664c2e6495a65056a1c2d4))
+* **procurement:** แสดงอายุค้าง (ค้าง N วัน) ในหน้าติดตามจัดซื้อ ([aa8088f](https://github.com/aegisx-platform/aegisx-starter/commit/aa8088fd8672ea7e85b6ec26f4e2036b22612ac7))
+
 # [1.100.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.99.0...v1.100.0) (2026-07-16)
 
 
