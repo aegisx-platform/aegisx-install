@@ -1,3 +1,62 @@
+# [1.102.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.101.0...v1.102.0) (2026-07-20)
+
+
+### Bug Fixes
+
+* **inventory,platform:** pagination broken on all generated list pages ([2a3c606](https://github.com/aegisx-platform/aegisx-starter/commit/2a3c606ce9d44269a2611b2d73d93bc689a0eeb3))
+* **inventory:** drug-units pagination — next/prev did nothing ([0e98999](https://github.com/aegisx-platform/aegisx-starter/commit/0e98999a797ff98361e5516c79e9a49cbce661cf))
+* **inventory:** drug-units stats cards showed 0 — /stats route was missing ([17e4f40](https://github.com/aegisx-platform/aegisx-starter/commit/17e4f405fe8f0f2d3665e7bb114225eeea5a0970))
+* **inventory:** แถบราคา quick-build เต็มความกว้าง (appearance flush) ([1a01312](https://github.com/aegisx-platform/aegisx-starter/commit/1a01312d5be6d86644422cf4c34e255eac3b3714))
+* **inventory:** ราคาซื้อหลังสุด quick-build โชว์หน่วย + ต่อหน่วยฐาน ([81b81db](https://github.com/aegisx-platform/aegisx-starter/commit/81b81dbbdf6532518120b3f8ad3f78b3c29392e2))
+* **procurement:** toggle ไม่แสดงวันที่ ครอบคลุมทุกฟอร์ม PO + signature เป็นจุดไข่ปลา ([c365f49](https://github.com/aegisx-platform/aegisx-starter/commit/c365f4972e566af2bf0daab862c43d2728c8f19b))
+* **procurement:** tracker PO zone — จับคู่วันที่ออก PO กับวันที่ประกาศผู้ชนะเป็น 2 คอลัมน์ ([a2b8f28](https://github.com/aegisx-platform/aegisx-starter/commit/a2b8f2850a51fc56d35f1a771d496fbe038c3237))
+* **procurement:** บันทึกข้อความ PR/PO แสดง prefix/ เมื่อไม่กรอกเลขที่หนังสือ ([441b9f3](https://github.com/aegisx-platform/aegisx-starter/commit/441b9f3eb96e9472126cee07a1626cc649795e06))
+* **procurement:** ฟอร์ม PO แสดงชื่อยา+หน่วยเป็น EN ล้วน เหมือนฟอร์ม PR ([1991217](https://github.com/aegisx-platform/aegisx-starter/commit/1991217ee478ce00d05588683b9ed3167d0aed26))
+* **procurement:** ฟอร์ม PR แสดงหน่วยเป็นชื่อ EN ตัวเล็ก แทนรหัส/ไทย ([677ec83](https://github.com/aegisx-platform/aegisx-starter/commit/677ec8364ed25d8d980fc062c322e971983ee112))
+* **procurement:** ราคาซื้อหลังสุดเป็นชื่อหน่วย EN + ข้อ 5 ห่อ 'ในสัญญา' ลงบรรทัด ([cfba5eb](https://github.com/aegisx-platform/aegisx-starter/commit/cfba5eb7892e0e7e00b97af73c893889864a779d))
+* **procurement:** ใส่ modifier ax-header-info/ax-icon-info ให้ dialog ประวัติสถานะ ([672bd9a](https://github.com/aegisx-platform/aegisx-starter/commit/672bd9ac346a1a5995f491d1611350c109d0c097))
+
+
+### Features
+
+* **inventory:** classifier จัดกลุ่มยาสำหรับ backfill generic จาก TMT ([8db2183](https://github.com/aegisx-platform/aegisx-starter/commit/8db21839371c09b7118e425601ff2ab7fd1dbd0e))
+* **inventory:** endpoint execute + status ของ backfill generic ([138b033](https://github.com/aegisx-platform/aegisx-starter/commit/138b0332b0b686b4046f3ecedbd3a3c63959ec15))
+* **inventory:** endpoint preview backfill generic จากรายการยา ([33040e9](https://github.com/aegisx-platform/aegisx-starter/commit/33040e9550804c132fccc17d41b312e45895d3f8))
+* **inventory:** execute backfill generic + progress + proposed working code ([5399c98](https://github.com/aegisx-platform/aegisx-starter/commit/5399c981e957eef991bbed42ab07ee022da0270e))
+* **inventory:** import unit-mapping step — no auto-create, operator maps unknown units ([6bd9d7f](https://github.com/aegisx-platform/aegisx-starter/commit/6bd9d7f9d07e032e4f857dcd883f07cd4fc30cac))
+* **inventory:** quick-build auto-fill ราคาต่อหน่วยจากราคาตามแผน ([de6ad3f](https://github.com/aegisx-platform/aegisx-starter/commit/de6ad3fe9320dde6e1a5e4791615d6c8af6829c2))
+* **inventory:** quick-build แก้ราคาซื้อหลังสุด (ราคา PO) ตรงๆ ในแถบ ([9cdb33d](https://github.com/aegisx-platform/aegisx-starter/commit/9cdb33d84956355568b0779ba0f277ae3504716a))
+* **inventory:** quick-build บอกอัตราแปลงหน่วยสั่งซื้อ (1 กล่อง = N หน่วยฐาน) ([056b801](https://github.com/aegisx-platform/aegisx-starter/commit/056b801f153193afb6234b52149f7905b4f817af))
+* **inventory:** remediate junk drug units + add GALLON/DOZEN canonical units ([c3a6ff4](https://github.com/aegisx-platform/aegisx-starter/commit/c3a6ff4a0d641b8722a130ec539537ed8eea4fbb))
+* **inventory:** schema TypeBox สำหรับ backfill generic จากรายการยา ([f1c6f69](https://github.com/aegisx-platform/aegisx-starter/commit/f1c6f69d17793a6389e1cbc14b86ae4271c62e35))
+* **inventory:** service preview backfill generic จากรายการยา ([a1b4947](https://github.com/aegisx-platform/aegisx-starter/commit/a1b494768cfa947838ee6cd5b994573702c831ce))
+* **inventory:** Slice 1 — DrugPricingService ตัวกลาง data ของ item-entry ([5277239](https://github.com/aegisx-platform/aegisx-starter/commit/52772394f0654edc943327c61cac0c3187044c30))
+* **inventory:** Slice 2 — DrugPriceInfoBar แถบราคามาตรฐาน (form-agnostic) ([d407983](https://github.com/aegisx-platform/aegisx-starter/commit/d4079837e755042af0bcf8c6271198e7e6d1c86c))
+* **inventory:** Slice 3a — quick-build ใช้ DrugPricingService (data dedup) ([daa8049](https://github.com/aegisx-platform/aegisx-starter/commit/daa80490f19f86fb46b9398144fe37287900de36))
+* **inventory:** Slice 3b — quick-build ใช้ DrugPriceInfoBar กลาง ([9b00384](https://github.com/aegisx-platform/aegisx-starter/commit/9b0038406d8f628ad545ea7987a2094bccd4ae42))
+* **inventory:** Slice 4 — โหมดค้นยาจากชื่อสามัญ (generic-dialog) ([bc19a93](https://github.com/aegisx-platform/aegisx-starter/commit/bc19a93334b5ecdc627c23f182cb3bf92cdc3801))
+* **inventory:** types + service methods ฝั่ง FE สำหรับ backfill generic ([aed818e](https://github.com/aegisx-platform/aegisx-starter/commit/aed818e7ba90c95135cd13f529832c54c5427973))
+* **inventory:** แถบราคา จัด layout 2 บรรทัด ([9a21b76](https://github.com/aegisx-platform/aegisx-starter/commit/9a21b76c435261aea3557dcbfa857057d35830bf))
+* **inventory:** แท็บ preview สร้าง generic จากรายการยา ([2f6f082](https://github.com/aegisx-platform/aegisx-starter/commit/2f6f0825af0e09ba50981333d0f37d88ee54b623))
+* **inventory:** ปุ่มดำเนินการ + progress ของ backfill generic ([59c65e2](https://github.com/aegisx-platform/aegisx-starter/commit/59c65e2bdce18773f9d65f424ca8a9272687dc8f))
+* **inventory:** เปิดกอง replace ของ backfill generic พร้อมคำเตือนเรื่องล็อต ([275cf86](https://github.com/aegisx-platform/aegisx-starter/commit/275cf8652eeeb4b9e2a8d0e5893e8eccb56b3992))
+* **procurement:** log PO_CREATED ตอนสร้าง PO จาก PR (timeline) ([2f0fb8a](https://github.com/aegisx-platform/aegisx-starter/commit/2f0fb8a8e0658a89aa5819f2d82a46905dd9f535))
+* **procurement:** status-history logging + restore endpoints PR/PO (Slice 2-3) ([8357bb2](https://github.com/aegisx-platform/aegisx-starter/commit/8357bb2672e51c57619bc263caea8ef6ef2b7841))
+* **procurement:** toggle "ไม่แสดงวันที่" ในฟอร์มรายงานขอซื้อขอจ้าง (government PDF) ([ea61fc7](https://github.com/aegisx-platform/aegisx-starter/commit/ea61fc73aae1d0e6652d9901a788836cd3af7c6b))
+* **procurement:** toggle "ไม่แสดงวันที่" ในเอกสารรวมทุกฟอร์ม (printCombined) ([3b66444](https://github.com/aegisx-platform/aegisx-starter/commit/3b66444c39902d11052c74037e016ba1b4655a6f))
+* **procurement:** แก้วันที่หลักได้ในฟอร์มเล็ก — วันที่ออก PO + วันที่ขอ PR ([c3fe020](https://github.com/aegisx-platform/aegisx-starter/commit/c3fe0208bdfe7f0d4289fa6350eb26f1da0b2c9b))
+* **procurement:** ปุ่มดึงกลับ + timeline ประวัติสถานะ หน้าติดตามจัดซื้อ (Slice 4) ([8b16274](https://github.com/aegisx-platform/aegisx-starter/commit/8b16274907bf2c008c2ba9283e5ba798d80c7000))
+* **procurement:** เพิ่ม field "วันที่ประกาศผู้ชนะ" ในฟอร์มแก้ PO เล็ก (tracker detail) ([2043df2](https://github.com/aegisx-platform/aegisx-starter/commit/2043df2242a8066095f06212df2f6149fa2e3da5))
+* **procurement:** เพิ่ม field วันที่ออก PO + วันที่ประกาศผู้ชนะ ใน create-po-from-pr ([7d65bed](https://github.com/aegisx-platform/aegisx-starter/commit/7d65bedd4a4bc1d7b74534064eca36c750927429))
+* **procurement:** เพิ่มตาราง procurement_status_history (Slice 1) ([bca88fa](https://github.com/aegisx-platform/aegisx-starter/commit/bca88fa6f79365cb453a3239fdb7dbbc56d9c507))
+* **procurement:** แสดง field "วันที่ประกาศผู้ชนะ" ทุกวิธีจัดซื้อ ([82e0c51](https://github.com/aegisx-platform/aegisx-starter/commit/82e0c51386c656bafce242af9d475eca92fa0810))
+
+
+### Reverts
+
+* ถอด input ราคาซื้อหลังสุด (คืน read-only เดิม) + ย้ายอัตราแปลงหน่วย ([aa4c6d7](https://github.com/aegisx-platform/aegisx-starter/commit/aa4c6d78b3d6d40b1d81806766b1a245816bc359))
+* แถบราคากลับเป็นบรรทัดเดียว (2 บรรทัดดูยากกว่าเดิม) ([e490d02](https://github.com/aegisx-platform/aegisx-starter/commit/e490d02e36b0cda9fd99c28279ca510a769d75f4))
+
 # [1.101.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.100.0...v1.101.0) (2026-07-16)
 
 
