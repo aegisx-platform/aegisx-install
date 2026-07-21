@@ -1,3 +1,12 @@
+## [1.102.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.102.0...v1.102.1) (2026-07-21)
+
+
+### Bug Fixes
+
+* **procurement:** ใบสั่งซื้อ — ขยายเส้นปะเลขที่โครงการ (กรณีไม่มี) 15→30 จุด ([188f7c3](https://github.com/aegisx-platform/aegisx-starter/commit/188f7c3842d920d341bfd4ba93fb8b08f09f3d36))
+* **procurement:** ฟอร์ม PO — ชื่อยาแสดงเหมือนรายงานขอซื้อ + จัดบรรทัดรายงานผลพิจารณา ([b009e3f](https://github.com/aegisx-platform/aegisx-starter/commit/b009e3f78bbd19704b491b172a2f82fb11d3a056))
+* **procurement:** ฟอร์มบันทึกข้อความ PR — Po + ตารางราคากลาง + วงเล็บกรรมการ ๘.๒ ([34123b6](https://github.com/aegisx-platform/aegisx-starter/commit/34123b6312829c509cd5378fbe58feb7ef895bfe))
+
 # [1.102.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.101.0...v1.102.0) (2026-07-20)
 
 
