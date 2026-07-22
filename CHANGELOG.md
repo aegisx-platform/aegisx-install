@@ -1,3 +1,13 @@
+## [1.103.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.103.0...v1.103.1) (2026-07-22)
+
+
+### Bug Fixes
+
+* **core:** stop unknown query params 500-ing every list endpoint ([23e03c4](https://github.com/aegisx-platform/aegisx-starter/commit/23e03c40b374444fb5f9061e9cefed52411cdb0a))
+* **inventory:** expose drug_id on stock-detail lot rows ([4b33257](https://github.com/aegisx-platform/aegisx-starter/commit/4b33257f55175bb0c6fb8a66030cf72195b61c15))
+* **inventory:** repair the migration-wizard opening-lot insert ([b25d885](https://github.com/aegisx-platform/aegisx-starter/commit/b25d885f5519081188b22a7656f99f63d7ab6a64))
+* **web:** drug-lots view dialog — ลบ Receipt Id row ที่ column ถูกลบแล้ว ([07c1314](https://github.com/aegisx-platform/aegisx-starter/commit/07c1314ee25c9ea8958b7baf4aa54d1e2e67d537))
+
 # [1.103.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.102.1...v1.103.0) (2026-07-22)
 
 
