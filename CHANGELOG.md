@@ -1,3 +1,32 @@
+# [1.103.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.102.1...v1.103.0) (2026-07-22)
+
+
+### Bug Fixes
+
+* **inventory:** filter lots by drug directly instead of via its generic ([0423997](https://github.com/aegisx-platform/aegisx-starter/commit/0423997be8563f2a26dbd5ab223ee46243b32cea))
+* **inventory:** key distribution lot lookups on the drug, not its generic ([503aea0](https://github.com/aegisx-platform/aegisx-starter/commit/503aea009f401607bf664b6c1c65fc62a31b480a))
+* **inventory:** key drug-returns and bulk-dispense lot lookups on the drug ([4d5d284](https://github.com/aegisx-platform/aegisx-starter/commit/4d5d2847ab71bab51c03208e6a0a608a85458002))
+* **inventory:** key HIS dispensing FIFO on the drug, not its generic ([9cc9243](https://github.com/aegisx-platform/aegisx-starter/commit/9cc92439b18933703f720a0f83b303e431d236aa))
+* **inventory:** key pick lists, stock detail and transfers on the drug ([8d4247b](https://github.com/aegisx-platform/aegisx-starter/commit/8d4247b968e109e67fdd9a93073c9f58ca0d2bdd))
+* **inventory:** key the ministry export's lot join on drug, not generic ([05125c8](https://github.com/aegisx-platform/aegisx-starter/commit/05125c82effd6034f3131b44d58fc742b7d77ae8))
+* **inventory:** remove phantom columns from the drugLots CRUD surface ([e53c4bd](https://github.com/aegisx-platform/aegisx-starter/commit/e53c4bddad4f631efdfa2446308e9e7341b2dfdd))
+* **inventory:** remove the last generic-fallback lot lookups ([18fb794](https://github.com/aegisx-platform/aegisx-starter/commit/18fb79494ebebdd1481d81cf55f63bd509516190))
+* **inventory:** stop deducting the wrong drug's lot when generic is unmapped ([e0dddf8](https://github.com/aegisx-platform/aegisx-starter/commit/e0dddf897f93261449dce3991e5672f0e22839e2))
+* **web:** align drug-lots form with the columns that actually exist ([d8198a3](https://github.com/aegisx-platform/aegisx-starter/commit/d8198a30b142c431d6ccf0c84d84ee990ae5c4ed))
+
+
+### Features
+
+* **inventory:** add drug_id to drug_lots and populate it on receipt/transfer ([2be1640](https://github.com/aegisx-platform/aegisx-starter/commit/2be164023bc8be06ec52be5b6df9d9f0d5d3855d))
+* **inventory:** close drug_lots.drug_id with NOT NULL ([180e1f9](https://github.com/aegisx-platform/aegisx-starter/commit/180e1f94dad304f85706258beb45eb514503f1b0))
+* **inventory:** derive a lot's generic from its drug on create ([436e7df](https://github.com/aegisx-platform/aegisx-starter/commit/436e7df778081bb621fcd26083f5661e00b339b4))
+* **inventory:** move drug_lots unique and FIFO indexes onto the drug axis ([e4ecc5b](https://github.com/aegisx-platform/aegisx-starter/commit/e4ecc5b36b4643eefbaeda2d4b4443caf45ac52a))
+* **inventory:** write drug_id on the remaining distribution lot inserts ([4d36a1f](https://github.com/aegisx-platform/aegisx-starter/commit/4d36a1f55287c2b12f74eb7973ea13ea243211f3))
+* **procurement:** resync ใบขอซื้อ — preview diff ก่อน→หลัง ก่อนบันทึกทับ ([c7a70b2](https://github.com/aegisx-platform/aegisx-starter/commit/c7a70b29ac3be5e2ab23e7cb1317f6e1df4b1606))
+* **procurement:** resync ใบขอซื้อที่ส่งคำขอแล้วจากตั้งค่าล่าสุด (Slice 2) ([6ccf934](https://github.com/aegisx-platform/aegisx-starter/commit/6ccf934431c803975b24e63f1d14b554f69fec82))
+* **procurement:** ตัดหน้าข้อ ๖ ใบรายงานขอซื้อแบบ dynamic + บังคับได้ ([738179c](https://github.com/aegisx-platform/aegisx-starter/commit/738179cd84003ecc36f77930a7b5dc16a0b58206))
+* **procurement:** ปุ่มดึงค่าตั้งค่าล่าสุดในหน้าแก้ไขใบขอซื้อ (draft) ([c651623](https://github.com/aegisx-platform/aegisx-starter/commit/c65162317555bd5d2831c79128c83ca8ae46db4c))
+
 ## [1.102.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.102.0...v1.102.1) (2026-07-21)
 
 
