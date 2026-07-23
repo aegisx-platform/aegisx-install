@@ -1,3 +1,11 @@
+## [1.103.2](https://github.com/aegisx-platform/aegisx-starter/compare/v1.103.1...v1.103.2) (2026-07-23)
+
+
+### Bug Fixes
+
+* **pdf:** ปรับฟอร์มจัดซื้อตามมาตรฐาน รพ.พระปกเกล้า ([60ed53a](https://github.com/aegisx-platform/aegisx-starter/commit/60ed53a9c050715889749b429f32ab0129ad890b))
+* **pdf:** เว้น 2 บรรทัดใต้ตารางใบสั่งซื้อไม่จำกัดปริมาณ ให้มีที่เซ็นชื่อ ([e79c8c4](https://github.com/aegisx-platform/aegisx-starter/commit/e79c8c435bade4be44f7358ed9391e68cfc14de2))
+
 ## [1.103.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.103.0...v1.103.1) (2026-07-22)
 
 
