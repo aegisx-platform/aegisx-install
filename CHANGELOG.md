@@ -1,3 +1,26 @@
+# [1.104.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.103.2...v1.104.0) (2026-07-24)
+
+
+### Bug Fixes
+
+* **pr-pdf:** แก้ layout ข้อ 8.2 คณะกรรมการซื้อหรือจ้าง (subtype ซ) ([5575ce9](https://github.com/aegisx-platform/aegisx-starter/commit/5575ce9864dd3de75e89d810204ed40c24c2d5c4))
+* **pr-pdf:** ข้อ ๒ แสดงหน่วยย่อยต่อแพ็คเมื่อสั่งเป็นแพ็ค ([bba0683](https://github.com/aegisx-platform/aegisx-starter/commit/bba0683507859ce70e838ca2a97099635920fb5c))
+* **pr:** add purchase_committee_id to PurchaseRequestsEntity interface ([7c13ba3](https://github.com/aegisx-platform/aegisx-starter/commit/7c13ba3097b2f2e93d074aaf9a0af5db505b35ba))
+* **pr:** map purchase_committee_id in controller transform (avoid silent drop on update) ([4e97b0a](https://github.com/aegisx-platform/aegisx-starter/commit/4e97b0a1d2b452ef021ea217c1980d49e7844ffd))
+* **pr:** map PURCHASE_COMMITTEE_REQUIRED to 400 in submit route handler ([03e3d1d](https://github.com/aegisx-platform/aegisx-starter/commit/03e3d1d526a92c46c89e6adb8a4206b7cc38c3ad))
+
+
+### Features
+
+* **pr-pdf:** checkbox บังคับ 'จึงเรียนมาฯ' ขึ้นหน้าใหม่ + 8.2 numbering ([68c56d8](https://github.com/aegisx-platform/aegisx-starter/commit/68c56d87b934ef3028726f87bdc17b934da3c724))
+* **pr:** add purchase_committee fields to PR schemas ([b6892ac](https://github.com/aegisx-platform/aegisx-starter/commit/b6892ac2ecdaf8a2c134344bf1fe856481b3b8e5))
+* **pr:** add purchase_committee_id column to purchase_requests ([bfc71a1](https://github.com/aegisx-platform/aegisx-starter/commit/bfc71a15122e6af387aa67af934482aa676f04ef))
+* **pr:** purchase committee selector in PR dialog (subtype ซ) ([77e7482](https://github.com/aegisx-platform/aegisx-starter/commit/77e74821a8eadc7e340f8c2fa0f77d22af43a703))
+* **pr:** purchase committee selector in PR+PO wizard (subtype ซ) ([5a0fcbd](https://github.com/aegisx-platform/aegisx-starter/commit/5a0fcbd446d4990bb09d40bcde157b2f0e1b0b0b))
+* **pr:** render purchase committee as 8.2 for subtype ซ in report ([aaddd2f](https://github.com/aegisx-platform/aegisx-starter/commit/aaddd2f33d3d281f2be787ea2169af8f6483e9de))
+* **pr:** repository purchase_committee members + snapshot ([69c6a56](https://github.com/aegisx-platform/aegisx-starter/commit/69c6a56ecb8d9b4b32ff01abed6625e6b73a8bc6))
+* **pr:** sync purchase committee role + require it on subtype ซ submit ([5233c88](https://github.com/aegisx-platform/aegisx-starter/commit/5233c884402fa37453423db2c5f71b2c602e69c9))
+
 ## [1.103.2](https://github.com/aegisx-platform/aegisx-starter/compare/v1.103.1...v1.103.2) (2026-07-23)
 
 
