@@ -1,3 +1,11 @@
+## [1.105.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.105.0...v1.105.1) (2026-07-27)
+
+
+### Bug Fixes
+
+* **po-pdf:** แสดงหน่วยย่อยต่อแพ็คในเอกสาร PO (พิจารณา/ประกาศผู้ชนะ/ใบสั่งซื้อ) ([11f8321](https://github.com/aegisx-platform/aegisx-starter/commit/11f8321f20e319aa7de2bbbf7e37c2b5aa0d8903))
+* **pr-pdf:** ใบขอซื้อขอจ้าง แสดงหน่วยย่อยต่อแพ็คทุกจุดนอกข้อ ๒ ([f94f590](https://github.com/aegisx-platform/aegisx-starter/commit/f94f5906dea163bc6896a87124b9312bb8ed15b1))
+
 # [1.105.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.104.0...v1.105.0) (2026-07-27)
 
 
