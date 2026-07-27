@@ -1,3 +1,19 @@
+# [1.105.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.104.0...v1.105.0) (2026-07-27)
+
+
+### Bug Fixes
+
+* **pr-po:** default ผู้ขาย PO ตามสัญญา/บริษัทของยา แทนบริษัทตัวแรก ([70f59a4](https://github.com/aegisx-platform/aegisx-starter/commit/70f59a46361a0c1a7f57e71899cd5a243232ccc8))
+* **pr:** auto-select คณะกรรมการ + ดึง "เรียน" ตอนสร้างใบขอซื้อใหม่ ([916d450](https://github.com/aegisx-platform/aegisx-starter/commit/916d4507b99cbb5e9027cfdd5832258a24922811))
+* **procurement:** ผูกสัญญา PO ให้ match ตัวเดียวกับ badge — หน้า "สร้างใบขอซื้อ" พิมพ์ฟอร์มสัญญาถูก ([26248e0](https://github.com/aegisx-platform/aegisx-starter/commit/26248e0c22368254b5eb335d391797c96e349ca7))
+* **procurement:** แสดงสัญญาที่ผูกไว้ใน dropdown โซน PO (แก้ async ทับ) ([9a70725](https://github.com/aegisx-platform/aegisx-starter/commit/9a70725be1d3aa3d82dc4f68ef47c9004d33afb2))
+* **quick-build:** เพิ่มช่องคณะกรรมการซื้อหรือจ้าง (ข้อ 8.2) สำหรับ subtype ซ ([7e4a744](https://github.com/aegisx-platform/aegisx-starter/commit/7e4a74404707c0bfc3aaf6bc85e313d566917aa4))
+
+
+### Features
+
+* **pr-po:** แสดงคณะกรรมการซื้อหรือจ้าง (ข้อ 8.2) ในหน้า detail ([366d608](https://github.com/aegisx-platform/aegisx-starter/commit/366d60868cf9c500c839760a6286c31468f73794)), closes [#62](https://github.com/aegisx-platform/aegisx-starter/issues/62)
+
 # [1.104.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.103.2...v1.104.0) (2026-07-24)
 
 
