@@ -1,3 +1,31 @@
+# [1.106.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.105.1...v1.106.0) (2026-07-28)
+
+
+### Bug Fixes
+
+* **pr-docx:** ขนาดฟอนต์หัวกระดาษให้ตรง PDF (ค่า 16pt ไม่ใช่ 20pt) ([be54a3c](https://github.com/aegisx-platform/aegisx-starter/commit/be54a3c5b769ae48830dcb4e88b09865cf874899))
+* **pr-docx:** ครุฑผิดสัดส่วน + ฟอนต์ไม่ตรงกับ PDF ([c42919f](https://github.com/aegisx-platform/aegisx-starter/commit/c42919ff1917e8166f44473e87ab952d7d82cb71))
+* **pr-docx:** ครุฑอยู่ชิดซ้ายระนาบเดียวกับ "บันทึกข้อความ" ตาม PDF ([3fafca9](https://github.com/aegisx-platform/aegisx-starter/commit/3fafca954e2cb61ce4782ac9f9fb9be8940bed5b))
+* **pr-docx:** ระยะบรรทัด/คอลัมน์ตาราง/valign ให้ตรง PDF (ตรวจด้วยการ render จริง) ([59284a4](https://github.com/aegisx-platform/aegisx-starter/commit/59284a48c1849e9a006d206521ed5ce7d7dd0354))
+* **pr-docx:** เส้นจุดไข่ปลาใต้บรรทัดหัวกระดาษ ให้เหมือน PDF ([3b781d0](https://github.com/aegisx-platform/aegisx-starter/commit/3b781d0a49a1df2e7061ba3c215318bba173283b))
+* **pr-docx:** หน้า 2-3 — รายชื่อกรรมการเป็นตาราง + จัดระยะให้จำนวนหน้าตรง PDF ([ab8742c](https://github.com/aegisx-platform/aegisx-starter/commit/ab8742cade147e2325ae304d3c3845c85e0d2978))
+* **pr-docx:** หัวกระดาษเป็นตารางเดียว จัดคอลัมน์+ความสูงบรรทัดตาม PDF ([69bb25c](https://github.com/aegisx-platform/aegisx-starter/commit/69bb25cd70572ecef86147e1837c1636429c3faa))
+* **pr-pdf:** align รายงานขอซื้อขอจ้าง กับเอกสารจริง (เลขอารบิก/comma/ขนาดบรรจุ/เลข PO) ([dfa4e7c](https://github.com/aegisx-platform/aegisx-starter/commit/dfa4e7c642b957c455806236977a6b88755a8040))
+* **pr-pdf:** รายชื่อกรรมการที่ยาวเกินบรรทัด ให้เยื้องใต้ชื่อ (hanging indent) ([f11a5e5](https://github.com/aegisx-platform/aegisx-starter/commit/f11a5e53d0136ab1562cbc8abba0e2fe6c1632e4))
+* **preview:** ปุ่ม Word หายไป 4 ทางที่เปิดเอกสารจากหน้า tracker ([0ba605f](https://github.com/aegisx-platform/aegisx-starter/commit/0ba605fd7ca670b6126ffc54fe9ed67a0204e7d3))
+
+
+### Features
+
+* **contract-docx:** แบบฟอร์มสัญญาซื้อขายยา เป็นไฟล์ Word ([d0e543b](https://github.com/aegisx-platform/aegisx-starter/commit/d0e543b770db4eb0dafc3ab2643cd8d4379c5e4a))
+* **docx:** "รวมทุกฟอร์ม" เป็นไฟล์ Word เดียว (หลาย section) ([e12900f](https://github.com/aegisx-platform/aegisx-starter/commit/e12900f4ee373166ccd6f8af080f5f1a1b39915a))
+* **po-docx:** export รายงานผลการพิจารณา (PO) เป็นไฟล์ Word ([7508c65](https://github.com/aegisx-platform/aegisx-starter/commit/7508c652d23974b8e0a6b074f68b7a4e24e901da))
+* **po-docx:** ใบสั่งซื้อ 2 แบบ (เฉพาะเจาะจง / ไม่จำกัดปริมาณ) เป็นไฟล์ Word ([2dec6e4](https://github.com/aegisx-platform/aegisx-starter/commit/2dec6e4cc108a28d839cabe191095ba97d2d9b97))
+* **po-docx:** ประกาศผู้ชนะ + คู่ฉบับ เป็นไฟล์ Word ([581e537](https://github.com/aegisx-platform/aegisx-starter/commit/581e5371438a1aeb59468b677e32116beb86ac98))
+* **pr-docx:** export รายงานขอซื้อขอจ้าง เป็นไฟล์ Word (.docx) ([2bf63e2](https://github.com/aegisx-platform/aegisx-starter/commit/2bf63e2c35f6e848027b8a9dc8f3471d25acceda))
+* **pr-pdf:** เลือกรูปแบบรายชื่อกรรมการได้ 2 แบบ (บรรทัดเดียว / ตำแหน่งใต้ชื่อ) ([81b9ca0](https://github.com/aegisx-platform/aegisx-starter/commit/81b9ca04f706ccc563eb413da0e7e29f246ef1b6))
+* **preview:** ปุ่ม PDF / WORD ในหน้า preview เอกสารทุกหน้า ([0c0801b](https://github.com/aegisx-platform/aegisx-starter/commit/0c0801b43c41120d310962cf45de8eef604576e2))
+
 ## [1.105.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.105.0...v1.105.1) (2026-07-27)
 
 
