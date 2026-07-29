@@ -1,3 +1,19 @@
+# [1.107.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.106.0...v1.107.0) (2026-07-29)
+
+
+### Bug Fixes
+
+* **tmt:** ชื่อที่ระบบย่อเองด้วย … ถูกจัดเป็น "แก้เอง" ผิด + แก้ layout ([fa36c72](https://github.com/aegisx-platform/aegisx-starter/commit/fa36c72e48cf3f6fa88968d54b83f43a68fb1dcb))
+* **tmt:** เดิน VTM_TO_GP ให้ถูกทิศ — tmt_vtm_id ไม่เคยถูกเติมเลย ([ac9833b](https://github.com/aegisx-platform/aegisx-starter/commit/ac9833b5f0ab6b429c8838ba06e0d1dd1c17e270))
+* **tmt:** สูตรผสมที่ไม่ระบุความแรงก็เอารูปแบบยาได้ + แก้คอมเมนต์ที่เขียนผิด ([597bbd7](https://github.com/aegisx-platform/aegisx-starter/commit/597bbd71daa59010f889994ba094cd3dc4d712d2))
+
+
+### Features
+
+* **tmt:** แกะความแรงและรูปแบบยาจากชื่อ FSN ([1cbf550](https://github.com/aegisx-platform/aegisx-starter/commit/1cbf550614e898bc11f0758c31f668ff0079b08c)), closes [#455](https://github.com/aegisx-platform/aegisx-starter/issues/455)
+* **tmt:** ปรับชื่อ generic ที่มีอยู่แล้วให้ตรงระดับที่เลือก ([ef7ce45](https://github.com/aegisx-platform/aegisx-starter/commit/ef7ce45d2964caae4bdd01d67be2d234f2be8d13))
+* **tmt:** เลือกระดับชื่อ generic (GP/GPU/VTM) และตัดวงเล็บระดับออก ([dbc35e0](https://github.com/aegisx-platform/aegisx-starter/commit/dbc35e02facef5c63d3c83deb06f1043bbe98976))
+
 # [1.106.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.105.1...v1.106.0) (2026-07-28)
 
 
