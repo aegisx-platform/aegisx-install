@@ -1,3 +1,10 @@
+## [1.108.2](https://github.com/aegisx-platform/aegisx-starter/compare/v1.108.1...v1.108.2) (2026-08-01)
+
+
+### Bug Fixes
+
+* **po-pdf:** ล็อกความกว้างตารางรายการในรายงานตรวจรับ-ขออนุมัติเบิกจ่าย ([2228ae2](https://github.com/aegisx-platform/aegisx-starter/commit/2228ae21f99e423207c9063affae9e73f1143bb0))
+
 ## [1.108.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.108.0...v1.108.1) (2026-08-01)
 
 # [1.108.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.107.0...v1.108.0) (2026-08-01)
