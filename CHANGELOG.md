@@ -1,3 +1,20 @@
+# [1.108.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.107.0...v1.108.0) (2026-08-01)
+
+
+### Bug Fixes
+
+* **po-pdf:** ขยายคอลัมน์ "ราคาที่ตกลงซื้อหรือจ้าง*" ในรายงานผลการพิจารณา ([76bceab](https://github.com/aegisx-platform/aegisx-starter/commit/76bceab2c98e4eaad0163a3d49505732ab991337))
+* **po-pdf:** ตัดบรรทัดหน้า "จำนวน" ในหัวเรื่องประกาศผู้ชนะ/คู่ฉบับ ([0d1174a](https://github.com/aegisx-platform/aegisx-starter/commit/0d1174a73802c4c8821fe8771d324f320ca59a53))
+* **po-pdf:** ล็อกความกว้างคอลัมน์ตารางใบสั่งซื้อ เหลือ "รายการ" คอลัมน์เดียวที่ยืดได้ ([bb1303c](https://github.com/aegisx-platform/aegisx-starter/commit/bb1303c3e1c2bb34b50af0d4cbadb7fe5bb57f37))
+* **pr-pdf:** คืนใบขอซื้อขอจ้างให้เป็นเลขไทยทั้งฉบับ (revert keepArabic) ([402bdef](https://github.com/aegisx-platform/aegisx-starter/commit/402bdef9f7e1e89486d23a280e9958daeb793034))
+* **pr-pdf:** ถอยบรรทัด "คณะกรรมการซื้อหรือจ้างโดยวิธีเฉพาะเจาะจง" ให้ตรงหัวข้อ ๘.๒ ([2acf3f9](https://github.com/aegisx-platform/aegisx-starter/commit/2acf3f972d35ac1ca2cb366ca5086ad328406ad6))
+
+
+### Features
+
+* **po-print:** toggle "ขึ้นบรรทัดใหม่ก่อน 'ด้วย วิธี...'" ในประกาศผู้ชนะ/คู่ฉบับ ([321ba67](https://github.com/aegisx-platform/aegisx-starter/commit/321ba6749b587f0afc2dd9353e7db840fc56d586))
+* **po-print:** เพิ่ม toggle "ตำแหน่งกรรมการอยู่ใต้ชื่อ" ใน preview ฝั่ง PO ([1916289](https://github.com/aegisx-platform/aegisx-starter/commit/1916289ce17c025d739da4a407f89f44c06e7cf0))
+
 # [1.107.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.106.0...v1.107.0) (2026-07-29)
 
 
