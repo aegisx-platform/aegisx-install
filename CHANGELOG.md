@@ -1,3 +1,5 @@
+## [1.108.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.108.0...v1.108.1) (2026-08-01)
+
 # [1.108.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.107.0...v1.108.0) (2026-08-01)
 
 
