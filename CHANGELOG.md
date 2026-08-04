@@ -1,3 +1,29 @@
+# [1.109.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.108.2...v1.109.0) (2026-08-04)
+
+
+### Bug Fixes
+
+* **activity-log:** audit event ถูกทิ้งเงียบ 13 จาก 20 route mapping ([32c240b](https://github.com/aegisx-platform/aegisx-starter/commit/32c240bd5b89abee38d3a9b67a88e631bf9416a0)), closes [#461](https://github.com/aegisx-platform/aegisx-starter/issues/461)
+* **activity-log:** แก้ path ใน actionMappings ให้ตรง route จริง ([e530c1f](https://github.com/aegisx-platform/aegisx-starter/commit/e530c1f5cb085be7c7b040ec4405be91df0d0668)), closes [#462](https://github.com/aegisx-platform/aegisx-starter/issues/462)
+* **inventory:** เลิกตัดสต็อกเงียบเมื่อของไม่พอ + บังคับลำดับการเลือกลอต ([edc8a42](https://github.com/aegisx-platform/aegisx-starter/commit/edc8a42505db3772959ba049ac49750c4121e7e6))
+* **locations:** parent_id ใช้ได้เฉพาะช่องเก็บ (BIN) — ปิดต้นตอสต็อกคลังใหญ่นับรวมคลังย่อย ([a44cc3d](https://github.com/aegisx-platform/aegisx-starter/commit/a44cc3d2e43f384deef1e013bea4916d3407db77))
+* **procurement-doc:** ชื่อยาในเอกสารไม่พิมพ์รูปแบบยาซ้ำสองรอบ ([c8b9b86](https://github.com/aegisx-platform/aegisx-starter/commit/c8b9b86acddd2c143cc96db817a89f5c396f19dc))
+* **procurement-tracker:** กันปุ่ม 'ยกเลิกการส่ง' และป้ายล็อกถูกบีบจนตัดบรรทัดล้นกรอบ ([6c82977](https://github.com/aegisx-platform/aegisx-starter/commit/6c82977399b7faf444874b6ab1e6c4b85ad95968))
+* **purchase-requests:** งบไม่พอต้องบอกเหตุผล ไม่ใช่ 500 + ตรวจงบผิดไตรมาส ([2632057](https://github.com/aegisx-platform/aegisx-starter/commit/263205756e6de904ffbf1bac2a0c959a0c685925))
+* **rbac:** ขอบเขตการเห็นใบเบิกตัดสินจากสิทธิ์จริง ไม่ใช่ชื่อ role ([d43f6d5](https://github.com/aegisx-platform/aegisx-starter/commit/d43f6d58d4c19f24c94ee70c0babcd2f1d592c2b))
+* **rbac:** ให้สิทธิ์ approve/post/inspect ใบรับของกับ role คลังใหญ่ ([2e8e4b8](https://github.com/aegisx-platform/aegisx-starter/commit/2e8e4b8c08efe91c82804e14d9314273c20c2bc1))
+* **rbac:** ให้สิทธิ์ view_own กับ role เภสัชกรในใบเบิกยา ([8ce1f4a](https://github.com/aegisx-platform/aegisx-starter/commit/8ce1f4ab9c9d4e96e9e518034a9de72bcf66ea83))
+* **rbac:** ให้สิทธิ์ view_own/request/update กับ role คลังย่อยในใบเบิกยา ([c844110](https://github.com/aegisx-platform/aegisx-starter/commit/c8441105bd3f2051337920062119019b36030e6b))
+* **rbac:** ให้สิทธิ์ view_own/view_all/approve/dispense กับ role คลังใหญ่ในใบเบิกยา ([6955668](https://github.com/aegisx-platform/aegisx-starter/commit/695566826ca4da924643f1d33421d2bdc19146ab))
+* **sub-warehouse:** แก้ 'คงเหลือ' ในใบเบิกโชว์ 0 และสต็อกคลังใหญ่นับรวมของคลังย่อย ([f85ba84](https://github.com/aegisx-platform/aegisx-starter/commit/f85ba84943a15568c8b7217523f98b27d9895b29))
+* **sub-warehouse:** เอาการ์ด 'ค้างจ่าย' ออกจาก dashboard คลังย่อย ([311077f](https://github.com/aegisx-platform/aegisx-starter/commit/311077f796b6f94fc204edca37eaaeb9eca990b3))
+* **sub-warehouse:** เอาเมนู 'ค้างจ่าย' ออกจาก top nav คลังย่อย ([36c1e56](https://github.com/aegisx-platform/aegisx-starter/commit/36c1e564d6a7c4a186da6963e2c47908e9bf6fd9))
+
+
+### Features
+
+* **sub-warehouse:** ให้คลังย่อยเห็นของที่ยังค้างรับในใบเบิกของตัวเอง ([8690f7c](https://github.com/aegisx-platform/aegisx-starter/commit/8690f7c22a2da247ccacd79553efef21188141bd))
+
 ## [1.108.2](https://github.com/aegisx-platform/aegisx-starter/compare/v1.108.1...v1.108.2) (2026-08-01)
 
 
