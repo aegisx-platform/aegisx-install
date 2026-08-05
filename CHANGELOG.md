@@ -1,3 +1,10 @@
+## [1.109.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.109.0...v1.109.1) (2026-08-05)
+
+
+### Bug Fixes
+
+* **inventory:** ใบเบิกกดผิดจังหวะต้องบอกเหตุผลไทย ไม่ใช่ 500 ([43f9040](https://github.com/aegisx-platform/aegisx-starter/commit/43f9040b1b5377bf2e7de62d90f0471a87852f92))
+
 # [1.109.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.108.2...v1.109.0) (2026-08-04)
 
 
