@@ -1,3 +1,25 @@
+# [1.110.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.109.1...v1.110.0) (2026-08-08)
+
+
+### Bug Fixes
+
+* **dispensing:** sync HIS ตอบเหตุผลไทย ไม่ใช่ 500 ดิบ ([91169ca](https://github.com/aegisx-platform/aegisx-starter/commit/91169ca752ab40ef6c98554ff3f7771e96f73e14))
+* **dispensing:** เก็บหน่วยจาก HIS ที่หายไปทั้ง 2 เส้นทาง sync ([df364ac](https://github.com/aegisx-platform/aegisx-starter/commit/df364acaa9cbdbb1f4a38a41e11cdcca6eb6b90b))
+* **dispensing:** แก้ path นับยายังไม่ map และการจัดวางการ์ดงานค้างในหน้าภาพรวม ([b7b85c5](https://github.com/aegisx-platform/aegisx-starter/commit/b7b85c5e7e0696c434aeffc36e6cd8b21a0214c1))
+* **dispensing:** ทำ endpoint stats ของหน้าจับคู่ยา HIS ให้ใช้งานได้จริง ([3ffcb34](https://github.com/aegisx-platform/aegisx-starter/commit/3ffcb34a0fc0546e463749c909d1b2db0bdb4959))
+* **dispensing:** แสดงชื่อคลังในรายการตัดจ่ายแทน #id ([fa004be](https://github.com/aegisx-platform/aegisx-starter/commit/fa004be07b1b656ff7defafde8ffd26d11f5f7d7)), closes [#id](https://github.com/aegisx-platform/aegisx-starter/issues/id)
+* **document-dispatch:** แยกหน้าจอและสถานะฝั่งคลังใหญ่ออกจากฝั่งจัดซื้อ ([1b4ba5b](https://github.com/aegisx-platform/aegisx-starter/commit/1b4ba5b2ca2b2c17107823a1f0ed2be9e22687cd))
+* **ui:** แก้ --ax-background-surface ที่ไม่มีอยู่จริง ทำให้พื้นการ์ดไม่ flip ([4b3ba47](https://github.com/aegisx-platform/aegisx-starter/commit/4b3ba478e2406c05af2e0aa155b0316c98551461)), closes [#ffffff](https://github.com/aegisx-platform/aegisx-starter/issues/ffffff) [#ffffff](https://github.com/aegisx-platform/aegisx-starter/issues/ffffff) [#ffffff](https://github.com/aegisx-platform/aegisx-starter/issues/ffffff) [#18181b](https://github.com/aegisx-platform/aegisx-starter/issues/18181b)
+* **ui:** แก้ชื่อ design token --ax-color-* ที่ไม่มีอยู่จริง ทำให้สีไม่ขึ้น ([c02dd6b](https://github.com/aegisx-platform/aegisx-starter/commit/c02dd6bc67dfa9fbf59492d72c303893305f7c1d))
+* **ui:** เปลี่ยนสีจาก numeric scale เป็น semantic alias ให้ flip ตาม dark mode ([8d8227c](https://github.com/aegisx-platform/aegisx-starter/commit/8d8227cd98c5e58efa18ff2d09d1d1337fcce00f))
+* **ui:** เปลี่ยนสีใน libs เป็น semantic alias ให้ flip ตาม dark mode ([650309f](https://github.com/aegisx-platform/aegisx-starter/commit/650309ffb0017ac09bdc579983cb383608e8b021)), closes [#fff](https://github.com/aegisx-platform/aegisx-starter/issues/fff)
+* **ui:** โหลด Angular Material dark theme ให้ flip ตามธีมที่ผู้ใช้เลือก ([c466cd8](https://github.com/aegisx-platform/aegisx-starter/commit/c466cd811886468bd40b6337a02316b2ea2a032a)), closes [#3f3f46](https://github.com/aegisx-platform/aegisx-starter/issues/3f3f46) [#09090b](https://github.com/aegisx-platform/aegisx-starter/issues/09090b)
+
+
+### Features
+
+* **ui:** เพิ่ม semantic alias ให้ indigo/purple แล้วเปลี่ยน 61 จุดให้ flip ([ca6362e](https://github.com/aegisx-platform/aegisx-starter/commit/ca6362eea52d74ce080835da5e125b25e4fc0137)), closes [#818cf8](https://github.com/aegisx-platform/aegisx-starter/issues/818cf8) [#a5b4fc](https://github.com/aegisx-platform/aegisx-starter/issues/a5b4fc) [#eef2ff](https://github.com/aegisx-platform/aegisx-starter/issues/eef2ff) [#c7d2fe](https://github.com/aegisx-platform/aegisx-starter/issues/c7d2fe) [#3730a3](https://github.com/aegisx-platform/aegisx-starter/issues/3730a3) [#a5b4fc](https://github.com/aegisx-platform/aegisx-starter/issues/a5b4fc)
+
 ## [1.109.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.109.0...v1.109.1) (2026-08-05)
 
 
