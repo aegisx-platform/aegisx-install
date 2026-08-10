@@ -1,3 +1,25 @@
+# [1.111.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.110.0...v1.111.0) (2026-08-10)
+
+
+### Bug Fixes
+
+* **activity-log:** api_error คือต้นตอจริงของ ACTIVITY_INVALID_ACTION ([2c7b414](https://github.com/aegisx-platform/aegisx-starter/commit/2c7b414918dd4dc964e825ae124fe38c4eb21fa2)), closes [462/#463](https://github.com/aegisx-platform/aegisx-starter/issues/463)
+* **inventory:** timeline ขั้น 6 เขียวครบ + กัน NaN บนการ์ดสถิติ ([ed20087](https://github.com/aegisx-platform/aegisx-starter/commit/ed200872e325db79fe67a99826e64abfc4c39b6e))
+* **inventory:** หน้ารายละเอียดใบนำส่งกว้างไม่เท่าหน้าทะเบียน ([d375600](https://github.com/aegisx-platform/aegisx-starter/commit/d3756000309984f4f13f92d85c21e57284674da5))
+* **inventory:** เอาชื่อหัวหน้าเจ้าหน้าที่ออกจากท้าย PDF ทะเบียนเจ้าหนี้การค้า ([98a5033](https://github.com/aegisx-platform/aegisx-starter/commit/98a50336d66cf0a9545ed8592f05cf09f841637e))
+
+
+### Features
+
+* **inventory:** การ์ดสถิติ + แถบขั้นตอนแบบ pipeline หน้าติดตามจัดซื้อ ([9696e7f](https://github.com/aegisx-platform/aegisx-starter/commit/9696e7f52bc117173d11e6b781d65b997fd11825))
+* **inventory:** ทะเบียนรับเอกสารฝั่งจัดซื้อ — เห็นใบที่รับครบแล้ว ([744350c](https://github.com/aegisx-platform/aegisx-starter/commit/744350c730ae767b8d481559002c3e20f37c801b))
+* **inventory:** เปลี่ยน PDF ทะเบียนเจ้าหนี้การค้าเป็นแนวนอน ([1adada8](https://github.com/aegisx-platform/aegisx-starter/commit/1adada8ce152f8dcec860e626a4eb9e1323fcc10))
+* **inventory:** เพิ่มขั้น 6 จ่ายเงินแล้ว ในสายงานหน้าติดตามจัดซื้อ ([ff87461](https://github.com/aegisx-platform/aegisx-starter/commit/ff87461e1c90c2f68753b98a359e763a02d5e83b))
+* **inventory:** เพิ่มแท็บทะเบียน PO + ตัวเลขจ่ายแล้วในทะเบียนเจ้าหนี้ ([2b3ec89](https://github.com/aegisx-platform/aegisx-starter/commit/2b3ec899f3e87957e5e8bab134e00383a989814a))
+* **inventory:** แสดงทะเบียนเจ้าหนี้ + สถานะจ่ายเงินในหน้าติดตามจัดซื้อ ([e26ebd1](https://github.com/aegisx-platform/aegisx-starter/commit/e26ebd17b2f9d339993422c247ca30ca09d36269))
+* **inventory:** แสดงสถานะจ่ายรายใบ PO ในหน้ารายละเอียดทะเบียนเจ้าหนี้ ([9c05906](https://github.com/aegisx-platform/aegisx-starter/commit/9c05906ce3f04006afb87a62b325ce6438b0aa9a))
+* **receipts:** ใบเสนอผลการตรวจรับสำหรับให้ผู้บริหารลงนามทราบ ([c752697](https://github.com/aegisx-platform/aegisx-starter/commit/c752697cb2a34b62aa99d4ac01556a346f8bc5cd))
+
 # [1.110.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.109.1...v1.110.0) (2026-08-08)
 
 
