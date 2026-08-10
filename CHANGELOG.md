@@ -1,3 +1,17 @@
+# [1.112.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.111.0...v1.112.0) (2026-08-10)
+
+
+### Bug Fixes
+
+* **deployment:** แก้ชื่อ image ในขั้นตอน rollback ของ checklist v1.111.0 ([defec92](https://github.com/aegisx-platform/aegisx-starter/commit/defec925de868169732341b8a98c3b4fe3435d4c))
+* **inventory:** แผงยอดคงเหลือสัญญา compile ไม่ผ่านเพราะ alias ใน else if ([df8ff2d](https://github.com/aegisx-platform/aegisx-starter/commit/df8ff2d5d257a8bc458817bcbfebbf07bb98db93))
+* **inventory:** แผงยอดคงเหลือสัญญาไม่ขึ้น + เพิ่มอีก 2 หน้าที่สั่งซื้อได้ ([9bea879](https://github.com/aegisx-platform/aegisx-starter/commit/9bea87934942f98147ed1d1588b80535920607f6))
+
+
+### Features
+
+* **inventory:** แสดงวงเงิน/จำนวนคงเหลือของสัญญาในหน้าสร้าง PR และ PO ([cc8493b](https://github.com/aegisx-platform/aegisx-starter/commit/cc8493bf5aa21b69aeb2e27387b9312a5de9ff99))
+
 # [1.111.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.110.0...v1.111.0) (2026-08-10)
 
 
