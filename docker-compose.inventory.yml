@@ -121,6 +121,11 @@ services:
       # Generate with: openssl rand -hex 32
       MIGRATION_ENCRYPTION_KEY: '${MIGRATION_ENCRYPTION_KEY:?MIGRATION_ENCRYPTION_KEY is required - generate with openssl rand -hex 32}'
 
+      # URL ของหน้าเว็บฝั่งผู้ใช้ — ใช้ประกอบลิงก์ที่ออกไปนอกระบบ เช่น QR
+      # ตรวจสอบเอกสารบนใบสั่งซื้อ (/verify/<code>) และลิงก์ในอีเมล
+      # ถ้าไม่ตั้ง จะ fallback เป็น localhost:4200 แล้ว QR บนกระดาษจะสแกนไม่ได้
+      WEB_URL: ${WEB_URL:-http://localhost:${WEB_PORT:-8080}}
+
       # Security
       CORS_ORIGINS: ${CORS_ORIGINS:-*}
       RATE_LIMIT_MAX: ${RATE_LIMIT_MAX:-100}

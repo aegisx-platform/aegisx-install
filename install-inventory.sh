@@ -329,6 +329,9 @@ API_PORT=$API_PORT
 WEB_PORT=$WEB_PORT
 API_URL=http://localhost:$API_PORT/api
 
+# WEB_URL - ใช้ประกอบ QR ตรวจสอบเอกสาร + ลิงก์ในอีเมล (ตั้งโดเมนจริงบน production)
+WEB_URL=http://localhost:$WEB_PORT
+
 # CORS - Comma-separated list of allowed origins
 CORS_ORIGINS=http://localhost:$WEB_PORT
 

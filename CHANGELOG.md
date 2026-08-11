@@ -1,3 +1,25 @@
+# [1.113.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.112.0...v1.113.0) (2026-08-11)
+
+
+### Bug Fixes
+
+* **api:** rate limit ตอบ 429 แทน 500 ([a97c565](https://github.com/aegisx-platform/aegisx-starter/commit/a97c5651f19f982bbf18fb7f16660eab0bfdab8f))
+* **deploy:** map WEB_URL เข้า container ไม่งั้น QR บนกระดาษชี้ localhost ([d8441ee](https://github.com/aegisx-platform/aegisx-starter/commit/d8441ee4423801319e7c964fe6c4d3edb72ab0a2))
+* **inventory:** เลิกใช้ quantity_used ที่ไม่มีใครเขียนค่า ในทุกจุดที่เหลือ ([a64606f](https://github.com/aegisx-platform/aegisx-starter/commit/a64606fd15fc18ace4203eadc01c189257361d60))
+* **procurement:** จำกัด QR ตรวจสอบเอกสารให้ขึ้นเฉพาะฟอร์มใบสั่งซื้อ ([fcd3faf](https://github.com/aegisx-platform/aegisx-starter/commit/fcd3faf5b767a767a5bee37551bd56551e018518))
+* **purchase-orders:** รหัสติดตามใต้ QR คงเลขอารบิกตามค่าจริงใน DB ([6823886](https://github.com/aegisx-platform/aegisx-starter/commit/6823886e1eac81f4ae755145ec1b4e7fb1ce83ec))
+* **purchase-orders:** หัว "วันที่" ของรายงานผลการพิจารณา ใช้วันที่ประกาศผู้ชนะ ([cabb2fd](https://github.com/aegisx-platform/aegisx-starter/commit/cabb2fdfd502d7e1e47c7accaaa728b70af722e8)), closes [#2](https://github.com/aegisx-platform/aegisx-starter/issues/2) [#2](https://github.com/aegisx-platform/aegisx-starter/issues/2) [3/#4](https://github.com/aegisx-platform/aegisx-starter/issues/4) [3/#4](https://github.com/aegisx-platform/aegisx-starter/issues/4) [#2](https://github.com/aegisx-platform/aegisx-starter/issues/2) [3/#4](https://github.com/aegisx-platform/aegisx-starter/issues/4)
+* **purchase-requests:** เปิด QR ตรวจสอบเอกสารบนฟอร์มบันทึกข้อความ ([a638950](https://github.com/aegisx-platform/aegisx-starter/commit/a6389500b37c31ced1c0a44e49707d9580a3a469))
+* **web:** ย้าย import ที่อยู่ท้ายไฟล์ขึ้นบน — ทำให้ test suite ทั้งไฟล์โหลดไม่ได้ ([1f5edae](https://github.com/aegisx-platform/aegisx-starter/commit/1f5edae9011c623f03624a73fce10bd4b0ac0c19))
+
+
+### Features
+
+* **contracts:** เพิ่มคอลัมน์ เลขที่ใบสั่งซื้อ GF (GFMIS) ([b8c8cac](https://github.com/aegisx-platform/aegisx-starter/commit/b8c8cac693b1a90ea42cf19c1ea0457dde73614c))
+* **procurement:** ดาวน์โหลดใบสั่งซื้อจากหน้า /verify ด้วย tracking code ([6c9eb13](https://github.com/aegisx-platform/aegisx-starter/commit/6c9eb13718a3cd230a33c9fbce78b3ce993701b2))
+* **procurement:** หน้า /verify เปิดดู/ดาวน์โหลดชุดเอกสารจัดซื้อทั้งชุด ([ebad77d](https://github.com/aegisx-platform/aegisx-starter/commit/ebad77d908f2e324cba51bd623e8fea9f2a7d964))
+* **purchase-orders:** ฝัง QR ตรวจสอบเอกสารบนฟอร์มใบสั่งซื้อทุกแบบ ([9c6fd2e](https://github.com/aegisx-platform/aegisx-starter/commit/9c6fd2e3217cd0fb0e6ec2521cc429ae61cd44d8)), closes [#2](https://github.com/aegisx-platform/aegisx-starter/issues/2) [#4](https://github.com/aegisx-platform/aegisx-starter/issues/4) [#4](https://github.com/aegisx-platform/aegisx-starter/issues/4)
+
 # [1.112.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.111.0...v1.112.0) (2026-08-10)
 
 
