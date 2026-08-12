@@ -1,3 +1,18 @@
+# [1.114.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.113.0...v1.114.0) (2026-08-12)
+
+
+### Bug Fixes
+
+* **deployment:** checklist v1.113.0 คำสั่ง rollback ขาด v นำหน้า IMAGE_TAG ([b23f724](https://github.com/aegisx-platform/aegisx-starter/commit/b23f7248be0c1960fbe521559f4130f30102a420))
+* **deployment:** แก้ชื่อ image กับ IMAGE_TAG ใน checklist เก่า 33 ไฟล์ ([6716712](https://github.com/aegisx-platform/aegisx-starter/commit/67167122acc43c9bd5ba1fb7ecc18d7d4cde9c41))
+* **deployment:** คำสั่ง rollback ในเอกสารชี้ image ที่ไม่มีอยู่จริง + gate กันซ้ำ ([25b8394](https://github.com/aegisx-platform/aegisx-starter/commit/25b8394ea91b958872ca330295e37b09314f29e4))
+
+
+### Features
+
+* **receipts:** รวมปุ่มพิมพ์เป็นเมนูเดียว + รวมใบตรวจรับกับใบเสนอลงนาม ([a62b9e0](https://github.com/aegisx-platform/aegisx-starter/commit/a62b9e034d74123d9a91bdec595477fc3b67d075))
+* **receipts:** เลขไทยทั้งฉบับในใบตรวจรับ e-GP และใบเสนอลงนาม ([ff80ac8](https://github.com/aegisx-platform/aegisx-starter/commit/ff80ac82777fca58be7757a8507404b7cb86d901))
+
 # [1.113.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.112.0...v1.113.0) (2026-08-11)
 
 
