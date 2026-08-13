@@ -1,3 +1,10 @@
+## [1.116.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.116.0...v1.116.1) (2026-08-13)
+
+
+### Bug Fixes
+
+* **ci:** production release ต้อง build ทั้ง api และ web เสมอ ([d8d2dc8](https://github.com/aegisx-platform/aegisx-starter/commit/d8d2dc89c254b4035c8bbca75b618fa113a58fb3))
+
 # [1.116.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.115.1...v1.116.0) (2026-08-13)
 
 
