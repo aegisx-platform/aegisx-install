@@ -1,3 +1,15 @@
+# [1.115.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.114.0...v1.115.0) (2026-08-13)
+
+
+### Features
+
+* **document-transmittals:** export Excel + เลือก PO ผ่าน dialog + PDF preview ([2a4f9c6](https://github.com/aegisx-platform/aegisx-starter/commit/2a4f9c6596104b4ce167227a20f3163c106e2eea))
+* **document-transmittals:** เซ็ตวันที่ลงคลังอัตโนมัติตอนคลังเซ็นรับ ([e970c69](https://github.com/aegisx-platform/aegisx-starter/commit/e970c691b767026e7515c95ac3be5c87c1c80d3c))
+* **document-transmittals:** เปิดเมนูทะเบียนเอกสารลงคลังใน launcher + top nav ([8e77f3e](https://github.com/aegisx-platform/aegisx-starter/commit/8e77f3e5e9f795295210666a3ee78bd472519fe1))
+* **document-transmittals:** ผู้รับผิดชอบเลือกจากรายชื่อผู้ใช้ default เป็นตัวเอง ([0decff9](https://github.com/aegisx-platform/aegisx-starter/commit/0decff959c2c6dbb462c411db6d9acda9ab9983a))
+* **procurement-tracker:** ปุ่มดูใบรับเปิดเอกสาร 2 ใบแทนการเข้าหน้าทะเบียนรับ ([cfc0763](https://github.com/aegisx-platform/aegisx-starter/commit/cfc076354e15249e0a48e74c7f78ab8b0d69981f))
+* **procurement-tracker:** แสดงขั้นตอนการจัดซื้อในหน้ารายละเอียด tracker ([c2a787e](https://github.com/aegisx-platform/aegisx-starter/commit/c2a787ec614267fa9ba3d70513ab48f794ff4d25))
+
 # [1.114.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.113.0...v1.114.0) (2026-08-12)
 
 
