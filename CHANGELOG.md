@@ -1,3 +1,10 @@
+# [1.116.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.115.1...v1.116.0) (2026-08-13)
+
+
+### Features
+
+* **deploy:** เพิ่มคำสั่ง ./aegisx cleanup คืนพื้นที่ดิสก์แบบปลอดภัย ([ab3d7b2](https://github.com/aegisx-platform/aegisx-starter/commit/ab3d7b2f449c3824bcf5f63a11651b874e3b2677))
+
 ## [1.115.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.115.0...v1.115.1) (2026-08-13)
 
 

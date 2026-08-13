@@ -1341,6 +1341,109 @@ ORDER BY table_name;
                 ;;
         esac
         ;;
+    cleanup)
+        # ── คืนพื้นที่ดิสก์แบบปลอดภัย ────────────────────────────────────────
+        # ค่าเริ่มต้นคือ "ดูอย่างเดียว" ต้องใส่ --force ถึงจะลบจริง
+        #
+        # ไม่แตะ volume เด็ดขาด (postgres_data / redis_data / uploads_data)
+        # เพราะนั่นคือฐานข้อมูลกับไฟล์แนบของระบบ — `docker system prune
+        # --volumes` หรือ `docker volume prune` จึงห้ามใช้ที่นี่
+        #
+        # image ที่ container กำลังรันอยู่ docker จะไม่ยอมลบให้อยู่แล้ว
+        # ที่หายคือ tag เก่าที่ไม่มีใครใช้ ซึ่ง pull กลับจาก ghcr ได้เสมอ
+        CLEANUP_FORCE=0
+        CLEANUP_DAYS=30
+        shift || true
+        while [ $# -gt 0 ]; do
+            case "$1" in
+                --force) CLEANUP_FORCE=1 ;;
+                --days)  CLEANUP_DAYS="${2:-30}"; shift ;;
+                *) echo -e "${YELLOW}ไม่รู้จักตัวเลือก: $1${NC}" ;;
+            esac
+            shift
+        done
+
+        echo -e "${BOLD}พื้นที่ดิสก์ก่อนทำความสะอาด${NC}"
+        df -h . | tail -n +1
+        echo ""
+        echo -e "${BOLD}Docker ใช้พื้นที่อยู่เท่าไร${NC}"
+        docker system df
+        echo ""
+
+        # log ของ container มักเป็นตัวที่บวมเงียบ ๆ — โชว์ 5 อันดับแรก
+        # อ่านไม่ได้ในบางกรณี (ไม่ได้เป็น root, หรือ Docker Desktop เก็บ log ไว้
+        # ใน VM) — ต้องบอกให้รู้ ไม่ใช่โชว์ว่างเปล่าเหมือนไม่มี log ใหญ่
+        echo -e "${BOLD}Container log ที่ใหญ่ที่สุด${NC}"
+        _log_rows=""
+        for cid in $(docker ps -aq 2>/dev/null); do
+            logfile=$(docker inspect --format='{{.LogPath}}' "$cid" 2>/dev/null || true)
+            name=$(docker inspect --format='{{.Name}}' "$cid" 2>/dev/null | sed 's|^/||')
+            if [ -n "$logfile" ] && [ -r "$logfile" ]; then
+                size=$(du -m "$logfile" 2>/dev/null | cut -f1)
+                [ -n "$size" ] && _log_rows="${_log_rows}${size} MB  ${name}"$'\n'
+            fi
+        done
+        if [ -n "$_log_rows" ]; then
+            printf '%s' "$_log_rows" | sort -rn | head -5
+        else
+            echo -e "  ${YELLOW}อ่านขนาด log ไม่ได้${NC} — ลองใหม่ด้วย sudo"
+            echo "  (บน Docker Desktop / mac log เก็บใน VM จะอ่านจาก host ไม่ได้)"
+        fi
+        echo ""
+
+        if [ "$CLEANUP_FORCE" -eq 0 ]; then
+            echo -e "${CYAN}โหมดดูอย่างเดียว — ยังไม่ลบอะไร${NC}"
+            echo ""
+            echo "สิ่งที่จะถูกลบเมื่อสั่งด้วย --force:"
+            echo "  1. image ที่ไม่มี tag (dangling)"
+            echo "  2. image ที่ไม่มี container ใช้ และเก่ากว่า ${CLEANUP_DAYS} วัน"
+            echo "  3. build cache ทั้งหมด"
+            echo "  4. container ที่หยุดแล้ว"
+            echo ""
+            echo -e "${GREEN}จะไม่แตะ volume (ฐานข้อมูล/ไฟล์แนบ) และ image ที่ใช้งานอยู่${NC}"
+            echo ""
+            echo "สั่งลบจริง:  ./aegisx cleanup --force"
+            echo "ปรับอายุ:    ./aegisx cleanup --force --days 60"
+            exit 0
+        fi
+
+        echo -e "${YELLOW}เริ่มลบจริง (ไม่แตะ volume)${NC}"
+        echo ""
+        echo "1/4 image ที่ไม่มี tag"
+        docker image prune -f
+        echo ""
+        echo "2/4 image ที่ไม่ได้ใช้และเก่ากว่า ${CLEANUP_DAYS} วัน"
+        docker image prune -a -f --filter "until=$((CLEANUP_DAYS * 24))h"
+        echo ""
+        echo "3/4 build cache"
+        docker builder prune -a -f
+        echo ""
+        echo "4/4 container ที่หยุดแล้ว"
+        docker container prune -f
+        echo ""
+
+        echo -e "${BOLD}พื้นที่ดิสก์หลังทำความสะอาด${NC}"
+        df -h .
+        echo ""
+        docker system df
+        echo ""
+
+        # กันไม่ให้ log บวมอีก — เตือนถ้า compose ยังไม่ตั้ง rotation
+        if ! grep -q "max-size" docker-compose.yml 2>/dev/null; then
+            echo -e "${YELLOW}docker-compose.yml ยังไม่ได้ตั้ง log rotation${NC}"
+            echo "ถ้า container log โตขึ้นเรื่อย ๆ ให้เพิ่มในทุก service:"
+            echo ""
+            echo "  logging:"
+            echo "    driver: 'json-file'"
+            echo "    options:"
+            echo "      max-size: '50m'"
+            echo "      max-file: '3'"
+            echo ""
+            echo "แล้ว ./aegisx restart (log เดิมที่บวมอยู่ต้องล้างเอง)"
+        fi
+
+        echo -e "${GREEN}เสร็จแล้ว — ถ้าต้องย้อนรุ่น ./aegisx pull ดึง image กลับได้${NC}"
+        ;;
     config)
         echo -e "${BOLD}Current Configuration:${NC}"
         echo ""
@@ -1378,6 +1481,9 @@ ORDER BY table_name;
         echo "  backup             Create database backup"
         echo "  restore <file>     Restore from backup"
         echo "  health             Check system health"
+        echo "  cleanup            Show disk usage + what can be freed (dry-run)"
+        echo "                       --force         actually delete (never touches volumes)"
+        echo "                       --days <n>      keep unused images newer than n days (default 30)"
         echo ""
         echo "Debug Commands:"
         echo "  shell <service>    Open shell (api, postgres, redis)"
