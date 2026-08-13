@@ -1,3 +1,11 @@
+## [1.115.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.115.0...v1.115.1) (2026-08-13)
+
+
+### Bug Fixes
+
+* **web:** แสดงข้อความ error จริงเมื่อดาวน์โหลดไฟล์ที่ใช้ responseType blob ([ce649dc](https://github.com/aegisx-platform/aegisx-starter/commit/ce649dc456e4961c9d00d93b6c7a91127a2d5d0b)), closes [#485](https://github.com/aegisx-platform/aegisx-starter/issues/485)
+* **web:** อ่าน error blob ได้แม้ environment ไม่มี Blob.text() + เพิ่มเทส ([1424de2](https://github.com/aegisx-platform/aegisx-starter/commit/1424de21d9c6f5fee60acb422955fd7a93ffe081)), closes [#486](https://github.com/aegisx-platform/aegisx-starter/issues/486)
+
 # [1.115.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.114.0...v1.115.0) (2026-08-13)
 
 
