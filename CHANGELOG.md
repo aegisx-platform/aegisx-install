@@ -1,3 +1,16 @@
+## [1.116.2](https://github.com/aegisx-platform/aegisx-starter/compare/v1.116.1...v1.116.2) (2026-08-17)
+
+
+### Bug Fixes
+
+* **inventory:** label ยังไม่ขึ้นแม้ pin ค่าไว้แล้ว เพราะเทียบ id คนละชนิด ([ebba2a7](https://github.com/aegisx-platform/aegisx-starter/commit/ebba2a7c25e0f698740579a472d8b0ac181a34a9))
+* **inventory:** กัน autocomplete ที่ใช้งานจริงไม่ให้ส่งคำค้นหาเป็นค่าจริง ([9fa6e30](https://github.com/aegisx-platform/aegisx-starter/commit/9fa6e302db4bf77cc9221558d6838a3192174345))
+* **inventory:** ช่องบริษัทในฟอร์มแก้ไขสัญญาว่างเมื่อผู้ขายอยู่นอกหน้าแรกของ dropdown ([b6ed3e6](https://github.com/aegisx-platform/aegisx-starter/commit/b6ed3e6a14d1696a256e19922f67c2cfe2364d99))
+* **inventory:** ผู้จำหน่ายในฟอร์มยาแสดง id ดิบเมื่ออยู่นอกหน้าแรกของ dropdown ([1b07b26](https://github.com/aegisx-platform/aegisx-starter/commit/1b07b2690b4ea30387872cf2a092144caf027c65))
+* **inventory:** พิมพ์ค้นหาแล้วไม่เลือกจากรายการ ทำให้ส่งข้อความไปเป็น id ([9d05ab9](https://github.com/aegisx-platform/aegisx-starter/commit/9d05ab97fa66f68d7e3826be587b53b54127f4a9))
+* **inventory:** ฟอร์มแก้ไข 3 หน้าไม่แสดงค่าที่บันทึกไว้เมื่ออยู่นอกหน้าแรกของ dropdown ([7e64be3](https://github.com/aegisx-platform/aegisx-starter/commit/7e64be388497ad9a9ed84dbfac4997ecf1ae0a07))
+* **inventory:** ลบสัญญาไม่ได้เลยเพราะ guard เทียบสถานะผิดตัวพิมพ์ ([ffd2095](https://github.com/aegisx-platform/aegisx-starter/commit/ffd2095c9ec7e97b0f61551883fd125504f96f74))
+
 ## [1.116.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.116.0...v1.116.1) (2026-08-13)
 
 
