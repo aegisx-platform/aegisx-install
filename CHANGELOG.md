@@ -1,3 +1,10 @@
+## [1.116.3](https://github.com/aegisx-platform/aegisx-starter/compare/v1.116.2...v1.116.3) (2026-08-17)
+
+
+### Bug Fixes
+
+* **deps:** pin websocket-driver >=0.7.5 ปิดช่องโหว่ critical ที่ค้าง CI ([2333e99](https://github.com/aegisx-platform/aegisx-starter/commit/2333e9925b93729efb9a80dce57c1603ca879bce))
+
 ## [1.116.2](https://github.com/aegisx-platform/aegisx-starter/compare/v1.116.1...v1.116.2) (2026-08-17)
 
 
