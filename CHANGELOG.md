@@ -1,3 +1,23 @@
+# [1.117.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.116.3...v1.117.0) (2026-08-19)
+
+
+### Bug Fixes
+
+* **advance-dispatch:** เติมหน่วยให้เองเมื่อ client ไม่ได้ส่งมา ([594ff89](https://github.com/aegisx-platform/aegisx-starter/commit/594ff899333ad9dc3ee0956371b635fcf7e9d717))
+* **advance-dispatch:** ใบรับที่ตรวจรับแล้วบันทึกจ่ายล่วงหน้าได้ ([e89b36a](https://github.com/aegisx-platform/aegisx-starter/commit/e89b36a03873f4893b6b39a1aba1b1d1d648f7bc))
+* **master-data:** distribution-types เรียกไม่ได้เพราะ prefix ซ้อนสองชั้น ([483344d](https://github.com/aegisx-platform/aegisx-starter/commit/483344d673c96c47e88ae21b7b01bb2042f4772a))
+* **tooling:** build:schemas ไม่ชนพอร์ต dev API + proxy เลือกพอร์ตได้ ([82c4dba](https://github.com/aegisx-platform/aegisx-starter/commit/82c4dba9d768336374bd45982d12f37dae1e2ea0))
+
+
+### Features
+
+* **advance-dispatch:** กรอกปลายทางตอนจ่ายล่วงหน้า + เลิกตัด stock ก่อนลงรับ ([20768de](https://github.com/aegisx-platform/aegisx-starter/commit/20768de309f7d8883dd3e35419d1b7ed61d7231a))
+* **advance-dispatch:** จ่ายล่วงหน้าออกใบเบิกจริงตั้งแต่ตอนบันทึก ([5a72ef0](https://github.com/aegisx-platform/aegisx-starter/commit/5a72ef094477ace5c1c1ef78f5de28ddb0915612))
+* **advance-dispatch:** ตัด stock จ่ายล่วงหน้าตอนลงรับ ในธุรกรรมเดียวกับ POST ([474c0b2](https://github.com/aegisx-platform/aegisx-starter/commit/474c0b2f78e061ac82856c4589d8c7848f87d7c4))
+* **advance-dispatch:** ใบเบิกบอกได้ว่าเป็นการขอไปใช้ล่วงหน้า ([f0a4c3f](https://github.com/aegisx-platform/aegisx-starter/commit/f0a4c3fa3ac646eb0c8acf1560fa646e7aee14ba))
+* **advance-dispatch:** หน้าทะเบียนแสดงใบเบิก + กัน settle ลัดขั้นตอน ([2c6e558](https://github.com/aegisx-platform/aegisx-starter/commit/2c6e558484df107656135b41b479d951c93dcdae))
+* **drug-distributions:** ประเภทการเบิกแสดงเป็น badge + กรองได้ ([1434a89](https://github.com/aegisx-platform/aegisx-starter/commit/1434a897b4b543e2f418524aa4ecd85c2e35bc93))
+
 ## [1.116.3](https://github.com/aegisx-platform/aegisx-starter/compare/v1.116.2...v1.116.3) (2026-08-17)
 
 
