@@ -1,3 +1,18 @@
+# [1.118.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.117.0...v1.118.0) (2026-08-20)
+
+
+### Bug Fixes
+
+* **advance-dispatch:** ตัด stock ย้อนหลังจากหน้าทะเบียนได้แม้ผูกใบเบิกแล้ว ([afad484](https://github.com/aegisx-platform/aegisx-starter/commit/afad48440b9a4a31676d56bf0b266c4d62775dac))
+
+
+### Features
+
+* **advance-dispatch:** จ่ายล่วงหน้าผูกกับใบเบิกที่คลังย่อยคีย์ค้างไว้ได้ ([e2271b7](https://github.com/aegisx-platform/aegisx-starter/commit/e2271b754d53800a30cd89835dd2cfdf403e57db))
+* **advance-dispatch:** เติมจำนวนจากใบเบิกให้เอง + หน้าทะเบียนบอกชัดว่าทำอะไรต่อ ([08c4616](https://github.com/aegisx-platform/aegisx-starter/commit/08c4616b2650c19a6d57890a922e06fe388074ce))
+* **receipts:** ค้น PO ด้วยเลขของ รพ. + กรองตามช่วงกำหนดส่ง ([90004ac](https://github.com/aegisx-platform/aegisx-starter/commit/90004acd14bf7dabb2c854c6ecd2699532217a7b))
+* **requisitions:** หน้าจัดการใบเบิกบอกได้ว่าใบไหนเป็นการขอไปใช้ล่วงหน้า ([4a63665](https://github.com/aegisx-platform/aegisx-starter/commit/4a63665e84a54260025df0295fe007993e7200cc))
+
 # [1.117.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.116.3...v1.117.0) (2026-08-19)
 
 
