@@ -1,3 +1,16 @@
+# [1.119.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.118.0...v1.119.0) (2026-08-22)
+
+
+### Bug Fixes
+
+* **receipts:** ยอดรับสะสมต้องไม่นับใบรับที่ยังไม่ผ่านตรวจรับ ([4bf8e8f](https://github.com/aegisx-platform/aegisx-starter/commit/4bf8e8fe8b3973a69942061bedfd7d7187cd0913))
+
+
+### Features
+
+* **advance-dispatch:** เลือกใบเบิกที่ค้างแล้วสร้างจ่ายล่วงหน้าทีเดียวหลายใบ ([d2b922f](https://github.com/aegisx-platform/aegisx-starter/commit/d2b922f7a4025f3ee7d433aee75be0ce82c1aced))
+* **receipts:** แสดงเลข PO ของโรงพยาบาล + ค้นใบรับจากชื่อยาและเลข PO ได้ ([a13d720](https://github.com/aegisx-platform/aegisx-starter/commit/a13d72018228d263d45de2b0429b10ec04232f67))
+
 # [1.118.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.117.0...v1.118.0) (2026-08-20)
 
 
