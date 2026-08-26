@@ -1,3 +1,31 @@
+# [1.120.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.119.0...v1.120.0) (2026-08-26)
+
+
+### Bug Fixes
+
+* **drugs:** บันทึก/เพิ่มยาแล้วกลับหน้ารายการยา ไม่ใช่หน้า browse ([8340083](https://github.com/aegisx-platform/aegisx-starter/commit/8340083e3e0bd3f7b5d37d5b69ae551eb803c240))
+* **inventory:** คลังย่อยอ่านค่าโหมด "เบิกทีละกลุ่มยา" ได้ — เดิมโดน 403 เงียบ ([43720c3](https://github.com/aegisx-platform/aegisx-starter/commit/43720c378c10619e23c8b01c7e4e0048b2ed80a9))
+* **main-warehouse:** ใบจัดยาจัดกลุ่มด้วยกลุ่มยาจริง (FK) ไม่ใช่คอลัมน์ข้อความคนละแกน ([8105b65](https://github.com/aegisx-platform/aegisx-starter/commit/8105b657f77c4f5b6eab927df321a061b9e6ac9f))
+* **main-warehouse:** ปุ่มจัดอัตโนมัติครอบทุกใบตามตัวกรอง + เลือกแบบใบจัดยาได้ ([cfe425a](https://github.com/aegisx-platform/aegisx-starter/commit/cfe425ab992368ad9b5d38cecf6e20bb1c3af082))
+* **master-data:** เพิ่มยาสามัญไม่ได้แล้วไม่รู้สาเหตุ — บอกให้ชัดว่าติดอะไร ([89c12c0](https://github.com/aegisx-platform/aegisx-starter/commit/89c12c040db1e8d1f45902a21733d85903d7057d)), closes [#1](https://github.com/aegisx-platform/aegisx-starter/issues/1)
+* **procurement:** แก้วิธีจัดซื้อที่ PR แล้วใบสั่งซื้อพิมพ์ตามวิธีใหม่ ([356ce4c](https://github.com/aegisx-platform/aegisx-starter/commit/356ce4ca2e5a756d8ebcfd0b8ae4547470f08f82))
+* **procurement:** บันทึกจาก PR+PO wizard แล้วอยู่หน้าเดิม ไม่เด้งไป PR detail ([30db0c0](https://github.com/aegisx-platform/aegisx-starter/commit/30db0c01f4a038bc3a82f2374d664f5ef7b6a994))
+* **procurement:** ไฟล์ Word ออกมาเหมือน PDF ทั้งเนื้อหาและการวาง ([3a8f578](https://github.com/aegisx-platform/aegisx-starter/commit/3a8f578ab5d7a2f67fd6ee45f172868be13fab0d))
+* **procurement:** หน้าติดตามจัดซื้อ ค้นหาชื่อยาได้ + พิมพ์แล้วกรองทันที ([ca64ee7](https://github.com/aegisx-platform/aegisx-starter/commit/ca64ee730ff591454817d1246d829734bf14aeff))
+* **procurement:** เอกสารพิมพ์หน่วยราคาตามที่ผู้ใช้กรอก ไม่แทนด้วยหน่วยฐานของยา ([0ecf7e0](https://github.com/aegisx-platform/aegisx-starter/commit/0ecf7e0cb410d379f30858ad395fc240224b0f29))
+* **sub-warehouse:** บังคับเบิกทีละกลุ่มยาที่ฝั่ง API + แก้ใบเบิกแล้วบันทึกรายการยาได้จริง ([b451d54](https://github.com/aegisx-platform/aegisx-starter/commit/b451d54ebbf4a3ff500815dd338fb08778392b34))
+
+
+### Features
+
+* **main-warehouse:** กรอง/แสดงกลุ่มยาในหน้าจัดการใบเบิก + บอกขอบเขตปุ่มจัดอัตโนมัติ ([3968d7b](https://github.com/aegisx-platform/aegisx-starter/commit/3968d7b48e12bb75de26f12038bcc0771b51f776))
+* **main-warehouse:** กรองใบเบิกตามห้อง + ใบเบิก PDF แสดงกลุ่มยาแทนคำว่า "ยา" ([89d0ae8](https://github.com/aegisx-platform/aegisx-starter/commit/89d0ae8718b8c7f1d115dad5e1b7d29b652f0a21))
+* **procurement:** กันหัวข้อ ๗ ค้างท้ายหน้า + toggle บังคับขึ้นหน้าใหม่ที่ข้อ ๗ ([48e87ae](https://github.com/aegisx-platform/aegisx-starter/commit/48e87ae051a4593e00ccd8823dbd7014343d74cf))
+* **procurement:** ช่องเลือกผู้ค้าเป็นแบบพิมพ์ค้นหา — เลิกตัดที่ 100 รายแรก ([0f4e4bf](https://github.com/aegisx-platform/aegisx-starter/commit/0f4e4bf84834c8e3eca273b2f330a832ee746a96))
+* **procurement:** เลือกกรรมการครบ 3 ชุด + เห็นบริษัทของยาตอนเลือกยา ([6227c74](https://github.com/aegisx-platform/aegisx-starter/commit/6227c7447ff5d4a5ca676ada49df961f4f883e81))
+* **receipts:** แยกคอลัมน์ "PO รพ." ในตารางใบรับ ([53b7ab7](https://github.com/aegisx-platform/aegisx-starter/commit/53b7ab72ba22127c7c36b5529ae44d06907d0be9))
+* **sub-warehouse:** เลือกกลุ่มยาแล้วเห็นรายการทันที + บอกเมื่อยาอยู่คนละกลุ่ม ([5dfdda2](https://github.com/aegisx-platform/aegisx-starter/commit/5dfdda2f3b725a2b003d69a1f9cc28d917d7df80))
+
 # [1.119.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.118.0...v1.119.0) (2026-08-22)
 
 
