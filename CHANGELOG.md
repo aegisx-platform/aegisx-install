@@ -1,3 +1,12 @@
+## [1.120.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.120.0...v1.120.1) (2026-08-27)
+
+
+### Bug Fixes
+
+* **main-warehouse:** จ่ายยาเสร็จแล้วเด้ง "ใบเบิกยา-เวชภัณฑ์" ให้ ไม่ใช่ใบจัดยา ([03816fb](https://github.com/aegisx-platform/aegisx-starter/commit/03816fb584ebfe1a104a8bb3b7b2a8361d1d562a))
+* **procurement:** เมนู "รวมทุกฟอร์ม" ก็ต้องมีตัวเลือกบังคับขึ้นหน้าใหม่ที่ข้อ ๗ ([9447f88](https://github.com/aegisx-platform/aegisx-starter/commit/9447f88fe8fbbcc92d30e56cd04a4f15b53fb8ed))
+* **receipts:** ใบตรวจรับ e-GP เยื้องย่อหน้าแรก + ตัดคำว่า "วิธี" ที่ซ้ำ ([88b0a55](https://github.com/aegisx-platform/aegisx-starter/commit/88b0a55ed65b9ba16eb3c264762bdd36de0ebc2b))
+
 # [1.120.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.119.0...v1.120.0) (2026-08-26)
 
 
