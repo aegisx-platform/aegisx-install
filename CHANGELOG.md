@@ -1,3 +1,10 @@
+## [1.120.2](https://github.com/aegisx-platform/aegisx-starter/compare/v1.120.1...v1.120.2) (2026-08-28)
+
+
+### Bug Fixes
+
+* **main-warehouse:** แนะนำลอตให้ตรงยี่ห้อ — เดิมหยิบลอตของยาสามัญเดียวกันคนละยี่ห้อ ([c2d03aa](https://github.com/aegisx-platform/aegisx-starter/commit/c2d03aa6c48e6bd1158ef5633bbbfd9e5a5829a4))
+
 ## [1.120.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.120.0...v1.120.1) (2026-08-27)
 
 
