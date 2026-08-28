@@ -1,3 +1,20 @@
+# [1.121.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.120.2...v1.121.0) (2026-08-28)
+
+
+### Bug Fixes
+
+* **receipts:** การ์ดสถานะด้านบนกดแล้วไม่กรอง เมื่ออยู่แท็บอื่น ([3277a2e](https://github.com/aegisx-platform/aegisx-starter/commit/3277a2e99317c4639b0cf6d0a92e776ddf8a61e0))
+* **receipts:** การ์ดสถิติหน้ารับเวชภัณฑ์ เหลือเฉพาะสถานะที่ใช้จริง ([819af59](https://github.com/aegisx-platform/aegisx-starter/commit/819af59c8395511f8bed12404a517cec1b52dc4e))
+* **receipts:** ใบตรวจรับ — ชื่อผู้ลงนามอยู่กึ่งกลางเส้นจุด ([2884253](https://github.com/aegisx-platform/aegisx-starter/commit/28842532e17d90d305cdcb6921eff74a33a3eb81))
+* **receipts:** ใบตรวจรับ — ลงวันที่ตามใบขอซื้อ + ชื่อยาแบบเดียวกับข้อ ๒ ([5485e15](https://github.com/aegisx-platform/aegisx-starter/commit/5485e1574d802409335791b11e28ac8feaff966b))
+* **receipts:** ใบตรวจรับ e-GP ให้ตรงกับใบตัวอย่างของคลังใหญ่ (PO 3693) ([6dd3a62](https://github.com/aegisx-platform/aegisx-starter/commit/6dd3a629b4a657a4095fd47c5ad380f0c1ddec5d))
+
+
+### Features
+
+* **receipts:** แก้วันที่ตรวจรับได้ในฟอร์มแก้ไขใบรับ ([333f62e](https://github.com/aegisx-platform/aegisx-starter/commit/333f62e11f19ef623aa89e2ccf089e6bd7ef5c3a))
+* **receipts:** ลงรับด่วนเสร็จแล้วเข้าหน้าใบรับนั้นเลย ([e44f978](https://github.com/aegisx-platform/aegisx-starter/commit/e44f978a9a1023e304aba8ea5aaf0b1932672c9d))
+
 ## [1.120.2](https://github.com/aegisx-platform/aegisx-starter/compare/v1.120.1...v1.120.2) (2026-08-28)
 
 
