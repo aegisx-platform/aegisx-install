@@ -1,3 +1,20 @@
+# [1.122.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.121.1...v1.122.0) (2026-08-29)
+
+
+### Bug Fixes
+
+* **receipts:** ใบเสนอลงนาม เว้นระยะใต้บล็อกหมายเหตุอีก 2 บรรทัด ([f1e5fc7](https://github.com/aegisx-platform/aegisx-starter/commit/f1e5fc7e899fc8be2b1e837f04a0f70fdc10389c))
+
+
+### Features
+
+* **procurement:** ขั้นตอนตรวจรับ บอกชื่อเลขที่ต้องกรอกในช่อง e-GP ([b0070da](https://github.com/aegisx-platform/aegisx-starter/commit/b0070dad9950bee398ae5cf8aade31995c3f52bb))
+* **procurement:** ขั้นตอนใบสั่งซื้อ บอกชื่อเลขที่ต้องกรอกในช่อง e-GP ([c515c8b](https://github.com/aegisx-platform/aegisx-starter/commit/c515c8baac03ff4e3165d2bd78209f1cc169a799))
+* **procurement:** เพิ่ม "ใบตรวจรับ + ใบเสนอลงนาม" ในเมนูปุ่มพิมพ์หน้าติดตามจัดซื้อ ([2926ba5](https://github.com/aegisx-platform/aegisx-starter/commit/2926ba511c6da29f666a969bf7f13f137d76284d))
+* **procurement:** เพิ่มช่อง "เลขคุมใบตรวจรับ e-GP" ในขั้นตรวจรับ ([5fd96ba](https://github.com/aegisx-platform/aegisx-starter/commit/5fd96babc0c25c76002ba91d4cc02f23f961c1c3))
+* **procurement:** เรียงขั้นตอนจัดซื้อตามจังหวะงาน แทนการเรียงตามระบบ ([a7471b8](https://github.com/aegisx-platform/aegisx-starter/commit/a7471b80971e2428efa6c80ddbe6c62d1ba2ab2e))
+* **receipts:** ใบเสนอลงนาม เพิ่มหมายเหตุเลขอ้างอิง e-GP ที่หัวใบ ([7842ee9](https://github.com/aegisx-platform/aegisx-starter/commit/7842ee99f6c81c283ed0bcf664776ed19ad24aa2))
+
 ## [1.121.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.121.0...v1.121.1) (2026-08-29)
 
 
