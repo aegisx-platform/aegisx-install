@@ -1,3 +1,10 @@
+## [1.121.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.121.0...v1.121.1) (2026-08-29)
+
+
+### Bug Fixes
+
+* **receipts:** ใบตรวจรับ — ข้อ ๑/๒/๓ เยื้องเท่าย่อหน้า ([0141267](https://github.com/aegisx-platform/aegisx-starter/commit/0141267c1a3accf61ec2e8de6ae168805803efe2))
+
 # [1.121.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.120.2...v1.121.0) (2026-08-28)
 
 
