@@ -1,3 +1,21 @@
+# [1.124.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.123.0...v1.124.0) (2026-08-30)
+
+
+### Bug Fixes
+
+* **receipts:** กันกดลงรับรอบใหม่เมื่อของถูกคีย์ครบในใบร่างแล้ว ([d6f20d2](https://github.com/aegisx-platform/aegisx-starter/commit/d6f20d2b9f3d28bc35b8b30c913dd29d52f46b1b))
+* **receipts:** ของมาแต่ละรอบเปิดใบรับใบใหม่ได้ตามระเบียบ ([2d92c1a](https://github.com/aegisx-platform/aegisx-starter/commit/2d92c1ac2ead86bf66bf4dc4d2df60b4b9baeac6))
+* **receipts:** คนคลังได้กรรมการตรวจรับจากใบสั่งซื้ออัตโนมัติ ([7042c02](https://github.com/aegisx-platform/aegisx-starter/commit/7042c02989a26e218d787780842a25e4985a11b6))
+* **receipts:** ช่องค้นหาในรายการใบรับใช้งานได้จริง ([73de738](https://github.com/aegisx-platform/aegisx-starter/commit/73de738b74c8e21f8d86b301d961f42aee11c67e))
+* **receipts:** บอกตั้งแต่ในลิสต์ว่า PO ไหนรับครบแล้ว + ปุ่มล้าง PO ที่เลือก ([a1c457a](https://github.com/aegisx-platform/aegisx-starter/commit/a1c457ad99cc947afdc59db5d1a9f5e85e656a13))
+
+
+### Features
+
+* **purchase-orders:** แท็บ "การส่งของ" — ประวัติทุกรอบที่ผู้ขายส่งของ ([16a4106](https://github.com/aegisx-platform/aegisx-starter/commit/16a4106235443f44b5a3d9f8dedd725b21880416))
+* **receipts:** ตัวเลือก PO ในลงรับด่วน แสดง PO ของ รพ. และค้นด้วยเลขนั้นได้ ([aca430b](https://github.com/aegisx-platform/aegisx-starter/commit/aca430b2cf67a7fb75d4958da195179893d6a857))
+* **receipts:** ใบรับบอกว่าเป็นของรอบส่งที่เท่าไหร่ของ PO ([736e735](https://github.com/aegisx-platform/aegisx-starter/commit/736e735af5ad7b0b92322b828f2c28cef3945a0c))
+
 # [1.123.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.122.0...v1.123.0) (2026-08-30)
 
 
