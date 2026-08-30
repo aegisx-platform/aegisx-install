@@ -1,3 +1,18 @@
+# [1.123.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.122.0...v1.123.0) (2026-08-30)
+
+
+### Bug Fixes
+
+* **receipts:** ฟอร์มใบรับคิด "เหลือรับ" หักใบอื่น ไม่หักตัวเอง ([e08a896](https://github.com/aegisx-platform/aegisx-starter/commit/e08a89670aebd17daecf0c99beec3301c797b8ea))
+
+
+### Features
+
+* **procurement:** รายการ PO รับ exclude_receipt_id ไม่ให้ใบรับหักยอดตัวเอง ([19e4491](https://github.com/aegisx-platform/aegisx-starter/commit/19e44913dc0e6b70d7e1fdb0253daadb1187ecf2))
+* **receipts:** กันใบรับ Non-PO ซ้ำ + ลบคอลัมน์ตาย qty_received ([8f3b9bd](https://github.com/aegisx-platform/aegisx-starter/commit/8f3b9bd1cecd3064f3d47587b8493078856d0c77))
+* **receipts:** กันเปิดใบรับซ้ำจาก PO ที่มีใบค้าง (409) ([a6c13fa](https://github.com/aegisx-platform/aegisx-starter/commit/a6c13fa74bfa041226059f94e80688057db53e9b))
+* **receipts:** แท็บค้นหา PO พาไปเติมใบรับเดิม แทนเปิดใบใหม่ ([e621576](https://github.com/aegisx-platform/aegisx-starter/commit/e621576a6d4eba07bc5d19685127d7f8469ac03c))
+
 # [1.122.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.121.1...v1.122.0) (2026-08-29)
 
 
