@@ -1,3 +1,34 @@
+# [1.125.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.124.0...v1.125.0) (2026-08-31)
+
+
+### Bug Fixes
+
+* **procurement:** ปฏิเสธการตรวจรับด้วยเหตุผลยาวเกิน 30 ตัวอักษรไม่ได้ ([57fbe55](https://github.com/aegisx-platform/aegisx-starter/commit/57fbe554e6a5b04ec6aa50d31406cdcc32828207))
+* **receipts:** badge แท็บตรวจรับต้องบอกงานค้าง ไม่ใช่จำนวนผลค้นหา ([0e5f162](https://github.com/aegisx-platform/aegisx-starter/commit/0e5f162192e78e6eac4b537ac517379b0ff1bdbc))
+* **receipts:** จัด layout ปุ่มในแท็บค้นหา PO ไม่ให้ตัดคำสองบรรทัด ([1676de5](https://github.com/aegisx-platform/aegisx-starter/commit/1676de534c24412ba44fc3af05a50701649851dc))
+* **receipts:** แถบแท็บเลื่อนหนีมือทุกครั้งที่สลับ + ยุบแท็บ "รอ POST" ([f4a38ac](https://github.com/aegisx-platform/aegisx-starter/commit/f4a38acdf13009296911a9730a77756b9384b62d))
+* **receipts:** ทำแถบซ่อนใบที่ลงคลังครบแล้วเป็นสวิตช์ พลิกกลับได้ ([155cab5](https://github.com/aegisx-platform/aegisx-starter/commit/155cab50e739b76911787480fe80b81be7fbd6ae))
+* **receipts:** แท็บกับการ์ดกรองซ้อนกัน แยกหน้าที่ให้ชัด ([747d410](https://github.com/aegisx-platform/aegisx-starter/commit/747d410331ec5ce89e056d4fc863bec05f4576be))
+* **receipts:** ปุ่มในคอลัมน์จัดการตกบรรทัด + หาทางเข้าหน้าชุดตรวจรับไม่เจอ ([9646ea0](https://github.com/aegisx-platform/aegisx-starter/commit/9646ea0ad14d3649bb03674e7815e6173bdbfb58))
+* **receipts:** เอาคณะกรรมการออกจากหน้าลงรับ ย้ายทางเข้าชุดเป็นปุ่มหลัก ([9e78851](https://github.com/aegisx-platform/aegisx-starter/commit/9e7885139f955d8f40da71c242577d8c2e382e88))
+
+
+### Features
+
+* **procurement:** ตรวจรับครั้งเดียวต่อใบสั่งซื้อ ครอบใบรับทุกรอบ ([87992f2](https://github.com/aegisx-platform/aegisx-starter/commit/87992f286a3255a4f097d15c1d5d0e489dfc1a5f))
+* **procurement:** ตาราง po_inspections — การตรวจรับระดับใบสั่งซื้อ ([008bad4](https://github.com/aegisx-platform/aegisx-starter/commit/008bad4410d00adefbd9ddcc62679ca7e7fa47c3))
+* **procurement:** ใบตรวจรับฉบับเดียวต่อชุด อ้างอิงการส่งมอบครบทุกครั้ง ([cf6dd69](https://github.com/aegisx-platform/aegisx-starter/commit/cf6dd69d1df046a741b25fcef33da45e80d5c6ed))
+* **procurement:** ลิสต์ตรวจรับรายใบสั่งซื้อ — API สำหรับหน้าคลัง ([3803d3d](https://github.com/aegisx-platform/aegisx-starter/commit/3803d3d00efea83b0d524f605fff2debb6c5644a))
+* **receipts:** แท็บตรวจรับ ลิสต์รายใบสั่งซื้อ พร้อมการ์ดสรุป ([b7359bb](https://github.com/aegisx-platform/aegisx-starter/commit/b7359bb25525de661add22b57ebdeed01de6e083))
+* **receipts:** ปุ่มงานตรวจรับในลิสต์รายใบสั่งซื้อ ([b272d01](https://github.com/aegisx-platform/aegisx-starter/commit/b272d011f17ca147955a7540f22cb01bd4668d2d))
+* **receipts:** หน้าจอตรวจรับครั้งเดียวครอบใบรับทุกรอบ ([face281](https://github.com/aegisx-platform/aegisx-starter/commit/face2818a00249368ff9926c36768fd34749a9a0))
+* **receipts:** หน้าชุดตรวจรับ — เห็นใบรับทุกรอบที่ตรวจรับพร้อมกัน ([7e87d91](https://github.com/aegisx-platform/aegisx-starter/commit/7e87d917989b8c7b1d899f6e3d36ab12590bc984))
+
+
+### Reverts
+
+* **receipts:** เอาตาราง "รายละเอียดการส่งมอบ" ออกจากใบตรวจรับ e-GP ([512a163](https://github.com/aegisx-platform/aegisx-starter/commit/512a163e20f5845d64267eab5e8b738627039d17))
+
 # [1.124.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.123.0...v1.124.0) (2026-08-30)
 
 
