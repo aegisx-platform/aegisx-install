@@ -1,3 +1,25 @@
+# [1.126.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.125.0...v1.126.0) (2026-09-03)
+
+
+### Bug Fixes
+
+* **ci:** ย้าย testPathIgnorePatterns ไปไว้ใน jest config แทนส่งทาง CLI ([a635b09](https://github.com/aegisx-platform/aegisx-starter/commit/a635b09b9f7d2073c32c132b96fb09448d8b2992))
+* **inventory:** ตัดสต็อกตามวันหมดอายุ (FEFO) และห้ามจ่ายโดยไม่มีเลขล็อต ([8028776](https://github.com/aegisx-platform/aegisx-starter/commit/80287760e1478ecd49de05ef32ed1bbb64d5ae3d))
+* **inventory:** เรียงล็อตด้วย orderBy ธรรมดา แทน orderByRaw ที่ทำ spec พัง ([4c8fe7e](https://github.com/aegisx-platform/aegisx-starter/commit/4c8fe7ece2a51ffa2f91ba2764c0b1643c837125))
+* **rbac:** role คลังเปิดทะเบียนยาคงคลังได้ (403 → 200) ([b736b1a](https://github.com/aegisx-platform/aegisx-starter/commit/b736b1ae6820c744f0cb023b25ea568d8a90003d))
+* **receipts:** ชื่อยาหายในใบรับ เพราะ receipt_items.drug_id ว่าง ([d35e29f](https://github.com/aegisx-platform/aegisx-starter/commit/d35e29f4b4841cc9ec38146715e754518143c454))
+* **receipts:** ตารางแก้ล็อตให้เห็นว่าแก้ได้ · Enter ไล่ช่อง · เลิกยืดหด ([2703862](https://github.com/aegisx-platform/aegisx-starter/commit/270386284865bdb4e31ca3eb798e1ce98f5e0dc2))
+* **receipts:** เลิกบังคับคณะกรรมการ 3 คน ใช้ตามที่ใบสั่งซื้อระบุมา ([b997cc1](https://github.com/aegisx-platform/aegisx-starter/commit/b997cc123197288eb793aca548f1ea2435110ce4))
+* **receipts:** สวิตช์บนลิสต์ตรวจรับกรองด้วย "ของยังมาไม่ครบ" ไม่ใช่ "ลงคลังแล้ว" ([854d5d9](https://github.com/aegisx-platform/aegisx-starter/commit/854d5d9ca3c245d646b08d67d0bc665cd80dc6bf))
+* **test:** เทสฝั่ง api เขียวบนเครื่องสะอาดจริง ไม่ใช่เพราะ cache ([79aa84d](https://github.com/aegisx-platform/aegisx-starter/commit/79aa84d194e582509c74eda4e4eafc4558964102))
+
+
+### Features
+
+* **receipts:** แก้เลขล็อต/วันหมดอายุ/จำนวน ได้ในตารางหน้าชุดตรวจรับ ([20ffb14](https://github.com/aegisx-platform/aegisx-starter/commit/20ffb14829197e4e8410b445b37b9577800964f2))
+* **receipts:** จัดหน้าชุดตรวจรับใหม่ + แถบขั้นตอน + พิมพ์รวม 2 ใบ ([829c9e0](https://github.com/aegisx-platform/aegisx-starter/commit/829c9e07e10894c20d9deb21adc143e85af191d8))
+* **receipts:** ตรวจรับจบในหน้าเดียว — เปิดดูได้ทุกแถว แก้ล็อตในหน้า ([dca2dfe](https://github.com/aegisx-platform/aegisx-starter/commit/dca2dfe570906afefe36c2569a97d299368f77d1))
+
 # [1.125.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.124.0...v1.125.0) (2026-08-31)
 
 
