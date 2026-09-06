@@ -1,3 +1,19 @@
+# [1.127.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.126.0...v1.127.0) (2026-09-06)
+
+
+### Bug Fixes
+
+* **inventory:** คลังกดการ์ด "แลกเปลี่ยนยาหมดอายุ" แล้วเด้งออก เพราะ route อยู่ผิดฝั่ง ([ccf445a](https://github.com/aegisx-platform/aegisx-starter/commit/ccf445a248fecbb72c605d5ab76efa50fa5952d5))
+
+
+### Features
+
+* **inventory:** กดเลขที่ใบส่งคืนเปิดรายละเอียดได้เลย ([e547ea5](https://github.com/aegisx-platform/aegisx-starter/commit/e547ea538a1880fb90003f63250f46d7e68c664b))
+* **inventory:** ใบส่งคืนยาหมดอายุใส่รายการยาได้จริง (เดิมบันทึกได้แต่ใบเปล่า) ([212044e](https://github.com/aegisx-platform/aegisx-starter/commit/212044e69a336eacf6e6fd476da1f5d85e457107))
+* **inventory:** ปิดช่องว่างใบส่งคืนยาหมดอายุให้พร้อมปล่อยรุ่น ([1156bfa](https://github.com/aegisx-platform/aegisx-starter/commit/1156bfae6d829035f6f1b436d0a72f66274a8900))
+* **inventory:** รับยาทดแทนจากบริษัทเข้าคลังเป็นล็อตใหม่ได้แล้ว ([bcd0b73](https://github.com/aegisx-platform/aegisx-starter/commit/bcd0b7325e2faf9078fb0b5d1b2a1d217cffbb09))
+* **inventory:** ส่งคืนยาหมดอายุแล้วสต็อกตัดจริง + ยกเลิกแล้วคืนสต็อกกลับ ([df8928d](https://github.com/aegisx-platform/aegisx-starter/commit/df8928d6025260db2e365037d392bdb7d8b78dc3))
+
 # [1.126.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.125.0...v1.126.0) (2026-09-03)
 
 
