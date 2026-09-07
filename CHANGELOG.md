@@ -1,3 +1,17 @@
+# [1.130.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.129.0...v1.130.0) (2026-09-07)
+
+
+### Bug Fixes
+
+* **receipts:** ปุ่มส่งตรวจรับในหน้าแก้ไข ต้องตั้งกรรมการก่อน ไม่ใช่ยิงข้าม ([d6484fa](https://github.com/aegisx-platform/aegisx-starter/commit/d6484fac86f3424996824d9030788acad3b5b762))
+
+
+### Features
+
+* **inventory:** พิมพ์สต็อกการ์ดเป็น PDF ตามช่วงวันที่ที่กรองอยู่ ([c78685f](https://github.com/aegisx-platform/aegisx-starter/commit/c78685fa87757c1dd6a68f390450ec85916ee88c))
+* **inventory:** สต็อกการ์ดป้ายที่มาของทุกแถวรับเข้า รวม "ตาม PO" ([8f038fd](https://github.com/aegisx-platform/aegisx-starter/commit/8f038fdccef2ae344e3a39d16302ead1e5dc917f))
+* **receipts:** ลงรับด่วนแบบไม่มี PO เลือกยาได้ในกล่องเลย ([c6d4237](https://github.com/aegisx-platform/aegisx-starter/commit/c6d423748e2301f13ed82278dad7d55bd5d12592))
+
 # [1.129.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.128.0...v1.129.0) (2026-09-07)
 
 
