@@ -1,3 +1,20 @@
+# [1.129.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.128.0...v1.129.0) (2026-09-07)
+
+
+### Bug Fixes
+
+* **inventory:** ย้ายจำนวนต่อหน่วยใหญ่ขึ้นมาไว้ในบรรทัด ไม่ใช่ใน tooltip ([7eaee21](https://github.com/aegisx-platform/aegisx-starter/commit/7eaee211286d5946caad1bcd6f14d1727c78a373))
+* **inventory:** หน้าจออนุมัติ+จ่ายใช้หน่วยฐาน ไม่ใช่หน่วยที่ผู้ขอเลือก ([0af3643](https://github.com/aegisx-platform/aegisx-starter/commit/0af3643bd2e86156eeb046e0568d00f085b16113))
+* **receipts:** บรรทัด "บรรจุ" ในลงรับด่วนใช้หน่วยฐาน ไม่ใช่หน่วยที่สั่งซื้อ ([a69afda](https://github.com/aegisx-platform/aegisx-starter/commit/a69afda345130b2a174a2130b965bbc2f830c764))
+
+
+### Features
+
+* **inventory:** ใบเบิกยาบอกยอดเป็นหน่วยใหญ่ใต้ชื่อยา ([fcc9951](https://github.com/aegisx-platform/aegisx-starter/commit/fcc995116f47f5a1f3b9e12a6c44b1ef9932f8db))
+* **inventory:** แสดงหน่วยใหญ่ใต้ยอดคงเหลือในทะเบียนยาคงคลัง ([1ed7e5d](https://github.com/aegisx-platform/aegisx-starter/commit/1ed7e5de9485ea6318280f2e629a44405e25919e))
+* **inventory:** หน่วยใหญ่ในหน้ารายละเอียดยา + ตั้งจุดสั่งซื้อเป็นชุด ([5158854](https://github.com/aegisx-platform/aegisx-starter/commit/51588545ada50ffb341275c1cbd3c92bbdbdd57a))
+* **receipts:** ใบรับที่ยังไม่ส่งตรวจ มีลิงก์ไปชุดตรวจรับของ PO ([46a6326](https://github.com/aegisx-platform/aegisx-starter/commit/46a6326ada162870cb2f708372540d7a1f8130db))
+
 # [1.128.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.127.0...v1.128.0) (2026-09-07)
 
 
