@@ -1,3 +1,25 @@
+# [1.128.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.127.0...v1.128.0) (2026-09-07)
+
+
+### Bug Fixes
+
+* **inventory:** เก็บ 4 ข้อจาก code review ของ PR [#511](https://github.com/aegisx-platform/aegisx-starter/issues/511) ก่อนปล่อยรุ่น ([5be1f14](https://github.com/aegisx-platform/aegisx-starter/commit/5be1f142ba4c2e57b452e31ad48f168b4bac8c7d))
+* **inventory:** เก็บงานรีวิวรอบสองก่อนปล่อยรุ่น (2 High + 2 Medium) ([32b4e81](https://github.com/aegisx-platform/aegisx-starter/commit/32b4e81c18047554eafc6d6ae65018634eaaecf2))
+* **inventory:** เก็บงานรีวิวรอบสาม — ความเร่งด่วนใบขอซื้อ, down() ที่ล้างทั้งตาราง ([0fd5e04](https://github.com/aegisx-platform/aegisx-starter/commit/0fd5e04e2e07ad50dd5d244e10dc315e0a2546e3))
+* **inventory:** อัตราใช้ต่อวันไม่เคยถูกคำนวณ จุดสั่งซื้อทั้งระบบเลยอิงเลข 0 ([21e6825](https://github.com/aegisx-platform/aegisx-starter/commit/21e682515e5dae34014b42025325c0f7fff77190))
+* **procurement:** ใบขอซื้อ priority ไม่ตรง enum ฐานข้อมูล ทำให้อ่าน/ส่งใบไม่ได้ ([fe8e846](https://github.com/aegisx-platform/aegisx-starter/commit/fe8e846f6b790e1c177709420a8b362549e75edf))
+* **receipts:** ยอดเงินหัวใบรับไม่เคยถูกคำนวณ กราฟมูลค่ารับเข้าเลยเป็น 0 ทุกเดือน ([819007b](https://github.com/aegisx-platform/aegisx-starter/commit/819007b61a8ccbfd312b096fe672280b764d44b3))
+* **stock-alerts:** สร้างใบขอซื้อจากรายการที่ถึงจุดสั่งซื้อได้จริง + ให้สิทธิ์งานจัดซื้อ ([00ba7cb](https://github.com/aegisx-platform/aegisx-starter/commit/00ba7cb580e98725e5776089da8d5bff8d2eb846))
+
+
+### Features
+
+* **inventory-levels:** เปิดสต็อกการ์ดจากรหัส/ชื่อยา + รหัสยา HIS + ตัวกรองงานคลัง ([06ec16d](https://github.com/aegisx-platform/aegisx-starter/commit/06ec16de1cf3e34bff328b1da92f337fecfe866c))
+* **inventory:** ตั้งจุดสั่งซื้อเป็นชุดจากอัตราใช้จริง (คำนวณให้ดูก่อน แล้วค่อยบันทึก) ([5415d46](https://github.com/aegisx-platform/aegisx-starter/commit/5415d462df51066694aeef044114b79f960dbbf3))
+* **inventory:** ปิดงานค้างจุดสั่งซื้อ — พอใช้กี่วัน, ยอดที่ควรสั่ง, ROP Dashboard ([85067e9](https://github.com/aegisx-platform/aegisx-starter/commit/85067e986b350f08b25fe77d122e794c87f755c4))
+* **main-warehouse:** เปิดทางเข้าหน้ายาถึงจุดสั่งซื้อ + ซ่อนปุ่มที่กดแล้ว 403 ([b991495](https://github.com/aegisx-platform/aegisx-starter/commit/b9914953229e24e3dac18020227629eec4797337))
+* **receipts:** ชุดตรวจรับมีเลขที่เอกสารของตัวเอง (INS-YYYYMM-NNNN) ([0c655ee](https://github.com/aegisx-platform/aegisx-starter/commit/0c655eed77323c9b684225e94f7a55f2829bf959))
+
 # [1.127.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.126.0...v1.127.0) (2026-09-06)
 
 
