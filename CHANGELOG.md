@@ -1,3 +1,22 @@
+# [1.131.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.130.0...v1.131.0) (2026-09-08)
+
+
+### Bug Fixes
+
+* **drugs:** บันทึกยาใหม่ไม่ได้ — สามช่องบังคับในฐานแต่ฟอร์มปล่อยว่าง ([b6d8366](https://github.com/aegisx-platform/aegisx-starter/commit/b6d8366e2ac4f29dd493fdfd12f06c0ab97d6093))
+* **receipts:** ใบที่ยังไม่กรอก lot/วันหมดอายุ ต้องตอบ 400 พร้อมข้อความ ไม่ใช่ 500 ([aa6c1c4](https://github.com/aegisx-platform/aegisx-starter/commit/aa6c1c438f3258d1e63f2e74ee8c03a926474495))
+* **receipts:** ลบจ่ายล่วงหน้าแล้วต้องถอดรายการออกจากใบเบิกด้วย ([e23cd27](https://github.com/aegisx-platform/aegisx-starter/commit/e23cd27a75edd913776d4c3aed9d52ffc0a1f54b))
+* **web:** ช่องวันที่ทั้งแอปแสดงเป็นไทย/พ.ศ. แทน 9/7/2026 ([533a021](https://github.com/aegisx-platform/aegisx-starter/commit/533a0218e8ef9207ed66628b07ce96d3a8c17df1))
+
+
+### Features
+
+* **drugs:** จัดฟอร์มยาใหม่ — ผู้ขายคำเดียว, ช่องบังคับอยู่ที่เดียว, เพิ่มผู้ขายได้ในหน้า ([fa0e8f9](https://github.com/aegisx-platform/aegisx-starter/commit/fa0e8f9c82c96b9185ca1434f26fa51bb9931b62))
+* **inventory:** ใบเบิกบอกขนาดบรรจุ "1 ขวด × 1,000 เม็ด" แม้เบิกไม่ถึงหนึ่งกล่อง ([a3e6587](https://github.com/aegisx-platform/aegisx-starter/commit/a3e6587358d4e833079a32cacefd92f81f919e8e))
+* **receipts:** แก้จำนวนจ่ายล่วงหน้าได้ ไม่ต้องลบทิ้งแล้วบันทึกใหม่ ([9db0c6d](https://github.com/aegisx-platform/aegisx-starter/commit/9db0c6d1337c0d3eb872388b618126e655f16db7))
+* **receipts:** ดาวน์โหลดใบตรวจรับ/ใบเสนอลงนาม/เอกสารรวม เป็นไฟล์ Word ([486b58b](https://github.com/aegisx-platform/aegisx-starter/commit/486b58b30bad140c0d3f440ac11ece589b785c3d))
+* **receipts:** บันทึกเวลาที่ของมาถึง + ย้ายวันที่ตรวจรับไปเป็นของชุด ([c59c6ab](https://github.com/aegisx-platform/aegisx-starter/commit/c59c6aba500437097c81702c5b34c1637d98f63e))
+
 # [1.130.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.129.0...v1.130.0) (2026-09-07)
 
 
