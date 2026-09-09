@@ -1,3 +1,22 @@
+# [1.132.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.131.0...v1.132.0) (2026-09-09)
+
+
+### Bug Fixes
+
+* **main-warehouse:** การ์ด "ทั้งหมด" นับใบจ่ายบางส่วนด้วย + คลังใหญ่เห็นประเภทการเบิก ([f273379](https://github.com/aegisx-platform/aegisx-starter/commit/f2733798945e7a74ba3427cb9287273e4732098a))
+
+
+### Features
+
+* **drug-distributions:** กรองใบจ่ายยาตามกลุ่มยา (โต๊ะจ่าย) ได้ ([a0d44bd](https://github.com/aegisx-platform/aegisx-starter/commit/a0d44bdc51d7999a72cf1a7154c8e7d2f27ac929))
+* **drug-distributions:** การ์ดสรุปนับตามตัวกรอง + จำตัวกรองไว้ให้ + ซ่อนสถานะที่เลิกใช้ ([d18a99d](https://github.com/aegisx-platform/aegisx-starter/commit/d18a99d7fc0bb671f425a096f6dae34d585430e8))
+* **rbac:** คลังใหญ่เพิ่ม/แก้ข้อมูลยาได้ + ตัวกรองกลุ่มยาในใบเบิกมีตัวเลือก ([564b44d](https://github.com/aegisx-platform/aegisx-starter/commit/564b44dc94b67c77dbce7700b1949a0b35707419))
+
+
+### Reverts
+
+* **web:** เอาการแก้ proxy เป็น 127.0.0.1 ออก — วินิจฉัยสาเหตุผิด ([7601fb0](https://github.com/aegisx-platform/aegisx-starter/commit/7601fb017a16041dfd109ea36a83a3bd17c77ef7))
+
 # [1.131.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.130.0...v1.131.0) (2026-09-08)
 
 
