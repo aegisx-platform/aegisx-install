@@ -1,3 +1,11 @@
+# [1.133.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.132.0...v1.133.0) (2026-09-10)
+
+
+### Features
+
+* **receipts:** ตั้งค่าให้ใบรับที่ไม่มีใบสั่งซื้อไม่ต้องมีคณะกรรมการตรวจรับ ([53745c0](https://github.com/aegisx-platform/aegisx-starter/commit/53745c097a3a99e9708bb55e53475f2b1feb0912))
+* **receipts:** ใบตรวจรับ e-GP รองรับใบที่ไม่มีใบสั่งซื้อและไม่มีคณะกรรมการ ([1141daf](https://github.com/aegisx-platform/aegisx-starter/commit/1141daf79e5f2b2da1ea18e825cebc03311a2d01))
+
 # [1.132.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.131.0...v1.132.0) (2026-09-09)
 
 
