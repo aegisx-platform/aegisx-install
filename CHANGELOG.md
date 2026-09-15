@@ -1,3 +1,23 @@
+# [1.134.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.133.0...v1.134.0) (2026-09-15)
+
+
+### Bug Fixes
+
+* **contracts:** ใช้ไปของสัญญานับเฉพาะยาในสัญญา + แปลงหน่วย — view กลางที่เดียว ([b9b0bce](https://github.com/aegisx-platform/aegisx-starter/commit/b9b0bce210284c5c411b9b1398ef6561923d0834))
+* **drugs:** บัญชียาหลักใช้ความหมายเดียวทั้งระบบ — E = อยู่ในบัญชี, N = นอกบัญชี ([3c3792e](https://github.com/aegisx-platform/aegisx-starter/commit/3c3792eba0aa52ef42cb4171426216fd8ada135d))
+* **drugs:** หน้าเรียกดูยา compile ไม่ผ่านหลังรวมแถวบัญชียาหลัก ([9d07b1e](https://github.com/aegisx-platform/aegisx-starter/commit/9d07b1e7ef2474f31e792a42d5c71ccc311688e5))
+* **import:** สคริปต์เตรียมยา PPK ตั้งบัญชียาหลักตามคอลัมน์ ยา ED ([1f817be](https://github.com/aegisx-platform/aegisx-starter/commit/1f817be021f07d7c78d3e8fba264d0d68734682a))
+* **web:** ไม่มีสิทธิ์ต้องบอกตรง ๆ — เลิกปล่อยให้เข้าแล้วโชว์ค่า default ([4218a09](https://github.com/aegisx-platform/aegisx-starter/commit/4218a09dee9e6925015f5adda098790ccc998e88))
+
+
+### Features
+
+* **contracts:** ค้นหาสัญญาได้จริง · คอลัมน์ใช้ไป/คงเหลือ · preview เต็มจอ ([f92612a](https://github.com/aegisx-platform/aegisx-starter/commit/f92612a0c115e942048774a7be641d5dfb2526e5))
+* **drugs:** ข้อย่อยบัญชียาหลัก ก / ข / ค / ง / จ(1) / จ(2) สำหรับยา ED ([5e39546](https://github.com/aegisx-platform/aegisx-starter/commit/5e3954640016b04993de0350e18e24727f4815e7))
+* **drugs:** ป้ายบัญชียาหลักใส่ตัวย่อ ED/NED ทุกหน้า ([46ac11b](https://github.com/aegisx-platform/aegisx-starter/commit/46ac11b6c540742e0c71767fc1b35da229e81b59))
+* **drugs:** ให้สถานะ ED ตามบัญชียาหลักอัตโนมัติ — ปรับยา 1,372 ตัวที่ขัดกัน ([0aa10ff](https://github.com/aegisx-platform/aegisx-starter/commit/0aa10ffcffa14fc0173f4725c71e36e933364099))
+* **receipts:** ลงรับด่วนแสดงยอดที่แปลงเป็นหน่วยฐานใต้ช่องรับจริง ([4fb93dc](https://github.com/aegisx-platform/aegisx-starter/commit/4fb93dc965a2ef93305d15b6b3403f7e23cdb1c9))
+
 # [1.133.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.132.0...v1.133.0) (2026-09-10)
 
 
