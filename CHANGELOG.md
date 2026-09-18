@@ -1,3 +1,41 @@
+# [1.135.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.134.0...v1.135.0) (2026-09-18)
+
+
+### Bug Fixes
+
+* **auth:** สิทธิ์หายหมดทุกครั้งที่รีเฟรชหน้า (NG0200 circular dependency) ([ae6f775](https://github.com/aegisx-platform/aegisx-starter/commit/ae6f77572f4dae9edef0c2706d9b7dbed1e99176))
+* **auth:** หยุดวงจร profile 401 → refresh 429 ที่ทำให้หน้าค้างขาว ([4ba0832](https://github.com/aegisx-platform/aegisx-starter/commit/4ba083282c85af20be108dd5e3926622f95b83ce))
+* **budget-requests:** export แผนงบใช้รหัสยา รพ. (drug_code) ([e11896b](https://github.com/aegisx-platform/aegisx-starter/commit/e11896baf6982092cd0e387145d639371e740aaa))
+* **inventory:** รับไม่ครบต้องหักสต็อกปลายทาง ไม่ปล่อยค้างเป็นของผี ([f3decb0](https://github.com/aegisx-platform/aegisx-starter/commit/f3decb014b6d760f1d79ef54a99cd660c10b068c))
+* **locations:** dropdown คลังว่างมาตลอดเพราะเรียก path ที่ไม่มีอยู่จริง ([879f68b](https://github.com/aegisx-platform/aegisx-starter/commit/879f68bbbca741cc8949e4cbf1cff48aa286ad41))
+* **receipts:** ข้อความใต้ช่องเวลาที่รับเปลี่ยนตามค่าในช่อง ([be1e7e1](https://github.com/aegisx-platform/aegisx-starter/commit/be1e7e1b6d33da83e81a0050a85943cf7c0a5f56))
+* **receipts:** ใบรับที่ไม่มี PO ต้องเลือกบรรจุได้ ไม่งั้นสต็อกเข้าน้อยกว่าจริง ([2074dcf](https://github.com/aegisx-platform/aegisx-starter/commit/2074dcf23d3cddf3716666014a1d3c1ac7bf9750))
+* **sub-warehouse:** ป้ายใบเบิกแยก "เบิกจากคลังใหญ่" กับ "ขอโอนจากคลังย่อย" ([a235622](https://github.com/aegisx-platform/aegisx-starter/commit/a2356228b8b202edf1bae3885f16cf3bceb1b4f7))
+* **sub-warehouse:** ปิดช่องจ่ายข้ามคลัง + ห้ามปิดใบโอนที่ยืนยันรับไม่ครบ ([5cfb8be](https://github.com/aegisx-platform/aegisx-starter/commit/5cfb8be4ac087e74f3b8336927d987a948785ced)), closes [#521](https://github.com/aegisx-platform/aegisx-starter/issues/521)
+* **sub-warehouse:** ปุ่มเบิกอัตโนมัติตอบ 500 ทุกครั้ง ([f6b7d85](https://github.com/aegisx-platform/aegisx-starter/commit/f6b7d853353d2fe7549004a0e2f91dedd12bb2ee))
+* **sub-warehouse:** ห้ามปิดใบโอนคลังย่อยด้วยการยืนยันจัดยา ([4c96a4b](https://github.com/aegisx-platform/aegisx-starter/commit/4c96a4b70791a76cac659b5700b5d39a8a9099c8))
+
+
+### Features
+
+* **inventory:** ยุบ "ปริมาณการใช้" เหลือนิยามเดียวทั้งระบบ ([8dffc4d](https://github.com/aegisx-platform/aegisx-starter/commit/8dffc4d2fac159d01d17a72eee12279235deda73))
+* **procurement:** ประกาศผู้ชนะระบุประเภทยาในบรรทัดเรื่อง ([aa9c556](https://github.com/aegisx-platform/aegisx-starter/commit/aa9c5562f67968a9770b9cff8f848fcd5f4a1a56))
+* **receipts:** กดดูใบสั่งซื้อได้จากกล่องลงรับด่วน ([7eeb7b6](https://github.com/aegisx-platform/aegisx-starter/commit/7eeb7b69fcfc313e79e101c5618d6120cbcc05cf))
+* **receipts:** จัดรายการยาหน้าลงรับด่วนเป็นการ์ด 2 แถว + ตั้งต้นหน่วยใหญ่สุด ([7539e1b](https://github.com/aegisx-platform/aegisx-starter/commit/7539e1b46cbdc8ac0d91180099e8acd8954a48b5))
+* **receipts:** ซ่อนใบที่รับครบแล้วเป็นค่าตั้งต้น พร้อมปุ่มเปิดดู ([013d952](https://github.com/aegisx-platform/aegisx-starter/commit/013d952fa5d7c89bf3ec35484ad389818b6a9f3b))
+* **receipts:** ตั้งเวลาที่รับเป็นเวลาปัจจุบัน + เรียงคอลัมน์ PO เป็น สั่ง | หน่วย ([ca3d71a](https://github.com/aegisx-platform/aegisx-starter/commit/ca3d71a6ec67deeae5ed1f52ec7d8435130ecde4))
+* **receipts:** เตือนขนาดบรรจุที่ยังไม่ได้ตั้ง + จัดฟอร์มและลำดับ Enter หน้าลงรับด่วน ([d3790b0](https://github.com/aegisx-platform/aegisx-starter/commit/d3790b056791f0a2c326622a4c5ae26d39d4cc5a))
+* **receipts:** เปิดเอกสารจัดซื้อของ PO ได้จากหน้ารับเวชภัณฑ์ ([f13547f](https://github.com/aegisx-platform/aegisx-starter/commit/f13547feb64580d78ede932ec3f48bc8e53321b2))
+* **stock-alerts:** พิมพ์ PDF / ดาวน์โหลด Excel ค้นด้วยรหัสยา และเลือกคลังได้ ([e0cda47](https://github.com/aegisx-platform/aegisx-starter/commit/e0cda470bc95dba0139140c59bf0ed5335d5cf2d))
+* **sub-warehouse:** กล่องกดรับใส่เหตุผลของส่วนต่างรายรายการได้ ([c976022](https://github.com/aegisx-platform/aegisx-starter/commit/c97602224d5e6dc6ef528bf50407a2da28c63a16))
+* **sub-warehouse:** รวมใบเบิกเป็นรายการเดียว + ป้ายรอยืนยันรับ + dialog ยืนยันรับใหม่ ([6eb3064](https://github.com/aegisx-platform/aegisx-starter/commit/6eb306499f1f5a324ec39dc3a9c3547a59e13cdb))
+* **sub-warehouse:** เสนอจำนวนเบิกเติมจากปริมาณตัดจ่ายจริง ([ae9816d](https://github.com/aegisx-platform/aegisx-starter/commit/ae9816de6de96acae8b3d61c5a195b7c1dd08cb5))
+* **sub-warehouse:** หน้าค้นยาเบิก/ขอโอน เห็นยอดทุกคลัง แยกใบอัตโนมัติ ([752d289](https://github.com/aegisx-platform/aegisx-starter/commit/752d289ed8c21591bf14da2398dae214b68c829b))
+* **sub-warehouse:** หน้าค้นยาเบิก/โอน — ยอดเป็นหน่วยใหญ่ + แบ่งครึ่งจอ ([a770f55](https://github.com/aegisx-platform/aegisx-starter/commit/a770f55eac4bd7c850fdbf8bf516d337c3af011c))
+* **sub-warehouse:** หน้าคลังย่อยทั้งหมด + แถบหัวสีแยกจากคลังใหญ่ ([ddbb94f](https://github.com/aegisx-platform/aegisx-starter/commit/ddbb94f0d42edcb8d4174aa1747d5a058ea9e9ea))
+* **sub-warehouse:** โอนยาระหว่างคลังย่อย — จำจำนวนรับจริงและของหายระหว่างทาง ([d6cc4a1](https://github.com/aegisx-platform/aegisx-starter/commit/d6cc4a16cdfefe7f51c7f09f51b7c782198ca1df))
+* **sub-warehouse:** โอนระหว่างคลังย่อยไม่ติดหนี้ของค้าง ([261c654](https://github.com/aegisx-platform/aegisx-starter/commit/261c6540f75e934b26c110257732720a3157a479))
+
 # [1.134.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.133.0...v1.134.0) (2026-09-15)
 
 
