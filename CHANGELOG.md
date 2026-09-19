@@ -1,3 +1,34 @@
+# [1.136.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.135.0...v1.136.0) (2026-09-19)
+
+
+### Bug Fixes
+
+* **auth:** session เต็มตอบ 409 พร้อมรายการอุปกรณ์ ไม่ใช่ 500 ([ce1d7ad](https://github.com/aegisx-platform/aegisx-starter/commit/ce1d7ad167fccc60dd8b1adf0d47811721198c0f))
+* **dispensing:** ฐานที่ sync ช้าต้องไม่ถ่วงคิวของฐานอื่น ([33be868](https://github.com/aegisx-platform/aegisx-starter/commit/33be8687dd0e72ca5c094bcd8c10a10c754b3d15))
+* **dispensing:** ดูก่อน retry ใบจ่าย (dry_run) ต้องไม่เขียนตัวนับหน่วย HIS ลงฐานจริง ([8516e4f](https://github.com/aegisx-platform/aegisx-starter/commit/8516e4fefda86b103b0f80e241bca939ff2515bf)), closes [#523](https://github.com/aegisx-platform/aegisx-starter/issues/523)
+* **dispensing:** ตัวนับการใช้หน่วย/ยาต้องไม่ทำให้ใบจ่ายหาย เมื่อ sync หลายฐานพร้อมกัน ([211791c](https://github.com/aegisx-platform/aegisx-starter/commit/211791c6e25a22682a1acbe718b2da107bc2dac0))
+* **dispensing:** แยกใบจ่ายด้วยเลขใบ + คลัง ไม่ใช่เลขใบอย่างเดียว ([a1898b9](https://github.com/aegisx-platform/aegisx-starter/commit/a1898b97cadd94e70fa9e2d909628ad6ccdebe7a))
+* **distributions:** ทางจ่ายแบบเก่ารองรับหลายล็อต + ยกเลิกใบจับล็อตด้วย drug_id ([f0b84ca](https://github.com/aegisx-platform/aegisx-starter/commit/f0b84cad8c86f7c77be811d75e02381887b1de85))
+* **distributions:** ใบจัดหลังจ่ายอ่านล็อตจากแถวที่ตัดจริง + ใบเบิกรวมแถวยาเดียวกัน ([5ce6512](https://github.com/aegisx-platform/aegisx-starter/commit/5ce65128cff622fb9aea4365727ef34b74f86a70))
+* **distributions:** ยืนยันรับตรวจคลังปลายทาง + เติมค้างจ่ายลงแถว + จ่ายด่วนใช้ได้ ([92030b6](https://github.com/aegisx-platform/aegisx-starter/commit/92030b631264b4114b0629c3b4931b39a78faf87))
+* **locations:** รหัสคลังในหน้าเว็บใช้ location_code จริง ไม่ใช่ label ชื่อเต็ม ([4f53634](https://github.com/aegisx-platform/aegisx-starter/commit/4f536340f04c76db18b14e5da68f26e66d5e78c8))
+* **pick-list:** ใบจัดยาตัวใหญ่ขึ้น + รหัสยา + ใบจัดรวมตามกลุ่มยา ([06ace73](https://github.com/aegisx-platform/aegisx-starter/commit/06ace7381cb825f7535423f6a9cfc8ff6ec9f562))
+* **pick-list:** หัว dialog ดูใบจัดยาขึ้น "ใบจัดยา" แทน "ตัวอย่างใบขอซื้อ" ([c074c31](https://github.com/aegisx-platform/aegisx-starter/commit/c074c31de5a36c8ce61bad933fb64131895b6226))
+* **pick-list:** หัวเอกสารใบจัดยาเหลือ "ใบจัดยา" — เอา (Pick List) ออก ([e904a4a](https://github.com/aegisx-platform/aegisx-starter/commit/e904a4a581f63c71c24e09ad467af8cb0ff9bfd7))
+* **requisition-slip:** ใบเบิกยาใช้คำว่า "ยา" แทน "เวชภัณฑ์" ([408a288](https://github.com/aegisx-platform/aegisx-starter/commit/408a28819aba99cd5a7ff10075c256f8b942c80d))
+* **requisition-slip:** ใบเบิกยาอ่านง่ายขึ้น — ชื่อฟอร์ม ขนาดตัวอักษร เส้นแบ่งรายการ ([2a597d3](https://github.com/aegisx-platform/aegisx-starter/commit/2a597d3d2b7079e4dca5f858d204fdc0044e485f))
+* **scripts:** กันสคริปต์ชุดทดสอบ HIS ไม่ให้ทำงานกับฐานจริง ([c1a330e](https://github.com/aegisx-platform/aegisx-starter/commit/c1a330e537eb759ec04ab8fdd194abdb6e0ae686))
+* **stock-alerts:** export เกิน 2,000 รายการบอกตรง ๆ + แสดงเหตุผลจริงเมื่อ export ล้ม ([c5cfcea](https://github.com/aegisx-platform/aegisx-starter/commit/c5cfcea80656c02228842de02871c0a4221783ba))
+
+
+### Features
+
+* **dispensing:** ตั้งชื่อการเชื่อมต่อ HIS ได้ แยกฐานของแต่ละคลังย่อยออกจากกัน ([2ed3655](https://github.com/aegisx-platform/aegisx-starter/commit/2ed36557927d83834ac318db5dd6e62cb603bf24))
+* **dispensing:** หน้าจัดการการเชื่อมต่อ HIS แบบการ์ดต่อคลัง ([05679e7](https://github.com/aegisx-platform/aegisx-starter/commit/05679e73c09fd9f6fd8afc97a9782f7bf71bdc89))
+* **distributions:** อนุมัติ+จ่ายยาตัดข้ามหลายล็อตได้ (แถวละล็อต) ([375ccec](https://github.com/aegisx-platform/aegisx-starter/commit/375ccecdcf0e762e28b11b9941020742d0acb40d))
+* **pick-list:** ใบจัดบอกอายุที่เหลือใต้วันหมดอายุ + หัวคอลัมน์ เบิก/จ่าย ([72e46ee](https://github.com/aegisx-platform/aegisx-starter/commit/72e46ee52f00ec3cba6a9986237643261cff0bd8))
+* **requisitions:** ปุ่มพิมพ์ใบเบิก/ใบจัดอยู่ในแถว + ใบจัดพิมพ์ตามกลุ่มยา ([c6ac2fe](https://github.com/aegisx-platform/aegisx-starter/commit/c6ac2fe65cba6fed6dc2fa3b94eae123eb8856fd))
+
 # [1.135.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.134.0...v1.135.0) (2026-09-18)
 
 
