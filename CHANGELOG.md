@@ -1,3 +1,50 @@
+# [1.137.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.136.0...v1.137.0) (2026-09-22)
+
+
+### Bug Fixes
+
+* **budget:** ช่วงปีงบในการคิดยอดใช้ย้อนหลัง และยอดรวมแผนหลังลบรายการ ([aba9cc8](https://github.com/aegisx-platform/aegisx-starter/commit/aba9cc866f941b04e0990727427d839c0daa64d9))
+* **budget:** ไฟล์ส่ง สสจ. มีรายการซ้ำ ทำยอดเกินจริง 69 ล้าน ([c20a94b](https://github.com/aegisx-platform/aegisx-starter/commit/c20a94bf62539b6018cf4d8c503c8b882911013c))
+* **crud-generator:** bulk endpoint ตอบ 500 + --output ไม่มีผลทำให้ปั๊มทับโมดูลจริง ([#528](https://github.com/aegisx-platform/aegisx-starter/issues/528)) ([c117405](https://github.com/aegisx-platform/aegisx-starter/commit/c117405423d5a049a9a00823e987c9c9839602b0))
+* **crud-generator:** dropdown ขึ้นตัวเลือกที่กำลังแก้ไขซ้ำสองอัน (โมดูลที่ id เป็น integer) ([#535](https://github.com/aegisx-platform/aegisx-starter/issues/535)) ([8cc2ea4](https://github.com/aegisx-platform/aegisx-starter/commit/8cc2ea48d8cebb433bc1bcc09129f6e8715653ba))
+* **distributions:** ล็อกแถวล็อต/ยอดคงคลังตอนตัดสต็อก กันจ่ายพร้อมกันแล้วยอดเพี้ยน ([6423ce9](https://github.com/aegisx-platform/aegisx-starter/commit/6423ce999fbb726364fe3fc5340a0f6a10453373)), closes [#523](https://github.com/aegisx-platform/aegisx-starter/issues/523)
+* **dmsic:** ขนาดบรรจุดึงจาก drug_pack_ratios + ตรวจรหัสจากตารางอ้างอิงแทน hardcode ([#531](https://github.com/aegisx-platform/aegisx-starter/issues/531)) ([5f3b6c3](https://github.com/aegisx-platform/aegisx-starter/commit/5f3b6c320b9d15b9e8963733ce2ff8ed82af358f)), closes [#530](https://github.com/aegisx-platform/aegisx-starter/issues/530)
+* **dmsic:** ส่งออกได้จริงครบทั้ง 5 แฟ้ม — ซ่อม join TMT ที่พังเงียบ + แมปทุกแฟ้มให้ตรงสเปกกระทรวง ([#530](https://github.com/aegisx-platform/aegisx-starter/issues/530)) ([90e11da](https://github.com/aegisx-platform/aegisx-starter/commit/90e11da165666bd2e653da54b3a7c5eb74a11899)), closes [#435](https://github.com/aegisx-platform/aegisx-starter/issues/435)
+* **drugs:** ชื่อไฟล์ CSV ใช้วันที่เวลาท้องถิ่น ไม่ใช่ UTC ([56ec871](https://github.com/aegisx-platform/aegisx-starter/commit/56ec8713b894f62eb6fc50901e2bc91bee78dd4c))
+* **inventory:** ซ่อมใบขอเบิกจากหน้า ROP + ค้นหาคลังปลายทางได้ (Slice 2.5 จบ) ([7b28940](https://github.com/aegisx-platform/aegisx-starter/commit/7b28940d99f14bd57d80f02a04c6f32f37f5aabe))
+* **inventory:** เตรียมระบบให้รองรับหน่วยเบิกหลักร้อย (Slice 2.5 ส่วนแรก) ([c09781d](https://github.com/aegisx-platform/aegisx-starter/commit/c09781dec7f31591a1eaf7e609c322945174ddd8))
+* **inventory:** ไม่นับรายการกลับรายการใบเบิกที่ยกเลิกเป็นปริมาณการใช้ ([483faa7](https://github.com/aegisx-platform/aegisx-starter/commit/483faa7f7366264689f2704cdd00baaf6f49e2a3))
+* **inventory:** ให้ location_role เป็นแกนเดียวในการตัดสินบทบาทสถานที่ ([#527](https://github.com/aegisx-platform/aegisx-starter/issues/527)) ([76dceb0](https://github.com/aegisx-platform/aegisx-starter/commit/76dceb08e7ffffbdaf7548e8c85e8ef7d38847a8))
+* **locations:** แก้ไขหน่วยที่ไม่ใช่ช่องเก็บบันทึกไม่ได้ + สร้างใหม่แล้วถูกปิดใช้งาน ([#526](https://github.com/aegisx-platform/aegisx-starter/issues/526)) ([1beee13](https://github.com/aegisx-platform/aegisx-starter/commit/1beee13f6fb5591abdb3e862d734b43b9928c7e4))
+* **locations:** ทำให้นำเข้าหน่วยเบิกผ่านไฟล์ได้จริง + ไฟล์ 90 หน่วยจากเอกสาร (Slice 3) ([b6347f1](https://github.com/aegisx-platform/aegisx-starter/commit/b6347f1217464e007f141a6d56e4daf40d14430e))
+* **locations:** ฟอร์มเพิ่มสถานที่ — แก้กล่องว่างและบันทึกไม่ได้ ([28fba81](https://github.com/aegisx-platform/aegisx-starter/commit/28fba81593223567d4ef067198b1a0d755f099b0))
+* **ppk-adapter:** แก้ column mapping ที่ผิด 6 จุด และปิดการสร้าง generic_code ([2d8c1dc](https://github.com/aegisx-platform/aegisx-starter/commit/2d8c1dc130ae4603a471f1e3417cb08a6fed41a5))
+* **stock-alerts:** ขอซื้ออัตโนมัติไม่ซ้ำของที่สั่งแล้ว + หน้าแจ้งเตือนขาดสต็อกอ่านง่ายขึ้น ([c45be7c](https://github.com/aegisx-platform/aegisx-starter/commit/c45be7ca62d3aeb5a3d4bc0de85af57f2a22b79c))
+
+
+### Features
+
+* **budget:** ปุ่มซิงค์ยาใหม่เข้าแผน พร้อมบอกเหตุผลว่าทำไมยังไม่อยู่ในแผน ([99bc8c3](https://github.com/aegisx-platform/aegisx-starter/commit/99bc8c30f67d9274f4ac7b85d1fcfe9e2122d947))
+* **deploy:** เพิ่ม netcheck.sh วินิจฉัย DNS/เครือข่ายเมื่อ pull image ไม่ได้ ([7197492](https://github.com/aegisx-platform/aegisx-starter/commit/7197492227ab6ce5f9a567aed0196cf45b4cdc64))
+* **dispensing:** ซ่อมการตัดจ่ายยาแบบ manual ให้ใช้งานได้จริง (Slice 4) ([625924e](https://github.com/aegisx-platform/aegisx-starter/commit/625924ed9fc1abb40751f374e7fafea4e9a63302))
+* **distributions,stock-alerts:** เติมคลังย่อยช่วยตัดสินใจ + จัดซื้อเห็นยาที่คลังย่อยรอ ([f62db1b](https://github.com/aegisx-platform/aegisx-starter/commit/f62db1b82328d164d208ce4937f40b3d15a3e2a8))
+* **distributions:** จ่ายชนกัน หน้าอนุมัติบอกเหตุผลแล้วดึงยอดล็อตใหม่ให้ ([4624384](https://github.com/aegisx-platform/aegisx-starter/commit/46243848d1a1393bf17430169ce642dae8423554))
+* **distributions:** เติมคลังย่อยบอกสถานะจัดซื้อ + แยกยอดส่งแล้วรอรับ/ขอค้าง ([af539a1](https://github.com/aegisx-platform/aegisx-starter/commit/af539a1be8d70ea87736723045e6878292153330))
+* **distributions:** หน้าเติมคลังย่อย — คลังใหญ่แบ่งยอดให้หลายคลังแล้วออกใบในรอบเดียว ([d07fa7f](https://github.com/aegisx-platform/aegisx-starter/commit/d07fa7f07713ebfa304c8e17c48b9127f390a4c6))
+* **distributions:** ให้ stores_stock มีผลจริง + ย้ายตรรกะไปอ่าน location_role (Slice 2) ([eaa308d](https://github.com/aegisx-platform/aegisx-starter/commit/eaa308dc452ebadd1ab33d8a9849db832a18598b))
+* **dmsic:** กรองทะเบียนส่งตามแฟ้ม/สถานะ + ดาวน์โหลดแฟ้มเป็น JSON ([#532](https://github.com/aegisx-platform/aegisx-starter/issues/532)) ([d938857](https://github.com/aegisx-platform/aegisx-starter/commit/d938857a0e560a9f09a2e1da4c21cf060f2b0dcb)), closes [525-#531](https://github.com/525-/issues/531)
+* **drugs,distributions:** ตั้งรายยาได้ว่าห้ามเติมคลังย่อยอัตโนมัติ ([b865183](https://github.com/aegisx-platform/aegisx-starter/commit/b8651835283c4cb62cd026e4ffff3f25fcd8ee65))
+* **drugs:** ป้าย "เบิกเอง" ในรายการยา สำหรับยาที่ไม่ให้คลังใหญ่เติมอัตโนมัติ ([b5bb762](https://github.com/aegisx-platform/aegisx-starter/commit/b5bb7620d93d788261c69973811d70e009052d1b))
+* **drugs:** หน้าตรวจสุขภาพทะเบียนยา — นับปัญหาเป็นหมวด กดดูรายการ แก้ในกล่องได้เลย ([e1543fb](https://github.com/aegisx-platform/aegisx-starter/commit/e1543fb18ad6d854766eb665f6e15ae5b4e71109))
+* **locations:** กลุ่มคลัง — ตารางให้ รพ. ตั้งเอง + เลือกในฟอร์มคลัง + กรอง/จัดกลุ่มหน้าคลังย่อย ([#534](https://github.com/aegisx-platform/aegisx-starter/issues/534)) ([b3759a5](https://github.com/aegisx-platform/aegisx-starter/commit/b3759a567b6661df7566245d95ff5edee4c7153d))
+* **locations:** ไฟล์นำเข้า 3 หน่วยจ่ายยาในกลุ่มงานเภสัช (หมวด 1) ([9bb3d49](https://github.com/aegisx-platform/aegisx-starter/commit/9bb3d49f717402a284fdddebe9628ef77c369653))
+* **locations:** แยกประเภทคลังยา/หน่วยเบิก ด้วย location_role + 2 ธงความสามารถ ([8a144f7](https://github.com/aegisx-platform/aegisx-starter/commit/8a144f706adb9fbefc6c6c4e1ca423d4842bebc0))
+* **stock-alerts:** กรองได้หลายมิติ + มุมมองรายยารวมทุกคลัง ([c427046](https://github.com/aegisx-platform/aegisx-starter/commit/c4270464f806468adae3970947c75f717bbf4d71))
+* **sub-warehouse:** เบิกอัตโนมัติกำหนดจำนวนวันย้อนหลังเองได้ ([960ea06](https://github.com/aegisx-platform/aegisx-starter/commit/960ea0670e9b069b1b4243d422d0c0c48b60670f))
+* **sub-warehouse:** เบิกอัตโนมัติแยกใบตามกลุ่มยา เลือกหน่วยเบิกได้ ([0cfd783](https://github.com/aegisx-platform/aegisx-starter/commit/0cfd783ae682a26795d8e15be2351bbed8540fa0))
+* **sub-warehouse:** ปุ่มเบิกอัตโนมัติเปลี่ยนเป็นดูตัวเลขก่อนสร้างใบ ([56daf64](https://github.com/aegisx-platform/aegisx-starter/commit/56daf643ccf2051a18e36da54b9679138bfffff9))
+* **sub-warehouse:** เลือกคลังย่อยตามประเภทสถานที่ + รวมป้ายประเภทสถานที่ไว้ไฟล์เดียว ([#533](https://github.com/aegisx-platform/aegisx-starter/issues/533)) ([fe46c18](https://github.com/aegisx-platform/aegisx-starter/commit/fe46c18ede6f0162c43a5345a77f1b341142925d))
+
 # [1.136.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.135.0...v1.136.0) (2026-09-19)
 
 
