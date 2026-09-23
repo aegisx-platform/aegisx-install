@@ -1,3 +1,17 @@
+# [1.138.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.137.0...v1.138.0) (2026-09-23)
+
+
+### Bug Fixes
+
+* **location-categories:** dropdown เรียงตามลำดับที่ตั้งไว้ในกลุ่มคลัง ([#538](https://github.com/aegisx-platform/aegisx-starter/issues/538)) ([987f42e](https://github.com/aegisx-platform/aegisx-starter/commit/987f42e329d262c1c1dc92d37b1d7a99e1352528))
+
+
+### Features
+
+* **locations:** กลุ่มคลังตั้งต้น 3 หมวดตามเอกสาร สำหรับทุกโรงพยาบาล ([#537](https://github.com/aegisx-platform/aegisx-starter/issues/537)) ([86324cc](https://github.com/aegisx-platform/aegisx-starter/commit/86324ccd3e9914b3c89ecd714db1aceeb22b8aa0))
+* **locations:** นำเข้าคลังยา/หน่วยเบิกระบุกลุ่มคลังผ่านไฟล์ได้ ([#539](https://github.com/aegisx-platform/aegisx-starter/issues/539)) ([2bb0db8](https://github.com/aegisx-platform/aegisx-starter/commit/2bb0db8d3dac0c10b314db1b79de2c2eb4d776b1))
+* **sub-warehouse:** หน้าเลือกคลังเห็นทุกคลัง + กรอง "คลังที่ฉันดูแล/ทุกคลัง" ([3850d4c](https://github.com/aegisx-platform/aegisx-starter/commit/3850d4c6ae6600c6949cd4a98dd62b5e6773e79c))
+
 # [1.137.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.136.0...v1.137.0) (2026-09-22)
 
 
