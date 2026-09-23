@@ -1,3 +1,16 @@
+# [1.139.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.138.0...v1.139.0) (2026-09-23)
+
+
+### Bug Fixes
+
+* **dmsic,import:** แฟ้มส่งกระทรวงส่งใบร่างและแถวซ้ำไปด้วย ([707a86e](https://github.com/aegisx-platform/aegisx-starter/commit/707a86e106ffd97154073605a57346c18bbd2652))
+* **dmsic:** กล่องดูข้อมูลแสดงค่าเป็น "-" ทุกคอลัมน์ ทั้งที่ข้อมูลมาครบ ([1891522](https://github.com/aegisx-platform/aegisx-starter/commit/1891522e5e12973a95d47dcfef0be4a0d8719749)), closes [#530](https://github.com/aegisx-platform/aegisx-starter/issues/530)
+
+
+### Features
+
+* **refill-push:** กรองตามกลุ่มยา เลือกได้หลายกลุ่ม แบ่งงานกันเติมตามกลุ่ม ([eccd488](https://github.com/aegisx-platform/aegisx-starter/commit/eccd4889b0636aaa218d4ec2fa8d7bca3a009ff1))
+
 # [1.138.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.137.0...v1.138.0) (2026-09-23)
 
 
