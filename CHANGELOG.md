@@ -1,3 +1,18 @@
+# [1.140.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.139.0...v1.140.0) (2026-09-24)
+
+
+### Bug Fixes
+
+* **stockcard:** ประเภทรายการขึ้นเป็นภาษาอังกฤษ และตัวกรองประเภทกรองไม่เจอ ([ae632ea](https://github.com/aegisx-platform/aegisx-starter/commit/ae632ea525380849f5bcb5ce97f5ae87d26c7709))
+* **ui:** token --ax-bg-* ไม่มีอยู่จริง ใช้ผิด 122 จุดใน 61 ไฟล์ ([8508415](https://github.com/aegisx-platform/aegisx-starter/commit/8508415ef8b11d1572740207e0dd25a5597d5253))
+
+
+### Features
+
+* **drug-returns:** เลือกล็อตจากสต็อกจริง เลือกได้หลายล็อตพร้อมเหตุผล ([fab4a5d](https://github.com/aegisx-platform/aegisx-starter/commit/fab4a5d38e77539b9c163c1bb064135a2727622f))
+* **master-data:** เพิ่มการ์ดนำเข้าข้อมูล Excel ในหน้าข้อมูลหลัก ([0bc5e09](https://github.com/aegisx-platform/aegisx-starter/commit/0bc5e0958754d57c99834ff32f9724894d64e4b3))
+* **sub-warehouse:** ทะเบียนยาคงคลังมีตัวกรองครบเหมือนหน้าคลังใหญ่ ([9c93e37](https://github.com/aegisx-platform/aegisx-starter/commit/9c93e37961ccb648348f15a865f351df56c507bd))
+
 # [1.139.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.138.0...v1.139.0) (2026-09-23)
 
 
