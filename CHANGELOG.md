@@ -1,3 +1,13 @@
+# [1.141.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.140.0...v1.141.0) (2026-09-25)
+
+
+### Features
+
+* **budget-requests:** ซ่อนคอลัมน์ชื่อยาได้ และแสดงรหัสยาในช่องชื่อยาแทน ([c707a45](https://github.com/aegisx-platform/aegisx-starter/commit/c707a45ea0c773bc9f1a70a6854f7335eb85ec03))
+* **budget-requests:** ซ่อนคอลัมน์ลำดับ (#) ได้ด้วย ([9adb082](https://github.com/aegisx-platform/aegisx-starter/commit/9adb0825cb088a0e5dd35cfef1a365be730e55cf))
+* **budget-requests:** เลือกซ่อนคอลัมน์ในตารางรายการยาได้ และจำไว้ในเครื่อง ([3116e3f](https://github.com/aegisx-platform/aegisx-starter/commit/3116e3f6d890f26058b8d8c58b512925393ddd97))
+* **drug-registry-health:** กรองยาที่ไม่มีรหัส HIS + รวมชื่อยาเป็นคอลัมน์เดียว ([6cfdf28](https://github.com/aegisx-platform/aegisx-starter/commit/6cfdf28d34dc4dd2f8096234387578f6e2d2e406))
+
 # [1.140.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.139.0...v1.140.0) (2026-09-24)
 
 
