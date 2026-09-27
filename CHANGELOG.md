@@ -1,3 +1,27 @@
+# [1.142.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.141.0...v1.142.0) (2026-09-27)
+
+
+### Bug Fixes
+
+* **aegisx-ui:** ax-step-progress ขั้น current ไม่ดูเหมือนเสร็จแล้ว + glow ไม่ถูกตัด ([6391cbe](https://github.com/aegisx-platform/aegisx-starter/commit/6391cbe8d3b607821b1581f45bc33599e44f85ba))
+* **budget-requests:** ตัวเลขในบัญชี/นอกบัญชี/สารเคมีบนหน้าคำของบตรงกับแบบฟอร์ม PDF ([eeaa2c8](https://github.com/aegisx-platform/aegisx-starter/commit/eeaa2c889c01dbaefd0336462045dc8f7c1792d9))
+* **purchase-requests:** ช่องวันที่ต้องการไม่ยืดสูงตาม error ของวันที่ขอซื้อ ([ca35ffb](https://github.com/aegisx-platform/aegisx-starter/commit/ca35ffb3f66b5eab3d7e8c74f52d5da842983acb))
+* **trade-creditor-registers:** ยืนยัน จน. บันทึกค่าที่ยังไม่ได้บันทึกก่อนในคลิกเดียว ([d9578d6](https://github.com/aegisx-platform/aegisx-starter/commit/d9578d6348f95b6e4dfebdb6012e10f41ba79b63))
+
+
+### Features
+
+* **aegisx-ui:** ax-step-progress วางชื่อขั้นใต้ marker ได้ + วันที่แบบไทย ([b021162](https://github.com/aegisx-platform/aegisx-starter/commit/b02116251851df226e6a0a7af8148597e5a90624))
+* **budget-requests:** พิมพ์แบบฟอร์มแผนจัดซื้อเวชภัณฑ์ (ยา) และสารเคมี ([0c18871](https://github.com/aegisx-platform/aegisx-starter/commit/0c1887127e176c77293dfd8e1e6e2b672fde75e5))
+* **budget-requests:** เมนูพิมพ์แบบฟอร์มแผน + จัด toolbar หน้าคำของบใหม่ ([1f23a5a](https://github.com/aegisx-platform/aegisx-starter/commit/1f23a5a8bea8f6529d556b7a882283d97e359784))
+* **budget:** หน้าประวัติการเปลี่ยนแปลงงบ รวมทุกแหล่งเป็น timeline เดียว ([8183745](https://github.com/aegisx-platform/aegisx-starter/commit/8183745e1f9a350ca4c633ea8a69969ca598a35b))
+* **inspections:** แถบขั้นตอนชุดตรวจรับ 4 ขั้น แสดงขั้นที่กำลังทำชัด ([4582607](https://github.com/aegisx-platform/aegisx-starter/commit/4582607c836640b03ae7aa04b3d6b09cfe8a3c4e))
+* **inspections:** อนุมัติตรวจรับไม่ได้ถ้ายังกรอกล็อต/วันหมดอายุไม่ครบ ([57dbbaf](https://github.com/aegisx-platform/aegisx-starter/commit/57dbbaf625148140c092d9c33651026981f18e7e))
+* **pick-list:** หัวใบจัดยาใช้รูปแบบเดียวกับใบเบิกยา ([03ffbc4](https://github.com/aegisx-platform/aegisx-starter/commit/03ffbc49048c6f0ba652b87fe6a1a65baf9f4f02))
+* **purchase-requests:** ตั้งค่าได้ว่าวันที่ขอซื้อใส่วันนี้ให้หรือปล่อยว่าง ([467c784](https://github.com/aegisx-platform/aegisx-starter/commit/467c784c8830bb12ee9cfe28caea6099688a141b))
+* **requisition-management:** ซ่อนการ์ดรอจัดยาเมื่อไม่มีใบ + การ์ดเต็มแถว ([63b8e2d](https://github.com/aegisx-platform/aegisx-starter/commit/63b8e2d79ccb75ac43e390dd781d25d12753c919))
+* **trade-creditor-registers:** ตั้งรูปแบบเลข จน. ได้ในหน้าการออกเลขเอกสาร (ค่าเริ่มต้น 001/69) ([db42fbe](https://github.com/aegisx-platform/aegisx-starter/commit/db42fbebb468455822e9acf767535975ca1c8ed7))
+
 # [1.141.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.140.0...v1.141.0) (2026-09-25)
 
 
