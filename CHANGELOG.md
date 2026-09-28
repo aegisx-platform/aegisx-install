@@ -1,3 +1,19 @@
+# [1.143.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.142.0...v1.143.0) (2026-09-28)
+
+
+### Bug Fixes
+
+* **budget-requests:** แบบฟอร์มแผนพิมพ์จัดซื้อจริง 0 ในงวดที่เริ่มแล้ว + จำนวนทศนิยม ([494399f](https://github.com/aegisx-platform/aegisx-starter/commit/494399f6a6408c1c873749f02be1791186231402))
+
+
+### Features
+
+* **procurement-tracker:** กรอกเลขที่หนังสือของ PO ได้ในหน้าติดตามจัดซื้อ + โชว์ครบทุกช่อง ([848f879](https://github.com/aegisx-platform/aegisx-starter/commit/848f8792ff850a4eabbc46ea030d936a06cd0ac9))
+* **purchase-orders:** สร้าง PO จาก PR ดึงวันที่ต้องการเป็นวันที่ส่งของ + ช่องเป็น outline ([752f5fc](https://github.com/aegisx-platform/aegisx-starter/commit/752f5fcffd4d572d0a70b8798f7371f67b7c3ff1))
+* **trade-creditor-registers:** ค้น PO / ใบนำส่งในหน้าสร้าง จน. ได้หลายแบบ ([edb7a78](https://github.com/aegisx-platform/aegisx-starter/commit/edb7a78e1a39193cb9686285474405ddd1566915))
+* **trade-creditor-registers:** แบบฟอร์ม จน. เพิ่มคอลัมน์เลขที่โครงการ e-GP ([a07e452](https://github.com/aegisx-platform/aegisx-starter/commit/a07e4529ae6331d840b52051775ddca99d23eb21))
+* **trade-creditor-registers:** ย้ายการเลือก PO ในหน้าสร้าง จน. ไปไว้ใน dialog ([f651287](https://github.com/aegisx-platform/aegisx-starter/commit/f651287a6dc1bb1509b6e9cf7593eee12b5c2a8b))
+
 # [1.142.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.141.0...v1.142.0) (2026-09-27)
 
 
