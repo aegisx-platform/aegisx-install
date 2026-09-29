@@ -12,7 +12,11 @@ NC='\033[0m'
 BOLD='\033[1m'
 
 # Load .env for variable access
+# ปิด -u ชั่วคราว — ค่าที่มี $ (เช่น secret) ถูก bash แปลเป็นตัวแปรที่ไม่มี แล้ว set -u
+# ทำให้สคริปต์ตายเงียบตั้งแต่บรรทัดนี้ ทุกคำสั่งของ ./aegisx ใช้ไม่ได้
+set +u
 source .env 2>/dev/null || true
+set -u
 
 # Helper: detect if we have a local postgres container or external DB
 has_local_postgres() {
@@ -69,8 +73,10 @@ validate_and_fix_env_vars() {
         echo -e "${CYAN}🔧 Attempting to fix missing environment variables...${NC}"
         
         # Backup .env first
-        cp .env ".env.backup.$(date +%Y%m%d_%H%M%S)"
-        echo -e "  ${GREEN}✅ Backup created: .env.backup.*${NC}"
+        _bak=".env.backup.$(date +%Y%m%d_%H%M%S)"
+        cp .env "$_bak"
+        chmod 600 "$_bak"
+        echo -e "  ${GREEN}✅ Backup created: $_bak${NC}"
         
         # Generate and add missing keys (only if not present)
         if ! grep -q "^HIS_ENCRYPTION_SECRET=" .env 2>/dev/null || [ -z "$(grep '^HIS_ENCRYPTION_SECRET=' .env | cut -d'=' -f2)" ]; then
@@ -767,6 +773,12 @@ ORDER BY table_name;
                     echo "Usage: ./aegisx env set KEY VALUE"; exit 1
                 fi
                 val="$4"
+                # $ ใน .env ถูกทั้ง docker compose และ bash แปลเป็นตัวแปร — ค่าที่ API เห็นจะเพี้ยน
+                if [[ "$val" == *'$'* ]]; then
+                    echo -e "${RED}❌ ค่ามีเครื่องหมาย \$ — docker compose จะแปลเป็นตัวแปร ค่าที่ API เห็นจะไม่ตรง ยังไม่ได้แก้อะไร${NC}"
+                    echo "   ต้องการ \$ ตรงตัวจริง ๆ ให้แก้ .env เองโดยพิมพ์ \$\$ แทน"
+                    exit 1
+                fi
                 if ! [[ "$key" =~ ^[A-Z][A-Z0-9_]*$ ]]; then
                     echo -e "${RED}❌ ชื่อตัวแปรต้องเป็นตัวพิมพ์ใหญ่/ตัวเลข/_ เท่านั้น: $key${NC}"; exit 1
                 fi
@@ -779,7 +791,9 @@ ORDER BY table_name;
                     exit 1
                 fi
 
-                cp .env ".env.backup.$(date +%Y%m%d_%H%M%S)"
+                _bak=".env.backup.$(date +%Y%m%d_%H%M%S)"
+                cp .env "$_bak"
+                chmod 600 "$_bak"   # มี secret ทั้งไฟล์ — umask ปกติให้คนอื่นอ่านได้
                 # ลบทุกบรรทัดเดิมของ key (กันค่าซ้ำหลายบรรทัด) แล้วเขียนใหม่บรรทัดเดียว
                 _tmp=$(mktemp)
                 grep -v "^${key}=" .env > "$_tmp" || true
