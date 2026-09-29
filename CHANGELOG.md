@@ -1,3 +1,25 @@
+# [1.144.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.143.0...v1.144.0) (2026-09-29)
+
+
+### Bug Fixes
+
+* **api:** อ่าน RATE_LIMIT_MAX จาก env และเพิ่มค่าเริ่มต้นเป็น 1000/นาที ([c8d4e10](https://github.com/aegisx-platform/aegisx-starter/commit/c8d4e10749b8d30f7497f6f2a65705a85c9d4272))
+* **po-documents:** วันที่รายงานผลพิจารณาตาม PR + ครบกำหนดส่งมอบตามฟอร์ม ([04a2ee5](https://github.com/aegisx-platform/aegisx-starter/commit/04a2ee571b1f539131cd010c9b9da27ff6a6c4b3))
+* **rbac:** เลิกถือ inventory:inventory:<action> เป็นสิทธิ์ทั้ง domain ฝั่งเว็บ ([3b0c110](https://github.com/aegisx-platform/aegisx-starter/commit/3b0c1100ff587868510d1741b7e2741666e59893))
+
+
+### Features
+
+* **procurement-tracker:** กรอกเลขที่หนังสือ + เลข e-GP ในฟอร์ม PR เล็ก ([acb61e6](https://github.com/aegisx-platform/aegisx-starter/commit/acb61e6c6f5f0bd16791592936ad63c6ae010a88))
+* **quick-build:** โหลดข้อมูลประกอบทีเดียว + แจ้งแถวที่ประมวลผลไม่ได้ให้ชัด/ดาวน์โหลดได้ ([182457e](https://github.com/aegisx-platform/aegisx-starter/commit/182457eaee5635401c284590c419a3e07c0ebbf2))
+* **stock-opening-balance:** template + ตรวจไฟล์ยอดคงคลังยกมา (ยังไม่บันทึก) ([37c42c1](https://github.com/aegisx-platform/aegisx-starter/commit/37c42c1c7ba127508c3906bc59dbedce5288fd9b))
+* **stock-opening-balance:** ซ่อนปุ่มยกเลิกเมื่อยกเลิกไม่ได้ พร้อมบอกเหตุผล ([3d3f908](https://github.com/aegisx-platform/aegisx-starter/commit/3d3f908276fd2b9fa7debd210672d192ca2e950c))
+* **stock-opening-balance:** บันทึก/ยกเลิกเอกสารยอดคงคลังยกมา ([6f3d29e](https://github.com/aegisx-platform/aegisx-starter/commit/6f3d29e363c057bc90c4be40db13719f910e7cc5))
+* **stock-opening-balance:** เลขที่ล็อตเว้นว่างได้ ระบบสร้างให้ ([07efe84](https://github.com/aegisx-platform/aegisx-starter/commit/07efe8488ecbcdd23d542f7b43f185596aa9bf36))
+* **stock-opening-balance:** เลือกคลังที่หน้าจอ หรือใช้รหัสคลังจากไฟล์ ([944e66f](https://github.com/aegisx-platform/aegisx-starter/commit/944e66f9c100551e948408fc9da4564ee42bf184))
+* **stock-opening-balance:** หน้านำเข้ายอดคงคลังยกมา ([266bada](https://github.com/aegisx-platform/aegisx-starter/commit/266bada8d21d10816142854ec3d2700589816113))
+* **system-reset:** ล้างรายการเริ่มระบบใหม่ (admin, บังคับ backup) ([#547](https://github.com/aegisx-platform/aegisx-starter/issues/547)) ([56400e4](https://github.com/aegisx-platform/aegisx-starter/commit/56400e438bf94aa8d7ad33e01ef20b7da85ae9cd))
+
 # [1.143.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.142.0...v1.143.0) (2026-09-28)
 
 

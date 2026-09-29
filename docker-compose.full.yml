@@ -131,7 +131,7 @@ services:
 
       # Security
       CORS_ORIGINS: ${CORS_ORIGINS:-*}
-      RATE_LIMIT_MAX: ${RATE_LIMIT_MAX:-100}
+      RATE_LIMIT_MAX: ${RATE_LIMIT_MAX:-1000}
 
       # Logging
       LOG_LEVEL: ${LOG_LEVEL:-info}
@@ -141,6 +141,10 @@ services:
       # Backup integration
       BACKUP_DIR: /backups
       BACKUP_SERVICE_URL: http://backup:8099
+      # ล้างรายการเริ่มระบบใหม่ (ตั้งค่า → ล้างรายการเริ่มระบบใหม่)
+      # เปิดเฉพาะช่วงเริ่มระบบ แล้วปิดกลับทันทีหลังใช้งานจริง
+      SYSTEM_RESET_ENABLED: ${SYSTEM_RESET_ENABLED:-false}
+      SYSTEM_RESET_SKIP_BACKUP: ${SYSTEM_RESET_SKIP_BACKUP:-false}
     ports:
       - '${API_PORT:-3333}:3000'
     volumes:

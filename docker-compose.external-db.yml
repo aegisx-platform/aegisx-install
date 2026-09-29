@@ -104,13 +104,17 @@ services:
 
       # Security
       CORS_ORIGINS: ${CORS_ORIGINS:-*}
-      RATE_LIMIT_MAX: ${RATE_LIMIT_MAX:-100}
+      RATE_LIMIT_MAX: ${RATE_LIMIT_MAX:-1000}
 
       # Logging
       LOG_LEVEL: ${LOG_LEVEL:-info}
 
       # File uploads
       UPLOAD_DIR: /app/uploads
+      # ล้างรายการเริ่มระบบใหม่ — แบบนี้ไม่มี backup service ใน stack
+      # ต้องสำรองฐานภายนอกเองก่อน แล้วตั้ง SYSTEM_RESET_SKIP_BACKUP=true
+      SYSTEM_RESET_ENABLED: ${SYSTEM_RESET_ENABLED:-false}
+      SYSTEM_RESET_SKIP_BACKUP: ${SYSTEM_RESET_SKIP_BACKUP:-false}
     ports:
       - '${API_PORT:-3333}:3000'
     volumes:
