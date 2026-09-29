@@ -1,3 +1,16 @@
+# [1.145.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.144.0...v1.145.0) (2026-09-29)
+
+
+### Bug Fixes
+
+* **procurement-tracker:** โหลดรายการหลังรู้ปีงบปัจจุบัน ไม่ให้รอบทุกปีทับ ([475f916](https://github.com/aegisx-platform/aegisx-starter/commit/475f916403975678c7150bbbd63fa1a6bac2ece5))
+* **quick-build:** บังคับเลือกงบประมาณ/แผนก และแยกข้อความยาที่ไม่ผูกชื่อสามัญ ([c10a5a3](https://github.com/aegisx-platform/aegisx-starter/commit/c10a5a3bdf98ba1f58a043ffe4fc4e0ccced8761))
+
+
+### Features
+
+* **budget-requests:** นำเข้าแผนเลือกชีตได้ + ดูผลก่อนนำเข้า + ซอยงวดใหม่ ([dd858f0](https://github.com/aegisx-platform/aegisx-starter/commit/dd858f0520e747bd8b16ed32be4aeb0c156fdac9))
+
 # [1.144.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.143.0...v1.144.0) (2026-09-29)
 
 
