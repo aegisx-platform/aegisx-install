@@ -859,6 +859,73 @@ validate_and_fix_env_vars() {
     return 0
 }
 
+# ── ensure_compose_env_mappings ───────────────────────────────────────────────
+# docker-compose.yml ถูกเขียนครั้งเดียวตอนติดตั้ง — `update` ไม่ดึงไฟล์ใหม่
+# env ที่เพิ่มในรุ่นหลังจึงไม่ถึง container แม้ตั้งใน .env แล้ว
+# (prod 2026-09-29: SYSTEM_RESET_ENABLED=true ใน .env แต่ API อ่านไม่เห็น)
+# เติมบรรทัด map ที่ขาดใต้ api: environment: ต่อจาก SESSION_SECRET (มีเฉพาะ api)
+# สำรองไฟล์ก่อน · ตรวจด้วย `docker compose config` · ไม่ผ่าน = คืนไฟล์เดิม
+# เพิ่มตัวแปรใหม่: ต่อท้าย ENV_MAPPING_VARS / ENV_MAPPING_DEFAULTS (default = ค่าใน template)
+ENV_MAPPING_VARS=(RATE_LIMIT_MAX SYSTEM_RESET_ENABLED SYSTEM_RESET_SKIP_BACKUP)
+ENV_MAPPING_DEFAULTS=(1000 false false)
+
+ensure_compose_env_mappings() {
+    local compose="docker-compose.yml"
+    [ -f "$compose" ] || return 0
+
+    local vars=("${ENV_MAPPING_VARS[@]}")
+    local defaults=("${ENV_MAPPING_DEFAULTS[@]}")
+    local add="" names="" i
+    for i in "${!vars[@]}"; do
+        if ! grep -qE "^[[:space:]]+${vars[$i]}:" "$compose"; then
+            add+="${vars[$i]}: \${${vars[$i]}:-${defaults[$i]}}"$'\n'
+            names+=" ${vars[$i]}"
+        fi
+    done
+    [ -z "$add" ] && return 0
+
+    if ! grep -qE "^[[:space:]]+SESSION_SECRET:" "$compose"; then
+        echo -e "${YELLOW}⚠️  docker-compose.yml ขาด env:${names} — หาตำแหน่ง api: environment: ไม่เจอ เติมเองใต้ api${NC}"
+        return 0
+    fi
+
+    local backup="${compose}.pre-env.$(date +%Y%m%d_%H%M%S)"
+    cp "$compose" "$backup"
+    ADD_LINES="$add" awk '
+        !done && /^[[:space:]]+SESSION_SECRET:/ {
+            print
+            match($0, /^[[:space:]]+/); ind = substr($0, 1, RLENGTH)
+            n = split(ENVIRON["ADD_LINES"], arr, "\n")
+            for (k = 1; k <= n; k++) if (arr[k] != "") print ind arr[k]
+            done = 1; next
+        }
+        { print }' "$backup" > "$compose"
+
+    if docker compose config -q >/dev/null 2>&1; then
+        echo -e "  ${GREEN}✅ เติม env ใน docker-compose.yml:${names} (ไฟล์เดิม: $backup)${NC}"
+    else
+        cp "$backup" "$compose"
+        echo -e "${YELLOW}⚠️  เติม env${names} แล้ว docker compose config ไม่ผ่าน — คืนไฟล์เดิม เติมเองใต้ api: environment:${NC}"
+    fi
+}
+
+# ── `./aegisx env` helpers ────────────────────────────────────────────────────
+env_is_secret() { case "$1" in *SECRET*|*PASSWORD*|*KEY*|*TOKEN*|DATABASE_URL) return 0 ;; esac; return 1; }
+env_show() { if env_is_secret "$1" && [ -n "$2" ]; then echo "(ซ่อน ${#2} ตัวอักษร)"; else echo "${2:-<ว่าง>}"; fi; }
+env_strip_quotes() { local v="$1"; v="${v%\"}"; v="${v#\"}"; v="${v%\'}"; v="${v#\'}"; echo "$v"; }
+# ค่าที่ container api เห็นจริง — รอ container ขึ้นหลัง recreate สูงสุด ~30 วินาที
+env_container_value() {
+    local i
+    for i in $(seq 1 15); do
+        if docker compose exec -T api true >/dev/null 2>&1; then
+            docker compose exec -T api printenv "$1" 2>/dev/null || true
+            return 0
+        fi
+        sleep 2
+    done
+    return 1
+}
+
 # ── Auto-rollback support for `update` ────────────────────────────────────────
 # Capture the api/web image IDs BEFORE pulling. With tag `latest`, pulling
 # repoints the tag at the NEW image — without the saved IDs the previous
@@ -1098,6 +1165,8 @@ case "${1:-help}" in
         
         # Auto-heal: check and fix missing env vars before update
         validate_and_fix_env_vars
+        # compose ที่ติดตั้งรุ่นเก่าไม่มี env ของรุ่นใหม่ — เติมก่อน up -d จะได้ recreate api ทีเดียว
+        ensure_compose_env_mappings
 
         if [ "$ROLLBACK_ENABLED" = false ]; then
             echo -e "${YELLOW}⚠️  Auto-rollback disabled (--no-rollback)${NC}"
@@ -1444,6 +1513,82 @@ ORDER BY table_name;
 
         echo -e "${GREEN}เสร็จแล้ว — ถ้าต้องย้อนรุ่น ./aegisx pull ดึง image กลับได้${NC}"
         ;;
+    env)
+        # ตั้ง/ดู env ของ API ครบวงจร: .env → map ใน compose → recreate api → ยืนยันค่าใน container
+        # (แก้ .env + docker restart เฉย ๆ ไม่ถึง container — restart ไม่อ่าน .env ใหม่)
+        sub="${2:-check}"
+        case "$sub" in
+            set)
+                key="${3:-}"
+                if [ -z "$key" ] || [ $# -lt 4 ]; then
+                    echo "Usage: ./aegisx env set KEY VALUE"; exit 1
+                fi
+                val="$4"
+                if ! [[ "$key" =~ ^[A-Z][A-Z0-9_]*$ ]]; then
+                    echo -e "${RED}❌ ชื่อตัวแปรต้องเป็นตัวพิมพ์ใหญ่/ตัวเลข/_ เท่านั้น: $key${NC}"; exit 1
+                fi
+                # เช็ค map ก่อนแตะ .env — ไม่ map = ค่าไม่ถึง API ไม่ต้องแก้อะไร
+                ensure_compose_env_mappings
+                if ! grep -qE "^[[:space:]]+${key}:" docker-compose.yml; then
+                    echo -e "${RED}❌ docker-compose.yml ไม่มี ${key} ใต้ api: environment: — ยังไม่ได้แก้ .env${NC}"
+                    echo -e "${YELLOW}   ตัวแปรที่เครื่องมือนี้เติม map ให้อัตโนมัติ: ${ENV_MAPPING_VARS[*]}${NC}"
+                    echo -e "${YELLOW}   ตัวอื่นต้องเพิ่มบรรทัด '${key}: \${${key}}' ใต้ api: environment: เองก่อน${NC}"
+                    exit 1
+                fi
+
+                cp .env ".env.backup.$(date +%Y%m%d_%H%M%S)"
+                # ลบทุกบรรทัดเดิมของ key (กันค่าซ้ำหลายบรรทัด) แล้วเขียนใหม่บรรทัดเดียว
+                _tmp=$(mktemp)
+                grep -v "^${key}=" .env > "$_tmp" || true
+                cat "$_tmp" > .env
+                rm -f "$_tmp"
+                printf '%s=%s\n' "$key" "$val" >> .env
+                echo -e "  ${GREEN}✅ .env: ${key}=$(env_show "$key" "$val")${NC}"
+
+                echo "  สร้าง container api ใหม่ให้อ่านค่า..."
+                docker compose up -d --force-recreate api >/dev/null
+                actual=$(env_container_value "$key" || true)
+                expected=$(env_strip_quotes "$val")
+                if [ "$actual" = "$expected" ]; then
+                    echo -e "  ${GREEN}✅ API เห็น ${key}=$(env_show "$key" "$actual")${NC}"
+                else
+                    echo -e "${RED}❌ API เห็น ${key}=$(env_show "$key" "$actual") ไม่ตรงกับที่ตั้ง${NC}"
+                    echo "   ตรวจ: grep -n ${key} .env docker-compose*.yml"
+                    exit 1
+                fi
+                ;;
+            get)
+                key="${3:-}"
+                [ -z "$key" ] && { echo "Usage: ./aegisx env get KEY"; exit 1; }
+                count=$(grep -c "^${key}=" .env 2>/dev/null || true)
+                file_val=$(grep "^${key}=" .env 2>/dev/null | tail -1 | cut -d'=' -f2- || true)
+                echo "  .env        : $(env_show "$key" "$(env_strip_quotes "$file_val")")"
+                if [ "${count:-0}" -gt 1 ]; then echo -e "  ${YELLOW}⚠️  .env มี ${key} ${count} บรรทัด — ใช้บรรทัดล่างสุด ควรเหลือบรรทัดเดียว${NC}"; fi
+                if grep -qE "^[[:space:]]+${key}:" docker-compose.yml 2>/dev/null; then
+                    echo "  compose     : map แล้ว"
+                else
+                    echo -e "  compose     : ${YELLOW}ไม่ได้ map — ค่าใน .env ไม่ถึง API${NC}"
+                fi
+                echo "  API จริง    : $(env_show "$key" "$(env_container_value "$key")")"
+                ;;
+            check)
+                ensure_compose_env_mappings
+                echo -e "${BOLD}env ที่ระบบจัดการ (.env / API จริง):${NC}"
+                for key in "${ENV_MAPPING_VARS[@]}"; do
+                    file_val=$(env_strip_quotes "$(grep "^${key}=" .env 2>/dev/null | tail -1 | cut -d'=' -f2- || true)")
+                    api_val=$(env_container_value "$key" || true)
+                    mark="✅"
+                    if [ -n "$file_val" ] && [ "$file_val" != "$api_val" ]; then mark="❌ ต่างกัน — ./aegisx env set ${key} ${file_val}"; fi
+                    printf '  %-26s .env=%-8s API=%-8s %s\n' "$key" "${file_val:-<ไม่ตั้ง>}" "${api_val:-<ว่าง>}" "$mark"
+                done
+                dups=$(grep -oE "^[A-Z][A-Z0-9_]*=" .env 2>/dev/null | sort | uniq -d | tr -d '=' | tr '\n' ' ' || true)
+                if [ -n "$dups" ]; then echo -e "  ${YELLOW}⚠️  .env มีตัวแปรซ้ำหลายบรรทัด: ${dups}— ใช้บรรทัดล่างสุด ตรวจก่อนลบ${NC}"; fi
+                ;;
+            *)
+                echo "Usage: ./aegisx env [check | get KEY | set KEY VALUE]"; exit 1
+                ;;
+        esac
+        ;;
     config)
         echo -e "${BOLD}Current Configuration:${NC}"
         echo ""
@@ -1488,6 +1633,9 @@ ORDER BY table_name;
         echo "Debug Commands:"
         echo "  shell <service>    Open shell (api, postgres, redis)"
         echo "  config             Show current config (secrets hidden)"
+        echo "  env [check]        เทียบ env ที่ระบบจัดการ .env กับค่าที่ API เห็นจริง (+ เติม map ที่ขาด)"
+        echo "  env get KEY        ดูค่าใน .env / compose / API จริง"
+        echo "  env set KEY VALUE  ตั้งค่าใน .env → map ใน compose → recreate api → ยืนยันค่า"
         echo "  help               Show this help"
         ;;
 esac

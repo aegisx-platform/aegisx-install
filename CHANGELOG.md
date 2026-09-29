@@ -1,3 +1,15 @@
+# [1.146.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.145.0...v1.146.0) (2026-09-29)
+
+
+### Bug Fixes
+
+* **system-reset:** index FK ที่ถูกลบ + ล้างเบื้องหลัง ไม่ติด timeout ของ proxy ([16b1949](https://github.com/aegisx-platform/aegisx-starter/commit/16b1949d46d5f881d7c60d5bd2add92810306aa0))
+
+
+### Features
+
+* **deploy:** ./aegisx env — ตั้ง env ของ API ครบวงจร + update เติม map ที่ขาดใน compose ([5269338](https://github.com/aegisx-platform/aegisx-starter/commit/52693384092f455f770b30a875cc3fcc63909c6b))
+
 # [1.145.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.144.0...v1.145.0) (2026-09-29)
 
 
