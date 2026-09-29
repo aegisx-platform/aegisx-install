@@ -1,3 +1,11 @@
+## [1.146.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.146.0...v1.146.1) (2026-09-29)
+
+
+### Bug Fixes
+
+* **deploy:** ออก release ให้ 33b9b218d (scope มี comma parser ไม่รับ) ([4be1287](https://github.com/aegisx-platform/aegisx-starter/commit/4be1287a7a397ec643f889ce12fd7e5af205b64c)), closes [#551](https://github.com/aegisx-platform/aegisx-starter/issues/551)
+* **system-reset,deploy:** แจ้งงานล้างที่หายเพราะ API รีสตาร์ต · CLI ไม่ตายเมื่อ .env มี $ ([33b9b21](https://github.com/aegisx-platform/aegisx-starter/commit/33b9b218df40ddd2b42bb58b68472021e8bd06c9))
+
 # [1.146.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.145.0...v1.146.0) (2026-09-29)
 
 
