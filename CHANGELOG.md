@@ -1,3 +1,10 @@
+# [1.147.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.146.1...v1.147.0) (2026-09-29)
+
+
+### Features
+
+* **system-reset:** ล้างเฉพาะสต็อก เก็บ PR/PO/ใบรับ/ยอดใช้งบไว้ ([3f6afcb](https://github.com/aegisx-platform/aegisx-starter/commit/3f6afcb542eba96f004029d250365f971712af6a))
+
 ## [1.146.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.146.0...v1.146.1) (2026-09-29)
 
 
