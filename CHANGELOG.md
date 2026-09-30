@@ -1,3 +1,18 @@
+# [1.149.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.148.0...v1.149.0) (2026-09-30)
+
+
+### Bug Fixes
+
+* **budget-monitoring:** จัด layout หน้าติดตามงบประมาณ ([6cb14a3](https://github.com/aegisx-platform/aegisx-starter/commit/6cb14a35f03de33b7468b0391a2e8de2300cad2b))
+* **budget-requests:** บันทึกประวัติล้มหลังแก้สำเร็จต้องไม่ตอบ 500 ([0d9f83b](https://github.com/aegisx-platform/aegisx-starter/commit/0d9f83b3c0c6ff95b76d44527316c3354ff391ec)), closes [#555](https://github.com/aegisx-platform/aegisx-starter/issues/555)
+* **his-settings:** จัดฟอร์มการเชื่อมต่อ HIS ไม่ให้ข้อความทับกัน ([a1a1c10](https://github.com/aegisx-platform/aegisx-starter/commit/a1a1c10bf060b24fd94555f0793e8a1d9dd8dfc8))
+* **his-settings:** วิธีเชื่อมต่อ INTERNAL ขึ้นว่าง เส้นซ้อน และจัดส่วนดึงข้อมูลอัตโนมัติ ([b59fd9f](https://github.com/aegisx-platform/aegisx-starter/commit/b59fd9fc900bfec57ac138f1dce52dee3d99e830))
+
+
+### Features
+
+* **budget-requests:** บันทึกการแก้รายการยาในแผนลงประวัติการแก้ไข ([022383a](https://github.com/aegisx-platform/aegisx-starter/commit/022383a073c05c38e37d66a5f9f584ea315bdf2c))
+
 # [1.148.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.147.0...v1.148.0) (2026-09-30)
 
 
