@@ -1,3 +1,27 @@
+# [1.148.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.147.0...v1.148.0) (2026-09-30)
+
+
+### Bug Fixes
+
+* **budget-requests:** นำเข้าแผนจับคู่รายการเดิมด้วยรหัสยา ไม่ใช่ generic ([31f6097](https://github.com/aegisx-platform/aegisx-starter/commit/31f6097e3b5ee96e47cd2f73ac0f8dac222439ef))
+* **budget-requests:** ประวัติการแก้ไขแผนแสดงสถานะเป็นภาษาไทย ([baff59c](https://github.com/aegisx-platform/aegisx-starter/commit/baff59c9d74791af282dec5910f7e856a0b06fe8))
+* **contracts:** แก้สัญญาแล้วแถมหาย และ e-GP ในหน้าต่างสัญญาขึ้น – / – ([89ca1b8](https://github.com/aegisx-platform/aegisx-starter/commit/89ca1b814908d1fc37959d2dc80a9bca323db752))
+* **contracts:** ปัดวงเงินเป็นสตางค์ก่อนเทียบกับผลรวมรายการยา ([25bedab](https://github.com/aegisx-platform/aegisx-starter/commit/25bedabb825054468db7c36c328d9833e4159214))
+* **contracts:** ยอดรวมรายการยาขึ้น 0.00 ตอนเปิดแก้สัญญา ([8ea2b4f](https://github.com/aegisx-platform/aegisx-starter/commit/8ea2b4f7be2f2a372b39f6e7be1dd533fee69507))
+* **po-documents:** ประกาศผู้ชนะใช้วันที่เดียวกับรายงานขอซื้อขอจ้าง ([722a357](https://github.com/aegisx-platform/aegisx-starter/commit/722a357fc66a16f8ce045990969a8ee6f6452650))
+* **procurement-tracker:** จำนวนในรายการใช้หน่วยบรรจุ ไม่ใช่หน่วยฐานเสมอ ([beb3340](https://github.com/aegisx-platform/aegisx-starter/commit/beb3340e587d80bd77ed2da04af5888fbb09154e))
+* **trade-creditor-registers:** ปีงบเลือกจากตั้งค่าปีงบประมาณ ค่าเริ่มต้นปีปัจจุบัน ([51b8a80](https://github.com/aegisx-platform/aegisx-starter/commit/51b8a8088f3a6bf20e5c2db06750f8a2c2810bad))
+
+
+### Features
+
+* **budget-requests:** บันทึกการนำเข้า Excel และหน้าประวัติการแก้ไขแผน ([adb4091](https://github.com/aegisx-platform/aegisx-starter/commit/adb4091f61b6310c4efa5d2cb375c7d2e8cc3fe7))
+* **contracts:** ช่องแก้ของแถมในฟอร์มสัญญา ([a81314d](https://github.com/aegisx-platform/aegisx-starter/commit/a81314d7857a8334becf3d2a7e533d7493413b5d))
+* **contracts:** ตัวกรอง PO ในรายการ PO ที่ซื้อยานี้ และขยายหน้าต่างสัญญา ([866c374](https://github.com/aegisx-platform/aegisx-starter/commit/866c3743c73d43cae011939512fb35416d424d88))
+* **contracts:** วิธีที่ได้สัญญามา (e-bidding ฯลฯ) ในข้อมูลสัญญา ([fa57504](https://github.com/aegisx-platform/aegisx-starter/commit/fa57504cf5b0b856d8031a74490f64b3a57508a5))
+* **purchase-orders:** บัตรคุมสัญญา (Excel) สำหรับใบสั่งซื้อที่ผูกสัญญา ([bdedad9](https://github.com/aegisx-platform/aegisx-starter/commit/bdedad9cbdb8cdcd6858df043d52f651a0c8b37d))
+* **purchase-orders:** รายงานผลตรวจรับฯ ขออนุมัติเบิกจ่าย ดาวน์โหลดเป็น Word ([d547dda](https://github.com/aegisx-platform/aegisx-starter/commit/d547dda29d2cfa87b3eb056274c259d6f62ab9c8))
+
 # [1.147.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.146.1...v1.147.0) (2026-09-29)
 
 
