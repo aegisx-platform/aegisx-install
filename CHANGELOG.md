@@ -1,3 +1,11 @@
+## [1.150.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.150.0...v1.150.1) (2026-10-02)
+
+
+### Bug Fixes
+
+* **drug-generics:** แก้ไขยาสามัญที่ไม่ได้ระบุหมวดงบหรือรูปแบบยาบันทึกไม่ได้ ([adb6ae3](https://github.com/aegisx-platform/aegisx-starter/commit/adb6ae3d2f20e0517ed1f87cf90c692648af2131))
+* **drugs:** บันทึกบรรจุภัณฑ์ชนข้อมูลซ้ำเมื่อค่าเริ่มต้นย้ายไปหน่วยพื้นฐาน ([26270c1](https://github.com/aegisx-platform/aegisx-starter/commit/26270c16e32012acc49d86e8a23861d9618fc5c2))
+
 # [1.150.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.149.0...v1.150.0) (2026-10-01)
 
 
