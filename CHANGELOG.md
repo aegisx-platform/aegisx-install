@@ -1,3 +1,11 @@
+# [1.154.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.153.0...v1.154.0) (2026-10-05)
+
+
+### Features
+
+* **refill-push:** ⓘ ไล่ย้อนยอดใช้ถึงรายการต้นทาง — ยอดรายวัน + ลิงก์ทะเบียนตัดจ่าย ([6e79fd8](https://github.com/aegisx-platform/aegisx-starter/commit/6e79fd8b1f4d96ed9348a7a65bab1d735d2ae3f9))
+* **refill-push:** บอกช่วงวันที่ใต้ช่องดูย้อนหลัง ([8312b08](https://github.com/aegisx-platform/aegisx-starter/commit/8312b086d02f75a4eef3c11e922625cafbe04ca6))
+
 # [1.153.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.152.0...v1.153.0) (2026-10-05)
 
 
