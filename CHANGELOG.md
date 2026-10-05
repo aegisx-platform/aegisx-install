@@ -1,3 +1,10 @@
+# [1.156.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.155.0...v1.156.0) (2026-10-05)
+
+
+### Features
+
+* **opening-balance:** แก้ยอดยกมารายล็อตพร้อมสาเหตุ + บัตรคลังยอดคงเหลือตามวันที่ ([68c57d9](https://github.com/aegisx-platform/aegisx-starter/commit/68c57d93fab3e658ecde98a0d60d853a32ff9edf))
+
 # [1.155.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.154.0...v1.155.0) (2026-10-05)
 
 
