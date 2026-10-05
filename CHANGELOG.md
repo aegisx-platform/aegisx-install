@@ -1,3 +1,16 @@
+# [1.155.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.154.0...v1.155.0) (2026-10-05)
+
+
+### Bug Fixes
+
+* **refill-push:** แท็บดูทีละใบ — ใบไม่ถูกบีบ + เลือกดูทีละใบ ([080fa86](https://github.com/aegisx-platform/aegisx-starter/commit/080fa86ccc01c8c4429ce2eda5d9ddfb7c0104b0))
+* **refill-push:** ออกใบเติมไม่ติดยาที่รูปแบบบรรจุชื่อซ้ำหน่วยฐาน ([8873942](https://github.com/aegisx-platform/aegisx-starter/commit/8873942e21939e229a619c40b824921607f8fde9))
+
+
+### Features
+
+* **refill-push:** แท็บดูทีละใบ — แยกตามหน่วยเบิก × กลุ่มยา ตรงกับใบที่จะออก ([687d8df](https://github.com/aegisx-platform/aegisx-starter/commit/687d8df01e8402d14ecb6695e9366d82c05bc9ec))
+
 # [1.154.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.153.0...v1.154.0) (2026-10-05)
 
 
