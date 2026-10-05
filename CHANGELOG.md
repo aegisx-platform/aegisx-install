@@ -1,3 +1,18 @@
+# [1.153.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.152.0...v1.153.0) (2026-10-05)
+
+
+### Bug Fixes
+
+* **distributions:** ใบเบิกพิมพ์คงเหลือก่อนเบิกจริง + เวลาที่สร้างใบ ([082f97c](https://github.com/aegisx-platform/aegisx-starter/commit/082f97c861bae04d579b77f11e85c8c0a4c04352))
+* **sub-warehouse:** ป้ายสถานะจ่ายบางส่วน + ข้อความขอเกินยอดไม่สัญญาว่าค้างจ่าย ([33a258b](https://github.com/aegisx-platform/aegisx-starter/commit/33a258be93a7f42f4f610b84440ad5827ac1a4be))
+
+
+### Features
+
+* **refill-push:** ปุ่ม ⓘ แทนค่าในสูตรรายแถวและยอดรวม + ช่วงวันที่ยอดใช้ตรง ([b084871](https://github.com/aegisx-platform/aegisx-starter/commit/b084871b6a9b6c9e8573aa353704c808968eee6b))
+* **refill-push:** ปุ่มอธิบายวิธีคำนวณยอดเติมคลังย่อย ([74f575d](https://github.com/aegisx-platform/aegisx-starter/commit/74f575d15bec283fa0684e21e9eef422717333e4))
+* **refill-push:** เผื่อเพิ่ม % และใช้อัตรา 7 วันล่าสุดถ้าสูงกว่า ([649b7f4](https://github.com/aegisx-platform/aegisx-starter/commit/649b7f4b7a6ff839a596190d68217d588d4333ec))
+
 # [1.152.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.151.0...v1.152.0) (2026-10-05)
 
 
