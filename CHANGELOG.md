@@ -1,3 +1,18 @@
+# [1.152.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.151.0...v1.152.0) (2026-10-05)
+
+
+### Bug Fixes
+
+* **dispensing:** เปิดห้องไม่ดึงบรรทัดที่ซ้ำกับใบตัดเอง/ติดลบกลับมาตัด ([d89d811](https://github.com/aegisx-platform/aegisx-starter/commit/d89d811b64c2cb924247be280722871c1b048bdd))
+* **his-settings:** ตารางชื่อคีย์ไฟล์การเชื่อมต่อไม่ติดตัวตรวจรหัสผ่านฝังโค้ด ([214717a](https://github.com/aegisx-platform/aegisx-starter/commit/214717a0d5880e684915653f744420dc6671604e))
+* **opening-balance:** กล่องยกเลิกไม่บอกว่ายอดกลับเป็น 0 เมื่อมีรอบเสริม ([ce7e0c2](https://github.com/aegisx-platform/aegisx-starter/commit/ce7e0c253a9193529528c7fa8bfedfc6dbbb0c72))
+
+
+### Features
+
+* **his-settings:** นำเข้าการเชื่อมต่อ HIS จากไฟล์ข้อความ ([7306963](https://github.com/aegisx-platform/aegisx-starter/commit/730696332e7c7bf53d1165c537dfb0711d7b0c89))
+* **opening-balance:** นำเข้ายอดยกมารอบเสริมในคลังที่มียอดยกมาแล้วได้ ([c62314c](https://github.com/aegisx-platform/aegisx-starter/commit/c62314cd9bb33740ccf8fc933811c9e66b6210b6))
+
 # [1.151.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.150.1...v1.151.0) (2026-10-04)
 
 
