@@ -1,3 +1,51 @@
+# [1.157.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.156.0...v1.157.0) (2026-10-06)
+
+
+### Bug Fixes
+
+* **deps:** override proxy-addr และ tinypool ปิดช่องโหว่ critical ([7fed9a7](https://github.com/aegisx-platform/aegisx-starter/commit/7fed9a70e076438eeca3b7d5fd56c90f5c937aef))
+* **drug-distributions:** ของเข้าคลังย่อยตอนกดรับ ไม่ใช่ตอนคลังใหญ่จ่าย ([692a3ec](https://github.com/aegisx-platform/aegisx-starter/commit/692a3ecfc1685918ef7e4dc8ffac0de350485d7e))
+* **po-inspections:** ใบสั่งซื้อที่ลงคลังโดยไม่มีชุดตรวจรับ แสดงเป็นลงคลังแล้ว ([848e5f0](https://github.com/aegisx-platform/aegisx-starter/commit/848e5f00ff9d79ac4bb06f56c498f7ce339713b8))
+* **po-pdf:** ประกาศผู้ชนะ/คู่ฉบับ ไม่แสดงวันที่ = เว้นว่าง ไม่ใส่จุดไข่ปลา ([3d6877c](https://github.com/aegisx-platform/aegisx-starter/commit/3d6877c5cbccca04023e5b972c77437be8ece7c0))
+* **procurement-dashboard:** ระยะเวลาจัดซื้อจากประวัติจริง แทน Bottleneck/Cycle Time เดิม ([3830ae7](https://github.com/aegisx-platform/aegisx-starter/commit/3830ae728b41e270d514c323dfcff4cadb3f8ebb))
+* **procurement-tracker:** แสดงหน่วยบรรจุในรายละเอียดรายการ ให้ตรงกับหน้ารายการ ([3196ffa](https://github.com/aegisx-platform/aegisx-starter/commit/3196ffa0d3d39a3d5bb28ae6c7270f8ef663be43))
+* **purchase-orders:** ส่ง PO แบบไม่มี body ได้ + เส้นเวลารีเฟรชหลังแก้วันที่ส่ง ([02ed763](https://github.com/aegisx-platform/aegisx-starter/commit/02ed763d30f1d5b1c33677e29d8df3e0d88dff88))
+* **tmt-import:** เช็ครุ่นไฟล์ก่อนสั่งนำเข้าเบื้องหลัง ([d74080a](https://github.com/aegisx-platform/aegisx-starter/commit/d74080acbcf900b32ea40d87cd48dd959924e3ca))
+
+
+### Features
+
+* **document-dispatch-slips:** สร้างใบนำส่งแสดงเลข PO รพ. และค้นได้ ([e7d20d5](https://github.com/aegisx-platform/aegisx-starter/commit/e7d20d50b9c5d9bff11ca201f558553a403d455f))
+* **drug-generics:** ออกรหัสทำงานตามรันนิ่งในหน้าการออกเลขเอกสาร ([ed670b3](https://github.com/aegisx-platform/aegisx-starter/commit/ed670b36b635b38211088fb5cb3424e34136e5f3))
+* **drug-usage:** จำนวนแนะนำเป็นหน่วยสั่งซื้อ ([78760ec](https://github.com/aegisx-platform/aegisx-starter/commit/78760ecb52c2e769f3988babddb8ab1ebec2623e))
+* **drug-usage:** ทำนายการใช้ 4 สัปดาห์ + วันที่ของหมด + ความแม่น + เตือนข้อมูล HIS ขาด ([01681ea](https://github.com/aegisx-platform/aegisx-starter/commit/01681ea2aa5f7c59db588f05406b37463ae6d16b))
+* **drug-usage:** ทำนายตามฤดูกาล + ช่วงที่ดูถึง 104 สัปดาห์ ([98e2056](https://github.com/aegisx-platform/aegisx-starter/commit/98e2056bfbf2c1d3dd33ef7c53bdf7d5e29d2b23))
+* **drug-usage:** ปิดแถบเตือนข้อมูล HIS ขาดช่วงได้ ([560d128](https://github.com/aegisx-platform/aegisx-starter/commit/560d128cdfe1baa8bccf5710665ccc6084af08be))
+* **drug-usage:** ภาพรวมการใช้ยารายยา รายหน่วยเบิก พร้อมแนวโน้มรายสัปดาห์ ([5916097](https://github.com/aegisx-platform/aegisx-starter/commit/5916097fad143aaaa094ec43c402461bd7b48e71))
+* **drug-usage:** เลือกยาแล้วสร้าง PR+PO ผ่านสร้างด่วน แยก 1 ใบต่อยา ([9aa81c2](https://github.com/aegisx-platform/aegisx-starter/commit/9aa81c20538d429cff0f48ce6d17a8f7eac719c9))
+* **drug-usage:** หน้าจัดซื้อ — ค้างรับ ควรสั่งภายใน และจำนวนแนะนำ ([545b5c6](https://github.com/aegisx-platform/aegisx-starter/commit/545b5c6cada350e947459c3c9cc209a8cd7f50f0))
+* **main-warehouse:** เมนูบนเปลี่ยนจ่ายล่วงหน้าเป็นเติมคลังย่อย ([93ed23c](https://github.com/aegisx-platform/aegisx-starter/commit/93ed23ccaa5b420001e3acf0d1c79e0439474a7f))
+* **opening-balance:** เพิ่มล็อตยกมาเองที่บัตรคลังโดยไม่ต้องนำเข้าไฟล์ ([07eb921](https://github.com/aegisx-platform/aegisx-starter/commit/07eb9212b4b2aa9ac8fda89c6f958afb4a24ce04))
+* **procurement-lead-time:** มุมมองแยกตามผู้ขาย ([6a5702f](https://github.com/aegisx-platform/aegisx-starter/commit/6a5702f5185abe6bfe437ec46c339b8582eab37b))
+* **procurement-timeline:** เก็บเวลาใบรับทุกขั้น + PO/PR ตอนลงคลัง ([9d31897](https://github.com/aegisx-platform/aegisx-starter/commit/9d31897c27c029141a7a30782b53baadab43ffc0))
+* **procurement-timeline:** เลข PO ของ รพ. ในเส้นเวลาและ heatmap + จุดคั่นชัดขึ้น ([46e9706](https://github.com/aegisx-platform/aegisx-starter/commit/46e9706bd29213bb67300a1d72f49c364ae9fb23))
+* **procurement-timeline:** เส้นเวลากระชับ — 1 ขั้น 1 บรรทัด ([71cacfe](https://github.com/aegisx-platform/aegisx-starter/commit/71cacfe07275ef8a08b5ac0d7a577565385cbf4d))
+* **procurement-timeline:** เส้นเวลาจัดซื้อรายใบพร้อมระยะเวลาแต่ละช่วง ([b5c726f](https://github.com/aegisx-platform/aegisx-starter/commit/b5c726f6ec5dd55149c6693c7bd5e1a412025cb1))
+* **procurement-timeline:** เส้นเวลาแนวตั้ง — วันเวลา | จุด | ขั้น ผู้ทำ เอกสาร ([0aa0490](https://github.com/aegisx-platform/aegisx-starter/commit/0aa0490fe104e5a10c15a661f80b95ffb377c189))
+* **procurement-timeline:** หน้าระยะเวลาจัดซื้อ — heatmap ใบไหนช้า ช้าตรงไหน ([2088b06](https://github.com/aegisx-platform/aegisx-starter/commit/2088b068b807c720ca0de8e8bd987550f92d318f))
+* **procurement-timeline:** โหมดขั้นสำคัญ + หัวกลุ่มตามช่วงงาน ([d459bb3](https://github.com/aegisx-platform/aegisx-starter/commit/d459bb3fb40add280a2e05a8f92c2e8333f2ef91))
+* **purchase-orders:** วันที่ส่งผู้ขายแยกจากวันที่ PO ([ab08244](https://github.com/aegisx-platform/aegisx-starter/commit/ab08244e9ce2412122247a437faac5ff41dbbf4d))
+* **refill-push:** กดเส้นแนวโน้มเปิดกราฟรายวันและวิธีคิดของแถว ([4269b01](https://github.com/aegisx-platform/aegisx-starter/commit/4269b012d7ec13af2e8b005231f37d49e95064dc))
+* **refill-push:** เตือนข้อมูล HIS ขาดช่วง + กรองยาตามแนวโน้มการใช้ ([02e635f](https://github.com/aegisx-platform/aegisx-starter/commit/02e635f307d50a22e264fcd1e098687564d2a948))
+* **refill-push:** ธงวันที่จ่ายพุ่งผิดปกติ ([1a9e683](https://github.com/aegisx-platform/aegisx-starter/commit/1a9e683c5a0050d47f3d849d923ba7c0e5a625ec))
+* **refill-push:** แนวโน้มการใช้ในตาราง + กราฟการใช้รายวันในหน้าต่างวิธีคิด ([bb6ef1a](https://github.com/aegisx-platform/aegisx-starter/commit/bb6ef1a4a93b449641e84e95837624177ea493dc))
+* **refill-push:** เส้นแนวโน้มการใช้เล็กทุกแถวในตารางเติมคลังย่อย ([17e5f5b](https://github.com/aegisx-platform/aegisx-starter/commit/17e5f5bfc32242a5487d44aa4b476851ed8208cd))
+* **refill-push:** หน้าต่างวิธีคิดเอากราฟการใช้รายวันขึ้นก่อนสูตร ([b3409d7](https://github.com/aegisx-platform/aegisx-starter/commit/b3409d7d9dbb410be80c8664f092bffea176ece4))
+* **stock-card:** แท็บแนวโน้มการใช้ในบัตรคลัง ([eda1e2e](https://github.com/aegisx-platform/aegisx-starter/commit/eda1e2e97282c80fa366be241af65386a2e37b90))
+* **tmt-import:** กันลงไฟล์รุ่นเก่าทับ + ปิดรหัสที่ TMT ยกเลิก ([929d7e3](https://github.com/aegisx-platform/aegisx-starter/commit/929d7e3e45b4300a10960107f59e3f64ca10da71))
+* **tmt-import:** ปิดความสัมพันธ์ TMT ที่ไม่มีในไฟล์รุ่นใหม่ ([a374a2d](https://github.com/aegisx-platform/aegisx-starter/commit/a374a2d64d2bae83faf48dadda0b11d6a11bfd7e))
+* **tmt-import:** ปุ่มลบ generic จาก TMT ที่ไม่มีอะไรใช้ ([845c40f](https://github.com/aegisx-platform/aegisx-starter/commit/845c40fc81f86f12ade71d95738dbab65f8d2647))
+
 # [1.156.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.155.0...v1.156.0) (2026-10-05)
 
 
