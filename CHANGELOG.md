@@ -1,3 +1,25 @@
+# [1.158.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.157.0...v1.158.0) (2026-10-07)
+
+
+### Bug Fixes
+
+* **deps:** override shell-quote ≥1.11.0 ปิดช่องโหว่ critical ([ee53a14](https://github.com/aegisx-platform/aegisx-starter/commit/ee53a14315f496d15b8032c3d8d03c5b05fcd765)), closes [#570](https://github.com/aegisx-platform/aegisx-starter/issues/570)
+* **pdf-preview:** ปุ่มพิมพ์ใช้ตัวแสดง PDF แทน iframe blob — พิมพ์ได้บน http ([23e073c](https://github.com/aegisx-platform/aegisx-starter/commit/23e073c6de7ceeb695c77c3bce20477ea7e13ea6))
+* **receipts:** dialog ตรวจรับ/ลงรับแสดงเลข PO รพ. แทนเลขระบบเมื่อมี ([65c5760](https://github.com/aegisx-platform/aegisx-starter/commit/65c57601f35c59125c6185002f3634b16d9fc06b))
+* **receipts:** ยืนยันลงรับในหน้ารายละเอียดใบรับแสดงเลข PO รพ. ก่อนเลขระบบ ([c8a26ec](https://github.com/aegisx-platform/aegisx-starter/commit/c8a26ecb5863db134b8e754daa4ec9bf88d9e045))
+* **sub-warehouse:** ยืนยันรับยา ใบเก่าแสดงหน่วยใหญ่ รับเกินขึ้นแถวแดง ปุ่มปิดจนครบ ([912325c](https://github.com/aegisx-platform/aegisx-starter/commit/912325ce54c74051ff3c06d13026f5e3239ea2e3))
+
+
+### Features
+
+* **drug-distributions:** ใบเบิก ใบจัด และหน้าอนุมัติแสดงตามหน่วยที่เบิก ([13eec6c](https://github.com/aegisx-platform/aegisx-starter/commit/13eec6ccee14ded4ef2334f152b9d985e8fba0f2))
+* **drug-generics:** ชื่อสามัญและชื่อการค้าไม่จำกัดความยาว ([65a3ac9](https://github.com/aegisx-platform/aegisx-starter/commit/65a3ac9047b00ba1434af721cfa796869f3764ff))
+* **inventory-levels:** ปุ่มค้นหายาข้ามคลังในหน้ายาคงเหลือ ([a8b5dc1](https://github.com/aegisx-platform/aegisx-starter/commit/a8b5dc1b3d02c5dc42464338832b893f5a92e5d9))
+* **purchase-orders:** ชื่อ ผอ. ในประกาศผู้ชนะอยู่ 18 ซม. จากขอบบน พร้อมเส้นตรวจระยะ ([beaa568](https://github.com/aegisx-platform/aegisx-starter/commit/beaa5689521f6a237cd89cb393092335985e5561))
+* **requisition-management:** พิมพ์ใบจัดได้ตั้งแต่รออนุมัติ ([fcc865c](https://github.com/aegisx-platform/aegisx-starter/commit/fcc865ca1a14a86ec1609b6ece0390142f36f2f9))
+* **sub-warehouse:** ค้นหาและกรองใบเบิกได้เหมือนหน้าจัดการใบเบิกคลังใหญ่ ([8ed085b](https://github.com/aegisx-platform/aegisx-starter/commit/8ed085b2a64bcb8056d5a2c166ece695c03d7c73))
+* **sub-warehouse:** ยืนยันรับยาเป็นตารางแบบหน้าอนุมัติ รับทีละหลายสิบรายการได้ ([60bb1d6](https://github.com/aegisx-platform/aegisx-starter/commit/60bb1d614fc033ead252d220ec830d735fd4cb18))
+
 # [1.157.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.156.0...v1.157.0) (2026-10-06)
 
 
