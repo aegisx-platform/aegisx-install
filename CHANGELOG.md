@@ -1,3 +1,19 @@
+# [1.162.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.161.0...v1.162.0) (2026-10-08)
+
+
+### Bug Fixes
+
+* **his-sync:** จัดบรรทัดจำนวน 0 ที่ค้างรอตัดด้วย migration แทนตอนตัดจ่ายซ้ำ ([cd00b50](https://github.com/aegisx-platform/aegisx-starter/commit/cd00b50bcc6c192179fe6b35a9adaa99f581dcd4))
+* **his-sync:** ตรวจซ้ำใบ HIS ข้ามราย (วัน ห้อง) ไม่นับใบที่ถอนทั้งใบแล้ว · ถอนไม่ครบปฏิเสธ ([1c3ddc5](https://github.com/aegisx-platform/aegisx-starter/commit/1c3ddc55faf66222acfc0e70f08bbeaf7899e3af))
+* **his-sync:** บรรทัดจำนวน 0 ไม่ค้างรอตัดตลอดไปหลังเปิดห้อง ([d6a959e](https://github.com/aegisx-platform/aegisx-starter/commit/d6a959ef444747a63cbd6428c873dd21c441d857))
+
+
+### Features
+
+* **dispensing-monitor:** แท็บ HIS เปลี่ยนแปลง ถอน/ไม่ถอนจากหน้าจอ + ตั้งวันตรวจซ้ำในรอบ sync ([6225bd6](https://github.com/aegisx-platform/aegisx-starter/commit/6225bd6544352159e648912b1bf2f00553dda57b))
+* **his-sync:** ตรวจซ้ำใบที่ตัดแล้วย้อนหลัง 7 วัน บันทึกรายการที่ HIS ยกเลิก/ลดยอด ([12ac3be](https://github.com/aegisx-platform/aegisx-starter/commit/12ac3be68896b4548cdecee3ed5687f44f9cbc6a))
+* **his-sync:** ถอนส่วนที่ HIS ยกเลิกหลังตัด คืนเข้าล็อตเดิม หรือปิดรายการพร้อมเหตุผล ([54459e4](https://github.com/aegisx-platform/aegisx-starter/commit/54459e4356fe94c0212a7cbdf6c758041f06a95b))
+
 # [1.161.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.160.1...v1.161.0) (2026-10-08)
 
 
