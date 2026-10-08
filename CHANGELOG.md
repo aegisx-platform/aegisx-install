@@ -1,3 +1,16 @@
+# [1.160.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.159.0...v1.160.0) (2026-10-08)
+
+
+### Bug Fixes
+
+* **drug-returns:** เช็คสต็อกตอนสร้างใบให้ตรงกับการตัดล็อตแถวเดียว ตัด as any ([ed8454b](https://github.com/aegisx-platform/aegisx-starter/commit/ed8454b5170389f16b029836d38974c6820495b8)), closes [#572](https://github.com/aegisx-platform/aegisx-starter/issues/572)
+* **inventory:** ลงรับด่วนไม่รับยาที่ไม่มียาสามัญ/หน่วยฐาน สร้างใบเบิกใช้ช่องค้นทางเดียว ([6fae6fd](https://github.com/aegisx-platform/aegisx-starter/commit/6fae6fda5c20892d6f6aedbea1bf99421aaea52d)), closes [#573](https://github.com/aegisx-platform/aegisx-starter/issues/573)
+
+
+### Features
+
+* **inventory:** สร้างใบเบิก เติมคลังย่อย รับเข้าแบบเร็ว ใช้ช่องค้นยามาตรฐาน ([e3554d4](https://github.com/aegisx-platform/aegisx-starter/commit/e3554d456dcc671a20deaa1b8fd55894c8854c54))
+
 # [1.159.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.158.0...v1.159.0) (2026-10-08)
 
 
