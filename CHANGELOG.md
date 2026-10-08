@@ -1,3 +1,21 @@
+# [1.161.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.160.1...v1.161.0) (2026-10-08)
+
+
+### Bug Fixes
+
+* **his-sync:** ดึงซ่อมช่วงวันที่ได้ครั้งละไม่เกิน 31 วัน ([d6c8dc2](https://github.com/aegisx-platform/aegisx-starter/commit/d6c8dc2ae09f1b71b069ed7a3a8713f0a6a4c42e))
+* **his-sync:** เพดาน 31 วันเฉพาะดึงซ่อม ปิดยอดไม่ขยับเกินวันที่ปิดแล้ว ([32bdcd2](https://github.com/aegisx-platform/aegisx-starter/commit/32bdcd227d2e58cb5af133f33dd679071d78d451)), closes [#575](https://github.com/aegisx-platform/aegisx-starter/issues/575) [#575](https://github.com/aegisx-platform/aegisx-starter/issues/575)
+* **his-sync:** รอบรายวันไล่ช่องว่างต่อทันที ดึงซ่อมไม่นับเป็นรอบล่าสุด ([f386d29](https://github.com/aegisx-platform/aegisx-starter/commit/f386d296f97fb65c17d5879edba0c5fb984361ee)), closes [#575](https://github.com/aegisx-platform/aegisx-starter/issues/575) [#575](https://github.com/aegisx-platform/aegisx-starter/issues/575)
+
+
+### Features
+
+* **his-settings:** การ์ดและกล่อง "ตั้งรอบ sync" แยกจากฟอร์มการเชื่อมต่อ ([252e158](https://github.com/aegisx-platform/aegisx-starter/commit/252e158efcaced4eba852dce842ecf70b7f6b8dd))
+* **his-settings:** หน้าตั้งค่ารอบดึงแบบรายวัน + ดึงซ่อมช่วงวันที่ (S3) ([7ae3d58](https://github.com/aegisx-platform/aegisx-starter/commit/7ae3d58d98ee880d04cc1ddb46315869969f81a8))
+* **his-sync:** log ทุกรอบเก็บช่วงวันที่ที่ดึงและปิดยอดถึงวันไหน ([7384edd](https://github.com/aegisx-platform/aegisx-starter/commit/7384edd0407265381ecb04d7791703b2927cd8db))
+* **his-sync:** ตัดจ่าย HIS แบบปิดยอดรายวัน — ฐานข้อมูล + API (S1) ([b23d603](https://github.com/aegisx-platform/aegisx-starter/commit/b23d60377afc53b58b018d0ec9311f84d9e4b709))
+* **his-sync:** ตัวตั้งเวลารองรับรอบรายวันตามเวลา (S2) ([1d214f7](https://github.com/aegisx-platform/aegisx-starter/commit/1d214f736c1d95263676c704bcb4a19f334d72f3))
+
 ## [1.160.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.160.0...v1.160.1) (2026-10-08)
 
 # [1.160.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.159.0...v1.160.0) (2026-10-08)
