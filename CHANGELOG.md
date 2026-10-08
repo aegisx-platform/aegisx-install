@@ -1,3 +1,19 @@
+# [1.164.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.163.0...v1.164.0) (2026-10-08)
+
+
+### Bug Fixes
+
+* **data-syncs:** คืนไฟล์ dataSyncs ที่ติดไปกับ commit b2507a8d6 โดยไม่ตั้งใจ ([688be78](https://github.com/aegisx-platform/aegisx-starter/commit/688be7871d888f670bf3728e44b60be49185cdce))
+* **deps:** handlebars 4.7.10 ปิดช่องโหว่ critical GHSA-8r5x-fm3f-whwj · GHSA-p8wg-vrv2-v86f ([b2507a8](https://github.com/aegisx-platform/aegisx-starter/commit/b2507a8d69a2937d2e73a85141d279c606ffcbef))
+* **purchase-orders:** วันที่ใต้ลายเซ็นใบสั่งซื้อใช้วันที่ใบสั่งซื้อ ([9857dd4](https://github.com/aegisx-platform/aegisx-starter/commit/9857dd40ffaf8fbb71bb1c70430e3595d2fd1e22))
+
+
+### Features
+
+* **dispensing-reports:** ยาที่จ่ายมูลค่าสูงสุด + ส่งออก Excel ([88389f1](https://github.com/aegisx-platform/aegisx-starter/commit/88389f152d28cfcf053e1b736c6afad69742ae5c))
+* **dispensing-reports:** รายงานมูลค่าการจ่ายยา ห้อง × เดือนของปีงบ (api) ([1237852](https://github.com/aegisx-platform/aegisx-starter/commit/12378528aa0eccb44a628cd5f844c234891bd944))
+* **dispensing-reports:** หน้ารายงานมูลค่าการจ่ายยา ห้อง × เดือนของปีงบ ([5f904a9](https://github.com/aegisx-platform/aegisx-starter/commit/5f904a9e52cba4d6881b8190172807455b4813e4))
+
 # [1.163.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.162.0...v1.163.0) (2026-10-08)
 
 
