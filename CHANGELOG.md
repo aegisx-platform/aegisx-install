@@ -1,3 +1,27 @@
+# [1.163.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.162.0...v1.163.0) (2026-10-08)
+
+
+### Bug Fixes
+
+* **dispensing-monitor:** การ์ดต้องแก้เล็กลง กดทั้งใบไปหน้าที่แก้ ([4dc4c0c](https://github.com/aegisx-platform/aegisx-starter/commit/4dc4c0ca54985cf0e1b3feb099321b97a2bac4e3))
+* **dispensing-monitor:** ทะเบียนตัดจ่ายไม่รก การ์ดสถานะเต็มแถว ([6026e58](https://github.com/aegisx-platform/aegisx-starter/commit/6026e58865ae9e5851e63975016a1ff91c054b0f))
+* **dispensing-monitor:** สถานะฐาน HIS เป็นปุ่มบนหัวหน้า เปิดเป็นกล่อง ([8190f6f](https://github.com/aegisx-platform/aegisx-starter/commit/8190f6f150d83fec2ad644dd098519e240010185))
+* **dispensing-sync:** ปุ่มตัดเลยในค้างตัดอยู่บรรทัดเดียว ไม่ตัดคำเป็นสองบรรทัด ([ba1ed52](https://github.com/aegisx-platform/aegisx-starter/commit/ba1ed52cafeaaf9cdef0bb7fdc8bdfe0f6ef2194))
+* **his-sync:** ตรวจซ้ำใบ HIS วันละครั้ง กันเปิดรายการที่คนเพิ่งถอนซ้ำ + ตัวนับบนการ์ดการเชื่อมต่อ ([215c177](https://github.com/aegisx-platform/aegisx-starter/commit/215c177aff2664a1df17166ffb12f100b26d3f6c))
+* **procurement:** เส้นเวลาจัดซื้อไม่พังเมื่อ PO ยังไม่มีเลข ([cda6075](https://github.com/aegisx-platform/aegisx-starter/commit/cda60754e890ceb65a94ec9c3aba3b438749ddc8))
+
+
+### Features
+
+* **dispensing-monitor:** ทะเบียนตัดจ่ายหน้าเดียว ตัวกรองห้องค้นได้ · ปิดหน้าตัดจ่ายเก่าในคลังย่อย ([973d081](https://github.com/aegisx-platform/aegisx-starter/commit/973d0814e9cac5e7ad29af708c93cf645102c36b))
+* **drug-usage:** heatmap ยา × สัปดาห์ กดช่องไล่รายใบในทะเบียนตัดจ่าย ([7e4bc47](https://github.com/aegisx-platform/aegisx-starter/commit/7e4bc47701f1b109395701a6f292f2c5f22c80f7))
+* **drug-usage:** ทำเครื่องหมายสัปดาห์ที่ข้อมูล HIS ขาด ([6eb6413](https://github.com/aegisx-platform/aegisx-starter/commit/6eb6413010901e4cc4d4aac9234cbd64bf602c3b))
+* **drug-usage:** มุมมองกลุ่มยา มูลค่าตามกลุ่ม + heatmap กลุ่ม × สัปดาห์ ([e5f6c7a](https://github.com/aegisx-platform/aegisx-starter/commit/e5f6c7ab753d70e94509887028db2dbb0be6c501))
+* **drug-usage:** มุมมองภาพรวม กราฟรายสัปดาห์ + heatmap วัน × ชั่วโมง ([5e69025](https://github.com/aegisx-platform/aegisx-starter/commit/5e690255928bf4542116ae34dae0c59a7b1e3407))
+* **drug-usage:** มุมมองมูลค่า (ABC) กราฟพาเรโต · คอลัมน์มูลค่าและจำนวนผู้ป่วย ([d6b2d9e](https://github.com/aegisx-platform/aegisx-starter/commit/d6b2d9ec176aa7fd41b6a53b1543bb478a3f2293))
+* **his-sync:** เปิดห้องเป็นใช้งานแล้วตัดใบที่รอตัดให้เอง · ล็อกบรรทัดกันตัดซ้ำ ([169841d](https://github.com/aegisx-platform/aegisx-starter/commit/169841dcb27793d36d4cc04c5a5ddeebb92e9268))
+* **stock-card:** บอกคลังต้นทาง/ปลายทางทุกบรรทัด · แยกจ่ายผู้ป่วย + รวมรายวัน ([c143519](https://github.com/aegisx-platform/aegisx-starter/commit/c14351980a4dfda79f72c3df8e22084d1dbdae34))
+
 # [1.162.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.161.0...v1.162.0) (2026-10-08)
 
 
