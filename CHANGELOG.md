@@ -1,3 +1,22 @@
+# [1.159.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.158.0...v1.159.0) (2026-10-08)
+
+
+### Bug Fixes
+
+* **drug-returns:** คืนยาย้ายสต็อกจากคลังย่อยเข้าคลังใหญ่จริง ([0cf9594](https://github.com/aegisx-platform/aegisx-starter/commit/0cf9594cd08f6415baf65902c2199d53ba43c6d4))
+* **drug-returns:** เลือกหน่วยรายล็อต หน้าคลังใหญ่โหลดรายการได้ ช่องค้นยาชิดขวา ([d50a91d](https://github.com/aegisx-platform/aegisx-starter/commit/d50a91d4f08f6031915fc4709565d3bd025fb300))
+
+
+### Features
+
+* **document-dispatch-slips:** แสดงเลข PO รพ. ก่อนเลขระบบ ค้นใบนำส่งด้วยเลข PO ได้ ([2b428cd](https://github.com/aegisx-platform/aegisx-starter/commit/2b428cdbd3336473e4d358e9106f0006b3428209))
+* **document-transmittals:** ค้นเลข PO รพ. ได้ PO อยู่ได้ชุดเดียว ลบชุดร่างได้ ([928c1a0](https://github.com/aegisx-platform/aegisx-starter/commit/928c1a02b0954590b59cbdbc7ee295426fe4de39))
+* **drug-returns:** ค้นใบคืนยาด้วยยา ล็อต เลข PO รพ. และแยกรายการตามคลังฝั่ง server ([ffbc7b8](https://github.com/aegisx-platform/aegisx-starter/commit/ffbc7b8097eec8973d9a5fe606bb19fad3a03473))
+* **drug-returns:** แสดงคงเหลือเป็นหน่วยใหญ่ก่อน ใส่ PermissionGuard ขนาด dialog มาตรฐาน ([425eb10](https://github.com/aegisx-platform/aegisx-starter/commit/425eb102c86ae1cb389a272ea1e93c7f2ab2dc93))
+* **drug-returns:** แสดงหน่วยและหน่วยใหญ่ทุกจอ กรอกจำนวนคืนเป็นกล่องได้ ([e12ef27](https://github.com/aegisx-platform/aegisx-starter/commit/e12ef279769c16f9f3b7e9e3f88efa219f553171))
+* **inventory:** ช่องค้นยามาตรฐาน app-drug-search — คืนยาเห็นเฉพาะยาที่คลังย่อยมีของ ([2339ec1](https://github.com/aegisx-platform/aegisx-starter/commit/2339ec15b9139ed267fe493c8947481bc6ce4179))
+* **sub-warehouse:** แก้ไขใบเบิกใช้ช่องค้นยามาตรฐาน โหมดเบิก ([a6ba50d](https://github.com/aegisx-platform/aegisx-starter/commit/a6ba50dbc63675bef1b5749d8bbc5a96f5c8b3d2))
+
 # [1.158.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.157.0...v1.158.0) (2026-10-07)
 
 
