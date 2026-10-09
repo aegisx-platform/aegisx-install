@@ -1,3 +1,17 @@
+# [1.165.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.164.0...v1.165.0) (2026-10-09)
+
+
+### Bug Fixes
+
+* **deps:** fast-jwt 6.3.4 ปิดช่องโหว่ critical GHSA-ww5h-9m49-7xx4 ([9d40ebe](https://github.com/aegisx-platform/aegisx-starter/commit/9d40ebe08d80da04216831354a53c05b565a435e))
+* **launcher:** เว้นระยะขอบล่างให้การ์ดแถวสุดท้ายไม่ชิดขอบจอ ([61ea9ce](https://github.com/aegisx-platform/aegisx-starter/commit/61ea9cea536f53801584836668a721eaa2420982))
+
+
+### Features
+
+* **drug-registry-health:** การ์ดตรวจหน่วยยา 3 หมวด พร้อมคำอธิบายปัญหาที่จะเกิด ([1a5b3d9](https://github.com/aegisx-platform/aegisx-starter/commit/1a5b3d9d54292257213177349140f2a9f77e4016))
+* **drug-registry-health:** ตรวจหน่วยยา 3 หมวดในหน้าตรวจสุขภาพทะเบียนยา (api) ([1698d4c](https://github.com/aegisx-platform/aegisx-starter/commit/1698d4cfcf95ed1c1d1580a2c9fee10b802f22f9))
+
 # [1.164.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.163.0...v1.164.0) (2026-10-08)
 
 
