@@ -1,3 +1,16 @@
+# [1.166.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.165.0...v1.166.0) (2026-10-09)
+
+
+### Bug Fixes
+
+* **receipts:** ลงรับล็อตที่มีอยู่แล้วในคลังได้ เติมจำนวนเข้าล็อตเดิม ([b6684ac](https://github.com/aegisx-platform/aegisx-starter/commit/b6684ac5c5583987e8dc2bcdf96e9c824436e06c))
+
+
+### Features
+
+* **purchase-requests:** ติ๊กไม่แสดงเลขที่หนังสือในรายงานขอซื้อขอจ้าง ([6e995ce](https://github.com/aegisx-platform/aegisx-starter/commit/6e995ceca25334ba8106a70e5ec935022381c0b5))
+* **receipts:** ลงรับด่วนค้น PO ได้ทุกใบ · รับของแถมกับ PO ที่รับครบแล้ว ([25bd222](https://github.com/aegisx-platform/aegisx-starter/commit/25bd2229703d99a1d512be9e525de6dc77eaf2d2))
+
 # [1.165.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.164.0...v1.165.0) (2026-10-09)
 
 
