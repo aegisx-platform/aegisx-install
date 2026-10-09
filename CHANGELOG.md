@@ -1,3 +1,15 @@
+# [1.167.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.166.1...v1.167.0) (2026-10-09)
+
+
+### Bug Fixes
+
+* **main-warehouse:** ลำดับการ์ดตรวจสุขภาพทะเบียนยาไม่ซ้ำกับยาถึงจุดสั่งซื้อ ([6869a9d](https://github.com/aegisx-platform/aegisx-starter/commit/6869a9d625264bba8920f54f68fa3c4c6ece1854)), closes [#582](https://github.com/aegisx-platform/aegisx-starter/issues/582)
+
+
+### Features
+
+* **main-warehouse:** การ์ดตรวจสุขภาพทะเบียนยาในเมนูคลังใหญ่ ([a8122b5](https://github.com/aegisx-platform/aegisx-starter/commit/a8122b55ff3e7e3ee2c88676b33f0d061c911076))
+
 ## [1.166.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.166.0...v1.166.1) (2026-10-09)
 
 
