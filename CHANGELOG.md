@@ -1,3 +1,10 @@
+## [1.166.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.166.0...v1.166.1) (2026-10-09)
+
+
+### Bug Fixes
+
+* **receipts:** ลงรับล็อตใหม่ล็อตเดียวกันพร้อมกันไม่ชน unique · test ที่ review ขอ ([ff2f629](https://github.com/aegisx-platform/aegisx-starter/commit/ff2f6293de3af7fdc3ee6bc6b89af957f4ad58bf)), closes [#580](https://github.com/aegisx-platform/aegisx-starter/issues/580)
+
 # [1.166.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.165.0...v1.166.0) (2026-10-09)
 
 
