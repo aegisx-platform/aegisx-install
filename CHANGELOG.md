@@ -1,3 +1,12 @@
+# [1.169.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.168.0...v1.169.0) (2026-10-10)
+
+
+### Features
+
+* **main-warehouse:** คลังใหญ่ดูระยะเวลารับของได้ (เน้นช่วงรอผู้ขายส่งของ + ตรวจรับ) ([0f0cc71](https://github.com/aegisx-platform/aegisx-starter/commit/0f0cc71c8eee6f3116d63594fc24721d135ccc26))
+* **procurement:** ระยะเวลาจัดซื้อกรองช่วงวันที่จากวันส่งผู้ขายได้ ([59a8db1](https://github.com/aegisx-platform/aegisx-starter/commit/59a8db12fc2481211e3c27666e4ceb92b07a16ea))
+* **receipts:** ส่งออก Excel ได้ทุกแท็บของหน้ารับเวชภัณฑ์ ([f785fd5](https://github.com/aegisx-platform/aegisx-starter/commit/f785fd51c5fc9676bc38a40a5d344e15c9ec23a0))
+
 # [1.168.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.167.0...v1.168.0) (2026-10-10)
 
 
