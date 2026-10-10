@@ -1,3 +1,11 @@
+## [1.169.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.169.0...v1.169.1) (2026-10-10)
+
+
+### Bug Fixes
+
+* **web:** คืนหน้า demo icon-showcase · TMT dialog ใช้ token แทน hex ([f325f5e](https://github.com/aegisx-platform/aegisx-starter/commit/f325f5e000c9fa0196df8b41f282c55f9e352d3d)), closes [#f9fafb](https://github.com/aegisx-platform/aegisx-starter/issues/f9fafb)
+* **web:** ปุ่มคัดลอกใช้ไม่ได้บน prod ที่เปิดผ่าน http://IP ([415c069](https://github.com/aegisx-platform/aegisx-starter/commit/415c0695007cc974e001147628f92fcfcdaea54a))
+
 # [1.169.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.168.0...v1.169.0) (2026-10-10)
 
 
