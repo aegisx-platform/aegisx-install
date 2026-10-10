@@ -1,3 +1,10 @@
+## [1.169.3](https://github.com/aegisx-platform/aegisx-starter/compare/v1.169.2...v1.169.3) (2026-10-10)
+
+
+### Bug Fixes
+
+* **drug-usage:** สถานะจัดซื้อไม่พังเมื่อมีใบสั่งซื้อ/ใบขอซื้อร่างที่ยังไม่ออกเลข ([228890b](https://github.com/aegisx-platform/aegisx-starter/commit/228890b2629fcbd71f31206c084439973c8a6158))
+
 ## [1.169.2](https://github.com/aegisx-platform/aegisx-starter/compare/v1.169.1...v1.169.2) (2026-10-10)
 
 
