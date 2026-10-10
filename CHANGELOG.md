@@ -1,3 +1,10 @@
+## [1.169.2](https://github.com/aegisx-platform/aegisx-starter/compare/v1.169.1...v1.169.2) (2026-10-10)
+
+
+### Bug Fixes
+
+* **drug-generics:** ช่อง TMT GPU รับรหัส TMT แล้วหา id เอง · ตรวจความยาวเป็นภาษาไทย ([53629aa](https://github.com/aegisx-platform/aegisx-starter/commit/53629aa5d6a7be7dc51545d4e4104018924edef4))
+
 ## [1.169.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.169.0...v1.169.1) (2026-10-10)
 
 
