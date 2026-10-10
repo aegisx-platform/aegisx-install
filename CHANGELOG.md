@@ -1,3 +1,47 @@
+# [1.168.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.167.0...v1.168.0) (2026-10-10)
+
+
+### Bug Fixes
+
+* **ai-analysis:** ปิด VN/AN และส่งวันที่ให้ AI เป็นเวลาไทยไม่เลื่อนวัน ([6431050](https://github.com/aegisx-platform/aegisx-starter/commit/64310509e2f6cf176a2b8e278baee01a77812730))
+* **ai-analysis:** ปิดช่อง SQL หลายคำสั่งหลุด READ ONLY + ไม่มี secret นอก dev = ปิด AI ([ab29242](https://github.com/aegisx-platform/aegisx-starter/commit/ab292428484ddc56b1f04de4c74a9095837d0f06)), closes [#586](https://github.com/aegisx-platform/aegisx-starter/issues/586)
+* **ai-analysis:** ปิดช่องข้อความอิสระ/เลขอ้างอิงในตารางผู้ป่วย + ไม่ค้าง running ([120530d](https://github.com/aegisx-platform/aegisx-starter/commit/120530d60c5c0f657df76b13a075f58b450b9464))
+* **ai-chat:** สถานะ "กำลังวิเคราะห์" ค้างหลังได้คำตอบ + loading ที่มองเห็นชัด ([371326c](https://github.com/aegisx-platform/aegisx-starter/commit/371326c72eb264101724ee8cb55376b2ddc92032))
+* **ai-chat:** หน้าแชตเป็นเลย์เอาต์แอปเต็มพื้นที่ ไม่ scroll ซ้อน ([bf34422](https://github.com/aegisx-platform/aegisx-starter/commit/bf3442243921bd3b98b2a4fa6765d7a021d97c3e))
+* **deps:** บังคับ handlebars >=4.7.10 — lockfile จาก pnpm add marked ดึง 4.7.9 (CVE critical) ([d86620b](https://github.com/aegisx-platform/aegisx-starter/commit/d86620be3f0b6d48605b11a6e943e2a7c6cd4d07))
+* **inventory:** การ์ดเมนูและลิงก์แผนผังระบบที่เปิดแล้ว 404 ([2c06232](https://github.com/aegisx-platform/aegisx-starter/commit/2c06232aee196de26c82a426952cbaf228ff629c))
+* **inventory:** ลงทะเบียน GET /stats ที่หน้ารายการเรียกแต่ API ไม่มี (500 ทุกครั้งที่เปิดหน้า) ([46587ba](https://github.com/aegisx-platform/aegisx-starter/commit/46587ba03d675ea033433abeff3060937ed38d3e))
+* **numbering:** ตัวนับตามหลังรหัสที่มีอยู่เกิน 100 แล้วออกรหัสไม่ได้ ([527675e](https://github.com/aegisx-platform/aegisx-starter/commit/527675e5f0a5149b00c02069aed58dc20e3e3d8b))
+* **web:** หน้ารายงานอ่านรายการแผนกผิดรูป + ไอคอน Portal ที่ไม่มีอยู่จริง ([c969242](https://github.com/aegisx-platform/aegisx-starter/commit/c969242f00a45d1c98e2d952c316298c83518aa3))
+
+
+### Features
+
+* **ai-analysis:** เครื่องมืออ่านฐานแบบอ่านอย่างเดียวของผู้ช่วย AI + audit ([339cadf](https://github.com/aegisx-platform/aegisx-starter/commit/339cadfd1d929e93c414cd80d308e3f369ff5472))
+* **ai-analysis:** รายงานตรวจสุขภาพข้อมูล + ผู้ช่วย AI วิเคราะห์ยาสำหรับคลัง ([7767528](https://github.com/aegisx-platform/aegisx-starter/commit/7767528c8e48f7e74cf3140dd74cf8192c83a6da))
+* **ai-chat:** agent วิเคราะห์ระบบที่เรียกเครื่องมืออ่านฐานเอง + เก็บบทสนทนา ([14fea48](https://github.com/aegisx-platform/aegisx-starter/commit/14fea485b520fa7dc8b25b1da29481407c6ab36f))
+* **ai-chat:** คำถามต่อยอดหลังได้คำตอบ ([232f53e](https://github.com/aegisx-platform/aegisx-starter/commit/232f53ed3b8ea9fc2ab76d61758a56020cd6d75b))
+* **ai-chat:** ชิปบอกแหล่งข้อมูลที่ AI ใช้ตอบ ([1886c97](https://github.com/aegisx-platform/aegisx-starter/commit/1886c97ec14e4b56a0bb9255b5509398a4890995))
+* **ai-chat:** ใช้ชุดสีไล่เฉดแบบหน้า login กับส่วนที่เป็นตัวตนของ AI ([989e952](https://github.com/aegisx-platform/aegisx-starter/commit/989e9527b4116dda2bb6637cf98c9043298aeca0))
+* **ai-chat:** ถามได้ทีละคำถามต่อผู้ใช้ + จำกัด /ask 20 ครั้งต่อ 10 นาที ([cbe17ef](https://github.com/aegisx-platform/aegisx-starter/commit/cbe17ef81e36319ec1dab5740fecf2ea1c170185)), closes [#586](https://github.com/aegisx-platform/aegisx-starter/issues/586)
+* **ai-chat:** ปุ่มหยุดการวิเคราะห์ + ให้คะแนนคำตอบ 👍👎 ([587b7fb](https://github.com/aegisx-platform/aegisx-starter/commit/587b7fbfb9149bbdc60651538085a34e7e658bcc))
+* **ai-chat:** ผู้ช่วย AI สร้างไฟล์ให้ดาวน์โหลด/พิมพ์ (md sql txt csv xlsx pdf) ([ff9497b](https://github.com/aegisx-platform/aegisx-starter/commit/ff9497b7556134ef9aa1a364fcd8cc1628a4405a))
+* **ai-chat:** ผู้ช่วย AI แสดงกราฟในคำตอบ (show_chart) ([8f96c19](https://github.com/aegisx-platform/aegisx-starter/commit/8f96c19fd8c2bc3039c405f8a68455cda728876b))
+* **ai-chat:** ผู้ช่วยแบบแผงข้างที่อยู่คู่ทุกหน้า ([331e4cc](https://github.com/aegisx-platform/aegisx-starter/commit/331e4ccb210822a9b0a9b97c80bc898bc1d672bb))
+* **ai-chat:** ผู้ช่วยรู้ว่าผู้ใช้เปิดหน้าไหนอยู่ (ถามจากแผงข้าง) ([08d4240](https://github.com/aegisx-platform/aegisx-starter/commit/08d42401c6839ed1cf2e2f26b28e94aa5f2fc9e5))
+* **ai-chat:** ผู้ช่วยวิเคราะห์ระบบอ่าน log ไฟล์ของ API ได้ (read_logs) ([b271bb6](https://github.com/aegisx-platform/aegisx-starter/commit/b271bb6473d0da0607c06c05e64b62f5aec1a5ee))
+* **ai-chat:** ผู้ช่วยส่งออก log ของ API เป็นไฟล์ (txt/csv/xlsx/md) ([385be10](https://github.com/aegisx-platform/aegisx-starter/commit/385be102848eae6100cfc560ae8f7d3b387c2f04))
+* **ai-chat:** ผู้ช่วยใส่ลิงก์พาไปหน้าจอในระบบได้ (find_pages) ([a28e771](https://github.com/aegisx-platform/aegisx-starter/commit/a28e77105476949cb3cad266b22d20fd2f5086f3))
+* **ai-chat:** ภาพรวม HIS sync ในเครื่องมือเดียว + ความรู้เรื่องตาราง sync ([b51a032](https://github.com/aegisx-platform/aegisx-starter/commit/b51a032ee9df921e051a049cb1669cc3d7e73f2a))
+* **ai-chat:** ส่งออกบทสนทนาเป็นรายงาน (.md / พิมพ์-บันทึก PDF) ([2b49c9d](https://github.com/aegisx-platform/aegisx-starter/commit/2b49c9df521ea9cc7b0f3989a9dfda92c873bd81))
+* **ai-chat:** แสดงคำตอบระหว่าง AI กำลังพิมพ์ (stream) ([4c5a98e](https://github.com/aegisx-platform/aegisx-starter/commit/4c5a98e11d5627a102b96994cbf64ed470990c88))
+* **ai-chat:** หน้าแชตผู้ช่วย AI วิเคราะห์ระบบ /system/ai-chat ([59ac0a4](https://github.com/aegisx-platform/aegisx-starter/commit/59ac0a4189c67a016f2bf0dd043d8bc49a43e4f8))
+* **ai-chat:** ออกแบบหน้าแชตใหม่ — เส้นเวลาขั้นตอน ตารางผล SQL ปุ่มคัดลอก/ถามใหม่ ([c411051](https://github.com/aegisx-platform/aegisx-starter/commit/c411051e304e163c3554a6daa6cfb226ac62c9f8))
+* **ai-providers:** บัญชีผู้ให้บริการ AI (Claude / OpenAI-compatible) พร้อมทดสอบเชื่อมต่อ ([f4b2077](https://github.com/aegisx-platform/aegisx-starter/commit/f4b2077b3d6e3e97fa5779c84324e977b65c7c03))
+* **ai-providers:** หน้าตั้งค่าบัญชี AI + ดึงรายการ model จากผู้ให้บริการ ([a942050](https://github.com/aegisx-platform/aegisx-starter/commit/a942050104eb27375b46fe5431005ae28869aed3))
+* **receipts:** นับวันหลังส่งผู้ขายในหน้าค้นหา PO หยุดเมื่อของมาถึงครั้งแรก ([98c1f58](https://github.com/aegisx-platform/aegisx-starter/commit/98c1f588525087eb35e0e9cdd15ee4e1755df9c6))
+* **receipts:** วันที่ PO · กำหนดส่ง · วันส่งผู้ขาย และเส้นเวลา PO ในหน้าค้นหา PO ([a71aeee](https://github.com/aegisx-platform/aegisx-starter/commit/a71aeee773ce6ee6093b64a45a5ba0572089a228))
+
 # [1.167.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.166.1...v1.167.0) (2026-10-09)
 
 
