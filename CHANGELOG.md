@@ -1,3 +1,12 @@
+## [1.169.4](https://github.com/aegisx-platform/aegisx-starter/compare/v1.169.3...v1.169.4) (2026-10-12)
+
+
+### Bug Fixes
+
+* **numbering:** หาค่าสูงสุดจากเลขที่ท้ายเป็นตัวเลขเท่านั้น ([4131980](https://github.com/aegisx-platform/aegisx-starter/commit/4131980cf3e0c863303b0dc2938fa9badd864f71))
+* **procurement:** ใบนำส่งเอกสารสัญญา/ทะเบียนเจ้าหนี้ใช้ยอดรวม vat ([094e1e7](https://github.com/aegisx-platform/aegisx-starter/commit/094e1e7ee18d34a45cf3e705c195c0d84eb682b9))
+* **receipts:** ลงรับทั้งชุดตรวจรับไม่สำเร็จต้องแจ้ง error ไม่ใช่ขึ้นสำเร็จ ([dcd7e8b](https://github.com/aegisx-platform/aegisx-starter/commit/dcd7e8b8a3f8fe76655f6544b8ecef553f55413c))
+
 ## [1.169.3](https://github.com/aegisx-platform/aegisx-starter/compare/v1.169.2...v1.169.3) (2026-10-10)
 
 
