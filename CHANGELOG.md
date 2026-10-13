@@ -1,3 +1,16 @@
+# [1.170.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.169.4...v1.170.0) (2026-10-13)
+
+
+### Bug Fixes
+
+* **procurement:** วันที่ส่งผู้ขายตั้งต้นเป็นวันที่กดส่ง แก้ได้ ([31a2944](https://github.com/aegisx-platform/aegisx-starter/commit/31a294471e69e9617f0e6a763695003ec2c44c93))
+* **procurement:** เวลาส่งผู้ขายเผื่อนาฬิกาเครื่องผู้ใช้เร็วกว่า 5 นาที ([af85f99](https://github.com/aegisx-platform/aegisx-starter/commit/af85f99c5c84e47375e90355b74741e77806ce75))
+
+
+### Features
+
+* **procurement:** วันเวลาส่งผู้ขาย (sent_at) แสดงที่หน้าลงรับและเส้นเวลา ([8800d33](https://github.com/aegisx-platform/aegisx-starter/commit/8800d336db29714ea1279e713dbe203fcdf207ba))
+
 ## [1.169.4](https://github.com/aegisx-platform/aegisx-starter/compare/v1.169.3...v1.169.4) (2026-10-12)
 
 
