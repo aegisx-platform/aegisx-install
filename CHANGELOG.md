@@ -1,3 +1,17 @@
+# [1.171.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.170.0...v1.171.0) (2026-10-13)
+
+
+### Bug Fixes
+
+* **ai-chat:** guard inject ก่อน await — เดิมหลุด injection context ตอนผู้ช่วย AI ปิด ([ff4288c](https://github.com/aegisx-platform/aegisx-starter/commit/ff4288cd5f4f38fcf9fc89657512bf3f635d5329))
+* **ai-chat:** อ่านสถานะผู้ช่วย AI ไม่ได้ ไม่บอกผู้ใช้ว่าปิดใช้งาน ([7a030b4](https://github.com/aegisx-platform/aegisx-starter/commit/7a030b4c7083fe92ce4d5a49069ec4783255bb05))
+
+
+### Features
+
+* **ai-chat:** สวิตช์เปิด/ปิดผู้ช่วย AI ให้ผู้ใช้ทั่วไป ตั้งต้นปิด ([329a48c](https://github.com/aegisx-platform/aegisx-starter/commit/329a48c44f0baf214df55803aaa62c5de36712ca))
+* **receipts:** หน้าค้นหา PO เรียงตามหัวคอลัมน์ + กรองวันส่งผู้ขาย/วันที่ PO ([b133df1](https://github.com/aegisx-platform/aegisx-starter/commit/b133df1d9e84212a16a8ec6a50e6169b35a1e25f))
+
 # [1.170.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.169.4...v1.170.0) (2026-10-13)
 
 
