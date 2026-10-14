@@ -1,3 +1,21 @@
+# [1.172.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.171.0...v1.172.0) (2026-10-14)
+
+
+### Bug Fixes
+
+* **drug-generics:** บันทึกรูปแบบยาในฟอร์มแล้วใบพิมพ์ PR/PO ตามด้วย ([aa2441d](https://github.com/aegisx-platform/aegisx-starter/commit/aa2441d4bb828b77776a3c86f76a58c931a2e6cc))
+* **purchase-orders:** ช่องชื่อผู้แทนบริษัทในใบสั่งซื้อยาวขึ้น ([cfbf027](https://github.com/aegisx-platform/aegisx-starter/commit/cfbf027f699440ea50ccc9ba8fd6f4324b75bbd9))
+* **purchase-orders:** ใบสั่งซื้อ Word แสดงที่อยู่ส่วนราชการเหมือน PDF ([50a196b](https://github.com/aegisx-platform/aegisx-starter/commit/50a196be1c943e5227757f9ec39aa03167bd2841))
+* **receipts:** ซ่อนวันที่ใบตรวจรับแล้วคำว่า "วันที่" อยู่ตำแหน่งเดิม ([26100da](https://github.com/aegisx-platform/aegisx-starter/commit/26100dade1339f56db08b0a06cde4860635c651e))
+* **receipts:** ใบตรวจรับ e-GP "ลงวันที่" ย่อหน้าแรกใช้วันที่ใบสั่งซื้อ ([bbe74b3](https://github.com/aegisx-platform/aegisx-starter/commit/bbe74b36ddf73afa92e41f4ac3ef1f0ff468e330))
+* **receipts:** พิมพ์ใบตรวจรับจากหน้ารายการ ใช้ชุดตรวจรับเหมือนหน้ารายละเอียด ([90264ed](https://github.com/aegisx-platform/aegisx-starter/commit/90264ed6d05d4cd87ecca6b435bb566a2eb8678d))
+
+
+### Features
+
+* **receipts:** ซ่อนวันที่ใบตรวจรับในหน้าชุดตรวจรับและไฟล์ Word ด้วย ([1edfea4](https://github.com/aegisx-platform/aegisx-starter/commit/1edfea4d4edff612424a4dcd4a0b04e3701356b2))
+* **receipts:** ใบตรวจรับ e-GP เลือกไม่แสดงวันที่บนหัวใบได้ เหมือนฝั่งจัดซื้อ ([d4d1976](https://github.com/aegisx-platform/aegisx-starter/commit/d4d197611198572ca863c60b3b68ede77c6bce36))
+
 # [1.171.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.170.0...v1.171.0) (2026-10-13)
 
 
