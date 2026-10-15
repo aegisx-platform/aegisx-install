@@ -1,3 +1,11 @@
+# [1.173.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.172.0...v1.173.0) (2026-10-15)
+
+
+### Features
+
+* **receipts:** ซ่อน "ลงวันที่" ใบสั่งซื้อในย่อหน้าแรกของใบตรวจรับ e-GP ([b00896b](https://github.com/aegisx-platform/aegisx-starter/commit/b00896b4858bc64b3f5d843df57e2a2e8b010efd))
+* **receipts:** ลงรับไม่ได้เพราะล็อตชน — กล่องเทียบล็อตเดิมกับใบรับ แก้ได้ทั้งสองฝั่ง ([aa44cb6](https://github.com/aegisx-platform/aegisx-starter/commit/aa44cb6094c7ff658c66c3e821b60e970bfd88b1))
+
 # [1.172.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.171.0...v1.172.0) (2026-10-14)
 
 
