@@ -1,3 +1,13 @@
+## [1.173.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.173.0...v1.173.1) (2026-10-16)
+
+
+### Bug Fixes
+
+* **api:** error จาก schema validation บอกเป็นภาษาไทยว่าช่องไหนผิดอย่างไร ([d92cb26](https://github.com/aegisx-platform/aegisx-starter/commit/d92cb2630267dbb538687383a8a59e628d8bc8e8))
+* **auth:** ซ่อน Quick Login บน production ตัดสินจาก environment.production ([7bd028f](https://github.com/aegisx-platform/aegisx-starter/commit/7bd028f257e0e683615b030d786fe03a72d7b2fd))
+* **receipts:** กันวันหมดอายุปีผิดตอนกรอก + error ไทย + ห้ามเพิ่มรายการเข้าใบที่ลงคลังแล้ว ([1ec0cd3](https://github.com/aegisx-platform/aegisx-starter/commit/1ec0cd328934ab82d6421c2a7a4356ebba155f95))
+* **receipts:** ข้อความขั้นสถานะใบรับเป็นภาษาไทย 404/422 ([cab6a73](https://github.com/aegisx-platform/aegisx-starter/commit/cab6a734fb898e2d37f877ffa29eff42120a1dfd))
+
 # [1.173.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.172.0...v1.173.0) (2026-10-15)
 
 
