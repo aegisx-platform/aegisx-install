@@ -1,3 +1,19 @@
+# [1.174.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.173.1...v1.174.0) (2026-10-17)
+
+
+### Bug Fixes
+
+* **his-codes:** นำเข้ารหัส HIS แสดงตัวอย่างครบทุกแถวก่อนยืนยัน + ปุ่มเข้าจากหน้ารายการยา ([9f9b887](https://github.com/aegisx-platform/aegisx-starter/commit/9f9b88777e9a7ae010742a3eec8641235be730f0))
+* **production:** วันที่ในใบผลิตเป็น พ.ศ. ใช้ตัวเลือกวันที่แบบเดียวกับหน้าอื่น ([8d8d8eb](https://github.com/aegisx-platform/aegisx-starter/commit/8d8d8ebed75d9035f55bece573bd526d1a4d9c5b))
+
+
+### Features
+
+* **inventory:** คู่มือ 3 ชั้น (ระบบ → หัวข้อ) + แผนภาพภาพรวม + ภาพประกอบ + ส่งออก PDF ([9b01e39](https://github.com/aegisx-platform/aegisx-starter/commit/9b01e3949217dacb0e9c1aae9b9956122808f155))
+* **inventory:** ศูนย์คู่มือคลัง + กล่อง "ขั้นตอน" กลางที่ทุกระบบใช้ร่วมกัน ([023e8fd](https://github.com/aegisx-platform/aegisx-starter/commit/023e8fdd28c0e535925705307b8ac6247c92fccc))
+* **locations:** เพิ่ม can_produce ระบุห้องที่ผลิต/ผสมยาเองได้ ([f7b1a8b](https://github.com/aegisx-platform/aegisx-starter/commit/f7b1a8b3bd6dca2fb73f39efdbb6ce9c9ff73516))
+* **production:** ระบบผลิตยา — สูตรตำรับ + ใบผลิตตัดวัตถุดิบ สร้างล็อตยาสำเร็จ ([5093318](https://github.com/aegisx-platform/aegisx-starter/commit/5093318384d538e2b128ead2dd77dc34ea00f77a))
+
 ## [1.173.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.173.0...v1.173.1) (2026-10-16)
 
 
