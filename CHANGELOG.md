@@ -1,3 +1,10 @@
+## [1.175.3](https://github.com/aegisx-platform/aegisx-starter/compare/v1.175.2...v1.175.3) (2026-10-19)
+
+
+### Bug Fixes
+
+* **budget:** นำเข้าแผนจัดซื้อใช้จำนวนรวม (เงินงบประมาณ + เงินบำรุง) เมื่องวดว่าง/ไม่ตรง ([8530c20](https://github.com/aegisx-platform/aegisx-starter/commit/8530c20713718652141a7341fb8c882bb854f99d))
+
 ## [1.175.2](https://github.com/aegisx-platform/aegisx-starter/compare/v1.175.1...v1.175.2) (2026-10-19)
 
 
