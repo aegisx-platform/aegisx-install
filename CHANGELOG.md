@@ -1,3 +1,10 @@
+## [1.175.2](https://github.com/aegisx-platform/aegisx-starter/compare/v1.175.1...v1.175.2) (2026-10-19)
+
+
+### Bug Fixes
+
+* **receipts:** ตารางชุดตรวจรับ คลิกออกหลังกด Enter/Tab แล้วไม่บันทึก ([b645b86](https://github.com/aegisx-platform/aegisx-starter/commit/b645b86ba388f677db8c3a2827de1e2882431163))
+
 ## [1.175.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.175.0...v1.175.1) (2026-10-19)
 
 
