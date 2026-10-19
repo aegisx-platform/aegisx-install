@@ -1,3 +1,10 @@
+## [1.175.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.175.0...v1.175.1) (2026-10-19)
+
+
+### Bug Fixes
+
+* **budget:** แผนที่อนุมัติแล้วกลับเป็นอ่านอย่างเดียว ([f688b30](https://github.com/aegisx-platform/aegisx-starter/commit/f688b30952bdcf7bc38f80a22955aee8fecdce81))
+
 # [1.175.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.174.0...v1.175.0) (2026-10-19)
 
 
