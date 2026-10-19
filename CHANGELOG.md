@@ -1,3 +1,22 @@
+# [1.175.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.174.0...v1.175.0) (2026-10-19)
+
+
+### Bug Fixes
+
+* **budget:** นำเข้าแผนแล้วคำนวณจำนวนที่ขอ/งวด/มูลค่าลงฐาน ไม่เก็บ 0 ([8e19761](https://github.com/aegisx-platform/aegisx-starter/commit/8e19761811cc887ad4c7366e103ea655f4c1d0dc))
+* **budget:** ประมวลงบประมาณใหม่คำนวณรายการด้วยสูตรหน้าแผนก่อนตั้งงบ ([4557dc9](https://github.com/aegisx-platform/aegisx-starter/commit/4557dc9f2d74eaff12881f2e4e7fd20f5d454755))
+* **budget:** ส่งแผนแล้วบันทึกตัวเลขที่หน้าแผนคำนวณลงฐาน ([a7f8dae](https://github.com/aegisx-platform/aegisx-starter/commit/a7f8dae0e2ca5988ae2930621ca858030bb94afe))
+* **inventory:** เมนูชี้หน้าปลายทางตรง + เปิดรายงานสรุปการรับ/มูลค่าคงคลัง ([f2b3345](https://github.com/aegisx-platform/aegisx-starter/commit/f2b3345f0941b0ac988ba0ea4f831cb6104f2055))
+* **procurement:** ล็อกใบสั่งซื้อที่รับบางส่วน (PARTIAL) + ป้ายสถานะตรง enum จริง ([d753823](https://github.com/aegisx-platform/aegisx-starter/commit/d753823541036f891b4e2c829d6efce5888ab60a))
+* **receipts:** ลงรับเข้าคลังต้องตรวจรับผ่านก่อน (บังคับที่หลังบ้าน) + ลบหน้า :id/receive ([c68c680](https://github.com/aegisx-platform/aegisx-starter/commit/c68c68089da2905b8df7161c9792fcbfe8edf2de))
+
+
+### Features
+
+* **budget:** แผนที่อนุมัติแล้วแก้ตัวเลขแล้วบันทึกได้ ระบบตั้งงบใหม่ให้ทันที ([f113e00](https://github.com/aegisx-platform/aegisx-starter/commit/f113e00dcc4cacc1272c228f5024a9df396d529e))
+* **dispensing:** ลิงก์ "ยาไม่ได้จับคู่" เปิดรายการรหัสที่ HIS ส่งมา พร้อมค้นรหัสให้ ([1fcff74](https://github.com/aegisx-platform/aegisx-starter/commit/1fcff74a4a4ffbf31d5ea243bc6124be572f69e3))
+* **receipts:** ช่องวันหมดอายุตามฉลาก สลับ ค.ศ./พ.ศ. ได้ (app-expiry-date-input) ([3c50e69](https://github.com/aegisx-platform/aegisx-starter/commit/3c50e69bbded728d5e4bfb0f7c6f3a3289338a4b))
+
 # [1.174.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.173.1...v1.174.0) (2026-10-17)
 
 
