@@ -1,3 +1,11 @@
+## [1.175.4](https://github.com/aegisx-platform/aegisx-starter/compare/v1.175.3...v1.175.4) (2026-10-20)
+
+
+### Bug Fixes
+
+* **auth:** login ด้วย username ได้ 500 — ใช้ findUserByUsername แปลงข้อมูลผู้ใช้เหมือนทางอีเมล ([b2abc55](https://github.com/aegisx-platform/aegisx-starter/commit/b2abc55806326e6113f3edb09e8a6439e21e0347))
+* **docker:** pnpm install บังคับ IPv4 — build บนเครื่องที่ไม่มี IPv6 ได้ (image-builder .3.33) ([1f4a478](https://github.com/aegisx-platform/aegisx-starter/commit/1f4a4780334bc64bfe357e7676f37cd477a7da52))
+
 ## [1.175.3](https://github.com/aegisx-platform/aegisx-starter/compare/v1.175.2...v1.175.3) (2026-10-19)
 
 
