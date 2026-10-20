@@ -1,3 +1,16 @@
+# [1.176.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.175.4...v1.176.0) (2026-10-20)
+
+
+### Bug Fixes
+
+* **auth:** rate limit หน้า login นับต่อ IP+ผู้ใช้ตามที่ตั้งใจ ไม่ใช่รวมทั้ง IP ([0374542](https://github.com/aegisx-platform/aegisx-starter/commit/037454260b86f850e3eadbaa5ec29492d9e9481d))
+* **drug-distributions:** role คลังใหญ่จ่าย/อนุมัติใบเบิกจากคลังใหญ่ได้โดยไม่ต้องผูก user_locations ([739b773](https://github.com/aegisx-platform/aegisx-starter/commit/739b773464b940a4c97b8d43f06adce5a1477949))
+
+
+### Features
+
+* **users:** ผู้ดูแลปลดล็อกการเข้าสู่ระบบของผู้ใช้ที่ใส่รหัสผิดหลายครั้ง ([0068c4a](https://github.com/aegisx-platform/aegisx-starter/commit/0068c4a4132a154f5084fa56bd169e578f3f570e))
+
 ## [1.175.4](https://github.com/aegisx-platform/aegisx-starter/compare/v1.175.3...v1.175.4) (2026-10-20)
 
 
