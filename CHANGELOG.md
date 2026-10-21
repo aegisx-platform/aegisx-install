@@ -1,3 +1,15 @@
+# [1.179.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.178.1...v1.179.0) (2026-10-21)
+
+
+### Bug Fixes
+
+* **deploy:** ./aegisx update กันดิสก์เต็ม — เช็คพื้นที่ก่อน ลบ image/backup เก่าหลังสำเร็จ ([e46baac](https://github.com/aegisx-platform/aegisx-starter/commit/e46baacf8af4fae6c7e28eaea43d2268ebba93a3))
+
+
+### Features
+
+* **monitoring:** หน้าตรวจสอบระบบแสดงพื้นที่ดิสก์ + เตือนเมื่อใกล้เต็ม ([fa62cfa](https://github.com/aegisx-platform/aegisx-starter/commit/fa62cfa10d6d18a209f842232986eb99c5ccbd52))
+
 ## [1.178.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.178.0...v1.178.1) (2026-10-21)
 
 

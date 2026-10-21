@@ -953,6 +953,101 @@ get_app_version() {
     docker compose exec -T api node -p "require('/app/package.json').version" 2>/dev/null | tr -d '\r\n' || true
 }
 
+# ── กันดิสก์เต็ม ──────────────────────────────────────────────────────────────
+# เหตุจริง 2026-10-21: update หลายรอบในวันเดียว image เก่าค้างรอบละ ~2 GB จนดิสก์เต็ม
+# 100% กลาง update — redis เขียน AOF ไม่ได้ และ backup ก่อน update อาจไม่สมบูรณ์
+AEGISX_KEEP_BACKUPS="${AEGISX_KEEP_BACKUPS:-10}"
+AEGISX_MIN_FREE_GB="${AEGISX_MIN_FREE_GB:-5}"
+
+disk_free_kb() { df -Pk . | awk 'NR==2 {print $4}'; }
+disk_used_pct() { df -Pk . | awk 'NR==2 {gsub("%","",$5); print $5}'; }
+human_kb() { awk -v k="${1:-0}" 'BEGIN { if (k >= 1048576) printf "%.1f GB", k/1048576; else printf "%.0f MB", k/1024 }'; }
+
+# พื้นที่ขั้นต่ำก่อน update = AEGISX_MIN_FREE_GB + 2 เท่าของ backup ล่าสุด (dump ใหม่ + เผื่อ)
+required_free_kb() {
+    local last size
+    last=$(ls -t backups/aegisx_pre-update_*.sql.gz 2>/dev/null | head -1 || true)
+    size=0
+    [ -n "$last" ] && size=$(du -k "$last" 2>/dev/null | cut -f1)
+    echo $(( AEGISX_MIN_FREE_GB * 1024 * 1024 + 2 * ${size:-0} ))
+}
+
+# ลบ image ของ aegisx-api / aegisx-web ที่ไม่มี container ใช้ — ไม่แตะ image ของโปรแกรมอื่น
+# บนเครื่อง และไม่แตะ volume (ฐานข้อมูล/ไฟล์แนบ) · tag ที่ลบ pull กลับจาก registry ได้เสมอ
+prune_old_aegisx_images() {
+    local used ref id
+    used=$(docker ps -aq 2>/dev/null | xargs -r docker inspect --format '{{.Image}}' 2>/dev/null || true)
+    while read -r id ref; do
+        [ -z "$id" ] && continue
+        if ! printf '%s\n' "$used" | grep -qx "$id"; then
+            docker rmi "$ref" >/dev/null 2>&1 && echo "  ลบ $ref" || true
+        fi
+    done < <(docker images --no-trunc --format '{{.ID}} {{.Repository}}:{{.Tag}}' 2>/dev/null \
+                | grep -E 'aegisx-(starter-)?(api|web):' | grep -v ':<none>$' || true)
+    docker image prune -f >/dev/null 2>&1 || true
+}
+
+# backup ก่อน update เก็บไว้ AEGISX_KEEP_BACKUPS ไฟล์ล่าสุด · log migrate/seed เก่ากว่า 30 วันลบ
+# backup ที่สั่งเองด้วย ./aegisx backup (aegisx_YYYY...) ไม่แตะ
+prune_old_backups() {
+    local f
+    ls -t backups/aegisx_pre-update_*.sql.gz 2>/dev/null | tail -n +$((AEGISX_KEEP_BACKUPS + 1)) | while read -r f; do
+        rm -f "$f" && echo "  ลบ backup เก่า $f"
+    done || true
+    find backups -maxdepth 1 \( -name 'migrate_update_*.log' -o -name 'seed_update_*.log' \) -mtime +30 -delete 2>/dev/null || true
+}
+
+# ก่อน update: พื้นที่ไม่พอ → เก็บกวาดแบบปลอดภัยให้ก่อน · ยังไม่พอ → หยุดก่อนแตะอะไรทั้งนั้น
+ensure_disk_space_for_update() {
+    local need free
+    need=$(required_free_kb)
+    free=$(disk_free_kb)
+    echo -e "  พื้นที่ว่าง $(human_kb "$free") · ต้องการอย่างน้อย $(human_kb "$need")"
+    [ "$free" -ge "$need" ] && return 0
+
+    echo -e "  ${YELLOW}พื้นที่ไม่พอ — เก็บกวาด image เก่า / build cache / backup เก่า (ไม่แตะฐานข้อมูล)${NC}"
+    prune_old_aegisx_images
+    docker builder prune -f >/dev/null 2>&1 || true
+    prune_old_backups
+    free=$(disk_free_kb)
+    echo -e "  หลังเก็บกวาด เหลือ $(human_kb "$free")"
+    if [ "$free" -lt "$need" ]; then
+        echo -e "${RED}❌ พื้นที่ดิสก์ไม่พอสำหรับ update (ขาดอีก $(human_kb $((need - free)))) — ยังไม่ได้แตะอะไร${NC}"
+        echo -e "${YELLOW}   ดูว่าอะไรกินพื้นที่: ./aegisx cleanup  ·  sudo du -xh / --max-depth=2 | sort -h | tail${NC}"
+        exit 1
+    fi
+}
+
+# compose ที่ติดตั้งรุ่นเก่าไม่มี log rotation — log container โตไม่จำกัด (redis ขึ้น error ทุก 30 วิ
+# ตอนดิสก์เต็ม) เติม logging ให้ทุก service ใต้ services: แล้วตรวจด้วย docker compose config
+ensure_compose_logging() {
+    local compose="docker-compose.yml"
+    [ -f "$compose" ] || return 0
+    grep -q "max-size" "$compose" && return 0
+    local backup="${compose}.pre-logging.$(date +%Y%m%d_%H%M%S)"
+    cp "$compose" "$backup"
+    awk '
+        BEGIN { insvc = 0 }
+        /^services:[[:space:]]*$/ { insvc = 1; print; next }
+        /^[^[:space:]#]/ { insvc = 0 }
+        insvc && /^  [A-Za-z0-9_.-]+:[[:space:]]*$/ {
+            print
+            print "    logging:"
+            print "      driver: json-file"
+            print "      options:"
+            print "        max-size: \"10m\""
+            print "        max-file: \"3\""
+            next
+        }
+        { print }' "$backup" > "$compose"
+    if docker compose config -q >/dev/null 2>&1; then
+        echo -e "  ${GREEN}✅ ตั้ง log rotation ให้ทุก service (10MB × 3 ไฟล์) — ไฟล์เดิม: $backup${NC}"
+    else
+        cp "$backup" "$compose"
+        echo -e "  ${YELLOW}⚠️  เติม log rotation แล้ว docker compose config ไม่ผ่าน — คืนไฟล์เดิม${NC}"
+    fi
+}
+
 # rollback_update [db_backup_file] [stage]
 #   stage = "recreate" (DB untouched, before migrations) | "migrate" (DB may be
 #           partially mutated — knex commits each migration as it runs)
@@ -1032,6 +1127,16 @@ case "${1:-help}" in
         ;;
     status)
         docker compose ps
+        echo ""
+        _pct=$(disk_used_pct)
+        _msg="ดิสก์: ใช้ไป ${_pct}% · ว่าง $(human_kb "$(disk_free_kb)")"
+        if [ "${_pct:-0}" -ge 90 ]; then
+            echo -e "${RED}⚠️  ${_msg} — ใกล้เต็ม รัน ./aegisx cleanup --force${NC}"
+        elif [ "${_pct:-0}" -ge 80 ]; then
+            echo -e "${YELLOW}⚠️  ${_msg}${NC}"
+        else
+            echo -e "${GREEN}${_msg}${NC}"
+        fi
         ;;
     logs)
         docker compose logs -f "${2:-}"
@@ -1173,6 +1278,10 @@ case "${1:-help}" in
         validate_and_fix_env_vars
         # compose ที่ติดตั้งรุ่นเก่าไม่มี env ของรุ่นใหม่ — เติมก่อน up -d จะได้ recreate api ทีเดียว
         ensure_compose_env_mappings
+        ensure_compose_logging
+
+        echo -e "${CYAN}Checking disk space...${NC}"
+        ensure_disk_space_for_update
 
         if [ "$ROLLBACK_ENABLED" = false ]; then
             echo -e "${YELLOW}⚠️  Auto-rollback disabled (--no-rollback)${NC}"
@@ -1185,9 +1294,15 @@ case "${1:-help}" in
         mkdir -p backups
         BACKUP_FILE="backups/aegisx_pre-update_$(date +%Y%m%d_%H%M%S).sql.gz"
         if has_local_postgres; then
-            docker compose exec -T postgres pg_dumpall -U "${POSTGRES_USER:-postgres}" | gzip > "$BACKUP_FILE" 2>/dev/null && \
-                echo -e "  ${GREEN}✅ Backup saved: $BACKUP_FILE${NC}" || \
-                echo -e "  ${YELLOW}⚠️  Backup skipped${NC}"
+            # backup ไม่สมบูรณ์ (ดิสก์เต็ม / dump ล้ม) = หยุด update ไม่เดินต่อโดยไม่มีทางถอย
+            if docker compose exec -T postgres pg_dumpall -U "${POSTGRES_USER:-postgres}" | gzip > "$BACKUP_FILE" \
+               && gzip -t "$BACKUP_FILE" 2>/dev/null; then
+                echo -e "  ${GREEN}✅ Backup saved: $BACKUP_FILE ($(du -h "$BACKUP_FILE" | cut -f1))${NC}"
+            else
+                rm -f "$BACKUP_FILE"
+                echo -e "${RED}❌ Backup ไม่สมบูรณ์ — หยุด update (ยังไม่ได้แตะอะไร) ตรวจพื้นที่ดิสก์แล้วลองใหม่${NC}"
+                exit 1
+            fi
         else
             echo -e "  ${YELLOW}⚠️  External DB - backup with your provider's tools${NC}"
         fi
@@ -1312,6 +1427,14 @@ case "${1:-help}" in
             else
                 echo -e "${CYAN}App version:${NC} ${PREV_VERSION:-unknown} ${GREEN}→${NC} ${NEW_VERSION:-unknown}"
             fi
+        fi
+
+        # update สำเร็จแล้วค่อยเก็บกวาด — ระหว่าง update image เดิมยังต้องใช้ rollback
+        if [ "$update_unhealthy" = false ]; then
+            echo -e "${CYAN}Cleaning up old images & backups...${NC}"
+            prune_old_aegisx_images
+            prune_old_backups
+            echo -e "  พื้นที่ว่าง $(human_kb "$(disk_free_kb)") (ใช้ไป $(disk_used_pct)%)"
         fi
 
         docker compose ps
