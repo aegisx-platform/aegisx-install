@@ -1,3 +1,10 @@
+## [1.177.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.177.0...v1.177.1) (2026-10-21)
+
+
+### Bug Fixes
+
+* **inventory:** role ข้อมูลหลัก (inventory-master-data) เข้าหน้าข้อมูลหลัก/ทะเบียนยาได้ ([0f77df5](https://github.com/aegisx-platform/aegisx-starter/commit/0f77df5a6185c9e484044529e6edf2a4e8d55f41))
+
 # [1.177.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.176.0...v1.177.0) (2026-10-21)
 
 
