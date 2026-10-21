@@ -1,3 +1,10 @@
+## [1.178.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.178.0...v1.178.1) (2026-10-21)
+
+
+### Bug Fixes
+
+* **receipts:** ตารางชุดตรวจรับ กด Enter/Tab แล้วโฟกัสไปช่องถัดไปทันที ([acf1b7c](https://github.com/aegisx-platform/aegisx-starter/commit/acf1b7c25341cf11cd5a408e736a3cef50e40ece))
+
 # [1.178.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.177.1...v1.178.0) (2026-10-21)
 
 
