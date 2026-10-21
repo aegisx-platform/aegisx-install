@@ -1,3 +1,10 @@
+## [1.179.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.179.0...v1.179.1) (2026-10-21)
+
+
+### Bug Fixes
+
+* **trade-creditor:** ทะเบียน PO เรียงตามเลข PO รพ. (ปี/ลำดับ แบบตัวเลข) ([8fe3198](https://github.com/aegisx-platform/aegisx-starter/commit/8fe3198c8d8ee0664d9764da70ffaa9b61dd8933))
+
 # [1.179.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.178.1...v1.179.0) (2026-10-21)
 
 
