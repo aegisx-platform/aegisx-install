@@ -1,3 +1,21 @@
+# [1.177.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.176.0...v1.177.0) (2026-10-21)
+
+
+### Bug Fixes
+
+* **drug-distributions:** admin/inventory-admin จ่ายจากคลังใหญ่ได้โดยไม่ต้องผูก user_locations ([6a8941c](https://github.com/aegisx-platform/aegisx-starter/commit/6a8941cdb6220f8891eab95e69b3abf377b1f829))
+* **procurement:** เปลี่ยนยาในรายการขอซื้อแล้วล้างขนาดบรรจุของยาตัวเดิม ([62ec80b](https://github.com/aegisx-platform/aegisx-starter/commit/62ec80b0d78c70d76851c56c7e819d67caf4cc55))
+* **purchase-orders:** แก้รายการใบสั่งซื้อแล้วเขียนกลับใบขอซื้อ + ล็อกเมื่อส่งผู้ขายแล้ว ([d4c0520](https://github.com/aegisx-platform/aegisx-starter/commit/d4c0520ca347d7880ab0bd30f219ad7bf7c99a1f))
+* **purchase-orders:** เอกสารใบสั่งซื้อที่ส่งผู้ขายแล้วไม่เปลี่ยนตามทะเบียนยา ([a667370](https://github.com/aegisx-platform/aegisx-starter/commit/a6673706ae0ddf047e54f939b187dbd9a60bab24))
+* **purchase-requests:** แก้รายการใบขอซื้อที่ผูก PO ต้องเลือกยา ไม่เอา generic_id ไปใส่แทน drug_id ([6496c63](https://github.com/aegisx-platform/aegisx-starter/commit/6496c6396a664bc2c61fe74e0f58c76699b5dc2a))
+* **purchase-requests:** แก้รายการใบขอซื้อแล้วส่วนลด/ของแถมในใบสั่งซื้อไม่หาย ([5b9bf0c](https://github.com/aegisx-platform/aegisx-starter/commit/5b9bf0ce5dcebaac7d3a1cefdc5b1cc061b657ee))
+* **purchase-requests:** รายงานขอซื้อตามทะเบียนยา ยกเว้นรายการที่ใบสั่งซื้อส่งผู้ขายแล้ว ([b0c5e2b](https://github.com/aegisx-platform/aegisx-starter/commit/b0c5e2b98cc61111cea505e5e1bd201170de105f))
+
+
+### Features
+
+* **drugs:** เตือนก่อนแก้ทะเบียนยาที่อยู่ในใบขอซื้อ/ใบสั่งซื้อ ([d87f967](https://github.com/aegisx-platform/aegisx-starter/commit/d87f967390517d56518ce5c6592b328e728c181e))
+
 # [1.176.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.175.4...v1.176.0) (2026-10-20)
 
 
