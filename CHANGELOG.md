@@ -1,3 +1,10 @@
+# [1.178.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.177.1...v1.178.0) (2026-10-21)
+
+
+### Features
+
+* **receipts:** จำกัดจำนวนครั้งรับของแถมต่อรายการยาใน PO (ตั้งค่าได้ ตั้งต้น 5) ([4771144](https://github.com/aegisx-platform/aegisx-starter/commit/477114466722f9e8e208019ee4fcc410a75e5d94))
+
 ## [1.177.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.177.0...v1.177.1) (2026-10-21)
 
 
