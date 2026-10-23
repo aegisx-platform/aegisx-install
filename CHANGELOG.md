@@ -1,3 +1,11 @@
+## [1.180.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.180.0...v1.180.1) (2026-10-23)
+
+
+### Bug Fixes
+
+* **deploy:** ./aegisx update เติม service backup ให้เครื่องที่ติดตั้งไว้แล้ว ([7825ea8](https://github.com/aegisx-platform/aegisx-starter/commit/7825ea80c49d2ec680aa980830be3cffac58a558))
+* **deploy:** container backup ใช้ image จาก registry แทน build จาก ./backup ([9458114](https://github.com/aegisx-platform/aegisx-starter/commit/9458114e8d6824c62a919c1b8f235ad569a0f354))
+
 # [1.180.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.179.1...v1.180.0) (2026-10-23)
 
 

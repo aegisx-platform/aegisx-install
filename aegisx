@@ -115,8 +115,8 @@ validate_and_fix_env_vars() {
 # เติมบรรทัด map ที่ขาดใต้ api: environment: ต่อจาก SESSION_SECRET (มีเฉพาะ api)
 # สำรองไฟล์ก่อน · ตรวจด้วย `docker compose config` · ไม่ผ่าน = คืนไฟล์เดิม
 # เพิ่มตัวแปรใหม่: ต่อท้าย ENV_MAPPING_VARS / ENV_MAPPING_DEFAULTS (default = ค่าใน template)
-ENV_MAPPING_VARS=(RATE_LIMIT_MAX SYSTEM_RESET_ENABLED SYSTEM_RESET_SKIP_BACKUP)
-ENV_MAPPING_DEFAULTS=(1000 false false)
+ENV_MAPPING_VARS=(RATE_LIMIT_MAX SYSTEM_RESET_ENABLED SYSTEM_RESET_SKIP_BACKUP BACKUP_DIR BACKUP_SERVICE_URL)
+ENV_MAPPING_DEFAULTS=(1000 false false /backups http://backup:8099)
 
 ensure_compose_env_mappings() {
     local compose="docker-compose.yml"
@@ -310,6 +310,82 @@ ensure_compose_logging() {
     else
         cp "$backup" "$compose"
         echo -e "  ${YELLOW}⚠️  เติม log rotation แล้ว docker compose config ไม่ผ่าน — คืนไฟล์เดิม${NC}"
+    fi
+}
+
+# ── ensure_compose_backup_service ─────────────────────────────────────────────
+# compose รุ่นก่อนไม่มี service backup หรือสั่ง build: ./backup ซึ่งไม่เคยถูกส่งมาถึงเครื่อง
+# → ไม่มี backup รายวัน/ปุ่มสร้าง backup ในหน้า /system/backup
+# ดึงบล็อก backup จาก template ที่เผยแพร่ (แหล่งเดียวกับตอนติดตั้ง) มาเติม/แทน build:
+# ดึง image ไม่ได้ = ข้าม ไม่ให้ update ทั้งก้อนล้มเพราะ backup
+BACKUP_TEMPLATE_URL="${BACKUP_TEMPLATE_URL:-https://raw.githubusercontent.com/aegisx-platform/aegisx-install/main/docker-compose.full.yml}"
+
+ensure_compose_backup_service() {
+    local compose="docker-compose.yml"
+    [ -f "$compose" ] || return 0
+    # แบบ external-db ยังไม่มี service backup — ทำแยก
+    grep -qE "^  postgres:" "$compose" || return 0
+
+    local img
+    if ! grep -q "^BACKUP_IMAGE=" .env 2>/dev/null; then
+        if grep -E "^API_IMAGE=" .env 2>/dev/null | grep -q "ghcr.io" || ! grep -qE "^API_IMAGE=." .env 2>/dev/null; then
+            img="ghcr.io/aegisx-platform/aegisx-starter-backup:latest"
+        else
+            img="dixonsatit/aegisx-backup:latest"
+        fi
+        echo "BACKUP_IMAGE=$img" >> .env
+    fi
+    img=$(grep "^BACKUP_IMAGE=" .env | tail -1 | cut -d= -f2-)
+
+    local has_service=false needs_image=false
+    grep -qE "^  backup:" "$compose" && has_service=true
+    awk '/^  backup:/{b=1;next} /^  [A-Za-z0-9_.-]+:/{b=0} b&&/^    build:/{f=1} END{exit !f}' "$compose" && needs_image=true
+    local api_mount=true
+    awk '/^  api:/{a=1;next} /^  [A-Za-z0-9_.-]+:/{a=0} a&&/\.\/backups:\/backups/{f=1} END{exit !f}' "$compose" || api_mount=false
+    if [ "$has_service" = true ] && [ "$needs_image" = false ] && [ "$api_mount" = true ]; then
+        return 0
+    fi
+
+    if [ "$has_service" = false ] || [ "$needs_image" = true ]; then
+        if ! docker pull -q "$img" >/dev/null 2>&1; then
+            echo -e "  ${YELLOW}⚠️  ดึง image backup ($img) ไม่ได้ — ข้ามการเติม service backup รอบนี้${NC}"
+            return 0
+        fi
+    fi
+
+    local tmpl block=""
+    if [ "$has_service" = false ]; then
+        tmpl=$(curl -fsSL "$BACKUP_TEMPLATE_URL" 2>/dev/null || true)
+        block=$(printf '%s\n' "$tmpl" | awk '/^  backup:/{b=1;print;next} b&&(/^  [A-Za-z0-9_.#-]/||/^[^[:space:]]/){exit} b&&NF{print}')
+        if [ -z "$block" ] || printf '%s\n' "$block" | grep -qE "^    build:"; then
+            echo -e "  ${YELLOW}⚠️  template ไม่มีบล็อก backup แบบ image — ข้ามการเติม service backup${NC}"
+            return 0
+        fi
+        # compose รุ่นเก่าอาจไม่มี anchor log / network ชื่อนี้
+        grep -q "&default-logging" "$compose" || block=$(printf '%s\n' "$block" | grep -v "logging: \*default-logging")
+        grep -qE "^  aegisx-network:" "$compose" || block=$(printf '%s\n' "$block" | grep -vE "^    networks:|^      - aegisx-network")
+    fi
+
+    local backup="${compose}.pre-backup.$(date +%Y%m%d_%H%M%S)"
+    cp "$compose" "$backup"
+    BLOCK="$block" HAS_SERVICE="$has_service" API_MOUNT="$api_mount" awk '
+        function flush_block() { if (ENVIRON["BLOCK"] != "") { print ENVIRON["BLOCK"]; print "" } ; added = 1 }
+        /^services:[[:space:]]*$/ { insvc = 1; print; next }
+        insvc && !added && ENVIRON["HAS_SERVICE"] == "false" && /^[^[:space:]#]/ { flush_block(); insvc = 0 }
+        /^  [A-Za-z0-9_.-]+:/ { svc = $1 }
+        svc == "backup:" && /^    build:/ { print "    image: ${BACKUP_IMAGE:-ghcr.io/aegisx-platform/aegisx-starter-backup:latest}"; skip = 1; next }
+        skip && /^      / { next }
+        { skip = 0 }
+        svc == "api:" && ENVIRON["API_MOUNT"] == "false" && /^    volumes:/ { print; print "      - ./backups:/backups"; next }
+        { print }
+        END { if (ENVIRON["HAS_SERVICE"] == "false" && !added) flush_block() }' "$backup" > "$compose"
+
+    if docker compose config -q >/dev/null 2>&1; then
+        echo -e "  ${GREEN}✅ ตั้ง service backup ใน docker-compose.yml ($img) — ไฟล์เดิม: $backup${NC}"
+        mkdir -p backups
+    else
+        cp "$backup" "$compose"
+        echo -e "  ${YELLOW}⚠️  ตั้ง service backup แล้ว docker compose config ไม่ผ่าน — คืนไฟล์เดิม${NC}"
     fi
 }
 
@@ -544,6 +620,7 @@ case "${1:-help}" in
         # compose ที่ติดตั้งรุ่นเก่าไม่มี env ของรุ่นใหม่ — เติมก่อน up -d จะได้ recreate api ทีเดียว
         ensure_compose_env_mappings
         ensure_compose_logging
+        ensure_compose_backup_service
 
         echo -e "${CYAN}Checking disk space...${NC}"
         ensure_disk_space_for_update

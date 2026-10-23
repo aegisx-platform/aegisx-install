@@ -183,10 +183,9 @@ services:
   # Automated Database Backup (custom container)
   # Provides: crond daily backup + pg_restore integrity check + HTTP trigger :8099
   # =============================================================================
+  # image แยกเวอร์ชันจาก api/web — build จาก deploy/backup/ โดย .github/workflows/backup-image.yml
   backup:
-    build:
-      context: ./backup
-      dockerfile: Dockerfile
+    image: ${BACKUP_IMAGE:-ghcr.io/aegisx-platform/aegisx-starter-backup:latest}
     container_name: aegisx_backup
     restart: unless-stopped
     logging: *default-logging
