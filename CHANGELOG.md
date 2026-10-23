@@ -1,3 +1,11 @@
+# [1.180.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.179.1...v1.180.0) (2026-10-23)
+
+
+### Features
+
+* **backup:** หน้า Backup แสดง/ดาวน์โหลด backup ก่อนอัปเดตได้ ([444f24a](https://github.com/aegisx-platform/aegisx-starter/commit/444f24ac5f5768727461771f243ce110f4580b78))
+* **production:** ใบผลิต/สูตรตำรับออกเลขอัตโนมัติตามหน้าการออกเลขเอกสาร ([40f8eed](https://github.com/aegisx-platform/aegisx-starter/commit/40f8eedf683ead300ed96eb0368792b82ec6dcb8))
+
 ## [1.179.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.179.0...v1.179.1) (2026-10-21)
 
 

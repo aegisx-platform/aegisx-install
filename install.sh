@@ -987,12 +987,34 @@ prune_old_aegisx_images() {
     docker image prune -f >/dev/null 2>&1 || true
 }
 
+# .meta.json คู่ไฟล์ dump ให้หน้า /system/backup แสดงได้ (รูปแบบเดียวกับ deploy/backup/backup.sh)
+# args: <dump> <timestamp UTC> <duration_s> <from_version> <to_version>
+write_pre_update_meta() {
+    local dump="$1" from_json="null" to_json="null"
+    [ -n "$4" ] && from_json="\"$4\""
+    [ -n "$5" ] && to_json="\"$5\""
+    cat > "${dump%.sql.gz}.meta.json" <<EOF || true
+{
+  "filename": "$(basename "$dump")",
+  "timestamp": "$2",
+  "size_bytes": $(wc -c < "$dump" | tr -d ' '),
+  "duration_seconds": $3,
+  "tables": null,
+  "integrity": "verified",
+  "trigger": "pre-update",
+  "triggered_by": null,
+  "from_version": $from_json,
+  "to_version": $to_json
+}
+EOF
+}
+
 # backup ก่อน update เก็บไว้ AEGISX_KEEP_BACKUPS ไฟล์ล่าสุด · log migrate/seed เก่ากว่า 30 วันลบ
 # backup ที่สั่งเองด้วย ./aegisx backup (aegisx_YYYY...) ไม่แตะ
 prune_old_backups() {
     local f
     ls -t backups/aegisx_pre-update_*.sql.gz 2>/dev/null | tail -n +$((AEGISX_KEEP_BACKUPS + 1)) | while read -r f; do
-        rm -f "$f" && echo "  ลบ backup เก่า $f"
+        rm -f "$f" "${f%.sql.gz}.meta.json" && echo "  ลบ backup เก่า $f"
     done || true
     find backups -maxdepth 1 \( -name 'migrate_update_*.log' -o -name 'seed_update_*.log' \) -mtime +30 -delete 2>/dev/null || true
 }
@@ -1293,10 +1315,13 @@ case "${1:-help}" in
         echo -e "${CYAN}[1/6]${NC} Creating database backup..."
         mkdir -p backups
         BACKUP_FILE="backups/aegisx_pre-update_$(date +%Y%m%d_%H%M%S).sql.gz"
+        BACKUP_TS=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+        BACKUP_START=$(date +%s)
         if has_local_postgres; then
             # backup ไม่สมบูรณ์ (ดิสก์เต็ม / dump ล้ม) = หยุด update ไม่เดินต่อโดยไม่มีทางถอย
             if docker compose exec -T postgres pg_dumpall -U "${POSTGRES_USER:-postgres}" | gzip > "$BACKUP_FILE" \
                && gzip -t "$BACKUP_FILE" 2>/dev/null; then
+                BACKUP_DURATION=$(( $(date +%s) - BACKUP_START ))
                 echo -e "  ${GREEN}✅ Backup saved: $BACKUP_FILE ($(du -h "$BACKUP_FILE" | cut -f1))${NC}"
             else
                 rm -f "$BACKUP_FILE"
@@ -1311,6 +1336,9 @@ case "${1:-help}" in
         # the old build) so we can roll back AND report the version delta.
         capture_rollback_images
         PREV_VERSION=$(get_app_version)
+        if [ -f "$BACKUP_FILE" ]; then
+            write_pre_update_meta "$BACKUP_FILE" "$BACKUP_TS" "$BACKUP_DURATION" "$PREV_VERSION" ""
+        fi
 
         echo -e "${CYAN}[2/6]${NC} Pulling latest images..."
         if ! docker compose pull; then
@@ -1415,6 +1443,9 @@ case "${1:-help}" in
         # same but the image digest changed, the build was refreshed under the
         # same tag — surface that as "rebuilt" so a daily updater still sees it.
         NEW_VERSION=$(get_app_version)
+        if [ -f "$BACKUP_FILE" ]; then
+            write_pre_update_meta "$BACKUP_FILE" "$BACKUP_TS" "$BACKUP_DURATION" "$PREV_VERSION" "$NEW_VERSION"
+        fi
         echo ""
         if [ -n "${PREV_VERSION:-}" ] || [ -n "${NEW_VERSION:-}" ]; then
             if [ -n "${NEW_VERSION:-}" ] && [ "${PREV_VERSION:-}" = "${NEW_VERSION:-}" ]; then
