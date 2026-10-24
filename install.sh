@@ -603,10 +603,7 @@ WEB_PORT=$WEB_PORT
 # =============================================================================
 # Automated Database Backup
 # =============================================================================
-BACKUP_SCHEDULE=@daily
-BACKUP_KEEP_DAYS=7
-BACKUP_KEEP_WEEKS=4
-BACKUP_KEEP_MONTHS=6
+# เวลาสำรองและจำนวนวันเก็บไฟล์ ตั้งที่หน้า /system/backup
 TZ=Asia/Bangkok
 
 # =============================================================================
@@ -785,11 +782,25 @@ has_local_postgres() {
 }
 
 # Helper: run SQL command (works for both full and external-db modes)
+# external-db: image api ไม่มี psql → ใช้ psql ใน container backup ถ้ารันอยู่
+# ไม่งั้นใช้ pg ของ node ใน api ตัวชั่วคราว (run --rm: ฐานว่าง api จะ crash-loop exec ไม่ได้)
+# ทางหลังรับแค่ -c "<sql>" และพิมพ์ผลเป็นแถวคั่นด้วย tab
 run_sql() {
     if has_local_postgres; then
         docker compose exec -T postgres psql -U "${POSTGRES_USER:-postgres}" -d "${POSTGRES_DB:-aegisx_db}" "$@"
-    elif [ -n "${DATABASE_URL:-}" ]; then
-        docker compose exec -T api sh -c "psql \"\$DATABASE_URL\" $(printf '%q ' "$@")"
+    elif backup_container_running; then
+        backup_pg psql "$@"
+    elif [ "${1:-}" = "-c" ] && [ -n "${2:-}" ] && [ -n "${DATABASE_URL:-}" ]; then
+        docker compose run --rm -T -w /app -e AEGISX_SQL="$2" api node -e '
+const { Client } = require("pg");
+const c = new Client({ connectionString: process.env.DATABASE_URL });
+c.connect()
+  .then(() => c.query(process.env.AEGISX_SQL))
+  .then((res) => {
+    for (const r of [].concat(res)) for (const row of r.rows || []) console.log(Object.values(row).join("\t"));
+    return c.end();
+  })
+  .catch((e) => { console.error(e.message); process.exit(1); });'
     else
         echo -e "${RED}No database connection available${NC}" >&2
         return 1
@@ -941,6 +952,7 @@ env_container_value() {
 # repoints the tag at the NEW image — without the saved IDs the previous
 # version becomes unreachable and rollback is impossible.
 ROLLBACK_ENABLED=true
+SKIP_BACKUP=false
 ROLLBACK_API_IMG=""
 ROLLBACK_WEB_IMG=""
 
@@ -992,11 +1004,11 @@ prune_old_aegisx_images() {
 }
 
 # .meta.json คู่ไฟล์ dump ให้หน้า /system/backup แสดงได้ (รูปแบบเดียวกับ deploy/backup/backup.sh)
-# args: <dump> <timestamp UTC> <duration_s> <from_version> <to_version>
-write_pre_update_meta() {
+# args: <dump> <timestamp UTC> <duration_s> <trigger> <from_version> <to_version>
+write_backup_meta() {
     local dump="$1" from_json="null" to_json="null"
-    [ -n "$4" ] && from_json="\"$4\""
-    [ -n "$5" ] && to_json="\"$5\""
+    [ -n "${5:-}" ] && from_json="\"$5\""
+    [ -n "${6:-}" ] && to_json="\"$6\""
     cat > "${dump%.sql.gz}.meta.json" <<EOF || true
 {
   "filename": "$(basename "$dump")",
@@ -1005,12 +1017,77 @@ write_pre_update_meta() {
   "duration_seconds": $3,
   "tables": null,
   "integrity": "verified",
-  "trigger": "pre-update",
+  "trigger": "$4",
   "triggered_by": null,
   "from_version": $from_json,
   "to_version": $to_json
 }
 EOF
+}
+
+backup_container_running() {
+    [ -n "$(docker compose ps -q --status running backup 2>/dev/null)" ]
+}
+
+# psql / pg_dump ใน container backup ต่อฐานเดียวกับที่ระบบใช้
+# image ใหม่มี /db.sh (external-db ต่อด้วย DATABASE_URL) · image เก่ามีแค่ POSTGRES_*
+# </dev/null ตอนเช็ค — ไม่งั้น exec ตัวเช็คกิน stdin ที่ส่งมากู้คืน
+backup_has() {
+    docker compose exec -T backup test -x "$1" </dev/null >/dev/null 2>&1
+}
+backup_pg() {
+    if backup_has /db.sh; then
+        docker compose exec -T backup /db.sh "$@"
+    else
+        docker compose exec -T backup sh -c '"$0" --host="$POSTGRES_HOST" --port="${POSTGRES_PORT:-5432}" --username="$POSTGRES_USER" --dbname="$POSTGRES_DB" "$@"' "$@"
+    fi
+}
+
+# dump ฐานลง <file>.sql.gz
+#   full        = pg_dumpall ใน container postgres (ทุกฐาน + role)
+#   external-db = pg_dump ผ่าน container backup — image api ไม่มี pg_dump/psql
+# คืน 0 = ไฟล์ gzip สมบูรณ์และมีข้อมูล · 2 = ไม่มีช่องทาง dump · อื่น ๆ = dump ล้ม (ลบไฟล์ทิ้งแล้ว)
+dump_database() {
+    local out="$1" ok=false
+    if has_local_postgres; then
+        docker compose exec -T postgres pg_dumpall -U "${POSTGRES_USER:-postgres}" | gzip > "$out" && ok=true
+    elif backup_container_running; then
+        backup_pg pg_dump --clean --if-exists --no-owner --no-privileges | gzip > "$out" && ok=true
+    else
+        return 2
+    fi
+    if [ "$ok" = true ] && gzip -t "$out" 2>/dev/null && [ -n "$(gzip -dc "$out" 2>/dev/null | head -c 64 || true)" ]; then
+        return 0
+    fi
+    rm -f "$out"
+    return 1
+}
+
+pg_super() {
+    docker compose exec -T postgres psql -X -U "${POSTGRES_USER:-postgres}" -d postgres "$@"
+}
+
+# กู้ไฟล์ pg_dumpall ลงฐานในเครื่อง — ไฟล์ CREATE DATABASE เอง ฐานที่มีอยู่จึงต้องลบก่อน
+# ไม่ลบ = ทุกคำสั่งชนของเดิม ข้อมูลไม่ย้อนแต่ psql ไม่ล้ม (เคยขึ้นว่ากู้สำเร็จทั้งที่ไม่ได้กู้)
+# ข้าม CREATE/ALTER ROLE ของ user หลัก — รหัสผ่านในไฟล์จะทับรหัสใน .env แล้ว api ต่อฐานไม่ได้
+# error ที่ยอมได้มีแค่ role ที่มีอยู่แล้ว · คืน 0 = กู้ครบ
+restore_cluster_dump() {
+    local file="$1" log="$2" db
+    for db in $(gunzip -c "$file" | sed -nE 's/^CREATE DATABASE "?([^" ]+)"? .*/\1/p'); do
+        pg_super -q -v ON_ERROR_STOP=1 \
+            -c "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '$db' AND pid <> pg_backend_pid()" \
+            -c "DROP DATABASE IF EXISTS \"$db\"" >/dev/null || return 1
+    done
+    gunzip -c "$file" | awk -v u="${POSTGRES_USER:-postgres}" '
+        /^\\connect / { body = 1 }
+        !body && $0 ~ ("^(CREATE|ALTER) ROLE \"?" u "\"?[ ;]") { next }
+        { print }' | pg_super > "$log" 2>&1 || return 1
+    ! grep "ERROR:" "$log" | grep -vqE 'role ".+" already exists'
+}
+
+# api ต้องไม่ถือ connection ระหว่างลบฐาน · start กลับแล้วสิทธิ์ของผู้ช่วย AI ถูกแจกใหม่
+api_running() {
+    [ -n "$(docker compose ps -q --status running api 2>/dev/null)" ]
 }
 
 # backup ก่อน update เก็บไว้ AEGISX_KEEP_BACKUPS ไฟล์ล่าสุด · log migrate/seed เก่ากว่า 30 วันลบ
@@ -1079,13 +1156,14 @@ ensure_compose_logging() {
 # → ไม่มี backup รายวัน/ปุ่มสร้าง backup ในหน้า /system/backup
 # ดึงบล็อก backup จาก template ที่เผยแพร่ (แหล่งเดียวกับตอนติดตั้ง) มาเติม/แทน build:
 # ดึง image ไม่ได้ = ข้าม ไม่ให้ update ทั้งก้อนล้มเพราะ backup
-BACKUP_TEMPLATE_URL="${BACKUP_TEMPLATE_URL:-https://raw.githubusercontent.com/aegisx-platform/aegisx-install/main/docker-compose.full.yml}"
+BACKUP_TEMPLATE_BASE="${BACKUP_TEMPLATE_BASE:-https://raw.githubusercontent.com/aegisx-platform/aegisx-install/main}"
 
 ensure_compose_backup_service() {
     local compose="docker-compose.yml"
     [ -f "$compose" ] || return 0
-    # แบบ external-db ยังไม่มี service backup — ทำแยก
-    grep -qE "^  postgres:" "$compose" || return 0
+    # แบบ external-db เดิมไม่มี service backup — ใช้บล็อกจาก template ของ external-db (ต่อด้วย DATABASE_URL)
+    local template_url="${BACKUP_TEMPLATE_URL:-${BACKUP_TEMPLATE_BASE}/docker-compose.full.yml}"
+    grep -qE "^  postgres:" "$compose" || template_url="${BACKUP_TEMPLATE_URL:-${BACKUP_TEMPLATE_BASE}/docker-compose.external-db.yml}"
 
     local img
     if ! grep -q "^BACKUP_IMAGE=" .env 2>/dev/null; then
@@ -1116,7 +1194,7 @@ ensure_compose_backup_service() {
 
     local tmpl block=""
     if [ "$has_service" = false ]; then
-        tmpl=$(curl -fsSL "$BACKUP_TEMPLATE_URL" 2>/dev/null || true)
+        tmpl=$(curl -fsSL "$template_url" 2>/dev/null || true)
         block=$(printf '%s\n' "$tmpl" | awk '/^  backup:/{b=1;print;next} b&&(/^  [A-Za-z0-9_.#-]/||/^[^[:space:]]/){exit} b&&NF{print}')
         if [ -z "$block" ] || printf '%s\n' "$block" | grep -qE "^    build:"; then
             echo -e "  ${YELLOW}⚠️  template ไม่มีบล็อก backup แบบ image — ข้ามการเติม service backup${NC}"
@@ -1201,6 +1279,89 @@ rollback_update() {
         fi
     elif [ -n "$db_backup" ] && [ -f "$db_backup" ]; then
         echo -e "${YELLOW}   DB was not modified by this rollback. Pre-update backup: $db_backup${NC}"
+    fi
+}
+
+# ── offsite (ส่งไฟล์ backup ไป NAS) ───────────────────────────────────────────
+# service offsite อยู่ในไฟล์ต่อท้าย เปิดด้วย COMPOSE_FILE ใน .env (ไม่แก้ docker-compose.yml)
+OFFSITE_TEMPLATE_BASE="${OFFSITE_TEMPLATE_BASE:-https://raw.githubusercontent.com/aegisx-platform/aegisx-install/main}"
+OFFSITE_KEYS=(OFFSITE_MODE OFFSITE_HOST OFFSITE_SHARE OFFSITE_SUBDIR OFFSITE_PATH OFFSITE_SMB_USER
+    OFFSITE_SMB_PASSWORD OFFSITE_SMB_DOMAIN OFFSITE_SMB_VERS OFFSITE_NFS_VERS OFFSITE_ALLOW_LOCAL_DISK
+    OFFSITE_INTERVAL OFFSITE_RETENTION_DAYS)
+
+# ตั้ง COMPOSE_FILE แล้ว compose เลิกอ่าน override เอง → ต้องใส่ต่อให้ถ้ามี
+offsite_compose_files() {
+    local files="docker-compose.yml"
+    [ -f docker-compose.override.yml ] && files="$files:docker-compose.override.yml"
+    files="$files:docker-compose.offsite.yml"
+    if [ "$1" = "path" ]; then echo "$files:docker-compose.offsite-path.yml"
+    else echo "$files:docker-compose.offsite-mount.yml"; fi
+}
+
+offsite_enabled() {
+    grep -q "^COMPOSE_FILE=.*docker-compose.offsite.yml" .env 2>/dev/null
+}
+
+offsite_env_get() {
+    local v
+    v=$(grep "^$1=" .env 2>/dev/null | tail -1 | cut -d= -f2- || true)
+    v="${v#\'}"; echo "${v%\'}"
+}
+
+# ค่าใส่ single quote — bash (source .env) และ compose อ่านตรงตัว ไม่แปล $ หรือช่องว่าง
+offsite_env_put() {
+    local tmp
+    tmp=$(mktemp)
+    grep -v "^$1=" .env > "$tmp" || true
+    cat "$tmp" > .env
+    rm -f "$tmp"
+    if [ -n "$2" ]; then printf "%s='%s'\n" "$1" "$2" >> .env; fi
+}
+
+offsite_download_templates() {
+    local f tmp
+    for f in docker-compose.offsite.yml docker-compose.offsite-mount.yml docker-compose.offsite-path.yml; do
+        tmp=$(mktemp)
+        if ! curl -fsSL "${OFFSITE_TEMPLATE_BASE}/$f" -o "$tmp" || ! grep -q "^  offsite:" "$tmp"; then
+            rm -f "$tmp"
+            echo -e "${RED}❌ ดาวน์โหลด $f ไม่ได้ (${OFFSITE_TEMPLATE_BASE}) — ยังไม่ได้แก้อะไร${NC}"
+            return 1
+        fi
+        mv "$tmp" "$f"
+    done
+}
+
+# รัน offsite.py <cmd> ใน container ชั่วคราว ด้วยสิทธิ์/volume เดียวกับตอนใช้งานจริง
+offsite_run() {
+    COMPOSE_FILE="$(offsite_compose_files "$(offsite_env_get OFFSITE_MODE)")" \
+        docker compose run --rm --no-deps -T --entrypoint /offsite.py offsite "$@"
+}
+
+offsite_image_ready() {
+    COMPOSE_FILE="$(offsite_compose_files "$(offsite_env_get OFFSITE_MODE)")" \
+        docker compose pull -q offsite >/dev/null 2>&1 || true
+    COMPOSE_FILE="$(offsite_compose_files "$(offsite_env_get OFFSITE_MODE)")" \
+        docker compose run --rm --no-deps -T --entrypoint test offsite -f /offsite.py >/dev/null 2>&1
+}
+
+offsite_print_status() {
+    local f="backups/.offsite-status.json"
+    if [ ! -f "$f" ]; then echo "  ยังไม่มีผลการส่ง (service ยังไม่ได้ทำรอบแรก)"; return; fi
+    if command -v python3 >/dev/null 2>&1; then
+        python3 - "$f" <<'PY'
+import json, sys
+d = json.load(open(sys.argv[1]))
+print(f"  ปลายทาง     : {d.get('target')} ({d.get('mode')})")
+print(f"  ตรวจล่าสุด  : {d.get('checked_at')}  {'สำเร็จ' if d.get('ok') else 'ไม่สำเร็จ'}")
+print(f"  สำเร็จล่าสุด: {d.get('last_success_at') or '-'}")
+if d.get('error'):
+    print(f"  ปัญหา       : {d['error']}")
+for x in d.get('failed') or []:
+    print(f"    - {x['filename']}: {x['error']}")
+print(f"  ไฟล์บน NAS  : {len(d.get('files') or [])} ไฟล์ · เก็บ {d.get('retention_days')} วัน · ส่งทุก {d.get('interval_seconds')} วินาที")
+PY
+    else
+        cat "$f"; echo
     fi
 }
 
@@ -1352,6 +1513,7 @@ case "${1:-help}" in
         for _arg in "$@"; do
             case "$_arg" in
                 --no-rollback) ROLLBACK_ENABLED=false ;;
+                --skip-backup) SKIP_BACKUP=true ;;
             esac
         done
 
@@ -1398,19 +1560,24 @@ case "${1:-help}" in
         BACKUP_FILE="backups/aegisx_pre-update_$(date +%Y%m%d_%H%M%S).sql.gz"
         BACKUP_TS=$(date -u +%Y-%m-%dT%H:%M:%SZ)
         BACKUP_START=$(date +%s)
-        if has_local_postgres; then
-            # backup ไม่สมบูรณ์ (ดิสก์เต็ม / dump ล้ม) = หยุด update ไม่เดินต่อโดยไม่มีทางถอย
-            if docker compose exec -T postgres pg_dumpall -U "${POSTGRES_USER:-postgres}" | gzip > "$BACKUP_FILE" \
-               && gzip -t "$BACKUP_FILE" 2>/dev/null; then
+        # backup ไม่สมบูรณ์ (ดิสก์เต็ม / dump ล้ม) = หยุด update ไม่เดินต่อโดยไม่มีทางถอย
+        if [ "$SKIP_BACKUP" = true ]; then
+            BACKUP_FILE=""
+            echo -e "  ${YELLOW}⚠️  ข้าม backup (--skip-backup) — ถ้า update พังจะไม่มีไฟล์ให้กู้ฐานคืน${NC}"
+        else
+            _dump_rc=0
+            dump_database "$BACKUP_FILE" || _dump_rc=$?
+            if [ "$_dump_rc" -eq 0 ]; then
                 BACKUP_DURATION=$(( $(date +%s) - BACKUP_START ))
                 echo -e "  ${GREEN}✅ Backup saved: $BACKUP_FILE ($(du -h "$BACKUP_FILE" | cut -f1))${NC}"
+            elif [ "$_dump_rc" -eq 2 ]; then
+                echo -e "${RED}❌ ฐานข้อมูลภายนอกแต่ไม่มี container backup ที่รันอยู่ — backup ก่อน update ไม่ได้ หยุด update (ยังไม่ได้แตะอะไร)${NC}"
+                echo -e "${YELLOW}   ถ้า backup ฐานด้วยวิธีอื่นแล้ว: ./aegisx update --skip-backup${NC}"
+                exit 1
             else
-                rm -f "$BACKUP_FILE"
-                echo -e "${RED}❌ Backup ไม่สมบูรณ์ — หยุด update (ยังไม่ได้แตะอะไร) ตรวจพื้นที่ดิสก์แล้วลองใหม่${NC}"
+                echo -e "${RED}❌ Backup ไม่สมบูรณ์ — หยุด update (ยังไม่ได้แตะอะไร) ตรวจพื้นที่ดิสก์ / การเชื่อมต่อฐานแล้วลองใหม่${NC}"
                 exit 1
             fi
-        else
-            echo -e "  ${YELLOW}⚠️  External DB - backup with your provider's tools${NC}"
         fi
 
         # Capture current images + app version BEFORE pull (containers still on
@@ -1418,7 +1585,7 @@ case "${1:-help}" in
         capture_rollback_images
         PREV_VERSION=$(get_app_version)
         if [ -f "$BACKUP_FILE" ]; then
-            write_pre_update_meta "$BACKUP_FILE" "$BACKUP_TS" "$BACKUP_DURATION" "$PREV_VERSION" ""
+            write_backup_meta "$BACKUP_FILE" "$BACKUP_TS" "$BACKUP_DURATION" pre-update "$PREV_VERSION" ""
         fi
 
         echo -e "${CYAN}[2/6]${NC} Pulling latest images..."
@@ -1525,7 +1692,7 @@ case "${1:-help}" in
         # same tag — surface that as "rebuilt" so a daily updater still sees it.
         NEW_VERSION=$(get_app_version)
         if [ -f "$BACKUP_FILE" ]; then
-            write_pre_update_meta "$BACKUP_FILE" "$BACKUP_TS" "$BACKUP_DURATION" "$PREV_VERSION" "$NEW_VERSION"
+            write_backup_meta "$BACKUP_FILE" "$BACKUP_TS" "$BACKUP_DURATION" pre-update "$PREV_VERSION" "$NEW_VERSION"
         fi
         echo ""
         if [ -n "${PREV_VERSION:-}" ] || [ -n "${NEW_VERSION:-}" ]; then
@@ -1559,22 +1726,22 @@ case "${1:-help}" in
         ;;
     backup)
         mkdir -p backups
-        BACKUP_FILE="backups/aegisx_$(date +%Y%m%d_%H%M%S).sql.gz"
-        if has_local_postgres; then
-            echo "Creating database backup..."
-            docker compose exec -T postgres pg_dumpall -U "${POSTGRES_USER:-postgres}" | gzip > "$BACKUP_FILE"
-            echo -e "${GREEN}Backup saved: $BACKUP_FILE${NC}"
-        elif [ -n "${DATABASE_URL:-}" ]; then
-            echo "Creating database backup (external database)..."
-            docker compose exec -T api sh -c "pg_dump \"\$DATABASE_URL\" 2>/dev/null" | gzip > "$BACKUP_FILE"
-            if [ -s "$BACKUP_FILE" ]; then
-                echo -e "${GREEN}Backup saved: $BACKUP_FILE${NC}"
-            else
-                rm -f "$BACKUP_FILE"
-                echo -e "${YELLOW}Backup failed. For external databases, use your provider's backup tool.${NC}"
-            fi
+        # ชื่อ aegisx_backup_* + .meta.json = ขึ้นในหน้า /system/backup (ลบอัตโนมัติตาม BACKUP_RETENTION_DAYS)
+        BACKUP_FILE="backups/aegisx_backup_$(date +%Y%m%d_%H%M%S).sql.gz"
+        BACKUP_TS=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+        BACKUP_START=$(date +%s)
+        echo "Creating database backup..."
+        _dump_rc=0
+        dump_database "$BACKUP_FILE" || _dump_rc=$?
+        if [ "$_dump_rc" -eq 0 ]; then
+            write_backup_meta "$BACKUP_FILE" "$BACKUP_TS" "$(( $(date +%s) - BACKUP_START ))" manual "" ""
+            echo -e "${GREEN}Backup saved: $BACKUP_FILE ($(du -h "$BACKUP_FILE" | cut -f1))${NC}"
+        elif [ "$_dump_rc" -eq 2 ]; then
+            echo -e "${RED}ฐานข้อมูลภายนอกต้องมี container backup ที่รันอยู่ (docker compose ps backup)${NC}"
+            exit 1
         else
-            echo -e "${RED}No database connection available for backup.${NC}"
+            echo -e "${RED}Backup ไม่สมบูรณ์ — ตรวจพื้นที่ดิสก์ / การเชื่อมต่อฐานแล้วลองใหม่${NC}"
+            exit 1
         fi
         ;;
     restore)
@@ -1596,15 +1763,229 @@ case "${1:-help}" in
             exit 0
         fi
         echo "Restoring from $2..."
-        if has_local_postgres; then
-            gunzip -c "$2" | docker compose exec -T postgres psql -U "${POSTGRES_USER:-postgres}"
-        elif [ -n "${DATABASE_URL:-}" ]; then
-            gunzip -c "$2" | docker compose exec -T api sh -c "psql \"\$DATABASE_URL\""
-        else
-            echo -e "${RED}No database connection available for restore.${NC}"
+        # pg_dumpall (ก่อน update / backup แบบ full) มี \connect ในไฟล์ → ต่อฐาน postgres
+        # pg_dump (container backup) ไม่ระบุฐาน → ต้องชี้ POSTGRES_DB เอง ไม่งั้นลงฐาน postgres
+        _head=$(gunzip -c "$2" 2>/dev/null | head -c 4096 || true)
+        _cluster=false
+        case "$_head" in *"PostgreSQL database cluster dump"*) _cluster=true ;; esac
+        if ! gzip -t "$2" 2>/dev/null; then
+            echo -e "${RED}ไฟล์ backup เสีย (gzip ไม่สมบูรณ์) — ยังไม่ได้แตะฐานข้อมูล${NC}"
             exit 1
         fi
+        _api_was_running=false
+        api_running && _api_was_running=true
+        if [ "$_cluster" = true ]; then
+            if ! has_local_postgres; then
+                echo -e "${RED}ไฟล์นี้เป็น pg_dumpall (ทั้งเครื่อง) กู้ลงฐานภายนอกด้วยคำสั่งนี้ไม่ได้${NC}"
+                exit 1
+            fi
+            # ลบฐานก่อนกู้ → ต้องมีของเดิมสำรองไว้ก่อนเสมอ (ชื่อ aegisx_backup_* = ขึ้นในหน้าจอ + ส่ง NAS)
+            _ts=$(date +%Y%m%d_%H%M%S)
+            _safety="backups/aegisx_backup_${_ts}.sql.gz"
+            _log="backups/restore_${_ts}.log"
+            echo "สำรองฐานปัจจุบันไว้ก่อน → $_safety"
+            _start=$(date +%s)
+            if ! dump_database "$_safety"; then
+                echo -e "${RED}สำรองฐานปัจจุบันไม่สำเร็จ — ยังไม่ได้แตะฐานข้อมูล${NC}"
+                exit 1
+            fi
+            write_backup_meta "$_safety" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$(( $(date +%s) - _start ))" pre-restore "" ""
+            [ "$_api_was_running" = true ] && docker compose stop api
+            if restore_cluster_dump "$2" "$_log"; then
+                rm -f "$_log"
+            else
+                echo -e "${RED}กู้คืนไม่สำเร็จ — รายละเอียด: $_log${NC}"
+                grep "ERROR:" "$_log" | grep -vE 'role ".+" already exists' | head -5 || true
+                echo "กำลังกู้ฐานกลับเป็นข้อมูลก่อนกู้ ($_safety)..."
+                if restore_cluster_dump "$_safety" "$_log.rollback"; then
+                    echo -e "${YELLOW}ฐานกลับเป็นข้อมูลเดิมแล้ว${NC}"
+                else
+                    echo -e "${RED}กู้ฐานกลับไม่สำเร็จ — กู้เองด้วย ./aegisx restore $_safety (log: $_log.rollback)${NC}"
+                fi
+                [ "$_api_was_running" = true ] && docker compose start api
+                exit 1
+            fi
+            [ "$_api_was_running" = true ] && docker compose start api
+            echo -e "${GREEN}Restore complete! (ข้อมูลก่อนกู้: $_safety)${NC}"
+            exit 0
+        fi
+        # pg_dump (--clean) กู้ใน transaction เดียว — error ข้อเดียว = ไม่เปลี่ยนอะไรเลย
+        # pg_dump จาก image backup ใหม่ (pg_dump 18) มี \restrict + SET ที่ psql/ฐานรุ่นเก่าไม่รู้จัก
+        # → กู้ผ่าน psql 18 ใน container backup + /pgcompat.sh ถ้ามี (ทั้งแบบ full และ external-db)
+        _psql_opts="-X -q -v ON_ERROR_STOP=1 --single-transaction"
+        _ok=false
+        if backup_container_running && backup_has /pgcompat.sh; then
+            gunzip -c "$2" | docker compose exec -T backup sh -c 'v=$(/db.sh psql -XAtc "show server_version_num") || exit 1; /pgcompat.sh "$v" | /db.sh psql '"$_psql_opts" && _ok=true
+        elif has_local_postgres; then
+            # shellcheck disable=SC2086
+            gunzip -c "$2" | docker compose exec -T postgres psql $_psql_opts -U "${POSTGRES_USER:-postgres}" -d "${POSTGRES_DB:-aegisx_db}" && _ok=true
+        elif backup_container_running; then
+            # shellcheck disable=SC2086
+            gunzip -c "$2" | backup_pg psql $_psql_opts && _ok=true
+        else
+            echo -e "${RED}ฐานข้อมูลภายนอกต้องมี container backup ที่รันอยู่จึงจะกู้ได้${NC}"
+            exit 1
+        fi
+        if [ "$_ok" != true ]; then
+            echo -e "${RED}กู้คืนไม่สำเร็จ — ฐานข้อมูลยังเป็นข้อมูลเดิม${NC}"
+            exit 1
+        fi
+        # dump ไม่มีสิทธิ์ (--no-privileges) → restart ให้ api แจกสิทธิ์ของผู้ช่วย AI ใหม่
+        [ "$_api_was_running" = true ] && docker compose restart api
         echo -e "${GREEN}Restore complete!${NC}"
+        ;;
+    offsite)
+        sub="${2:-status}"
+        case "$sub" in
+            setup)
+                shift 2
+                o_mode="" o_host="" o_share="" o_subdir="" o_path="" o_user="" o_pass="" o_domain=""
+                o_retention="" o_allow_local=0 o_pass_stdin=false
+                while [ $# -gt 0 ]; do
+                    case "$1" in
+                        --mode) o_mode="${2:-}"; shift 2 ;;
+                        --host) o_host="${2:-}"; shift 2 ;;
+                        --share) o_share="${2:-}"; shift 2 ;;
+                        --subdir) o_subdir="${2:-}"; shift 2 ;;
+                        --path) o_path="${2:-}"; shift 2 ;;
+                        --user) o_user="${2:-}"; shift 2 ;;
+                        --domain) o_domain="${2:-}"; shift 2 ;;
+                        --password-stdin) o_pass_stdin=true; shift ;;
+                        --retention) o_retention="${2:-}"; shift 2 ;;
+                        --allow-local-disk) o_allow_local=1; shift ;;
+                        *) echo -e "${RED}ไม่รู้จักตัวเลือก: $1${NC}"; exit 1 ;;
+                    esac
+                done
+                # ไม่ได้ใส่มา + มีจอ → ถามทีละข้อ (ค่าเดิมใน .env เป็นค่าตั้งต้น)
+                tty_usable() { { : < /dev/tty; } 2>/dev/null; }
+                ask() { # ask VAR "คำถาม" ค่าตั้งต้น
+                    local cur="${!1}" def="$3" ans=""
+                    [ -n "$cur" ] && return 0
+                    if tty_usable; then read -r -p "  $2${def:+ [$def]}: " ans < /dev/tty || true; fi
+                    printf -v "$1" '%s' "${ans:-$def}"
+                }
+                echo -e "${BOLD}ตั้งค่าส่งไฟล์ backup ไป NAS${NC}"
+                ask o_mode "แบบ (smb / nfs / path)" "$(offsite_env_get OFFSITE_MODE)"
+                case "$o_mode" in
+                    smb|nfs)
+                        ask o_host "IP หรือชื่อเครื่อง NAS" "$(offsite_env_get OFFSITE_HOST)"
+                        if [ "$o_mode" = smb ]; then
+                            ask o_share "ชื่อแชร์ (เช่น backup หรือ backup/aegisx)" "$(offsite_env_get OFFSITE_SHARE)"
+                            ask o_user "user บน NAS (เว้นว่าง = guest)" "$(offsite_env_get OFFSITE_SMB_USER)"
+                            if [ "$o_pass_stdin" = true ]; then
+                                IFS= read -r o_pass || true
+                            elif [ -n "$o_user" ] && tty_usable; then
+                                read -r -s -p "  password ของ $o_user (Enter = ใช้ค่าเดิม): " o_pass < /dev/tty || true; echo
+                            fi
+                            [ -z "$o_pass" ] && o_pass="$(offsite_env_get OFFSITE_SMB_PASSWORD)"
+                        else
+                            ask o_share "export path บน NAS (เช่น volume1/backup)" "$(offsite_env_get OFFSITE_SHARE)"
+                        fi
+                        ;;
+                    path)
+                        ask o_path "โฟลเดอร์บนเครื่องนี้ที่ mount NAS ไว้ (เช่น /mnt/nas/backup)" "$(offsite_env_get OFFSITE_PATH)"
+                        ;;
+                    *)
+                        echo -e "${RED}แบบต้องเป็น smb / nfs / path${NC}"; exit 1 ;;
+                esac
+                ask o_subdir "โฟลเดอร์ย่อยบนปลายทาง (เว้นว่างได้ เช่น ชื่อโรงพยาบาล)" "$(offsite_env_get OFFSITE_SUBDIR)"
+                ask o_retention "เก็บไฟล์บน NAS กี่วัน" "$(offsite_env_get OFFSITE_RETENTION_DAYS)"
+                o_retention="${o_retention:-30}"
+                if ! [[ "$o_retention" =~ ^[0-9]+$ ]] || [ "$o_retention" -lt 1 ] || [ "$o_retention" -gt 3650 ]; then
+                    echo -e "${RED}จำนวนวันต้องอยู่ระหว่าง 1–3650${NC}"; exit 1
+                fi
+                for v in "$o_host" "$o_share" "$o_subdir" "$o_path" "$o_user" "$o_pass" "$o_domain"; do
+                    if [[ "$v" == *"'"* ]]; then
+                        echo -e "${RED}ค่าที่ตั้งห้ามมีเครื่องหมาย ' (ใส่ใน .env ไม่ได้) — ยังไม่ได้แก้อะไร${NC}"; exit 1
+                    fi
+                done
+                if [ "$o_mode" = path ] && [[ "$o_path" != /* ]]; then
+                    echo -e "${RED}โฟลเดอร์ต้องเป็น path เต็มที่ขึ้นต้นด้วย /${NC}"; exit 1
+                fi
+                if [ "$o_mode" = path ] && [ ! -d "$o_path" ]; then
+                    echo -e "${RED}ไม่พบโฟลเดอร์ $o_path บนเครื่องนี้ — mount NAS ก่อน${NC}"; exit 1
+                fi
+
+                offsite_download_templates || exit 1
+                _bak=".env.backup.$(date +%Y%m%d_%H%M%S)"
+                cp .env "$_bak"; chmod 600 "$_bak"
+                restore_env() { cp "$_bak" .env; echo -e "  ${YELLOW}คืน .env เดิมแล้ว — ยังไม่ได้เปิดใช้${NC}"; }
+                offsite_env_put OFFSITE_MODE "$o_mode"
+                offsite_env_put OFFSITE_HOST "$([ "$o_mode" = path ] || echo "$o_host")"
+                offsite_env_put OFFSITE_SHARE "$([ "$o_mode" = path ] || echo "$o_share")"
+                offsite_env_put OFFSITE_PATH "$([ "$o_mode" = path ] && echo "$o_path")"
+                offsite_env_put OFFSITE_SMB_USER "$([ "$o_mode" = smb ] && echo "$o_user")"
+                offsite_env_put OFFSITE_SMB_PASSWORD "$([ "$o_mode" = smb ] && echo "$o_pass")"
+                [ -n "$o_domain" ] && offsite_env_put OFFSITE_SMB_DOMAIN "$o_domain"
+                offsite_env_put OFFSITE_SUBDIR "$o_subdir"
+                offsite_env_put OFFSITE_RETENTION_DAYS "$o_retention"
+                offsite_env_put OFFSITE_ALLOW_LOCAL_DISK "$([ "$o_allow_local" = 1 ] && echo 1)"
+                mkdir -p backups
+
+                if ! offsite_image_ready; then
+                    restore_env
+                    echo -e "${RED}❌ image backup รุ่นนี้ยังไม่มีระบบส่ง NAS — ./aegisx update ก่อนแล้วลองใหม่${NC}"
+                    exit 1
+                fi
+                echo ""
+                echo -e "${BOLD}ตรวจปลายทางก่อนเปิดใช้:${NC}"
+                if ! offsite_run check; then
+                    restore_env
+                    exit 1
+                fi
+                if ! offsite_run init; then
+                    restore_env
+                    exit 1
+                fi
+                offsite_env_put COMPOSE_FILE "$(offsite_compose_files "$o_mode")"
+                _since=$(date +%s)
+                if ! docker compose up -d offsite; then
+                    docker compose rm -sf offsite >/dev/null 2>&1 || true
+                    restore_env
+                    exit 1
+                fi
+                echo "  รอรอบแรกของการส่ง..."
+                for _ in $(seq 1 120); do
+                    _m=$(stat -c %Y backups/.offsite-status.json 2>/dev/null || stat -f %m backups/.offsite-status.json 2>/dev/null || echo 0)
+                    [ "$_m" -ge "$_since" ] && break
+                    sleep 2
+                done
+                offsite_print_status
+                echo -e "${GREEN}✅ เปิดส่งไฟล์ไป NAS แล้ว — ดูสถานะ: ./aegisx offsite status (ค่าเดิม: $_bak)${NC}"
+                ;;
+            check)
+                if [ -z "$(offsite_env_get OFFSITE_MODE)" ]; then
+                    echo "ยังไม่ได้ตั้งค่า — ./aegisx offsite setup"; exit 1
+                fi
+                offsite_run check
+                ;;
+            status)
+                if ! offsite_enabled; then
+                    echo "ยังไม่ได้เปิดส่งไฟล์ไป NAS — ./aegisx offsite setup"
+                    exit 0
+                fi
+                docker compose ps offsite --format "  container   : {{.Name}} {{.Status}}" 2>/dev/null || true
+                if [ -f docker-compose.override.yml ] && ! grep -q "^COMPOSE_FILE=.*docker-compose.override.yml" .env; then
+                    echo -e "  ${YELLOW}⚠️  มี docker-compose.override.yml ที่สร้างหลังเปิด offsite — ไม่ถูกอ่าน ให้รัน ./aegisx offsite setup ซ้ำ${NC}"
+                fi
+                offsite_print_status
+                ;;
+            sync)
+                offsite_enabled || { echo "ยังไม่ได้เปิดส่งไฟล์ไป NAS — ./aegisx offsite setup"; exit 1; }
+                docker compose exec -T offsite /offsite.py once
+                ;;
+            disable)
+                offsite_enabled || { echo "ยังไม่ได้เปิดใช้อยู่แล้ว"; exit 0; }
+                docker compose rm -sf offsite
+                offsite_env_put COMPOSE_FILE ""
+                # หน้า /system/backup ถือว่ามีไฟล์สถานะ = เปิดอยู่ (ไม่ลบจะขึ้นว่า service หยุดทำงาน)
+                rm -f backups/.offsite-status.json backups/.offsite-check.json
+                echo -e "${GREEN}✅ ปิดส่งไฟล์ไป NAS แล้ว — ไฟล์บน NAS ยังอยู่ ค่าตั้ง OFFSITE_* ยังอยู่ใน .env (setup ใหม่ได้ทันที)${NC}"
+                ;;
+            *)
+                echo "Usage: ./aegisx offsite [status | setup | check | sync | disable]"; exit 1
+                ;;
+        esac
         ;;
     health)
         echo -e "${BOLD}Service Health:${NC}"
@@ -1872,8 +2253,14 @@ ORDER BY table_name;
         echo "  pull               Pull latest images"
         echo "  update             Backup + pull + restart + migrate + auto-rollback"
         echo "                       --no-rollback   disable auto-rollback (image-only by default)"
+        echo "                       --skip-backup   ข้าม backup ก่อน update (ใช้เมื่อ backup ฐานเองแล้ว)"
         echo "  backup             Create database backup"
         echo "  restore <file>     Restore from backup"
+        echo "  offsite [status]   สถานะการส่งไฟล์ backup ไป NAS"
+        echo "  offsite setup      ตั้งค่า NAS (smb / nfs / path) → ตรวจเป็นข้อ ๆ → เปิดใช้เมื่อผ่าน"
+        echo "  offsite check      ตรวจปลายทางเป็นข้อ ๆ อีกครั้ง"
+        echo "  offsite sync       ส่งไฟล์ที่ค้างตอนนี้เลย"
+        echo "  offsite disable    ปิดการส่ง (ไฟล์บน NAS ยังอยู่)"
         echo "  health             Check system health"
         echo "  cleanup            Show disk usage + what can be freed (dry-run)"
         echo "                       --force         actually delete (never touches volumes)"

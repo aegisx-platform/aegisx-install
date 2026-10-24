@@ -111,8 +111,8 @@ services:
 
       # File uploads
       UPLOAD_DIR: /app/uploads
-      # ล้างรายการเริ่มระบบใหม่ — แบบนี้ไม่มี backup service ใน stack
-      # ต้องสำรองฐานภายนอกเองก่อน แล้วตั้ง SYSTEM_RESET_SKIP_BACKUP=true
+      BACKUP_DIR: /backups
+      BACKUP_SERVICE_URL: http://backup:8099
       SYSTEM_RESET_ENABLED: ${SYSTEM_RESET_ENABLED:-false}
       SYSTEM_RESET_SKIP_BACKUP: ${SYSTEM_RESET_SKIP_BACKUP:-false}
     ports:
@@ -121,6 +121,7 @@ services:
       - uploads_data:/app/uploads
       - ./config/api:/app/config:ro
       - ./logs/api:/app/logs
+      - ./backups:/backups
     healthcheck:
       test: ['CMD', 'wget', '-qO-', 'http://127.0.0.1:3000/api/health/live']
       interval: 30s
@@ -153,6 +154,25 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+    networks:
+      - aegisx-network
+
+  # =============================================================================
+  # Automated Database Backup (custom container) — สำรองฐานภายนอกผ่าน DATABASE_URL
+  # pg_dump 18 ใน image dump ฐาน Postgres 9.2–18 ได้ ไม่ต้องตรงกับเวอร์ชันฐาน
+  # =============================================================================
+  backup:
+    image: ${BACKUP_IMAGE:-ghcr.io/aegisx-platform/aegisx-starter-backup:latest}
+    container_name: aegisx_backup
+    restart: unless-stopped
+    logging: *default-logging
+    environment:
+      DATABASE_URL: ${DATABASE_URL:?External DATABASE_URL is required}
+      BACKUP_CRON_SCHEDULE: ${BACKUP_CRON_SCHEDULE:-0 2 * * *}
+      BACKUP_RETENTION_DAYS: ${BACKUP_RETENTION_DAYS:-30}
+      TZ: ${TZ:-Asia/Bangkok}
+    volumes:
+      - ./backups:/backups
     networks:
       - aegisx-network
 

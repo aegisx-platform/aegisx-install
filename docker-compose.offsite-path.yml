@@ -1,0 +1,5 @@
+# offsite แบบ path — NAS (หรือดิสก์ USB) mount ไว้บน host แล้ว ไม่ต้องให้สิทธิ์พิเศษ
+services:
+  offsite:
+    volumes:
+      - ${OFFSITE_PATH:?ตั้ง OFFSITE_PATH ใน .env}:/offsite-host

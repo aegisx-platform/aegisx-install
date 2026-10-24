@@ -7,7 +7,8 @@
 # programmable mocks, so the rollback control-flow is exercised end-to-end
 # WITHOUT a real docker stack — no images, no ports, nothing to collide with a
 # running dev server. Proves: failure-stage routing, exit codes (0 / 1 / 2),
-# image re-tag rollback, honest recreate reporting, --no-rollback.
+# image re-tag rollback, honest recreate reporting, --no-rollback, and the
+# pre-update backup gate (full = pg_dumpall, external-db = container backup).
 #
 # It does NOT cover real docker behaviour (run --rm vs exec under a crash-loop,
 # actual pg/network) — that still needs a real stack.
@@ -48,7 +49,8 @@ echo "[docker] $args" >> "$STATE/calls.log"
 case "$args" in
   info) exit 0 ;;
   "compose ls"|"compose version"*) exit 0 ;;
-  "compose ps --services"*) printf 'postgres\napi\nweb\n'; exit 0 ;;
+  "compose ps --services"*) printf '%s\n' ${MOCK_SERVICES:-postgres api web}; exit 0 ;;
+  "compose ps -q --status running backup") [ -n "${MOCK_BACKUP_RUNNING:-}" ] && echo "bkid"; exit 0 ;;
   "compose images -q api") [ -f "$STATE/pulled" ] && echo "sha256:newapi" || echo "sha256:oldapi"; exit 0 ;;
   "compose images -q web") [ -f "$STATE/pulled" ] && echo "sha256:newweb" || echo "sha256:oldweb"; exit 0 ;;
   "compose images") echo "REPOSITORY TAG IMAGE"; exit 0 ;;
@@ -65,6 +67,7 @@ case "$args" in
   *"exec -T api"*"node -p"*)          [ -f "$STATE/pulled" ] && echo "1.79.0" || echo "1.78.0"; exit 0 ;;
   *"exec -T postgres"*"pg_dumpall"*)  [ "${MOCK_BACKUP_RC:-0}" != 0 ] && exit "${MOCK_BACKUP_RC}"; echo "-- dump"; exit 0 ;;
   *"exec -T postgres"*|*"exec postgres"*) exit 0 ;;
+  *"exec -T backup"*"pg_dump"*)       echo "-- dump"; exit 0 ;;
 esac
 echo "[docker] UNHANDLED: $args" >> "$STATE/calls.log"
 exit 0
@@ -142,6 +145,22 @@ SCN_ARGS="" run "pull fail -> exit 1, no rollback" 1 \
 SCN_ARGS="" run "container recreate fail -> rollback" 1 \
   "Container recreate failed|Rolling back" "Update complete" \
   MOCK_UP_RC=1
+
+SCN_ARGS="" run "backup fail -> exit 1 before pull" 1 \
+  "Backup ไม่สมบูรณ์" "Pulling latest images" \
+  MOCK_BACKUP_RC=1
+
+SCN_ARGS="" run "external-db no backup container -> stop" 1 \
+  "skip-backup" "Pulling latest images" \
+  MOCK_SERVICES="api web"
+
+SCN_ARGS="" run "external-db via backup container" 0 \
+  "Backup saved: backups/aegisx_pre-update_" "Rolling back" \
+  MOCK_SERVICES="api web backup" MOCK_BACKUP_RUNNING=1
+
+SCN_ARGS="--skip-backup" run "external-db --skip-backup -> proceeds" 0 \
+  "ข้าม backup" "Backup saved" \
+  MOCK_SERVICES="api web"
 
 echo ""
 echo "=== result: $PASS passed, $FAIL failed ==="

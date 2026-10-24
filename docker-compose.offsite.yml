@@ -1,0 +1,34 @@
+# =============================================================================
+# ส่งไฟล์ backup ไป NAS (service offsite) — ไฟล์ต่อท้าย ไม่ได้ใช้ตรง ๆ
+# เปิด/ปิดด้วย ./aegisx offsite setup | disable ซึ่งตั้ง COMPOSE_FILE ใน .env เป็น
+#   docker-compose.yml[:docker-compose.override.yml]:docker-compose.offsite.yml:docker-compose.offsite-<path|mount>.yml
+# แยกจาก service backup — NAS ล่มไม่กระทบการสำรองลงเครื่อง และ start ไม่ล้มเพราะ NAS
+# =============================================================================
+services:
+  offsite:
+    image: ${BACKUP_IMAGE:-ghcr.io/aegisx-platform/aegisx-starter-backup:latest}
+    container_name: aegisx_offsite
+    restart: unless-stopped
+    entrypoint: ['/offsite.py', 'loop']
+    logging:
+      driver: json-file
+      options:
+        max-size: '10m'
+        max-file: '3'
+    environment:
+      OFFSITE_MODE: ${OFFSITE_MODE:-}
+      OFFSITE_HOST: ${OFFSITE_HOST:-}
+      OFFSITE_SHARE: ${OFFSITE_SHARE:-}
+      OFFSITE_SUBDIR: ${OFFSITE_SUBDIR:-}
+      OFFSITE_PATH: ${OFFSITE_PATH:-}
+      OFFSITE_SMB_USER: ${OFFSITE_SMB_USER:-}
+      OFFSITE_SMB_PASSWORD: ${OFFSITE_SMB_PASSWORD:-}
+      OFFSITE_SMB_DOMAIN: ${OFFSITE_SMB_DOMAIN:-}
+      OFFSITE_SMB_VERS: ${OFFSITE_SMB_VERS:-3.0}
+      OFFSITE_NFS_VERS: ${OFFSITE_NFS_VERS:-4}
+      OFFSITE_ALLOW_LOCAL_DISK: ${OFFSITE_ALLOW_LOCAL_DISK:-0}
+      OFFSITE_INTERVAL: ${OFFSITE_INTERVAL:-300}
+      OFFSITE_RETENTION_DAYS: ${OFFSITE_RETENTION_DAYS:-30}
+      TZ: ${TZ:-Asia/Bangkok}
+    volumes:
+      - ./backups:/backups

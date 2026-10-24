@@ -1,3 +1,42 @@
+# [1.181.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.180.1...v1.181.0) (2026-10-24)
+
+
+### Bug Fixes
+
+* **backup:** ./aegisx restore กู้ pg_dumpall ทับฐานเดิมได้จริง และไม่บอกว่าสำเร็จเมื่อมี error ([1de2e43](https://github.com/aegisx-platform/aegisx-starter/commit/1de2e43084683422cc6e837a75e815d81d59d400))
+* **backup:** checklist offsite ไม่ขึ้นข้อ "ต่อปลายทางได้" ซ้ำเมื่อสร้างโฟลเดอร์ย่อยบน NAS ไม่ได้ ([b6baf4c](https://github.com/aegisx-platform/aegisx-starter/commit/b6baf4c45d97b384a1aec497cc16b028d1fa4abc))
+* **backup:** offsite รอบที่ NAS ล่มคงรายชื่อไฟล์บน NAS เดิม และแปลง error เป็นไทย ([91cd30f](https://github.com/aegisx-platform/aegisx-starter/commit/91cd30f5dd9d0788b98b88fd254975543d99f5a7))
+* **deploy:** backup/restore ผ่าน container backup สำหรับฐานภายนอก และกู้ไฟล์ pg_dump ลงฐานที่ถูก ([201fe14](https://github.com/aegisx-platform/aegisx-starter/commit/201fe14222c15fc610e7b7ab447226c627041731))
+* **deploy:** run_sql ฐานภายนอกใช้ psql ใน container backup หรือ pg ของ node แทน api ([098729c](https://github.com/aegisx-platform/aegisx-starter/commit/098729c0e54d42e13c8c98e2b1038ee6c4bad5c1))
+* **procurement-tracker:** กล่องสรุปผู้ขายนับเฉพาะบริษัทจริง และกดบริษัทแล้วรายการตรงกับจำนวนในกล่อง ([5229900](https://github.com/aegisx-platform/aegisx-starter/commit/522990002406368ea64f2ff6131b730c047e956f))
+
+
+### Features
+
+* **backup:** container backup กู้คืนผ่าน POST /restore แบบ transaction เดียว ([db9f64d](https://github.com/aegisx-platform/aegisx-starter/commit/db9f64d5701f0a5ec40518fdcd2b0de1a31843d7))
+* **backup:** container backup ตั้งเวลาและจำนวนวันเก็บผ่าน GET/PUT /settings ([f68bc00](https://github.com/aegisx-platform/aegisx-starter/commit/f68bc004f62a4b464ce74d04900fd524b7385032))
+* **backup:** endpoint GET /backup/offsite สถานะส่งไฟล์ไป NAS และผล checklist ([5223403](https://github.com/aegisx-platform/aegisx-starter/commit/522340387384081e6bddd5e6b1e546e65aa466ce))
+* **backup:** endpoint GET/PUT /backup/settings ตั้งเวลาและจำนวนวันเก็บ backup ([3c4d20c](https://github.com/aegisx-platform/aegisx-starter/commit/3c4d20cd4390846204bc27d1b23427adf72361c4))
+* **backup:** endpoint POST /backup/restore/:filename กู้คืนฐานจากไฟล์ backup ([3d918ef](https://github.com/aegisx-platform/aegisx-starter/commit/3d918ef6b1ca46c76f091e1cf4bec36fd38a479a))
+* **backup:** image backup ใช้ pg_dump 18 สำรอง/กู้ฐาน Postgres ได้ทุกเวอร์ชัน 12–18 ([7e23e70](https://github.com/aegisx-platform/aegisx-starter/commit/7e23e70a98e7ed4d38489d63b6e17e0869f2d9fe))
+* **backup:** offsite.py ส่งไฟล์ backup ไป NAS แบบ path/smb/nfs พร้อม checklist ตรวจก่อนใช้ ([a7e115c](https://github.com/aegisx-platform/aegisx-starter/commit/a7e115c02dbaeaa38ab1439e9fffe73d7930311e))
+* **backup:** คู่มือสำรอง/กู้คืนในแอป — ปุ่มขั้นตอนหน้า Backup + ศูนย์คู่มือ ([463975e](https://github.com/aegisx-platform/aegisx-starter/commit/463975ea0455ad74437737a892211aebcd1fe2d8))
+* **backup:** ปุ่มกู้คืนฐานข้อมูลในหน้า backup ([4b9ae37](https://github.com/aegisx-platform/aegisx-starter/commit/4b9ae37f17a9fe490c389cb72f1de18b1741c629))
+* **backup:** หน้า backup ตั้งเวลาสำรองทุกวันและจำนวนวันเก็บไฟล์ได้ ([6bbceeb](https://github.com/aegisx-platform/aegisx-starter/commit/6bbceebc3ec3b6515ad9a4fd5c25e6344541adb9))
+* **backup:** หน้า backup แสดงสถานะสำเนาบน NAS ผลตรวจ checklist และคอลัมน์ NAS ([4ea4e89](https://github.com/aegisx-platform/aegisx-starter/commit/4ea4e89f84eabe15d9b07a2fbe9dd1d8d815bd1a))
+* **deploy:** ./aegisx offsite setup/status/check/sync/disable ส่ง backup ไป NAS ([cb08006](https://github.com/aegisx-platform/aegisx-starter/commit/cb080062d81f686cd1a190c557594bd332f4ae81))
+* **deploy:** แบบ external-db มี service backup ต่อฐานผ่าน DATABASE_URL ([d6460bf](https://github.com/aegisx-platform/aegisx-starter/commit/d6460bf25a9af0a4176a0f61100a55fe75e09c5c))
+* **procurement-tracker:** dialog รายงานจัดซื้อตาม GPU ([8989daf](https://github.com/aegisx-platform/aegisx-starter/commit/8989daf041776880c7f065b06f00ce2d9527f4e1))
+* **procurement-tracker:** ค้นแล้วตรง GPU เดียว มีปุ่มเปิดรายงาน GPU ในกล่องสรุปผู้ขาย ([2b673b4](https://github.com/aegisx-platform/aegisx-starter/commit/2b673b421fbf4d935cb94a4b5da0632fab44c874))
+* **procurement-tracker:** ค้นหาด้วย GPU + สรุปจำนวนใบแยกตามผู้ขาย + แสดง GPU ในหน้ารายละเอียด ([0ab7e8d](https://github.com/aegisx-platform/aegisx-starter/commit/0ab7e8d99bcd44d2e44865885045d53e9c2b8e4e))
+* **procurement-tracker:** รายงาน GPU มี sparkline ราคาและกดผู้ขายเพื่อกรองรายการ ([8aa5a85](https://github.com/aegisx-platform/aegisx-starter/commit/8aa5a85635f40c1b5549241fa9acc51b91d536d1))
+* **procurement-tracker:** แสดง GPU ของยารายการแรกในแถวรายการ ([a7acd69](https://github.com/aegisx-platform/aegisx-starter/commit/a7acd690e08157a9ee3aebfe1536b7bfc782a452))
+* **procurement:** กดแถวใบสั่งซื้อในรายงาน GPU เปิดหน้ารายละเอียด ([ae20107](https://github.com/aegisx-platform/aegisx-starter/commit/ae20107a2bb6dae484b9236eba9eb9dd7aed56bb))
+* **procurement:** ค้นหา GPU สำหรับหน้ารายงานจัดซื้อ (GET /purchase-requests/gpu-report/search) ([3ea5ca1](https://github.com/aegisx-platform/aegisx-starter/commit/3ea5ca1b351fbcb8b7c0ef2a4dad15f9a57b665f))
+* **procurement:** รายงาน GPU ตั้งต้นปีงบปัจจุบัน + กราฟยอดซื้อรายเดือน ([da62151](https://github.com/aegisx-platform/aegisx-starter/commit/da6215108974da2d2d25fa5c2c21e977c8f9a392))
+* **procurement:** รายงานจัดซื้อตาม GPU (GET /purchase-requests/gpu-report) ([46e5ae0](https://github.com/aegisx-platform/aegisx-starter/commit/46e5ae07a0100c09fcc95b86066d251a3eebac62))
+* **procurement:** หน้ารายงานจัดซื้อตาม GPU (เมนูเครื่องมือในหน้าจัดซื้อ) ([fb443d7](https://github.com/aegisx-platform/aegisx-starter/commit/fb443d7d7b25ae950bb2ab9500ac9c130111c1bf))
+
 ## [1.180.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.180.0...v1.180.1) (2026-10-23)
 
 

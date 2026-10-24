@@ -1,0 +1,9 @@
+# offsite แบบ smb / nfs — container mount NAS เอง จึงต้องได้สิทธิ์ mount
+# (AppArmor ค่าตั้งต้นของ Docker บล็อก mount แม้มี SYS_ADMIN) · ให้เฉพาะ service นี้ ซึ่งไม่ได้ต่อฐานข้อมูล
+services:
+  offsite:
+    cap_add:
+      - SYS_ADMIN
+      - DAC_READ_SEARCH
+    security_opt:
+      - apparmor:unconfined
