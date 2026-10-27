@@ -1,3 +1,10 @@
+## [1.183.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.183.0...v1.183.1) (2026-10-27)
+
+
+### Bug Fixes
+
+* **drug-lots:** ผู้ดูแลคลัง (inventory-admin) แก้เลขล็อตได้เลย ไม่ต้องมอบ role เพิ่ม ([3d5b6f4](https://github.com/aegisx-platform/aegisx-starter/commit/3d5b6f4125d93fe43763472f3f03ec9fa77a8dfa))
+
 # [1.183.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.182.0...v1.183.0) (2026-10-27)
 
 
