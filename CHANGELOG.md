@@ -1,3 +1,33 @@
+# [1.183.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.182.0...v1.183.0) (2026-10-27)
+
+
+### Bug Fixes
+
+* **drug-lots:** ปิดทางแก้เลขล็อต/วันหมดอายุทีละแถวที่ทำให้ชุดล็อตแตกกัน ([e5b51e8](https://github.com/aegisx-platform/aegisx-starter/commit/e5b51e80dc992c71af21f2d29458c806ecaf1b36))
+* **receipt-items:** ใบรับที่ลงบัญชีแล้วแก้จำนวน/ราคา/ยา และเพิ่ม/ลบรายการไม่ได้ ([9acfc08](https://github.com/aegisx-platform/aegisx-starter/commit/9acfc0876155dc81fad081f757cffe704d27ed18))
+* **stock-opening-balance:** แก้วันหมดอายุยอดยกมาแล้วตามไปทั้งชุดล็อตทุกคลัง ([eb06da3](https://github.com/aegisx-platform/aegisx-starter/commit/eb06da307475edb93916990f3b6ffb1dd72641ae))
+
+
+### Features
+
+* **drug-lots:** แก้เลขล็อต/วันหมดอายุที่ลงผิด ทั้งชุดทุกคลัง + สิทธิ์แยก (API) ([01fae72](https://github.com/aegisx-platform/aegisx-starter/commit/01fae729b82b51c787a4f09f3ea8cd2eebe618aa))
+* **drug-lots:** แก้เลขล็อตแล้วชนล็อตเดิมในคลังเดียวกัน = รวมเป็นแถวเดียว (กฎเดียวกับลงรับ) ([da5cc85](https://github.com/aegisx-platform/aegisx-starter/commit/da5cc85b0b74f0e918209e411baa1e3d9d2f18af))
+* **drug-lots:** หน้าต่างแก้เลขล็อต/วันหมดอายุในแท็บติดตาม Lot ([1f6aa27](https://github.com/aegisx-platform/aegisx-starter/commit/1f6aa273af84776a870a02c075220687fe0d6f34))
+
+# [1.182.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.181.0...v1.182.0) (2026-10-25)
+
+
+### Bug Fixes
+
+* **ai:** ตัด operations.config ที่ลบแล้วออกจากตัวสร้าง page catalog ([8ca21fd](https://github.com/aegisx-platform/aegisx-starter/commit/8ca21fde6da6da69cd8fa14b1cf04ead23608575))
+* **rbac:** หน้าประวัติสิทธิ์ (RBAC audit) โหลดไม่ขึ้น 500 — schema pagination ไม่ตรงกับที่ส่งจริง ([1e35d3b](https://github.com/aegisx-platform/aegisx-starter/commit/1e35d3b45fdd6610ffba77268280188725b6f9e8))
+* **web:** ลิงก์เสียไปหน้า 404 — error logs, dashboard คำขอใช้งบ และการ์ดแผนก ([4e8f808](https://github.com/aegisx-platform/aegisx-starter/commit/4e8f8089dd1d430d308d4f761553a1e20a5de5f2))
+
+
+### Features
+
+* **requisitions:** พิมพ์ใบเบิกแบบใบเบิกยาเสพติดรายวัน ([f88b71b](https://github.com/aegisx-platform/aegisx-starter/commit/f88b71b0ada5bde3ca45a4f3a7452f04c427830f))
+
 # [1.181.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.180.1...v1.181.0) (2026-10-24)
 
 
