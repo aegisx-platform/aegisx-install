@@ -1,3 +1,17 @@
+# [1.184.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.183.1...v1.184.0) (2026-10-27)
+
+
+### Bug Fixes
+
+* **drug-lots:** ปุ่มแก้เลขล็อตอยู่ในหน้า Stockcard แท็บทะเบียน Lot + role ขึ้นในหน้าจัดการสิทธิ์คลัง ([89bd181](https://github.com/aegisx-platform/aegisx-starter/commit/89bd18172e1dfdeeaf15fc9fec425ac27c335a28))
+
+
+### Features
+
+* **document-dispatch-slips:** คลังใหญ่แก้ใบนำส่งเอกสารได้จนกว่าจัดซื้อจะรับครบ ([3289302](https://github.com/aegisx-platform/aegisx-starter/commit/328930288a1fb436818d66a5f06802d6dc124c1f))
+* **receipts:** ใบรับที่ลงบัญชีแล้วแก้เลขที่ใบส่งของได้ ([478536f](https://github.com/aegisx-platform/aegisx-starter/commit/478536f7fffc74f31bbf63d0d981564c68399ed0))
+* **trade-creditor-registers:** ตั้งค่าการพิมพ์ซ่อนเลขที่ จน (เว้นไว้เขียนมือ) แบบเดียวกับ PR/PO ([29ba21b](https://github.com/aegisx-platform/aegisx-starter/commit/29ba21b8f5fa6395bf9edf49587fc3f005b0058c))
+
 ## [1.183.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.183.0...v1.183.1) (2026-10-27)
 
 
