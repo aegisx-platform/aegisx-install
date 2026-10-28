@@ -1,3 +1,13 @@
+# [1.185.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.184.0...v1.185.0) (2026-10-28)
+
+
+### Features
+
+* **procurement-tags:** แท็กกลาง + โน้ตของใบขอซื้อ และกรองหน้าติดตามตามแท็ก (API) ([5546392](https://github.com/aegisx-platform/aegisx-starter/commit/554639208aeb4934523fec707d23917dc184938d))
+* **procurement-tracker:** กรองตามแท็ก + หน้าจัดการแท็กกลาง ([8428013](https://github.com/aegisx-platform/aegisx-starter/commit/8428013a4c3e4ae32e6e2f27e40cb3cdd4a8f71c))
+* **procurement-tracker:** โน้ตและแท็กในแถวหน้าติดตามจัดซื้อ + dialog แก้ไข ([b6fc373](https://github.com/aegisx-platform/aegisx-starter/commit/b6fc3737574f35acd34308be7494f4d61cdf7580))
+* **receipts:** แก้เลขล็อตใบที่ลงคลังแล้วจากหน้าชุดตรวจรับ ([b5f0745](https://github.com/aegisx-platform/aegisx-starter/commit/b5f0745e05fe0d3d6bcc29f0313d0019e7d27280))
+
 # [1.184.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.183.1...v1.184.0) (2026-10-27)
 
 
