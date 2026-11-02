@@ -1,3 +1,28 @@
+# [1.186.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.185.0...v1.186.0) (2026-11-02)
+
+
+### Bug Fixes
+
+* **auth:** ปุ่มที่ API ตรวจสิทธิ์ตรงตัว ใช้ hasExactPermission ไม่นับ inventory:* ([1229c65](https://github.com/aegisx-platform/aegisx-starter/commit/1229c65968b66ac376fb679b1c8cfbff52b0f1d2))
+* **companies:** สร้างบริษัทใหม่ไม่ได้เพราะรหัสบริษัทว่างชนกัน ([d469a4f](https://github.com/aegisx-platform/aegisx-starter/commit/d469a4f0d0f4fb9642472d2efb6b590a3edb817d))
+* **document-dispatch-slips:** แก้ใบนำส่งต้องถือสิทธิ์ update ตรงตัว (จัดซื้อแก้ไม่ได้) ([5d6630e](https://github.com/aegisx-platform/aegisx-starter/commit/5d6630e2b27bbef03b59b1dd19fa0c5e2f167efe))
+* **drug-lots:** ปิดช่องชั้นทุนที่เจอจากการทดสอบทุกทาง ([ba82011](https://github.com/aegisx-platform/aegisx-starter/commit/ba82011ce6f2c099c662df12a0ae4cec1d46fc09))
+* **drugs:** ชื่อประเภท เวชภัณฑ์มิใช่ยา → เวชภัณฑ์ที่มิใช่ยา ([118431a](https://github.com/aegisx-platform/aegisx-starter/commit/118431abc05a4093d5edc689394322ab3df7078c))
+* **drugs:** ป้ายประเภทในหน้าต่างดูยา เวชภัณฑ์ฯ → เวชภัณฑ์ที่มิใช่ยา ([39911d0](https://github.com/aegisx-platform/aegisx-starter/commit/39911d06930165eadb800fa924a97c846e5ba35f))
+* **receipts:** ข้อความกล่องเทียบล็อตไม่บอกว่าทุนต้องตรงกันแล้ว ([85e09d3](https://github.com/aegisx-platform/aegisx-starter/commit/85e09d3b9943fc59b5198ea552dd4b82abbe18f2))
+
+
+### Features
+
+* **drug-lots:** ตัดจ่าย HIS/ตัดเอง และถอน ผ่านชั้นทุนในล็อต ([a503944](https://github.com/aegisx-platform/aegisx-starter/commit/a503944b6826c6e140fd9182f4c8e968333d8a55))
+* **drug-lots:** ตารางชั้นทุนในล็อต + backfill 1 ชั้นต่อล็อตที่มีของ ([c542424](https://github.com/aegisx-platform/aegisx-starter/commit/c542424def2362ac8c915c5ba691b2798a41aa5d))
+* **drug-lots:** ทางที่เหลือทั้งหมดเปลี่ยนจำนวนล็อตผ่านชั้นทุน ([e5b4830](https://github.com/aegisx-platform/aegisx-starter/commit/e5b4830f9cc40e95357fe2bcbf07e98f6538c9c7))
+* **drug-lots:** ใบเบิกและจ่ายล่วงหน้าตัด/คืน/รับเข้าผ่านชั้นทุน ([143c0a1](https://github.com/aegisx-platform/aegisx-starter/commit/143c0a15b89fc113656f9b9928d0d7cef9984d3f))
+* **drug-lots:** เปิดลงรับล็อตเดิมที่ทุนต่างกันเป็นชั้นทุนใหม่ ([6b790af](https://github.com/aegisx-platform/aegisx-starter/commit/6b790afbdfcafcabf4ca7ff10c3fc33a36c3e406))
+* **drugs:** หน้าจับคู่รหัสยา แก้ generic และ TMT TPU ในตารางทีละแถว ([53fe8bf](https://github.com/aegisx-platform/aegisx-starter/commit/53fe8bf6369b880b919c10e5cd5bcc97fb8b9f68))
+* **main-warehouse:** การ์ดจับคู่รหัสยาในเมนูคลังใหญ่ หมวดตรวจสอบ ([921266d](https://github.com/aegisx-platform/aegisx-starter/commit/921266dca3a418755f34b69801e7a6e576278c50))
+* **procurement-tags:** จัดการแท็กกลางเป็นสิทธิ์แยก (จัดซื้อ + ผู้ดูแลคลัง) ([6d446e0](https://github.com/aegisx-platform/aegisx-starter/commit/6d446e01a07231e66b69c6a8ebaea8bd64226109))
+
 # [1.185.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.184.0...v1.185.0) (2026-10-28)
 
 
