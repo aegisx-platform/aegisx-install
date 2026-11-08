@@ -1,3 +1,10 @@
+## [1.186.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.186.0...v1.186.1) (2026-11-08)
+
+
+### Bug Fixes
+
+* **document-dispatch-slips:** รายการสร้างใบนำส่งไม่มี PO ปีงบก่อน ([713da33](https://github.com/aegisx-platform/aegisx-starter/commit/713da33d8e715f8a47c2c2457c3db9934c8adbcd))
+
 # [1.186.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.185.0...v1.186.0) (2026-11-02)
 
 
