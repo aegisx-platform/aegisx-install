@@ -1,3 +1,11 @@
+## [1.189.3](https://github.com/aegisx-platform/aegisx-starter/compare/v1.189.2...v1.189.3) (2026-11-14)
+
+
+### Bug Fixes
+
+* **dmsic:** purchaseplan ยอดใช้ย้อนหลังใช้ MAX ไม่ใช่ SUM ตอนรวมรหัสซ้ำ ([bc2376a](https://github.com/aegisx-platform/aegisx-starter/commit/bc2376a3dd2cac610cf63d3adaed192b5bdf9af1))
+* **dmsic:** ทุกแฟ้มผ่านกฎ DMSIC จริง (ยิงโซน dev ครบ 5 แฟ้ม) ([495bf8c](https://github.com/aegisx-platform/aegisx-starter/commit/495bf8cd08517b1bde6e791bae93e7f684d766ff))
+
 ## [1.189.2](https://github.com/aegisx-platform/aegisx-starter/compare/v1.189.1...v1.189.2) (2026-11-14)
 
 
