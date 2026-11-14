@@ -1,3 +1,10 @@
+## [1.189.2](https://github.com/aegisx-platform/aegisx-starter/compare/v1.189.1...v1.189.2) (2026-11-14)
+
+
+### Bug Fixes
+
+* **dmsic:** purchaseplan ส่งผ่าน เติม GENERIC_NAME + รวมรหัสซ้ำ + validator ช่องบังคับ ([130d6b4](https://github.com/aegisx-platform/aegisx-starter/commit/130d6b498e061e12efcbe26b25a338eda368d8ad))
+
 ## [1.189.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.189.0...v1.189.1) (2026-11-14)
 
 
