@@ -1,3 +1,25 @@
+# [1.188.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.187.0...v1.188.0) (2026-11-13)
+
+
+### Features
+
+* **dmsic:** เลือกโซนส่ง (ทดสอบ/ส่งจริง) และตั้งค่าในหน้าส่งแฟ้ม + แก้ส่งเข้ากระทรวงไม่ได้ ([5d568d5](https://github.com/aegisx-platform/aegisx-starter/commit/5d568d5709031469a8505657725a919a3a4c7a90))
+
+# [1.187.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.186.1...v1.187.0) (2026-11-11)
+
+
+### Bug Fixes
+
+* **purchase-orders:** ใบสั่งซื้อแบบ Word ใช้เลข PO ของ รพ. แทนเลขระบบ ([41a0bb0](https://github.com/aegisx-platform/aegisx-starter/commit/41a0bb028dd0705942b63cfd88932457d8033039))
+* **purchase-orders:** หมายเหตุข้อ ๒ ใบสั่งซื้อแสดงยาครบทุกรายการ ([729d60e](https://github.com/aegisx-platform/aegisx-starter/commit/729d60e709c3e2db647a9644b510cd9c78e557a1))
+* **receipts:** ชุดตรวจรับหลายรอบ ลงรับรอบถัดไปไม่ได้เพราะ PO ขึ้นรับครบก่อน ([2fac07e](https://github.com/aegisx-platform/aegisx-starter/commit/2fac07e04a86b4f88a9db4ef41e53ecc5ea8e6a4))
+
+
+### Features
+
+* **companies:** ขีดฆ่าบริษัทที่ปิดใช้งานในหน้ารายการ ([de0a886](https://github.com/aegisx-platform/aegisx-starter/commit/de0a886a66168939d926a3af870f7b7876efd95e))
+* **purchase-orders:** เว้นเลขที่หนังสือไว้เขียนมือในรายงานผลพิจารณา/ตรวจรับ ([53c1025](https://github.com/aegisx-platform/aegisx-starter/commit/53c1025de908863a476621a1762e8f65f5012ea4))
+
 ## [1.186.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.186.0...v1.186.1) (2026-11-08)
 
 
