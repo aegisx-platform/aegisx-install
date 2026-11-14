@@ -1,3 +1,10 @@
+## [1.189.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.189.0...v1.189.1) (2026-11-14)
+
+
+### Bug Fixes
+
+* **dmsic:** validator รับ DATE_SEND yyyyMMddHHmmss ทุกแฟ้ม (ตีตกทุกแถวใน v1.188.2+) ([978ba28](https://github.com/aegisx-platform/aegisx-starter/commit/978ba28c618d2315a182818c3185672c95740790))
+
 # [1.189.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.188.3...v1.189.0) (2026-11-14)
 
 
