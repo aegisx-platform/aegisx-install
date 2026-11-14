@@ -1,3 +1,32 @@
+# [1.189.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.188.3...v1.189.0) (2026-11-14)
+
+
+### Features
+
+* **contracts:** ลบสัญญาที่ยังไม่ถูกใช้ได้ทุกสถานะ พร้อมยืนยันชัดเจน ([bda7fa0](https://github.com/aegisx-platform/aegisx-starter/commit/bda7fa0a0357666d56d5ec32b63d878b5d8df52c))
+
+## [1.188.3](https://github.com/aegisx-platform/aegisx-starter/compare/v1.188.2...v1.188.3) (2026-11-14)
+
+
+### Bug Fixes
+
+* **contracts:** การ์ดสถิติ/ตัวกรอง/ป้ายสถานะตัดสินจากวันสิ้นสุดจริง + ลบได้เฉพาะร่าง ([19f6788](https://github.com/aegisx-platform/aegisx-starter/commit/19f67883ddbd6f9690ea7286a018fb0eb28b0c82))
+
+## [1.188.2](https://github.com/aegisx-platform/aegisx-starter/compare/v1.188.1...v1.188.2) (2026-11-14)
+
+
+### Bug Fixes
+
+* **dmsic:** ปรับข้อมูลส่ง 5 แฟ้มให้ตรง swagger v2 ([98bcd90](https://github.com/aegisx-platform/aegisx-starter/commit/98bcd9020445a03f2a676c4191b598407b5311ab))
+
+## [1.188.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.188.0...v1.188.1) (2026-11-14)
+
+
+### Bug Fixes
+
+* **dmsic:** โชว์ error รหัสสถานพยาบาลทันทีเมื่อค่าเดิมไม่ใช่ 9 หลัก ([02ecd54](https://github.com/aegisx-platform/aegisx-starter/commit/02ecd548870efcc0000c4e607f3cc183512002d5))
+* **dmsic:** รหัสสถานพยาบาลรับตัวอักษร 9 ตัว (เช่น EA0010664) ([8f85616](https://github.com/aegisx-platform/aegisx-starter/commit/8f85616d7c9642e752d8baedc85db037ee85fc77))
+
 # [1.188.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.187.0...v1.188.0) (2026-11-13)
 
 
