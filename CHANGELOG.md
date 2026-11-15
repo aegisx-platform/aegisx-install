@@ -1,3 +1,10 @@
+## [1.189.4](https://github.com/aegisx-platform/aegisx-starter/compare/v1.189.3...v1.189.4) (2026-11-15)
+
+
+### Bug Fixes
+
+* **dmsic:** export ซ้ำงวดเดิมเขียนทับทะเบียนแทน 409 DUPLICATE_KEY ([65a0851](https://github.com/aegisx-platform/aegisx-starter/commit/65a08512171fdcc2ab5498c28e687fd726306d87))
+
 ## [1.189.3](https://github.com/aegisx-platform/aegisx-starter/compare/v1.189.2...v1.189.3) (2026-11-14)
 
 
