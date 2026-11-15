@@ -1,3 +1,11 @@
+## [1.189.5](https://github.com/aegisx-platform/aegisx-starter/compare/v1.189.4...v1.189.5) (2026-11-15)
+
+
+### Bug Fixes
+
+* **dmsic:** การ์ดสรุป error จากกระทรวงเป็นกลุ่มตามช่อง แทนข้อความยาวเต็มจอ ([26d3138](https://github.com/aegisx-platform/aegisx-starter/commit/26d3138099e419413ebb951e7bf2a16fc6e81970))
+* **dmsic:** ปัดเงินเป็นทศนิยม 2 ตำแหน่ง และ inventory ลบแล้วได้ 404 ถือว่าไม่มีข้อมูล ([d890dcb](https://github.com/aegisx-platform/aegisx-starter/commit/d890dcb65074a01f3a9dfda0f960a4b887c9f9b0))
+
 ## [1.189.4](https://github.com/aegisx-platform/aegisx-starter/compare/v1.189.3...v1.189.4) (2026-11-15)
 
 
