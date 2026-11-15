@@ -1,3 +1,10 @@
+## [1.189.6](https://github.com/aegisx-platform/aegisx-starter/compare/v1.189.5...v1.189.6) (2026-11-15)
+
+
+### Bug Fixes
+
+* **dmsic:** purchaseplan ปัด PACK_COST 2 ตำแหน่งแม้รายการที่จำนวนขอเป็น 0 ([7dae229](https://github.com/aegisx-platform/aegisx-starter/commit/7dae2297cc74998919152ea35938db23c562ed37))
+
 ## [1.189.5](https://github.com/aegisx-platform/aegisx-starter/compare/v1.189.4...v1.189.5) (2026-11-15)
 
 
