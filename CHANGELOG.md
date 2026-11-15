@@ -1,3 +1,13 @@
+## [1.189.7](https://github.com/aegisx-platform/aegisx-starter/compare/v1.189.6...v1.189.7) (2026-11-15)
+
+
+### Bug Fixes
+
+* **dmsic:** druglist ส่ง PRODUCT_CAT ตามประเภทผลิตภัณฑ์และ HPP แทน 1 ทุกรายการ ([19394e5](https://github.com/aegisx-platform/aegisx-starter/commit/19394e5edff62e0b713aaa366fabb630c56b9dbd))
+* **document-transmittals:** เรียงรายการ PO จากเลขน้อยไปมาก ([b2dd923](https://github.com/aegisx-platform/aegisx-starter/commit/b2dd9236c14d87478bb04ce0a341deaaefd716a7))
+* **receipts:** เลือกกรรมการชุดใหม่แล้วใบลงนามเป็นชุดใหม่ และใบตรวจรับใช้เลขสัญญาของ รพ ([ad33884](https://github.com/aegisx-platform/aegisx-starter/commit/ad3388413ebce17b3e8283e5d6e53f5171c12adf))
+* **tcr:** เลขที่โครงการดึงจากสัญญาด้วย และวันที่รับสินค้าใช้วันตรวจรับ ([3969798](https://github.com/aegisx-platform/aegisx-starter/commit/39697986616baca41ec248673027237c5089b07d))
+
 ## [1.189.6](https://github.com/aegisx-platform/aegisx-starter/compare/v1.189.5...v1.189.6) (2026-11-15)
 
 
