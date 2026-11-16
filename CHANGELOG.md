@@ -1,3 +1,11 @@
+## [1.189.8](https://github.com/aegisx-platform/aegisx-starter/compare/v1.189.7...v1.189.8) (2026-11-16)
+
+
+### Bug Fixes
+
+* **receipts:** ใบตรวจรับกลับมาใช้ ผลปรากฏ (ฏ ปฏัก) ตามพจนานุกรม ([da863ef](https://github.com/aegisx-platform/aegisx-starter/commit/da863ef19e0f385999465ef0f06647732b70a211))
+* **receipts:** ใบตรวจรับใช้คำว่า ผลปรากฎ ตามที่ รพ. ใช้ ([9aac294](https://github.com/aegisx-platform/aegisx-starter/commit/9aac29491eb04a04e1dfad47147558c50dd953f3))
+
 ## [1.189.7](https://github.com/aegisx-platform/aegisx-starter/compare/v1.189.6...v1.189.7) (2026-11-15)
 
 
