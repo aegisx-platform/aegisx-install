@@ -1,3 +1,10 @@
+# [1.190.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.189.8...v1.190.0) (2026-11-17)
+
+
+### Features
+
+* **receipts:** การ์ด ยังไม่ลงรับ ในหน้ารับเวชภัณฑ์ แยก PO ที่ส่งผู้ขายแล้วแต่ยังไม่มีใบรับ ([45bd3fa](https://github.com/aegisx-platform/aegisx-starter/commit/45bd3fa07726a1c5470e1e266434e8b9449833ee))
+
 ## [1.189.8](https://github.com/aegisx-platform/aegisx-starter/compare/v1.189.7...v1.189.8) (2026-11-16)
 
 
