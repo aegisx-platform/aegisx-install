@@ -1,3 +1,11 @@
+## [1.193.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.193.0...v1.193.1) (2026-11-17)
+
+
+### Bug Fixes
+
+* **rbac:** คลังใหญ่ได้สิทธิ์ดูและแก้ไขทะเบียนเอกสารลงคลัง (เซ็นรับ/ส่งคืน) ([7c234c8](https://github.com/aegisx-platform/aegisx-starter/commit/7c234c83d332a0cf8bf78cfda25848206d5624c2))
+* **rbac:** คลังใหญ่อ่านปีงบได้ หน้ารับเวชภัณฑ์กรองตามปีงบปัจจุบันได้ ([8da71e7](https://github.com/aegisx-platform/aegisx-starter/commit/8da71e76ac50134f6be9758f20d11037d18c4d6f))
+
 # [1.193.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.192.0...v1.193.0) (2026-11-17)
 
 
