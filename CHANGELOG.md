@@ -1,3 +1,10 @@
+# [1.191.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.190.0...v1.191.0) (2026-11-17)
+
+
+### Features
+
+* **receipts:** ผู้ลงนามใบเสนอผลการตรวจรับตั้งค่าแยกและเปลี่ยนรายชุดในหน้าตรวจรับได้ ([dc0141e](https://github.com/aegisx-platform/aegisx-starter/commit/dc0141e16ff93e863d1c520ddacde8953c6b1718))
+
 # [1.190.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.189.8...v1.190.0) (2026-11-17)
 
 
