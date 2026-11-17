@@ -1,3 +1,13 @@
+## [1.193.2](https://github.com/aegisx-platform/aegisx-starter/compare/v1.193.1...v1.193.2) (2026-11-17)
+
+
+### Bug Fixes
+
+* **purchase-orders:** ใบสั่งซื้อสั่งตรงที่ไม่มีใบขอซื้อ ขึ้นตามปีงบจากวันที่ใบสั่งซื้อ ([f7f691e](https://github.com/aegisx-platform/aegisx-starter/commit/f7f691ed1809e688a5a3e9ddc6d24ec6e60e6539))
+* **purchase-orders:** รายงานผลตรวจรับ ใช้เลขที่สัญญาของ รพ. ในเรื่องเดิม ([83759d5](https://github.com/aegisx-platform/aegisx-starter/commit/83759d50c8540472ffb65b143c9d8135365b79c0))
+* **purchase-orders:** รายงานผลตรวจรับ ไม่มีตัวเอียง/พื้นเทา ตัวเลขกึ่งกลาง และเลขหน้าราชการ ([3d22508](https://github.com/aegisx-platform/aegisx-starter/commit/3d225082f428887bca22a519e2f57c564d915735))
+* **purchase-orders:** รายงานผลตรวจรับ หน่วยขึ้นหัวคอลัมน์เมื่อทุกรายการหน่วยเดียวกัน ([1f81927](https://github.com/aegisx-platform/aegisx-starter/commit/1f81927afd33b356b28b6b7a7d738a5a37ce3226))
+
 ## [1.193.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.193.0...v1.193.1) (2026-11-17)
 
 
