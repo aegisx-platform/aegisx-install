@@ -1,3 +1,17 @@
+# [1.192.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.191.0...v1.192.0) (2026-11-17)
+
+
+### Bug Fixes
+
+* **receipts:** รายชื่อผู้ลงนามมากับรายละเอียดชุดตรวจรับ คลังไม่ต้องอ่านตั้งค่า (เดิม 403) ([4ed3c29](https://github.com/aegisx-platform/aegisx-starter/commit/4ed3c29f61c404c5360978a0f4179e094f89775c))
+
+
+### Features
+
+* **contracts:** ช่องบันทึกเพิ่มเติมของสัญญาเป็นข้อความยาวหลายบรรทัด ([838a10b](https://github.com/aegisx-platform/aegisx-starter/commit/838a10b1fdb862011607425720001b8329a6900e))
+* **receipts:** คลังเห็นหมายเหตุ PO + โน้ต/แท็กใบขอซื้อตอนรับของ (DMS 10/11/69 ข้อ 1) ([193def5](https://github.com/aegisx-platform/aegisx-starter/commit/193def5ccf89ac02813ff9cc6c67e46710d3c84e))
+* **settings:** เบอร์โทรงานตรวจรับแยกจากเบอร์กลุ่มงาน ใช้ในรายงานผลการตรวจรับ ([529a1cf](https://github.com/aegisx-platform/aegisx-starter/commit/529a1cfa696aab242581080ad6d00a1603253a7c))
+
 # [1.191.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.190.0...v1.191.0) (2026-11-17)
 
 
