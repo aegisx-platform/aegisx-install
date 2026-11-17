@@ -1,3 +1,17 @@
+# [1.194.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.193.2...v1.194.0) (2026-11-17)
+
+
+### Bug Fixes
+
+* **purchase-orders:** คู่ฉบับประกาศผู้ชนะ บรรทัดประกาศจังหวัดตรงกับหน้าต้นฉบับ ([cb52d26](https://github.com/aegisx-platform/aegisx-starter/commit/cb52d26c742127fe3a1016239458d6e5e49d2577))
+* **purchase-orders:** คู่ฉบับประกาศผู้ชนะ หัวเรื่องขนาดเท่าต้นฉบับ ทุกบรรทัดตรงกัน ([0132efe](https://github.com/aegisx-platform/aegisx-starter/commit/0132efec45e5c00e466111cb47abae06fb74193c))
+* **purchase-orders:** ใบสั่งซื้อหัวตารางไม่มีพื้นเทา และหมายเหตุข้อ ๒ ฉบับ Word ใช้เลขไทยทั้งบรรทัด ([21383c0](https://github.com/aegisx-platform/aegisx-starter/commit/21383c053f5f5e6b82c2c967a01733657dfdca47))
+
+
+### Features
+
+* **document-dispatch:** ทะเบียนรับเอกสาร เรียงเลข PO น้อยไปมาก และกดหัวคอลัมน์เรียงได้ ([d618791](https://github.com/aegisx-platform/aegisx-starter/commit/d618791fedef1be51766740f741df35b1f6f9285))
+
 ## [1.193.2](https://github.com/aegisx-platform/aegisx-starter/compare/v1.193.1...v1.193.2) (2026-11-17)
 
 
