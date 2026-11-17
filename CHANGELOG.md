@@ -1,3 +1,10 @@
+# [1.193.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.192.0...v1.193.0) (2026-11-17)
+
+
+### Features
+
+* **document-transmittals:** ส่งคืนเอกสารนำส่งพร้อมบังคับระบุสาเหตุ ([70403c9](https://github.com/aegisx-platform/aegisx-starter/commit/70403c9752e947e1b8c6fa5fde7ce7df41fd32c7))
+
 # [1.192.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.191.0...v1.192.0) (2026-11-17)
 
 
