@@ -1,3 +1,10 @@
+# [1.195.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.194.0...v1.195.0) (2026-11-19)
+
+
+### Features
+
+* **procurement:** รายงานผลตรวจรับตามประชุม DMS 18/11/69 + ทะเบียนเจ้าหนี้ดาวน์โหลด Word ([881f187](https://github.com/aegisx-platform/aegisx-starter/commit/881f187cf978314088dd1f33776d754a1abe71ed))
+
 # [1.194.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.193.2...v1.194.0) (2026-11-17)
 
 
