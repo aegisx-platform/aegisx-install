@@ -1,3 +1,10 @@
+# [1.197.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.196.1...v1.197.0) (2026-11-20)
+
+
+### Features
+
+* **procurement:** เตือนเมื่อเลือกเฉพาะเจาะจงข้อ ข แต่ยอดรวม VAT เกิน 500,000 บาท ([66828ec](https://github.com/aegisx-platform/aegisx-starter/commit/66828ecfa7782d453a728da18cc98831e02550c9))
+
 ## [1.196.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.196.0...v1.196.1) (2026-11-20)
 
 
