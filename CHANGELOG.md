@@ -1,3 +1,16 @@
+# [1.196.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.195.0...v1.196.0) (2026-11-20)
+
+
+### Bug Fixes
+
+* **trade-creditor-registers:** ยืนยันรอบได้แม้ประเภท ED/NED ว่าง ([1fb2c40](https://github.com/aegisx-platform/aegisx-starter/commit/1fb2c408a07bbcc02301b4ea954de197e8c1b164))
+
+
+### Features
+
+* **document-dispatch:** ทะเบียนรับเอกสาร ส่งคืนรายการ PO พร้อมเหตุผล (ไม่บังคับ) และยกเลิกส่งคืนได้ ([90b7166](https://github.com/aegisx-platform/aegisx-starter/commit/90b71669052da6ccf4141611e0b98dae90d5e70e))
+* **trade-creditor-registers:** แสดงเลขที่โครงการ e-GP ในหน้ากรอกและหน้ารายละเอียด จน ([bd2da41](https://github.com/aegisx-platform/aegisx-starter/commit/bd2da41b187023bc190ba75a0aded9bb5bad70cf))
+
 # [1.195.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.194.0...v1.195.0) (2026-11-19)
 
 
