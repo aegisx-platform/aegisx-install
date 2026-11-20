@@ -1,3 +1,10 @@
+## [1.196.1](https://github.com/aegisx-platform/aegisx-starter/compare/v1.196.0...v1.196.1) (2026-11-20)
+
+
+### Bug Fixes
+
+* **drugs:** บัญชียาหลัก (ED/NED) ในข้อมูลยาบันทึกว่างได้ ([37b4e56](https://github.com/aegisx-platform/aegisx-starter/commit/37b4e565e81e009a34e08ada8e237984d147ae7f))
+
 # [1.196.0](https://github.com/aegisx-platform/aegisx-starter/compare/v1.195.0...v1.196.0) (2026-11-20)
 
 
